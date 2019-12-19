@@ -1,0 +1,85 @@
+{
+    "name": "Catchpoint",
+    "description": "Catchpoint is the leader in digital experience intelligence. Learn how we uncover critical insights into your services to drive amazing digital experiences.",
+    "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/726-catchpoint.jpg",
+    "tags": [
+        "api service provider",
+        "have api",
+        "performance"
+    ],
+    "created": "2019-12-19",
+    "modified": "2019-12-19",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/catchpoint\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+        {
+            "name": "Catchpoint",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/726-catchpoint.jpg",
+            "humanURL": "http:\/\/www.catchpoint.com",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/catchpoint-openapi.json"
+                },
+                {
+                    "type": "x-postman-collecction",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/catchpoint-postman-collection.json"
+                }
+            ]
+        }
+    ],
+    "include": [],
+    "x-common": [
+        {
+            "type": "Blog",
+            "url": "http:\/\/blog.catchpoint.com"
+        },
+        {
+            "type": "Blog RSS",
+            "url": "http:\/\/blog.catchpoint.com\/feed\/"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "https:\/\/crunchbase.com\/organization\/catchpoint-systems"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "http:\/\/www.crunchbase.com\/company\/catchpoint-systems"
+        },
+        {
+            "type": "Developers",
+            "url": "http:\/\/www.catchpoint.com\/monitoring-solutions\/developers\/"
+        },
+        {
+            "type": "Email",
+            "url": "support@catchpoint.com"
+        },
+        {
+            "type": "Email",
+            "url": "pr@catchpoint.com"
+        },
+        {
+            "type": "Email",
+            "url": "jobs@catchpoint.com"
+        },
+        {
+            "type": "Email",
+            "url": "privacy@catchpoint.com"
+        },
+        {
+            "type": "Github",
+            "url": "https:\/\/github.com\/catchpoint"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/catchpoint"
+        },
+        {
+            "type": "Website",
+            "url": "http:\/\/www.catchpoint.com"
+        }
+    ]
+}
