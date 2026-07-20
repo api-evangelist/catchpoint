@@ -1,0 +1,35 @@
+generated: '2026-07-18'
+method: searched
+source: openapi/catchpoint-rest-api-v2-openapi-original.json
+docs: https://docs.catchpoint.com/docs/rest-api-v2-guide
+summary:
+  types:
+  - http
+  http_schemes:
+  - bearer
+schemes:
+- name: bearer
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  in: header
+  header: Authorization
+  sources:
+  - openapi/catchpoint-rest-api-v2-openapi-original.json
+docs_detail:
+  model: api-key-as-bearer-token
+  description: >-
+    Catchpoint's REST API v2 authenticates every request with a REST API key passed
+    as a bearer token in the Authorization header. Keys are created in the Catchpoint
+    Portal under Settings > Integrations > REST API by adding a Consumer and are shown
+    once at creation.
+  key_scope:
+  - client-level (access client data)
+  - division-level (access division data)
+  key_validity: REST API keys are valid for two years from generation; regenerating restarts the two-year window; keys can be revoked.
+  rotation:
+    supported: true
+    detail: >-
+      Rotational API key support allows account-level key expiration (configurable 30
+      days to 2 years) and up to two active keys per consumer for zero-downtime rotation.
+  reference: https://docs.catchpoint.com/docs/rest-api-v2-guide
