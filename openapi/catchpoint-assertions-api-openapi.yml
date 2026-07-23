@@ -1,0 +1,508 @@
+openapi: 3.0.1
+info:
+  title: Catchpoint REST API v2.0 Account Assertions API
+  version: '2.0'
+servers:
+- url: /api
+tags:
+- name: Assertions
+paths:
+  /v2/assertions:
+    get:
+      tags:
+      - Assertions
+      summary: Returns the assertions by the IDs passed.
+      description: If no parameters are passed, the details of all assertions for current level are returned.
+      parameters:
+      - name: assertionIds
+        in: query
+        description: Comma-separated list of Assertion IDs
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.IdentityProviderAssertion.IdentityProviderAssertionRequestResponseModel]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.IdentityProviderAssertion.IdentityProviderAssertionRequestResponseModel]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.IdentityProviderAssertion.IdentityProviderAssertionRequestResponseModel]'
+      security:
+      - bearer: []
+      order: 1
+    post:
+      tags:
+      - Assertions
+      summary: Create a new assertion based on the PostData.
+      description: To get payload for creating a new assertion and to get the created assertion details refer InternalLink[Identity Provider Assertions Endpoint,operations-tag-Assertions,operations-Assertions-get_v2_assertions] Endpoint. (add hyperlink to endpoint). Pass “0” for assertion ID to create a new assertion.
+      parameters:
+      - name: objectDetails
+        in: query
+        description: Set to true to return the created object in the response body, otherwise the response body will only return created object ID.
+        schema:
+          type: boolean
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Requests.v2_0.IdentityProviderAssertionRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Requests.v2_0.IdentityProviderAssertionRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Requests.v2_0.IdentityProviderAssertionRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Requests.v2_0.IdentityProviderAssertionRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.IdentityProviderAssertion.IdentityProviderAssertionPostResponse]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.IdentityProviderAssertion.IdentityProviderAssertionPostResponse]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.IdentityProviderAssertion.IdentityProviderAssertionPostResponse]'
+      security:
+      - bearer: []
+      order: 2
+    patch:
+      tags:
+      - Assertions
+      summary: Update an existing assertion based on the request body.
+      description: "**Request:**\r\n            \r\nOnly the property to be updated can be passed in the request body instead of the whole object. The update request body requires a total of three keys to be filled with appropriate value as listed below:\r\n* **value** – The value property provides the new value.\r\n            \r\n* **path** – The path property indicates the element to update. The entire path with slashes needs to be provided here. Example: /status/id\r\n            \r\n* **op** – The op property indicates the type of operation; we support the following three operations.\r\n            \r\n    * **add** - Add a property or array element. For existing property: set value.\r\n            \r\n    * **Remove** - Remove a property or array element.\r\n            \r\n    * **replace** - Same as remove followed by add at same location.\r\n            \r\n* **from** - [Not Used]\r\n            \r\n    * **Explanation** - The \"from\" parameter represents the starting or current value of the resource that the operation intends to modify. The from parameter is included in the example value schema but is not utilized in this endpoint's functionality. It is reserved for potential future use or could be used in specific scenarios not covered by the current implementation."
+      parameters:
+      - name: id
+        in: query
+        description: Assertion ID
+        schema:
+          type: integer
+          format: int32
+      - name: objectDetails
+        in: query
+        description: Set to true to return the updated object in the response body, otherwise the response body will only return the updated object ID.
+        schema:
+          type: boolean
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.JsonPatch.Operations.Operation'
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.JsonPatch.Operations.Operation'
+          text/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.JsonPatch.Operations.Operation'
+          application/*+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.JsonPatch.Operations.Operation'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.IdentityProviderAssertion.IdentityProviderAssertionPostResponse]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.IdentityProviderAssertion.IdentityProviderAssertionPostResponse]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.IdentityProviderAssertion.IdentityProviderAssertionPostResponse]'
+      security:
+      - bearer: []
+      order: 3
+    delete:
+      tags:
+      - Assertions
+      summary: Delete an existing assertion by parameters passed.
+      description: To delete assertions based on the specified list of IDs, the IDs need to be separated by commas. This endpoint allows partial deletion; if you provide a list of five IDs and only three of them are valid, then it will delete those three assertions. The response will indicate the three that were deleted, and the two invalid IDs will be listed as errors.
+      parameters:
+      - name: assertionIds
+        in: query
+        description: Comma-separated list of Assertion IDs
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.IdentityProviderAssertion.IdentityProviderAssertionDeleteResponse]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.IdentityProviderAssertion.IdentityProviderAssertionDeleteResponse]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.IdentityProviderAssertion.IdentityProviderAssertionDeleteResponse]'
+      security:
+      - bearer: []
+      order: 4
+components:
+  schemas:
+    Catchpoint.Symphony.REST.Common.Response.v2_0.IdentityProviderAssertion.IdentityProviderAssertionDeleteResponse:
+      type: object
+      properties:
+        deletedAssertionIds:
+          type: array
+          items:
+            type: integer
+            format: int32
+          nullable: true
+        notDeletedAssertionIds:
+          type: array
+          items:
+            type: integer
+            format: int32
+          nullable: true
+        hasMore:
+          type: boolean
+          nullable: true
+        next:
+          type: string
+          nullable: true
+        previous:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.IdentityProviderAssertion.IdentityProviderAssertionDeleteResponse]
+    : type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.IdentityProviderAssertion.IdentityProviderAssertionDeleteResponse'
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+          nullable: true
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+          nullable: true
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type: string
+          nullable: true
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+    Microsoft.AspNetCore.JsonPatch.Operations.Operation:
+      type: object
+      properties:
+        value:
+          nullable: true
+        path:
+          type: string
+          nullable: true
+        op:
+          type: string
+          nullable: true
+        from:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Enums.RUM.RumAccessType:
+      enum:
+      - id: 0
+        name: All
+      - id: 1
+        name: Site
+      type: integer
+      format: int32
+    Catchpoint.Symphony.REST.Common.Requests.v2_0.IdentityProviderAssertionRequest:
+      type: object
+      properties:
+        assertions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.IdentityProviderAssertion.IdentityProviderAssertionAPIModel'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.ApiUsageStatistics:
+      type: object
+      properties:
+        clientId:
+          type: integer
+          format: int64
+        lastRequestTimestamp:
+          type: string
+          format: date-time
+        limits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        runs:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        exceededMessage:
+          type: string
+          nullable: true
+          readOnly: true
+        divisionUsageStatistics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.DivisionUsageStatistics'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.InfoMessage:
+      type: object
+      properties:
+        information:
+          type: string
+          nullable: true
+        ignoredPath:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.ConsumerStatistics:
+      type: object
+      properties:
+        consumerId:
+          type: integer
+          format: int32
+        requestCount:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        maxPerDay:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.ViewModels.MessageModel:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        message:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.v2_0.IdentityProviderAssertion.TestAccessRestrictionApiType:
+      enum:
+      - id: 0
+        name: All
+      - id: 1
+        name: Test
+      - id: 2
+        name: Product
+      type: integer
+      format: int32
+    Catchpoint.Symphony.REST.Common.Response.v2_0.IdentityProviderAssertion.IdentityProviderAssertionRequestResponseModel:
+      type: object
+      properties:
+        assertions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.IdentityProviderAssertion.IdentityProviderAssertionAPIModel'
+          nullable: true
+        hasMore:
+          type: boolean
+          nullable: true
+        next:
+          type: string
+          nullable: true
+        previous:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Enums.AccessLevel:
+      enum:
+      - id: 5
+        name: System
+      - id: 16
+        name: Reseller
+      - id: 17
+        name: Client
+      - id: 18
+        name: Division
+      type: integer
+      format: int32
+    Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath:
+      type: object
+      properties:
+        ops:
+          type: string
+          nullable: true
+        path:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.ViewModels.KeyValueModel:
+      type: object
+      properties:
+        key:
+          type: string
+          nullable: true
+        value:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.IdentityProviderAssertion.IdentityProviderAssertionPostResponse:
+      type: object
+      properties:
+        assertions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.IdentityProviderAssertion.IdentityProviderAssertionAPIModel'
+          nullable: true
+        assertionIds:
+          type: array
+          items:
+            type: integer
+            format: int32
+          nullable: true
+        hasMore:
+          type: boolean
+          nullable: true
+        next:
+          type: string
+          nullable: true
+        previous:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.Limit:
+      type: object
+      properties:
+        minute:
+          type: integer
+          format: int32
+        hour:
+          type: integer
+          format: int32
+        day:
+          type: integer
+          format: int32
+      additionalProperties: false
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.IdentityProviderAssertion.IdentityProviderAssertionPostResponse]
+    : type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.IdentityProviderAssertion.IdentityProviderAssertionPostResponse'
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+          nullable: true
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+          nullable: true
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type: string
+          nullable: true
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.v2_0.IdentityProviderAssertion.IdentityProviderAssertionAPIModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        assertions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.KeyValueModel'
+          nullable: true
+        priority:
+          type: integer
+          format: int32
+        accessLevel:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.AccessLevel'
+        ssoLevel:
+          type: integer
+          format: int64
+          nullable: true
+        systemAccess:
+          type: integer
+          format: int32
+          nullable: true
+        regex:
+          type: boolean
+        testAccessRestrictType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.IdentityProviderAssertion.TestAccessRestrictionApiType'
+        testAccessRestrictionIds:
+          type: array
+          items:
+            type: integer
+            format: int64
+          nullable: true
+        rumAccessRestrictionType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.RUM.RumAccessType'
+        rumAccessRestrictionIds:
+          type: array
+          items:
+            type: integer
+            format: int64
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.DivisionUsageStatistics:
+      type: object
+      properties:
+        divisionId:
+          type: integer
+          format: int32
+        consumerStatistics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ConsumerStatistics'
+          nullable: true
+      additionalProperties: false
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.IdentityProviderAssertion.IdentityProviderAssertionRequestResponseModel]
+    : type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.IdentityProviderAssertion.IdentityProviderAssertionRequestResponseModel'
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+          nullable: true
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+          nullable: true
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type: string
+          nullable: true
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

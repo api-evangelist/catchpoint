@@ -1,0 +1,393 @@
+openapi: 3.0.1
+info:
+  title: Catchpoint REST API v2.0 Account ASNs API
+  version: '2.0'
+servers:
+- url: /api
+tags:
+- name: ASNs
+paths:
+  /v2/library/asns/{ids}:
+    get:
+      tags:
+      - ASNs
+      summary: Return ASN's details by the IDs passed
+      parameters:
+      - name: ids
+        in: path
+        description: Comma separated list of ASN's IDs
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.AsnResponseModel]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.AsnResponseModel]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.AsnResponseModel]'
+      security:
+      - bearer: []
+      order: 1
+    delete:
+      tags:
+      - ASNs
+      summary: Deletes existing ASNs by parameters passed
+      parameters:
+      - name: ids
+        in: path
+        description: To delete ASNs based on the specified list of IDs, the IDs need to be separated by commas. This endpoint allows partial deletion; if you provide a list of five IDs and only three of them are valid, then it will delete those three ASNs. The response will indicate the three that were deleted, and the two invalid IDs will be listed as errors.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.AsnResponseModel]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.AsnResponseModel]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.AsnResponseModel]'
+      security:
+      - bearer: []
+      order: 3
+  /v2/library/asns:
+    get:
+      tags:
+      - ASNs
+      summary: Return ASN details by the parameters passed
+      parameters:
+      - name: asn
+        in: query
+        description: ASN
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.AsnResponseModel]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.AsnResponseModel]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.AsnResponseModel]'
+      security:
+      - bearer: []
+      order: 2
+    post:
+      tags:
+      - ASNs
+      summary: Create an ASN based on the PostData.
+      description: To get payload for creating a new ASN and to get the created ASN details refer InternalLink[ASN by ID Endpoint,operations-tag-ASN,operations-ASN-get_v2_asns__asnIds_]. Pass “0” for ASN ID to create a new ASN.
+      parameters:
+      - name: objectDetails
+        in: query
+        description: Set to true to return the created object in the response body, otherwise the response body will only return created object ID.
+        schema:
+          type: boolean
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Requests.v2_0.AsnRequestModel'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Requests.v2_0.AsnRequestModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Requests.v2_0.AsnRequestModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Requests.v2_0.AsnRequestModel'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.AsnResponseModel]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.AsnResponseModel]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.AsnResponseModel]'
+      security:
+      - bearer: []
+      order: 4
+  /v2/library/asns/{asnId}:
+    patch:
+      tags:
+      - ASNs
+      summary: Update an existing ASN based on the request body.
+      description: "Only the property to be updated can be passed in the request body instead of the whole object. The update request body requires a total of three keys to be filled with appropriate value as listed below:\r\n* **value** – The value property provides the new value.\r\n            \r\n* **path** – The path property indicates the element to update. The entire path with slashes needs to be provided here. Example: /status/id\r\n            \r\n* **op** – The op property indicates the type of operation; we support the following three operations.\r\n            \r\n    * **Remove** - Remove a property or array element.\r\n            \r\n    * **replace** - Same as remove followed by add at same location.\r\n            \r\n* **from** - [Not Used]\r\n            \r\n    * **Explanation** - The \"from\" parameter represents the starting or current value of the resource that the operation intends to modify. The from parameter is included in the example value schema but is not utilized in this endpoint's functionality. It is reserved for potential future use or could be used in specific scenarios not covered by the current implementation."
+      parameters:
+      - name: asnId
+        in: path
+        description: Asn ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: objectDetails
+        in: query
+        description: Set to true to return the updated object in the response body, otherwise the response body will only return the updated object ID.
+        schema:
+          type: boolean
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.JsonPatch.Operations.Operation'
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.JsonPatch.Operations.Operation'
+          text/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.JsonPatch.Operations.Operation'
+          application/*+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.JsonPatch.Operations.Operation'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.AsnResponseModel]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.AsnResponseModel]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.AsnResponseModel]'
+      security:
+      - bearer: []
+      order: 5
+components:
+  schemas:
+    Catchpoint.Symphony.REST.Common.Response.v2_0.AsnApiModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        asn:
+          type: integer
+          format: int64
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        lastUpdated:
+          type: string
+          format: date-time
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.ApiUsageStatistics:
+      type: object
+      properties:
+        clientId:
+          type: integer
+          format: int64
+        lastRequestTimestamp:
+          type: string
+          format: date-time
+        limits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        runs:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        exceededMessage:
+          type: string
+          nullable: true
+          readOnly: true
+        divisionUsageStatistics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.DivisionUsageStatistics'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath:
+      type: object
+      properties:
+        ops:
+          type: string
+          nullable: true
+        path:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.AsnResponseModel]:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.AsnResponseModel'
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+          nullable: true
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+          nullable: true
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type: string
+          nullable: true
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.Limit:
+      type: object
+      properties:
+        minute:
+          type: integer
+          format: int32
+        hour:
+          type: integer
+          format: int32
+        day:
+          type: integer
+          format: int32
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.DivisionUsageStatistics:
+      type: object
+      properties:
+        divisionId:
+          type: integer
+          format: int32
+        consumerStatistics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ConsumerStatistics'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.AsnResponseModel:
+      type: object
+      properties:
+        asns:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.AsnApiModel'
+          nullable: true
+        asn:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.AsnApiModel'
+        deletedAsns:
+          type: string
+          nullable: true
+        id:
+          type: integer
+          format: int32
+          nullable: true
+        hasMore:
+          type: boolean
+          nullable: true
+        next:
+          type: string
+          nullable: true
+        previous:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.InfoMessage:
+      type: object
+      properties:
+        information:
+          type: string
+          nullable: true
+        ignoredPath:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath'
+          nullable: true
+      additionalProperties: false
+    Microsoft.AspNetCore.JsonPatch.Operations.Operation:
+      type: object
+      properties:
+        value:
+          nullable: true
+        path:
+          type: string
+          nullable: true
+        op:
+          type: string
+          nullable: true
+        from:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.ConsumerStatistics:
+      type: object
+      properties:
+        consumerId:
+          type: integer
+          format: int32
+        requestCount:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        maxPerDay:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Requests.v2_0.AsnRequestModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        asn:
+          type: integer
+          format: int64
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.ViewModels.MessageModel:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        message:
+          type: string
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

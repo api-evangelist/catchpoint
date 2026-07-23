@@ -1,0 +1,6278 @@
+openapi: 3.0.1
+info:
+  title: Catchpoint REST API v2.0 Account TestPerformance API
+  version: '2.0'
+servers:
+- url: /api
+tags:
+- name: TestPerformance
+paths:
+  /v2/tests/records/waterfall/{testId}:
+    get:
+      tags:
+      - TestPerformance
+      summary: Returns waterfall tokens based on test IDs.
+      description: "*[Analytics Endpoint]*\r\n            \r\nReturns the waterfall tokens for last three hours of a specified test if no time range is specified. The tokens returned include “verify on failure” test runs too."
+      parameters:
+      - name: testId
+        in: path
+        description: Test ID to get waterfall tokens for
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: nodeIds
+        in: query
+        description: Comma-separated list of Node IDs
+        schema:
+          type: string
+      - name: startTimeUtc
+        in: query
+        description: Start time in UTC (YYYY-MM-DDThh:mm:ss)
+        schema:
+          type: string
+      - name: endTimeUtc
+        in: query
+        description: End time in UTC (YYYY-MM-DDThh:mm:ss)
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.TestWaterfallTokenResponse]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.TestWaterfallTokenResponse]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.TestWaterfallTokenResponse]'
+      security:
+      - bearer: []
+      order: 1
+  /v2/tests/records/waterfall/data/{waterfallToken}:
+    get:
+      tags:
+      - TestPerformance
+      summary: Returns the test waterfall data for a waterfall token.
+      description: "*[Analytics Endpoint]*\r\n            \r\nFor tests with multiple steps, each step data needs to be pulled separately."
+      parameters:
+      - name: waterfallToken
+        in: path
+        description: Test waterfall token
+        required: true
+        schema:
+          type: string
+      - name: step
+        in: query
+        description: Step number to pull data for
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.TestWaterfallDataResponse]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.TestWaterfallDataResponse]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.TestWaterfallDataResponse]'
+      security:
+      - bearer: []
+      order: 2
+  /v2/tests/records/waterfall/screenshot/{waterfallToken}:
+    get:
+      tags:
+      - TestPerformance
+      summary: Returns the test records waterfall screenshot based on the waterfall token.
+      description: "*[Analytics Endpoint]*\r\n            \r\nFor tests with multiple steps, each screenshot needs to be pulled separately.\r\n            \r\nThe screenshot details are returned in Base64."
+      parameters:
+      - name: waterfallToken
+        in: path
+        description: Test waterfall token
+        required: true
+        schema:
+          type: string
+      - name: step
+        in: query
+        description: Step number to pull data for
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.TestWaterfallDataResponse]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.TestWaterfallDataResponse]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.TestWaterfallDataResponse]'
+      security:
+      - bearer: []
+      order: 3
+  /v2/tests/records/waterfall/filmstrip/{waterfallToken}:
+    get:
+      tags:
+      - TestPerformance
+      summary: Returns the test records waterfall filmstrip based on the waterfall token.
+      description: "*[Analytics Endpoint]*\r\n            \r\nFor tests with multiple steps, each filmstrip needs to be pulled separately.\r\n            \r\nThe filmstrip details are returned in Base64."
+      parameters:
+      - name: waterfallToken
+        in: path
+        description: Test waterfall token
+        required: true
+        schema:
+          type: string
+      - name: step
+        in: query
+        description: Step number to pull data for
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.TestWaterfallDataResponse]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.TestWaterfallDataResponse]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.TestWaterfallDataResponse]'
+      security:
+      - bearer: []
+      order: 4
+  /v2/tests/explorer/favoritechart:
+    get:
+      tags:
+      - TestPerformance
+      summary: Returns the list of favorite charts from a client or a division.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.FavoriteChart.FavoriteChartResponse]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.FavoriteChart.FavoriteChartResponse]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.FavoriteChart.FavoriteChartResponse]'
+      security:
+      - bearer: []
+      order: 5
+  /v2/tests/explorer/favoritechart/{favoriteChartId}:
+    get:
+      tags:
+      - TestPerformance
+      summary: Returns the favorite chart details based on the favorite chart ID.
+      parameters:
+      - name: favoriteChartId
+        in: path
+        description: Favorite chart ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.FavoriteChart.FavoriteChartDetailsResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.FavoriteChart.FavoriteChartDetailsResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.FavoriteChart.FavoriteChartDetailsResponse'
+      security:
+      - bearer: []
+      order: 6
+  /v2/tests/explorer/favoritechart/data/{favoriteChartId}:
+    get:
+      tags:
+      - TestPerformance
+      summary: Returns favorite chart data based on the ID and parameters provided.
+      description: "*[Analytics Endpoint]*\r\n            \r\nThe favorite chart data returned is in UTC time."
+      parameters:
+      - name: favoriteChartId
+        in: path
+        description: Favorite chart ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: startTimeUtc
+        in: query
+        description: Start Time in UTC (YYYY-MM-DDThh:mm:ss)
+        schema:
+          type: string
+      - name: endTimeUtc
+        in: query
+        description: End Time in UTC (YYYY-MM-DDThh:mm:ss)
+        schema:
+          type: string
+      - name: timeInterval
+        in: query
+        description: Time interval window to aggregate data (refer InternalLink[Test Raw Enumeration Endpoint,operations-tag-TestPerformance,operations-TestPerformance-get_v2_tests_explorer_enumeration])
+        schema:
+          type: integer
+          format: int32
+      - name: tests
+        in: query
+        description: Comma-separated list of test IDs to get favorite chart data for
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.FavoriteChart.FavoriteChartDetailsResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.FavoriteChart.FavoriteChartDetailsResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.FavoriteChart.FavoriteChartDetailsResponse'
+      security:
+      - bearer: []
+      order: 7
+  /v2/tests/explorer/raw:
+    get:
+      tags:
+      - TestPerformance
+      summary: Returns raw performance data for the provided Test IDs.
+      description: "*[Analytics Endpoint]*\r\n            \r\nThe raw data returned is in UTC. If no time is specified, the last 1-hour raw data is returned. Use parameters to query specific dimensions."
+      parameters:
+      - name: testIds
+        in: query
+        description: Comma-separated list of Test IDs
+        required: true
+        schema:
+          type: string
+      - name: startTimeUtc
+        in: query
+        description: Start Time in UTC (YYYY-MM-DDThh:mm:ss)
+        schema:
+          type: string
+          format: date-time
+      - name: endTimeUtc
+        in: query
+        description: End Time in UTC (YYYY-MM-DDThh:mm:ss)
+        schema:
+          type: string
+          format: date-time
+      - name: subSourceTypeId
+        in: query
+        description: Sub source type ID (refer InternalLink[Test Raw Enumeration Endpoint,operations-tag-TestPerformance,operations-TestPerformance-get_v2_tests_explorer_enumeration])
+        schema:
+          type: integer
+          format: int32
+      - name: dimensionIds
+        in: query
+        description: Comma-separated list of dimensions (refer InternalLink[Test Raw Enumeration Endpoint,operations-tag-TestPerformance,operations-TestPerformance-get_v2_tests_explorer_enumeration]). The data will be grouped and broken down based on these dimensions
+        schema:
+          type: string
+      - name: metricIds
+        in: query
+        description: Comma-separated list of metric IDs (refer InternalLink[Test Raw Enumeration Endpoint,operations-tag-TestPerformance,operations-TestPerformance-get_v2_tests_explorer_enumeration]). All metrics are returned if no value is passed.
+        schema:
+          type: string
+      - name: tracepointIds
+        in: query
+        description: Comma-separated list of Tracepoint IDs
+        schema:
+          type: string
+      - name: zoneTypeIds
+        in: query
+        description: Comma-separated list of Zone Type IDs. ”-2” for Self Zone and “-3” for Third Party Zone.
+        schema:
+          type: string
+      - name: availabilityFilter
+        in: query
+        description: Comma-separated list of Availability Filter IDs. (OnlyFailures = 0, OnlySuccesses = 1, All = 2, OnlyContentFailures = 3, OnlyJavascriptFailures = 4, SLA = 5, SLAAcceptedRuns = 6, SLAPurgedRuns = 7, RealTimePushApiFailures = 8)
+        schema:
+          type: string
+      - name: verifyOnError
+        in: query
+        description: Include Verify on Error Run. Default is false.
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.AnalyticsApiResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.AnalyticsResponseRaw]]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.AnalyticsApiResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.AnalyticsResponseRaw]]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.AnalyticsApiResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.AnalyticsResponseRaw]]'
+      security:
+      - bearer: []
+      order: 8
+  /v2/tests/explorer/aggregated:
+    get:
+      tags:
+      - TestPerformance
+      summary: Returns aggregated performance data for the provided Test IDs.
+      description: "*[Analytics Endpoint]*\r\n            \r\nThe aggregated performance data returned is in UTC. If no time is specified, the last 24-hour data aggregated by 15 minutes is returned. Use parameters to query specific dimensions."
+      parameters:
+      - name: testIds
+        in: query
+        description: Comma-separated list of Test IDs
+        required: true
+        schema:
+          type: string
+      - name: startTimeUtc
+        in: query
+        description: Start Time in UTC (YYYY-MM-DDThh:mm:ss)
+        schema:
+          type: string
+          format: date-time
+      - name: endTimeUtc
+        in: query
+        description: End Time in UTC (YYYY-MM-DDThh:mm:ss)
+        schema:
+          type: string
+          format: date-time
+      - name: subSourceTypeId
+        in: query
+        description: Sub source type ID (refer InternalLink[Test Raw Enumeration Endpoint,operations-tag-TestPerformance,operations-TestPerformance-get_v2_tests_explorer_enumeration])
+        schema:
+          type: integer
+          format: int32
+      - name: timeInterval
+        in: query
+        description: Time interval window to aggregate data (refer InternalLink[Test Raw Enumeration Endpoint,operations-tag-TestPerformance,operations-TestPerformance-get_v2_tests_explorer_enumeration])
+        schema:
+          type: integer
+          format: int32
+      - name: dimensionIds
+        in: query
+        description: Comma-separated list of dimensions (refer InternalLink[Test Raw Enumeration Endpoint,operations-tag-TestPerformance,operations-TestPerformance-get_v2_tests_explorer_enumeration]). The data will be grouped and broken down based on these dimensions
+        schema:
+          type: string
+      - name: metricIds
+        in: query
+        description: Comma-separated list of metric IDs (refer InternalLink[Test Raw Enumeration Endpoint,operations-tag-TestPerformance,operations-TestPerformance-get_v2_tests_explorer_enumeration]). All metrics are returned if no value is passed.
+        schema:
+          type: string
+      - name: tracepointIds
+        in: query
+        description: Comma-separated list of Tracepoint IDs
+        schema:
+          type: string
+      - name: zoneTypeIds
+        in: query
+        description: Comma-separated list of Zone Type IDs. ”-2” for Self Zone and “-3” for Third Party Zone.
+        schema:
+          type: string
+      - name: availabilityFilter
+        in: query
+        description: Comma-separated list of Availability Filter IDs. (OnlyFailures = 0, OnlySuccesses = 1, All = 2, OnlyContentFailures = 3, OnlyJavascriptFailures = 4, SLA = 5, SLAAcceptedRuns = 6, SLAPurgedRuns = 7, RealTimePushApiFailures = 8)
+        schema:
+          type: string
+      - name: verifyOnError
+        in: query
+        description: Include Verify on Error Run. Default is false.
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.AnalyticsApiResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.AnalyticsResponseAggregated]]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.AnalyticsApiResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.AnalyticsResponseAggregated]]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.AnalyticsApiResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.AnalyticsResponseAggregated]]'
+      security:
+      - bearer: []
+      order: 9
+  /v2/tests/explorer/enumeration:
+    get:
+      tags:
+      - TestPerformance
+      summary: Returns the test raw enumeration details for automation.
+      description: Use parameters to specify which enumeration to pull, if no parameter is passed then it returns all the enumerations. Returns the enumeration based on the parameters.
+      parameters:
+      - name: subSourceId
+        in: query
+        description: Sub source type ID
+        schema:
+          type: integer
+          format: int32
+      - name: includeDimensions
+        in: query
+        description: Set to “true” to return enumerations of dimensions
+        schema:
+          type: boolean
+      - name: includeMetrics
+        in: query
+        description: Set to “true” to return enumerations of metrics
+        schema:
+          type: boolean
+      - name: includeSubSourceTypes
+        in: query
+        description: Set to “true” to return enumerations of sub sources
+        schema:
+          type: boolean
+      - name: includeTimeIntervals
+        in: query
+        description: Set to “true” to return enumerations of time intervals
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationResponse]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationResponse]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationResponse]'
+      security:
+      - bearer: []
+      order: 10
+  /v2/tests/explorer/favoritechart/defaultdata/{favoriteChartId}:
+    get:
+      tags:
+      - TestPerformance
+      summary: Returns favorite chart default data set by the user when the favorite chart was created based on the ID.
+      description: "*[Analytics Endpoint]*\r\n            \r\nThe favorite chart data returned is in UTC time."
+      parameters:
+      - name: favoriteChartId
+        in: path
+        description: Favorite chart ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.FavoriteChart.FavoriteChartDetailsResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.FavoriteChart.FavoriteChartDetailsResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.FavoriteChart.FavoriteChartDetailsResponse'
+      security:
+      - bearer: []
+      order: 11
+components:
+  schemas:
+    Catchpoint.Symphony.Enums.MobilePlaybackSourceType:
+      enum:
+      - id: 0
+        name: Har
+      - id: 3
+        name: Android
+      - id: 4
+        name: IPhone
+      - id: 5
+        name: IPad2
+      - id: 6
+        name: KindleFire
+      - id: 7
+        name: GalaxyTab
+      - id: 8
+        name: IPhone5
+      - id: 9
+        name: IPadMini
+      - id: 10
+        name: GalaxyNote
+      - id: 11
+        name: Nexus7
+      - id: 12
+        name: Nexus4
+      - id: 20
+        name: Nexus6
+      - id: 21
+        name: IPhone6s
+      - id: 22
+        name: GalaxyS6
+      type: integer
+      format: int32
+    Catchpoint.Symphony.REST.Common.Response.v2_0.RecordWebDataAPIModel:
+      type: object
+      properties:
+        contentTags:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.ContentTagAPIModel'
+        filmStripImages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.ImageDataItem'
+          nullable: true
+        hosts:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.HostDataAPIModel'
+        metrics:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.MetricModel'
+        screenshot:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.ImageDataItem'
+        failedVerb:
+          type: string
+          nullable: true
+        zone:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.ZoneAPIModel'
+        webRecords:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.WebRecordAPIModel'
+        transactionData:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.RecordTransactionDataAPIModel'
+        scriptErrors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.RecordScriptErrorItem'
+          nullable: true
+        httpError:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.WebErrorCodeItem'
+        pageSpeedItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordPageSpeedItem'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.ContentTagAPIModel:
+      type: object
+      properties:
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.RecordMetricItemAPIModel'
+          nullable: true
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.RecordContentTagAPIModel'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Enums.Metrics.RecordMetric:
+      enum:
+      - id: 0
+        name: None
+      - id: 1
+        name: AuthenticationMSec
+      - id: 2
+        name: AvailabilityContent
+      - id: 3
+        name: AverageFramesPerSecond
+      - id: 4
+        name: BufferingTotalMSec
+      - id: 5
+        name: ConnectMSec
+      - id: 6
+        name: Connections
+      - id: 7
+        name: Availability
+      - id: 8
+        name: BottleneckMSec
+      - id: 9
+        name: BottleneckPercent
+      - id: 10
+        name: ConnectionsPercent
+      - id: 11
+        name: CountFailedRequests
+      - id: 12
+        name: CountHosts
+      - id: 13
+        name: CountItemsCached
+      - id: 14
+        name: CountJSScriptErrors
+      - id: 15
+        name: CountRedirects
+      - id: 16
+        name: CountRequests
+      - id: 17
+        name: CountStreamingBuffering
+      - id: 18
+        name: CountWireRequests
+      - id: 19
+        name: DnsMSec
+      - id: 20
+        name: DnsRecordsA
+      - id: 21
+        name: DnsRecordsAaaa
+      - id: 22
+        name: DnsRecordsCname
+      - id: 23
+        name: DnsRecordsNs
+      - id: 24
+        name: DnsRecordsOther
+      - id: 25
+        name: DocumentCompleteMSec
+      - id: 26
+        name: DownloadedBytes
+      - id: 27
+        name: FirstContentfulPaintMSec
+      - id: 28
+        name: FirstPaintMSec
+      - id: 29
+        name: FtpDeleteMSec
+      - id: 30
+        name: ListMSec
+      - id: 31
+        name: LoadMSec
+      - id: 32
+        name: LogOutMSec
+      - id: 33
+        name: PageSpeedScore
+      - id: 34
+        name: PingPacketLoss
+      - id: 35
+        name: PingRoundTripTimeMSec
+      - id: 36
+        name: ReceiveMSec
+      - id: 37
+        name: RenderStartMSec
+      - id: 38
+        name: RequestCookieSize
+      - id: 39
+        name: ResponseCookieSize
+      - id: 40
+        name: ResponseMSec
+      - id: 41
+        name: SearchMSec
+      - id: 42
+        name: SendBytes
+      - id: 43
+        name: SmtpHeloMSec
+      - id: 44
+        name: SpeedIndex
+      - id: 45
+        name: SslMSec
+      - id: 46
+        name: StreamingBufferingInitialMSec
+      - id: 47
+        name: StreamingPlayMSec
+      - id: 48
+        name: StreamingWaitMSec
+      - id: 49
+        name: Throughtput
+      - id: 50
+        name: TimeToInteractiveMSec
+      - id: 51
+        name: TraceRouteAsnCount
+      - id: 52
+        name: TraceRouteCityCount
+      - id: 53
+        name: TraceRouteCountryCount
+      - id: 54
+        name: TraceRouteHopCount
+      - id: 55
+        name: TraceRoutePacketLoss
+      - id: 56
+        name: TraceRouteRegionCount
+      - id: 57
+        name: TraceRouteRoundTripMSec
+      - id: 58
+        name: VisuallyCompleteMSec
+      - id: 59
+        name: WaitMSec
+      - id: 60
+        name: WebPageResponseMSec
+      - id: 61
+        name: Blocked
+      - id: 62
+        name: StartTime
+      - id: 63
+        name: SendTime
+      - id: 64
+        name: TimeToFirstByte
+      - id: 65
+        name: FileSize
+      - id: 66
+        name: HeaderSize
+      - id: 67
+        name: RequestCookieCount
+      - id: 68
+        name: ResponseCookieCount
+      - id: 69
+        name: End
+      - id: 70
+        name: FileSizePercent
+      - id: 71
+        name: HostsPercent
+      - id: 72
+        name: RequestCountPercent
+      - id: 73
+        name: Get
+      - id: 74
+        name: GetBytes
+      - id: 75
+        name: Upload
+      - id: 76
+        name: UploadedBytes
+      - id: 77
+        name: Download
+      - id: 78
+        name: ReceiveBytes
+      - id: 79
+        name: MessageSize
+      - id: 80
+        name: RootDelayMSec
+      - id: 81
+        name: RootDispersionMSec
+      - id: 82
+        name: RoundTripDelayMSec
+      - id: 83
+        name: ClockOffSetMSec
+      - id: 84
+        name: SubscribeSize
+      - id: 85
+        name: SubscribeSizeMSec
+      - id: 86
+        name: PublishSize
+      - id: 87
+        name: PublishSizeMSec
+      - id: 88
+        name: ExecCommandTimeMSec
+      - id: 89
+        name: ExecCommandResultsBytes
+      - id: 90
+        name: KeyExchangeTimeMSec
+      - id: 91
+        name: ReturnCode
+      - id: 92
+        name: HandShakeTimeMsec
+      - id: 93
+        name: MaxReceiveRate
+      - id: 94
+        name: MaxTransmitRate
+      - id: 95
+        name: ConnectionDuration
+      - id: 96
+        name: SignalQuality
+      - id: 97
+        name: SignalStrength
+      - id: 98
+        name: TransmittedBytes
+      - id: 99
+        name: Frequency
+      - id: 100
+        name: Jitter
+      - id: 101
+        name: MaxSegmentSize
+      - id: 102
+        name: PathMtu
+      - id: 103
+        name: DurationMSec
+      - id: 104
+        name: WindowScale
+      - id: 105
+        name: TimeToTitle
+      - id: 106
+        name: StepTimeMSec
+      - id: 107
+        name: HeaderBytes
+      - id: 108
+        name: TransferBytes
+      - id: 109
+        name: CountSends
+      - id: 110
+        name: CountReceives
+      - id: 111
+        name: TotalRequests
+      - id: 112
+        name: TotalWebPageResponseMSec
+      - id: 113
+        name: TotalDownloadedBytes
+      - id: 114
+        name: StartTimeOffsetPercent
+      - id: 115
+        name: DurationOffsetPercent
+      - id: 116
+        name: LargestContentfulPaint
+      - id: 117
+        name: CumulativeLayoutShift
+      - id: 118
+        name: PageLoad
+      - id: 119
+        name: TotalBlockingTime
+      - id: 120
+        name: LayoutShift
+      - id: 121
+        name: DomInteractive
+      - id: 122
+        name: NavLoad
+      - id: 123
+        name: NavDom
+      - id: 124
+        name: LighthousePerformanceScore
+      - id: 125
+        name: LighthouseAccessibilityScore
+      - id: 126
+        name: LighthouseBestPracticesScore
+      - id: 127
+        name: LighthouseSEOScore
+      - id: 128
+        name: LighthousePWAScore
+      - id: 129
+        name: RenderBlockingJS
+      - id: 130
+        name: RenderBlockingCSS
+      - id: 131
+        name: HtmlBytes
+      - id: 132
+        name: CssBytes
+      - id: 133
+        name: ScriptBytes
+      - id: 134
+        name: ImageBytes
+      - id: 135
+        name: MediaBytes
+      - id: 136
+        name: FontBytes
+      - id: 137
+        name: InteractionToNextPaint
+      - id: 138
+        name: VisualChange
+      - id: 139
+        name: DeadClicks
+      - id: 140
+        name: ErrorClicks
+      - id: 141
+        name: RageClicks
+      - id: 142
+        name: ThrashedCursor
+      - id: 143
+        name: ThrashedCursorPct
+      - id: 144
+        name: UserTiming
+      - id: 145
+        name: BannerExchangeTimeMSec
+      - id: 146
+        name: ServiceRequestExchangeTimeMSec
+      type: integer
+      format: int32
+    Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordMqttData:
+      type: object
+      properties:
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.RecordMetricItem'
+          nullable: true
+        host:
+          type: string
+          nullable: true
+        ipAddress:
+          type: string
+          nullable: true
+        errorCode:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Response.ErrorCode'
+      additionalProperties: false
+    Catchpoint.Symphony.Enums.Dimension.BreakdownDimension:
+      enum:
+      - id: 0
+        name: None
+      - id: 1
+        name: Node
+      - id: 2
+        name: City
+      - id: 3
+        name: ISP
+      - id: 4
+        name: Host
+      - id: 5
+        name: Zone
+      - id: 6
+        name: Step
+      - id: 7
+        name: Country
+      - id: 8
+        name: Region
+      - id: 9
+        name: City
+      - id: 10
+        name: PostalCode
+      - id: 11
+        name: AreaCode
+      - id: 12
+        name: DMACode
+      - id: 13
+        name: ISP
+      - id: 14
+        name: Connection Type
+      - id: 15
+        name: ASN
+      - id: 16
+        name: Test
+      - id: 17
+        name: Time
+      - id: 18
+        name: ErrorCode
+      - id: 19
+        name: HostIP
+      - id: 20
+        name: HopIP
+      - id: 21
+        name: TracepointValue
+      - id: 22
+        name: Continent
+      - id: 23
+        name: StepName
+      - id: 24
+        name: Product
+      - id: 25
+        name: NodeGroup
+      - id: 26
+        name: Browser
+      - id: 27
+        name: BrowserAndVersion
+      - id: 28
+        name: OS
+      - id: 29
+        name: OSAndVersion
+      - id: 30
+        name: Device
+      - id: 31
+        name: Device Version
+      - id: 32
+        name: MobileBrand
+      - id: 33
+        name: ScreenResolution
+      - id: 34
+        name: PageGroup
+      - id: 35
+        name: Variation
+      - id: 36
+        name: Screen
+      - id: 37
+        name: Domain
+      - id: 38
+        name: Company
+      - id: 39
+        name: UserAgent
+      - id: 40
+        name: Location Name
+      - id: 41
+        name: ErrorType
+      - id: 42
+        name: Monitor
+      - id: 43
+        name: IsChildRequest
+      - id: 44
+        name: ComparativeTime
+      - id: 45
+        name: HistogramIntervalMax
+      - id: 46
+        name: StatusCode
+      - id: 47
+        name: MimeType
+      - id: 48
+        name: ApdexLevel
+      - id: 49
+        name: ReportType
+      - id: 50
+        name: MobileCarrierNetwork
+      - id: 51
+        name: MobileRadioAccessTechnology
+      - id: 52
+        name: IsAdditionalMonitorType
+      - id: 53
+        name: DayOfWeek
+      - id: 54
+        name: HourOfDay
+      - id: 55
+        name: MinuteOfHour
+      - id: 56
+        name: FiveMinutesOfHour
+      - id: 57
+        name: Facility
+      - id: 58
+        name: DataView
+      - id: 59
+        name: LatitudeLongitude
+      - id: 60
+        name: ErrorMessage
+      - id: 61
+        name: ScriptLineNumber
+      - id: 62
+        name: ErrorSource
+      - id: 66
+        name: IsVerifyOnError
+      - id: 67
+        name: Provider
+      - id: 68
+        name: Provider
+      - id: 69
+        name: ProviderType
+      - id: 70
+        name: Ajax
+      - id: 71
+        name: Folder
+      - id: 72
+        name: DestinationIP
+      - id: 73
+        name: RecordsKey
+      - id: 74
+        name: HasRecords
+      - id: 75
+        name: GlimpseEvent
+      - id: 76
+        name: GlimpseEventTimestamp
+      - id: 77
+        name: GlimpseEventMessage
+      - id: 78
+        name: View
+      - id: 79
+        name: MonitorVersion
+      - id: 80
+        name: SubjectAlternativeName
+      - id: 81
+        name: MACAddress
+      - id: 82
+        name: SSID
+      - id: 83
+        name: Formula
+      - id: 84
+        name: ReturnCode
+      - id: 85
+        name: NetworkType
+      - id: 86
+        name: GlimpseEventSyntheticTags
+      - id: 87
+        name: TraceRouteHopNetworkType
+      - id: 88
+        name: Level
+      - id: 89
+        name: Range
+      - id: 90
+        name: HopNumber
+      - id: 91
+        name: HopHostname
+      - id: 92
+        name: HopCity
+      - id: 93
+        name: HopCountry
+      - id: 94
+        name: Request
+      - id: 95
+        name: Percentile
+      - id: 96
+        name: Page
+      - id: 97
+        name: Zones
+      - id: 98
+        name: NetworkErrors
+      - id: 99
+        name: Page
+      - id: 100
+        name: Endpoint Device
+      - id: 101
+        name: Location
+      - id: 102
+        name: App
+      - id: 103
+        name: Url
+      - id: 104
+        name: SonarNetworkDevice
+      - id: 105
+        name: TraceRoutePath
+      - id: 106
+        name: IsDebugOnError
+      - id: 107
+        name: Label
+      - id: 108
+        name: PageDomain
+      - id: 109
+        name: Prefix
+      - id: 110
+        name: BgpPeerRegistry
+      - id: 111
+        name: BgpPeerCollector
+      - id: 112
+        name: BgpPeerASN
+      - id: 113
+        name: BgpPeer
+      - id: 114
+        name: AsnNeighbor
+      - id: 115
+        name: ContinentExternal
+      - id: 116
+        name: CountryExternal
+      - id: 117
+        name: RegionExternal
+      - id: 118
+        name: DisplayTestType
+      - id: 119
+        name: Employee App
+      - id: 120
+        name: PageGroupId
+      - id: 121
+        name: AlertType
+      - id: 122
+        name: AlertSubType
+      - id: 123
+        name: TraceRoutePathASN
+      - id: 124
+        name: TraceRoutePathSonarNetworkDevice
+      - id: 125
+        name: SonarNetworkDeviceName
+      - id: 126
+        name: SonarNetworkDeviceType
+      - id: 127
+        name: BenchmarkIndex
+      - id: 128
+        name: DestinationNode
+      - id: 129
+        name: InstantaneousId
+      - id: 130
+        name: NSID
+      - id: 131
+        name: AlertNotificationLevel
+      - id: 132
+        name: AlertGroupItem
+      - id: 133
+        name: AlertProcessingTimestampInitial
+      - id: 134
+        name: AlertTriggerOperatorType
+      - id: 135
+        name: AlertTriggerRangeStart
+      - id: 136
+        name: AlertTriggerRangeEnd
+      - id: 137
+        name: AlertReportDate
+      - id: 138
+        name: AlertTriggerType
+      - id: 139
+        name: ActualRuntime
+      - id: 140
+        name: GlimpseSiteType
+      - id: 141
+        name: AlertMetricType
+      - id: 142
+        name: ObjectType
+      - id: 143
+        name: Division
+      - id: 144
+        name: NetworkBssid
+      - id: 145
+        name: NetworkSsid
+      - id: 146
+        name: Process
+      - id: 147
+        name: WifiChannel
+      - id: 148
+        name: WifiFrequencyBand
+      - id: 149
+        name: AlertNodeThresholdType
+      - id: 150
+        name: WptDeviceType
+      - id: 151
+        name: WptDevicePlatformType
+      - id: 152
+        name: WptRun
+      - id: 153
+        name: WptRunType
+      - id: 154
+        name: WptWaterfallId
+      - id: 155
+        name: TargetedNodeGroups
+      - id: 156
+        name: AlertTriggerRegex
+      - id: 157
+        name: MonitorWithVersion
+      - id: 158
+        name: ScheduleWindow
+      - id: 159
+        name: Label
+      - id: 160
+        name: BgpRpkiStatus
+      - id: 161
+        name: BgpIsPrefixPrimary
+      - id: 162
+        name: AlertDataType
+      - id: 163
+        name: AlertHistoricalReportTimeIntervalCount
+      - id: 164
+        name: BgpCommunities
+      - id: 165
+        name: BgpAggregator
+      - id: 166
+        name: BgpAtomicAggregate
+      - id: 167
+        name: BgpLastModifiedTimestamp
+      - id: 168
+        name: BgpNextHopAddress
+      - id: 169
+        name: BgpOrigin
+      - id: 170
+        name: RequestUrl
+      - id: 171
+        name: BgpPrefixQuery
+      - id: 172
+        name: PathMtuIndex
+      - id: 173
+        name: CertIssuer
+      - id: 174
+        name: IsAlertItemCritical
+      - id: 175
+        name: AppVersion
+      - id: 176
+        name: IsMtuReliable
+      - id: 177
+        name: FailedVerb
+      - id: 178
+        name: DnsRecordAsn
+      - id: 179
+        name: DnsRecordAddress
+      - id: 180
+        name: SloObjective
+      - id: 181
+        name: SloReport
+      - id: 182
+        name: SloGoal
+      - id: 183
+        name: InternetServicesUsed
+      - id: 184
+        name: InternetServiceRegion
+      - id: 185
+        name: InternetServiceType
+      - id: 186
+        name: InternetServiceTypeAndRegionPair
+      - id: 187
+        name: StackMapLayer
+      - id: 188
+        name: StackMapMappedService
+      - id: 189
+        name: OutageScoreStartTime
+      - id: 190
+        name: ECN Status
+      - id: 191
+        name: OutageScoreVendorIncidentId
+      - id: 192
+        name: OutageIspAsn
+      - id: 193
+        name: OutageIspAsnDestination
+      - id: 194
+        name: OutageIspAsnPredecessor
+      - id: 195
+        name: OutageIspAddress
+      - id: 196
+        name: OutageIspAddressDestination
+      - id: 197
+        name: OutageIspAddressPredecessor
+      - id: 198
+        name: OutageIspCity
+      - id: 199
+        name: OutageIspCityDestination
+      - id: 200
+        name: OutageIspCityPredecessor
+      - id: 201
+        name: OutageIspCountry
+      - id: 202
+        name: OutageIspCountryDestination
+      - id: 203
+        name: OutageIspCountryPredecessor
+      - id: 204
+        name: OutageIspRegion
+      - id: 205
+        name: OutageIspRegionDestination
+      - id: 206
+        name: OutageIspRegionPredecessor
+      - id: 207
+        name: CustomInternetServices
+      - id: 208
+        name: RootInternetServicesUsed
+      - id: 209
+        name: TracingSystem
+      - id: 210
+        name: TracingService
+      - id: 211
+        name: TracingEndpoint
+      - id: 212
+        name: TracingErroneous
+      - id: 213
+        name: TracingErrorType
+      - id: 214
+        name: TracingHTTPStatusCode
+      - id: 215
+        name: OutageIspAsnElsePredecessor
+      - id: 216
+        name: TracingTargetSystem
+      - id: 217
+        name: TracingTargetService
+      - id: 218
+        name: IsSyntheticLocationPublic
+      - id: 219
+        name: AlertStepType
+      - id: 220
+        name: AlertStepTypeValue
+      - id: 221
+        name: AsJson
+      - id: 222
+        name: TracingTraceType
+      - id: 223
+        name: ErrorTypeToInternetServicesMap
+      - id: 224
+        name: TracingTargetSystemId
+      - id: 225
+        name: InteractionToNextPaintElement
+      - id: 226
+        name: Client
+      - id: 227
+        name: TracingMethod
+      - id: 228
+        name: TracingResourceType
+      - id: 229
+        name: TracingSystemId
+      - id: 230
+        name: TracingTargetMethod
+      - id: 231
+        name: TracingTargetResourceType
+      - id: 232
+        name: TracingTargetErrorType
+      - id: 233
+        name: TracingStartTimestamp
+      - id: 234
+        name: TracingResponseTime
+      - id: 235
+        name: BenchmarkSourceSite
+      - id: 236
+        name: MobileAppVersion
+      - id: 237
+        name: SdkVersion
+      - id: 238
+        name: ScreenName
+      - id: 239
+        name: MobileNetworkType
+      - id: 240
+        name: MobileOS
+      - id: 241
+        name: MobileRequest
+      - id: 242
+        name: TracingTargetResponseTime
+      - id: 243
+        name: MobileISPExternal
+      - id: 244
+        name: MobileOsAndVersion
+      - id: 245
+        name: MobileSessionId
+      - id: 246
+        name: MobileScreenViewId
+      - id: 247
+        name: TracingStatusCode
+      - id: 248
+        name: ContentType
+      - id: 249
+        name: MobileErrorMessage
+      - id: 250
+        name: MobileErrorCode
+      - id: 251
+        name: MobileStatusCode
+      - id: 252
+        name: HttpVersion
+      - id: 253
+        name: AlertTriggerConsecutiveRuns
+      - id: 254
+        name: AlertGroupItemBitFlags
+      - id: 255
+        name: AlertThresholdNodeToNodeCorrelation
+      - id: 256
+        name: AlertThreshold
+      - id: 257
+        name: AlertThresholdPercentage
+      - id: 258
+        name: UserSession
+      - id: 259
+        name: HasSessionReplay
+      - id: 260
+        name: TracingTagName
+      - id: 261
+        name: TracingTagValue
+      - id: 262
+        name: TracingServiceTagName
+      - id: 263
+        name: TracingServiceTagValue
+      - id: 264
+        name: MobileRequestErrorMessage
+      - id: 265
+        name: MobileRequestErrorCode
+      - id: 266
+        name: TracingSpanServiceName
+      - id: 267
+        name: TracingSpanOperationName
+      - id: 268
+        name: TracingSpanErrorType
+      - id: 269
+        name: TracingSpanErroneous
+      - id: 270
+        name: TracingMetricPlatform
+      - id: 271
+        name: TracingMetricGroup
+      - id: 272
+        name: TracingMetricType
+      - id: 273
+        name: TracingMetricSubType
+      - id: 274
+        name: TracingMetricName
+      - id: 275
+        name: TracingMetricAlias
+      - id: 276
+        name: TracingHostName
+      - id: 277
+        name: TracingServiceInstanceId
+      - id: 278
+        name: TracingMetricAttributesName
+      - id: 279
+        name: TracingMetricAttributesValue
+      - id: 280
+        name: TracingMetricResourceAttributesName
+      - id: 281
+        name: TracingMetricResourceAttributesValue
+      - id: 282
+        name: NetworkScore
+      - id: 283
+        name: AnalyticsMetricTypeId
+      - id: 284
+        name: UserRole
+      - id: 999
+        name: Source
+      - id: 1000
+        name: StackMap
+      - id: 1001
+        name: MplsHops
+      - id: 1002
+        name: ASNumber
+      - id: 1003
+        name: BgpViolationType
+      - id: 1004
+        name: OffenderAsn
+      type: integer
+      format: int32
+    Catchpoint.Symphony.Enums.Metrics.AnalyticsMetric:
+      enum:
+      - id: 0
+        name: None
+      - id: 1
+        name: DNS (ms)
+      - id: 2
+        name: Connect (ms)
+      - id: 3
+        name: Upload (ms)
+      - id: 4
+        name: Wait (ms)
+      - id: 5
+        name: TimeToFirstByte
+      - id: 6
+        name: Load (ms)
+      - id: 7
+        name: Base Response (ms)
+      - id: 8
+        name: Dom Loaded (ms)
+      - id: 9
+        name: ContentLoadTime
+      - id: 10
+        name: Response (ms)
+      - id: 11
+        name: Download File Size
+      - id: 12
+        name: Throughput
+      - id: 13
+        name: ExternalHostsCount
+      - id: 14
+        name: '# Items (Total)'
+      - id: 15
+        name: '% Availability'
+      - id: 16
+        name: ContentAvailabilityPercent
+      - id: 17
+        name: JSErrorsPerPageCount
+      - id: 18
+        name: ContentLoadErrorCount
+      - id: 19
+        name: TestsWithJSErrorsCount
+      - id: 20
+        name: '% Packet Loss'
+      - id: 21
+        name: Ping Round Trip (ms)
+      - id: 22
+        name: Message Size
+      - id: 23
+        name: WebpageThroughput
+      - id: 24
+        name: DnsFailuresCount
+      - id: 25
+        name: ConnectionFailuresCount
+      - id: 26
+        name: SslFailuresCount
+      - id: 27
+        name: ResponseFailuresCount
+      - id: 28
+        name: ContentFailuresCount
+      - id: 29
+        name: InvalidTestsCount
+      - id: 30
+        name: SSL (ms)
+      - id: 31
+        name: LoadFailuresCount
+      - id: 32
+        name: Server Response (ms)
+      - id: 33
+        name: '# Errors'
+      - id: 34
+        name: DeleteTime
+      - id: 35
+        name: Apdex
+      - id: 36
+        name: '# Bytes'
+      - id: 37
+        name: StepContentAvailabilityPercent
+      - id: 38
+        name: RenderStartTime
+      - id: 39
+        name: DocumentCompleteTime
+      - id: 40
+        name: PageSpeedScore
+      - id: 41
+        name: TimeToTitle
+      - id: 42
+        name: ConnectionCount
+      - id: 43
+        name: TimeoutFailuresCount
+      - id: 44
+        name: ZoneCount
+      - id: 45
+        name: DnsToReceiveInclusiveTime
+      - id: 46
+        name: WaitAndReceiveTime
+      - id: 47
+        name: StartToEndTime
+      - id: 48
+        name: BottleneckTime
+      - id: 49
+        name: '% Bottleneck'
+      - id: 50
+        name: AuthenticationTime
+      - id: 51
+        name: Helo Time (ms)
+      - id: 52
+        name: RedirectRequestCount
+      - id: 53
+        name: '# Other'
+      - id: 54
+        name: '# Image'
+      - id: 55
+        name: '# Script'
+      - id: 56
+        name: '# Html'
+      - id: 57
+        name: '# Css'
+      - id: 58
+        name: '# Xml'
+      - id: 59
+        name: '# Flash'
+      - id: 60
+        name: '# Media'
+      - id: 61
+        name: '# Runs'
+      - id: 62
+        name: PlayTime
+      - id: 63
+        name: TotalBufferTime
+      - id: 64
+        name: BufferCount
+      - id: 65
+        name: InitialBufferTime
+      - id: 66
+        name: WireTime
+      - id: 67
+        name: ClientTime
+      - id: 68
+        name: '# Font'
+      - id: 69
+        name: Image Bytes
+      - id: 70
+        name: Script Bytes
+      - id: 71
+        name: Html Bytes
+      - id: 72
+        name: Css Bytes
+      - id: 73
+        name: Xml Bytes
+      - id: 74
+        name: Flash Bytes
+      - id: 75
+        name: Media Bytes
+      - id: 76
+        name: Other Bytes
+      - id: 77
+        name: Font Bytes
+      - id: 78
+        name: '% Ping Packet Loss'
+      - id: 79
+        name: RedirectTime
+      - id: 80
+        name: SatisfiedPercent
+      - id: 81
+        name: ToleratingPercent
+      - id: 82
+        name: FrustratedPercent
+      - id: 83
+        name: NotFrustratedPercent
+      - id: 84
+        name: SpeedIndex
+      - id: 85
+        name: '# Sends'
+      - id: 86
+        name: Send Data Bytes
+      - id: 87
+        name: '# Receives'
+      - id: 88
+        name: Receive Data Bytes
+      - id: 89
+        name: Test Time (ms)
+      - id: 90
+        name: PositiveOffsetTime
+      - id: 91
+        name: NegativeOffsetTime
+      - id: 92
+        name: RoundTripDelayTime
+      - id: 93
+        name: RootDelayTime
+      - id: 94
+        name: RootDispersionTime
+      - id: 95
+        name: '% Downtime'
+      - id: 96
+        name: '% Self Bottleneck'
+      - id: 97
+        name: ThirdPartyBottleneckPercent
+      - id: 98
+        name: SelfDownloadedBytes
+      - id: 99
+        name: LogoutTime
+      - id: 100
+        name: MessageBytes
+      - id: 101
+        name: SearchTime
+      - id: 102
+        name: ListTime
+      - id: 103
+        name: FetchTime
+      - id: 104
+        name: ASNs
+      - id: 105
+        name: Cities
+      - id: 106
+        name: Countries
+      - id: 107
+        name: Hops
+      - id: 108
+        name: SLAAdjustedAvailability
+      - id: 109
+        name: SLAPurgedRuns
+      - id: 110
+        name: PublishTime
+      - id: 111
+        name: PublishSize
+      - id: 112
+        name: SubscribeTime
+      - id: 113
+        name: SubscribeSize
+      - id: 114
+        name: ContentTypeTimeImage
+      - id: 115
+        name: ContentTypeTimeScript
+      - id: 116
+        name: ContentTypeTimeHtml
+      - id: 117
+        name: ContentTypeTimeCss
+      - id: 118
+        name: ContentTypeTimeXml
+      - id: 119
+        name: ContentTypeTimeFlash
+      - id: 120
+        name: ContentTypeTimeMedia
+      - id: 121
+        name: ContentTypeTimeOther
+      - id: 122
+        name: ContentTypeTimeFont
+      - id: 123
+        name: HandshakeTime
+      - id: 124
+        name: ExpirationTime
+      - id: 125
+        name: SignalQuality
+      - id: 126
+        name: SignalStrength
+      - id: 127
+        name: ConnectionDuration
+      - id: 128
+        name: MaxReceiveRate
+      - id: 129
+        name: MaxTransmitRate
+      - id: 130
+        name: ExitToEntryTime
+      - id: 131
+        name: ExitToOnLoadTime
+      - id: 132
+        name: EntryToOnLoadTime
+      - id: 133
+        name: ResponseTime
+      - id: 134
+        name: DomInteractiveTime
+      - id: 135
+        name: DomLoadedTime
+      - id: 136
+        name: UniqueVisitCount
+      - id: 137
+        name: PageViewsCount
+      - id: 138
+        name: PagesPerVisitCount
+      - id: 139
+        name: BounceCount
+      - id: 140
+        name: BounceRate
+      - id: 141
+        name: Revenue
+      - id: 142
+        name: ConversionCount
+      - id: 143
+        name: ItemsSoldCount
+      - id: 144
+        name: ConversionRate
+      - id: 145
+        name: BounceRatePerAverageDocumentCompleteTime
+      - id: 146
+        name: ConversionRatePerAverageDocumentCompleteTime
+      - id: 147
+        name: RevenueRatePerAverageDocumentCompleteTime
+      - id: 148
+        name: PageViewRatePerAverageDocumentCompleteTime
+      - id: 149
+        name: ProcessTime
+      - id: 150
+        name: AppearTime
+      - id: 151
+        name: CrashCount
+      - id: 152
+        name: MemoryWarningCount
+      - id: 153
+        name: ScreenViewsCount
+      - id: 154
+        name: ScreenPerVisitCount
+      - id: 155
+        name: RequestCount
+      - id: 156
+        name: SublevelRequestCount
+      - id: 157
+        name: TotalAjaxTime
+      - id: 158
+        name: VisuallyCompleteTime
+      - id: 159
+        name: WaterfallsCount
+      - id: 160
+        name: DnsLookupTimeAvg
+      - id: 161
+        name: ConnectTimeAvg
+      - id: 162
+        name: SslTimeAvg
+      - id: 163
+        name: WaitTimeAvg
+      - id: 164
+        name: LoadTimeAvg
+      - id: 165
+        name: ResponseTimeAvg
+      - id: 166
+        name: NetworkErrors
+      - id: 167
+        name: TotalPageLoadTime
+      - id: 168
+        name: FirstPaint
+      - id: 169
+        name: FirstContentfulPaint
+      - id: 170
+        name: TimeToInteractive
+      - id: 171
+        name: FirstInputDelay
+      - id: 172
+        name: EngagementTime
+      - id: 173
+        name: FirstEngagement
+      - id: 174
+        name: PageAborts
+      - id: 175
+        name: FullyLoadedMark
+      - id: 176
+        name: FullyVisibleMark
+      - id: 177
+        name: AboveTheFoldMark
+      - id: 178
+        name: TimeToUserActionMark
+      - id: 179
+        name: TimeonPage
+      - id: 180
+        name: ItemErrors
+      - id: 181
+        name: TimeToFirstByteTimePage
+      - id: 182
+        name: Announcements
+      - id: 183
+        name: Withdrawals
+      - id: 184
+        name: RoutingEvents
+      - id: 185
+        name: FullConnect
+      - id: 186
+        name: BgpEvents
+      - id: 187
+        name: AverageFramesPerSecond
+      - id: 188
+        name: DnsA
+      - id: 189
+        name: DnsAaaa
+      - id: 190
+        name: DnsCname
+      - id: 191
+        name: DnsNs
+      - id: 192
+        name: '# Alerts'
+      - id: 193
+        name: '# Alerts'
+      - id: 194
+        name: '# Alerts'
+      - id: 195
+        name: CachedItemsCount
+      - id: 196
+        name: CpuUtilization
+      - id: 197
+        name: MemoryUtilization
+      - id: 198
+        name: WifiSignalStrength
+      - id: 199
+        name: WifiSignalQuality
+      - id: 200
+        name: DownloadTime
+      - id: 201
+        name: Response (ms)
+      - id: 202
+        name: DownloadThroughput
+      - id: 203
+        name: GetTime
+      - id: 204
+        name: DownloadFileSize
+      - id: 205
+        name: UploadTime
+      - id: 206
+        name: TimeToFetch
+      - id: 207
+        name: MessageSizeBytes
+      - id: 208
+        name: TestErrorCount
+      - id: 209
+        name: MessageSize
+      - id: 210
+        name: RequestsCount
+      - id: 211
+        name: PageLoadTime
+      - id: 212
+        name: TraceRouteRoundtripTime
+      - id: 213
+        name: Latency
+      - id: 214
+        name: EndpointTestRunCount
+      - id: 238
+        name: App Score
+      - id: 239
+        name: Endpoint Score
+      - id: 240
+        name: Network Score
+      - id: 241
+        name: Experience Score
+      - id: 242
+        name: PageViewsWithPageUnavailable
+      - id: 243
+        name: LargestContentfulPaint
+      - id: 244
+        name: CumulativeLayoutShift
+      - id: 245
+        name: Formula
+      - id: 246
+        name: Jitter
+      - id: 247
+        name: UniqueNodes
+      - id: 248
+        name: Upload (Mbps)
+      - id: 249
+        name: Download (Mbps)
+      - id: 250
+        name: SubSourceWebPageResponse
+      - id: 251
+        name: LighthousePerformanceScore
+      - id: 252
+        name: LighthouseAccessibilityScore
+      - id: 253
+        name: LighthouseBestPracticesScore
+      - id: 254
+        name: LighthousePwaScore
+      - id: 255
+        name: LighthouseSeoScore
+      - id: 256
+        name: CpuEvaluateScript
+      - id: 257
+        name: Cpuv8Compile
+      - id: 258
+        name: CpuParseHTML
+      - id: 259
+        name: CpuParseAuthorStyleSheet
+      - id: 260
+        name: CpuUpdateLayoutTree
+      - id: 261
+        name: CpuLayout
+      - id: 262
+        name: CpuPaint
+      - id: 263
+        name: CpuFunctionCall
+      - id: 264
+        name: CpuFireAnimationFrame
+      - id: 265
+        name: CpuXhrLoad
+      - id: 266
+        name: CpuIdle
+      - id: 267
+        name: FullyLoadedCpuTime
+      - id: 268
+        name: FullyLoadedCpuPct
+      - id: 269
+        name: DomElements
+      - id: 270
+        name: EffectiveBpsDoc
+      - id: 271
+        name: LongJsTaskTime
+      - id: 272
+        name: LongJsTaskCount
+      - id: 273
+        name: LongestJsTaskTime
+      - id: 274
+        name: RenderBlockingCss
+      - id: 275
+        name: RenderBlockingJs
+      - id: 276
+        name: WebPageResponse
+      - id: 277
+        name: EndpointEmployeeAppTracerouteRuns
+      - id: 278
+        name: EndpointTraceroutePingRuns
+      - id: 279
+        name: EndpointEmployeeAppPageViews
+      - id: 280
+        name: EndpointRuns
+      - id: 281
+        name: TotalBlockingTime
+      - id: 282
+        name: EndpointTraceroutePingErrorCount
+      - id: 283
+        name: NamedField
+      - id: 284
+        name: BgpReachabilityPct
+      - id: 285
+        name: SyntheticExperienceScore
+      - id: 286
+        name: EndpointTracerouteRuns
+      - id: 287
+        name: DnssecTime
+      - id: 288
+        name: WptRequestDuration
+      - id: 289
+        name: WptRequestStartTime
+      - id: 290
+        name: WptRequestSizeBytes
+      - id: 291
+        name: MainThreadExecution
+      - id: 292
+        name: TransferTime
+      - id: 293
+        name: TransferSize
+      - id: 294
+        name: LongJsTasks
+      - id: 295
+        name: BgpRpkiMatches
+      - id: 296
+        name: BgpRpkiUnmatchedLength
+      - id: 297
+        name: BgpRpkiUnmatchedOriginAsn
+      - id: 298
+        name: PathMtu
+      - id: 299
+        name: TcpMss
+      - id: 300
+        name: NprobePacketsIn
+      - id: 301
+        name: NprobePacketsOut
+      - id: 302
+        name: CallQualityScore
+      - id: 303
+        name: CallThroughput
+      - id: 304
+        name: SelfBottleneckTime
+      - id: 305
+        name: ThirdPartyBottleneckTime
+      - id: 306
+        name: LoadEventTime
+      - id: 307
+        name: PageViewsWithTraceRouteLoops
+      - id: 308
+        name: AlertTriggerPercent
+      - id: 309
+        name: InteractionToNextPaint
+      - id: 310
+        name: PacketDropPercent
+      - id: 311
+        name: NProbeRFactor25Percentile
+      - id: 312
+        name: PingPacketLossPercentPerRun
+      - id: 313
+        name: OutageScorePageViews
+      - id: 314
+        name: OutageScorePageViewsIncomplete
+      - id: 315
+        name: OutageScorePageViewsBenchmarks
+      - id: 316
+        name: OutageScorePageViewsIncompleteBenchmarks
+      - id: 317
+        name: OutageScoreClientCount
+      - id: 318
+        name: OutageScoreDivisionCount
+      - id: 319
+        name: OutageScoreIsEndOfOutage
+      - id: 320
+        name: OutageScore
+      - id: 321
+        name: OutageScoreClientsWithDowntimeCount
+      - id: 322
+        name: OutageScoreDivisionsWithDowntimeCount
+      - id: 323
+        name: CallJitter
+      - id: 324
+        name: HistoricalDownTimePct
+      - id: 325
+        name: '% Impact'
+      - id: 326
+        name: TracingDuration
+      - id: 327
+        name: TracingThroughput
+      - id: 328
+        name: TracingAppScore
+      - id: 329
+        name: TracingTransactionCount
+      - id: 330
+        name: TracingFailedTransactionCount
+      - id: 331
+        name: TracingSuccessfulTransactionCount
+      - id: 332
+        name: OutageDuration
+      - id: 333
+        name: TracingTargetDuration
+      - id: 334
+        name: DeadClicks
+      - id: 335
+        name: ErrorClicks
+      - id: 336
+        name: RageClicks
+      - id: 337
+        name: ThrashedCursor
+      - id: 338
+        name: ThrashedCursorPct
+      - id: 339
+        name: ProcessCpuUtilization
+      - id: 340
+        name: ProcessMemoryUtilization
+      - id: 341
+        name: PageViewsByOutageIspAsnDestinationPair
+      - id: 342
+        name: BGPPathChanges
+      - id: 343
+        name: DataTransferTime
+      - id: 344
+        name: HttpErrorsCount
+      - id: 345
+        name: NetworkErrorCount
+      - id: 346
+        name: BatteryPercent
+      - id: 347
+        name: TimeToFirstByteTime
+      - id: 348
+        name: NumberOfRequests
+      - id: 349
+        name: TimeOnScreen
+      - id: 350
+        name: SessionsCount
+      - id: 351
+        name: ScreensPerSessionCount
+      - id: 352
+        name: RequestsPerSessionCount
+      - id: 353
+        name: SessionsWithHttpErrorsCount
+      - id: 354
+        name: SessionsWithNetworkErrorsCount
+      - id: 355
+        name: TimeToFullyDisplay
+      - id: 356
+        name: MemoryCapacity
+      - id: 357
+        name: MobileRequestsCount
+      - id: 358
+        name: MobileErrorsCount
+      - id: 359
+        name: MobileSessionsWithCrashes
+      - id: 360
+        name: MobileErrorRatePerSession
+      - id: 361
+        name: MobileCrashRatePerSession
+      - id: 362
+        name: MobilePercentCrashRate
+      - id: 363
+        name: MobileSessionErrorPercent
+      - id: 364
+        name: MobileAppErrorCount
+      - id: 365
+        name: MobileSessionCrashPercent
+      - id: 366
+        name: MobileErrorCount
+      - id: 367
+        name: BannerExchangeTimeMSec
+      - id: 368
+        name: ServiceRequestExchangeTimeMSec
+      - id: 369
+        name: MobileRequestErrorCount
+      - id: 370
+        name: ErrorSessionsCount
+      - id: 371
+        name: TracingOperationScore
+      - id: 372
+        name: TracingOperationCount
+      - id: 373
+        name: TracingSuccessfulOperationCount
+      - id: 374
+        name: TracingFailedOperationCount
+      - id: 375
+        name: SessionLength
+      - id: 376
+        name: TracingMetricValue
+      - id: 377
+        name: WebCrashCount
+      - id: 378
+        name: FirstContentfulPaintScore
+      - id: 379
+        name: TotalBlockingTimeScore
+      - id: 380
+        name: LargestContentfulPaintScore
+      - id: 381
+        name: CumulativeLayoutShiftScore
+      - id: 382
+        name: LegacyExperienceScore
+      type: integer
+      format: int32
+    Catchpoint.Symphony.ViewModels.InternetServiceTypeModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        divisionId:
+          type: integer
+          format: int32
+          nullable: true
+        internetServiceCategoryId:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.InternetServiceCategoryType'
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        isCustom:
+          type: boolean
+        services:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.InternetServiceModel'
+          nullable: true
+        regions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.RegionModel'
+          nullable: true
+        changeLogObjectType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.ObjectType'
+      additionalProperties: false
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.AnalyticsApiResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.AnalyticsResponseRaw]]
+    : type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.AnalyticsApiResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.AnalyticsResponseRaw]'
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+          nullable: true
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+          nullable: true
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type: string
+          nullable: true
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.ConsumerStatistics:
+      type: object
+      properties:
+        consumerId:
+          type: integer
+          format: int32
+        requestCount:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        maxPerDay:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.RecordTransactionStepAPIModel:
+      type: object
+      properties:
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.RecordMetricItemAPIModel'
+          nullable: true
+        transactionSteps:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordTransactionStep'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath:
+      type: object
+      properties:
+        ops:
+          type: string
+          nullable: true
+        path:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.ZoneAPIModel:
+      type: object
+      properties:
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.RecordMetricItemAPIModel'
+          nullable: true
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordContentZone'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Response.ErrorCode:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          nullable: true
+        displayMonitorType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.Test.DisplayMonitorType'
+        name:
+          type: string
+          nullable: true
+        message:
+          type: string
+          nullable: true
+        isWarning:
+          type: boolean
+      additionalProperties: false
+    Catchpoint.Symphony.Response.TraceRouteIpAddressLookup:
+      type: object
+      properties:
+        ipAddress:
+          type: string
+          nullable: true
+        asn:
+          type: integer
+          format: int64
+        asName:
+          type: string
+          nullable: true
+        cityName:
+          type: string
+          nullable: true
+        countryName:
+          type: string
+          nullable: true
+        hostName:
+          type: string
+          nullable: true
+        continentName:
+          type: string
+          nullable: true
+        internetServices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.InternetServiceModel'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.WebErrorCodeItem:
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.WinHttpErrorCode'
+        isWarning:
+          type: boolean
+        message:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.TestWaterfallTokenResponse]
+    : type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.TestWaterfallTokenResponse'
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+          nullable: true
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+          nullable: true
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type: string
+          nullable: true
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.FavoriteChart.FavoriteChartAPIModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        changeDate:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Enums.Test.DisplayTestType:
+      enum:
+      - id: 0
+        name: Web
+      - id: 1
+        name: TransactionLegacy
+      - id: 2
+        name: HtmlCode
+      - id: 3
+        name: Ftp
+      - id: 4
+        name: Tcp
+      - id: 5
+        name: Dns
+      - id: 6
+        name: Ping
+      - id: 7
+        name: Smtp
+      - id: 8
+        name: Udp
+      - id: 9
+        name: Api
+      - id: 10
+        name: Streaming
+      - id: 11
+        name: Ssh
+      - id: 12
+        name: TraceRoute
+      - id: 13
+        name: WebSocket
+      - id: 14
+        name: Ntp
+      - id: 15
+        name: Imap
+      - id: 16
+        name: Mqtt
+      - id: 17
+        name: Bulk
+      - id: 18
+        name: Ssl
+      - id: 19
+        name: Wifi
+      - id: 20
+        name: Bgp
+      - id: 21
+        name: NodeToNode
+      - id: 22
+        name: Bandwidth
+      - id: 23
+        name: WebPageTestWeb
+      - id: 24
+        name: WebPageTestTransaction
+      - id: 25
+        name: Playwright
+      - id: 26
+        name: Puppeteer
+      - id: 27
+        name: Transaction
+      type: integer
+      format: int32
+    Catchpoint.Symphony.REST.Api.DivisionUsageStatistics:
+      type: object
+      properties:
+        divisionId:
+          type: integer
+          format: int32
+        consumerStatistics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ConsumerStatistics'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.WebRecordItem:
+      type: object
+      properties:
+        httpVersion:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.WinHttp.HttpVersionType'
+        inCriticalPath:
+          type: boolean
+        isGzipped:
+          type: boolean
+        isKeepAlive:
+          type: boolean
+        isDeflated:
+          type: boolean
+        isCached:
+          type: boolean
+        isSsl:
+          type: boolean
+          readOnly: true
+        methodType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.WinHttp.WinHttpMethod'
+        hasCapturedHeaders:
+          type: boolean
+        hasCapturedResponseContent:
+          type: boolean
+        navigationUrl:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.UriSlim'
+        ipAddress:
+          type: string
+          nullable: true
+        itemIndex:
+          type: integer
+          format: int32
+        connectionId:
+          type: integer
+          format: int32
+        responseCode:
+          type: integer
+          format: int32
+        responseCodeGroup:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.SyntheticLocation.SyntheticNodeReturnCodeGroup'
+        referer:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.WebRecordItem'
+        refererAbsoluteUri:
+          type: string
+          nullable: true
+        contentType:
+          type: string
+          nullable: true
+        contentTag:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.WebTagType'
+        httpError:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.WebErrorCodeItem'
+        httpStatusError:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.HttpErrorCodeItem'
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.RecordMetricItem'
+          nullable: true
+        zoneIds:
+          type: array
+          items:
+            type: integer
+            format: int32
+          nullable: true
+        applicableRequestTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Enums.RecordWebItemRequestType'
+          nullable: true
+        requestHeadersUrl:
+          type: string
+          nullable: true
+        responseHeadersUrl:
+          type: string
+          nullable: true
+        responseContentUrl:
+          type: string
+          nullable: true
+        sslInfoUrl:
+          type: string
+          nullable: true
+        tracepoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.TracepointData'
+          nullable: true
+        indicators:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.IndicatorData'
+          nullable: true
+        requestCookies:
+          type: object
+          additionalProperties:
+            type: string
+            nullable: true
+          nullable: true
+        responseCookies:
+          type: object
+          additionalProperties:
+            type: string
+            nullable: true
+          nullable: true
+        requestHeaders:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordHeader'
+        responseHeaders:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordHeader'
+        items:
+          type: array
+          items:
+            type: number
+            format: double
+          nullable: true
+        systemInternetServicesUsed:
+          type: array
+          items:
+            type: integer
+            format: int32
+          nullable: true
+        stackMapServicesUsedForSerialization:
+          type: array
+          items:
+            type: integer
+            format: int32
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordDnsTraceLevelItemResponse:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        timeToLive:
+          type: integer
+          format: int64
+        dnsClassType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.LookupModel'
+        dnsTraceType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.LookupModel'
+        info:
+          type: string
+          nullable: true
+        asns:
+          type: array
+          items:
+            type: integer
+            format: int32
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.ViewModels.CountryModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        abbr:
+          type: string
+          nullable: true
+        latitude:
+          type: number
+          format: float
+          nullable: true
+        longitude:
+          type: number
+          format: float
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.ViewModels.UriSlim:
+      type: object
+      properties:
+        pathAndQuery:
+          type: string
+          nullable: true
+        scheme:
+          type: string
+          nullable: true
+        host:
+          type: string
+          nullable: true
+        absoluteUri:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordPageSpeedItem:
+      type: object
+      properties:
+        score:
+          type: integer
+          format: int32
+        pageSpeedRuleType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.Test.PageSpeedRuleType'
+        infractorItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.WebRecordItem'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.HostDataAPIModel:
+      type: object
+      properties:
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.RecordMetricItemAPIModel'
+          nullable: true
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.RecordHostDataAPIModel'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Enums.WinHttp.WinHttpMethod:
+      enum:
+      - id: 0
+        name: Get
+      - id: 1
+        name: Post
+      - id: 2
+        name: Head
+      - id: 3
+        name: Delete
+      - id: 4
+        name: Options
+      - id: 5
+        name: Put
+      - id: 6
+        name: Trace
+      - id: 7
+        name: Connect
+      - id: 8
+        name: Acl
+      - id: 9
+        name: BaselineControl
+      - id: 10
+        name: Bind
+      - id: 11
+        name: Checkin
+      - id: 12
+        name: Checkout
+      - id: 13
+        name: Copy
+      - id: 14
+        name: Label
+      - id: 15
+        name: Link
+      - id: 16
+        name: Lock
+      - id: 17
+        name: Merge
+      - id: 18
+        name: Mkactivity
+      - id: 19
+        name: Mkcalendar
+      - id: 20
+        name: Mkcol
+      - id: 21
+        name: Mkredirectref
+      - id: 22
+        name: Mkworkspace
+      - id: 23
+        name: Move
+      - id: 24
+        name: Orderpatch
+      - id: 25
+        name: Patch
+      - id: 26
+        name: Pri
+      - id: 27
+        name: Propfind
+      - id: 28
+        name: Proppatch
+      - id: 29
+        name: Rebind
+      - id: 30
+        name: Report
+      - id: 31
+        name: Search
+      - id: 32
+        name: Unbind
+      - id: 33
+        name: Uncheckout
+      - id: 34
+        name: Unlink
+      - id: 35
+        name: Unlock
+      - id: 36
+        name: Update
+      - id: 37
+        name: Updateredirectref
+      - id: 38
+        name: VersionControl
+      type: integer
+      format: int32
+    Catchpoint.Symphony.Response.NetworkIspOutageSummaryData:
+      type: object
+      properties:
+        outageIspAddress:
+          type: string
+          nullable: true
+        pingPacketLoss:
+          type: number
+          format: double
+          nullable: true
+        outageIspAsn:
+          type: integer
+          format: int64
+        outageIspAsnName:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.RecordTransactionDataAPIModel:
+      type: object
+      properties:
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.RecordMetricItemAPIModel'
+          nullable: true
+        items:
+          type: array
+          items:
+            type: number
+            format: double
+          nullable: true
+        transactionSteps:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.RecordTransactionStepAPIModel'
+      additionalProperties: false
+    Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordWebSocketItem:
+      type: object
+      properties:
+        webSocketTransferType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.Test.WebSocketTransferType'
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.RecordMetricItem'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationResponse]:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationResponse'
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+          nullable: true
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+          nullable: true
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type: string
+          nullable: true
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.FavoriteChart.FavoriteChartTestDetailAPIModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+          nullable: true
+        testType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Int32]'
+      additionalProperties: false
+    ? Catchpoint.Symphony.REST.Common.Response.v2_0.AnalyticsApiResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.AnalyticsResponseAggregated]
+    : type: object
+      properties:
+        responseItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.AnalyticsResponseAggregated'
+          nullable: true
+        hasMore:
+          type: boolean
+          nullable: true
+        next:
+          type: string
+          nullable: true
+        previous:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordDnsTraceLevelItems:
+      type: object
+      properties:
+        dnsTraceLevelItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordDnsTraceLevelItem'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.RecordContentTagAPIModel:
+      type: object
+      properties:
+        tagType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.WebTagType'
+        items:
+          type: array
+          items:
+            type: number
+            format: double
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Enums.Test.WifiModeType:
+      enum:
+      - id: 0
+        name: None
+      - id: 1
+        name: AdHoc
+      - id: 2
+        name: Infrastructure
+      - id: 3
+        name: Managed
+      - id: 4
+        name: Master
+      - id: 5
+        name: Repeater
+      - id: 6
+        name: Secondary
+      - id: 7
+        name: Monitor
+      - id: 8
+        name: Auto
+      type: integer
+      format: int32
+    Catchpoint.Symphony.REST.Common.Response.v2_0.RecordResponseAPIModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        node:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.NodeAPIModel'
+        monitorType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.Test.DisplayMonitorType'
+        monitorVersion:
+          type: string
+          nullable: true
+        playbackType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.PlaybackSourceType'
+        mobilePlaybackType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.MobilePlaybackSourceType'
+        actualRuntime:
+          type: string
+          format: date-time
+        actualRuntimeInUnixTimeMilliseconds:
+          type: integer
+          format: int64
+        reportWindowTime:
+          type: string
+          format: date-time
+        debugTraceInformation:
+          type: string
+          nullable: true
+        errorMessage:
+          type: string
+          nullable: true
+        primaryErrorData:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Response.ErrorCode'
+        publicLink:
+          type: string
+          nullable: true
+        testResult:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.RecordWebDataAPIModel'
+        additionalMonitorData:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordAdditionalMonitorData'
+        streamingData:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordStreamingData'
+        ftpData:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordFtpData'
+        tcpData:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordTcpData'
+        smtpData:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordSmtpData'
+        ntpData:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordNtpData'
+        mqttData:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordMqttData'
+        imapData:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordImapData'
+        sshData:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordSshData'
+        sslData:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordSslData'
+        traceRouteData:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.TraceRouteData'
+        pingData:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.PingData'
+        dnsTraceData:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordDnsTraceData'
+        webSocketData:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordWebSocketData'
+      additionalProperties: false
+    Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordDnsTraceLevelItem:
+      type: object
+      properties:
+        dnsLevelId:
+          type: integer
+          format: int32
+        queryName:
+          type: string
+          nullable: true
+        queryDnsClassType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.LookupModel'
+        queryDnsType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.LookupModel'
+        levelItemQueries:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordDnsTraceLevelItemQuery'
+          nullable: true
+        authoritativeNameServers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordDnsTraceLevelItemResponse'
+          nullable: true
+        answers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordDnsTraceLevelItemResponse'
+          nullable: true
+        additionalRecords:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordDnsTraceLevelItemResponse'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.TestWaterfallTokenResponse:
+      type: object
+      properties:
+        testWaterfallTokens:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Performance.TestWaterfallTokenAPIModel'
+          nullable: true
+        hasMore:
+          type: boolean
+          nullable: true
+        next:
+          type: string
+          nullable: true
+        previous:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationResponse:
+      type: object
+      properties:
+        sections:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationDetailResponse'
+          nullable: true
+        hasMore:
+          type: boolean
+          nullable: true
+        next:
+          type: string
+          nullable: true
+        previous:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordSshData:
+      type: object
+      properties:
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.RecordMetricItem'
+          nullable: true
+        host:
+          type: string
+          nullable: true
+        port:
+          type: integer
+          format: int32
+        ipAddress:
+          type: string
+          nullable: true
+        errorCode:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Response.ErrorCode'
+        standardOutputUrl:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.InfoMessage:
+      type: object
+      properties:
+        information:
+          type: string
+          nullable: true
+        ignoredPath:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Enums.WinHttp.HttpVersionType:
+      enum:
+      - id: 0
+        name: None
+      - id: 1
+        name: Http1Dot0
+      - id: 2
+        name: Http1Dot1
+      - id: 3
+        name: Http2Dot0
+      - id: 4
+        name: Http3Dot0
+      type: integer
+      format: int32
+    Catchpoint.Symphony.ViewModels.InternetServiceDetailsModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        identityTypeId:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.InternetServiceIdentityType'
+        identity:
+          type: string
+          nullable: true
+        internetServiceId:
+          type: integer
+          format: int32
+          nullable: true
+        customInternetServiceId:
+          type: integer
+          format: int32
+          nullable: true
+        name:
+          type: string
+          nullable: true
+          readOnly: true
+        changeLogObjectType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.ObjectType'
+        networkBorderGroup:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Response.NetworkGraphTooltipOverrideSummaryData:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        roundTripTime:
+          type: number
+          format: double
+          nullable: true
+        pingPacketLoss:
+          type: number
+          format: double
+          nullable: true
+        runsCount:
+          type: number
+          format: double
+          nullable: true
+        jitter:
+          type: number
+          format: double
+          nullable: true
+        ecnValue:
+          type: integer
+          format: int32
+          nullable: true
+        dscpValue:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Orchestra.Response.PingProbeData:
+      type: object
+      properties:
+        roundTripTimes:
+          type: integer
+          format: int32
+        index:
+          type: integer
+          format: int32
+      additionalProperties: false
+    Catchpoint.Symphony.Response.NetworkGraphPathMtuData:
+      type: object
+      properties:
+        pathMtuSummaryData:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Response.NetworkGraphPathMtuSummaryData'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Response.NetworkIspOutageData:
+      type: object
+      properties:
+        ispOutageSummaryData:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Response.NetworkIspOutageSummaryData'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.FavoriteChart.FavoriteChartAppDetailAPIModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+          nullable: true
+        type:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Int32]'
+      additionalProperties: false
+    Catchpoint.Symphony.Orchestra.Response.ECNSummaryData:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        count:
+          type: integer
+          format: int32
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Performance.TestWaterfallTokenAPIModel:
+      type: object
+      properties:
+        testId:
+          type: integer
+          format: int64
+        startDateTime:
+          type: string
+          format: date-time
+        endDateTime:
+          type: string
+          format: date-time
+        timezone:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.SupportedTimeZone'
+        node:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.NodeAPIModel'
+        waterfalls:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Performance.WaterfallTokenAPIModel'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Orchestra.Response.RecordMetricItem:
+      type: object
+      properties:
+        metricType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.Metrics.RecordMetric'
+        name:
+          type: string
+          nullable: true
+        value:
+          type: number
+          format: double
+          nullable: true
+        lookbackValue:
+          type: number
+          format: double
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordContentZone:
+      type: object
+      properties:
+        contentZone:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.LookupModel'
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.RecordMetricItem'
+          nullable: true
+        items:
+          type: array
+          items:
+            type: number
+            format: double
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordWebSocketData:
+      type: object
+      properties:
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.RecordMetricItem'
+          nullable: true
+        url:
+          type: string
+          nullable: true
+        ipAddress:
+          type: string
+          nullable: true
+        failedVerb:
+          type: string
+          nullable: true
+        hasReachedMaxRecords:
+          type: boolean
+        errorCode:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Response.ErrorCode'
+        transactionData:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordTransactionData'
+        redirections:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordWebSocketData'
+          nullable: true
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordWebSocketItem'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordSslData:
+      type: object
+      properties:
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.RecordMetricItem'
+          nullable: true
+        commonName:
+          type: string
+          nullable: true
+        port:
+          type: integer
+          format: int32
+        version:
+          type: integer
+          format: int32
+          nullable: true
+        url:
+          type: string
+          nullable: true
+        ipAddress:
+          type: string
+          nullable: true
+        certificatePath:
+          type: string
+          nullable: true
+        validFrom:
+          type: string
+          format: date-time
+        validTo:
+          type: string
+          format: date-time
+        expiresInDays:
+          type: integer
+          format: int32
+          nullable: true
+        signatureAlgorithm:
+          type: string
+          nullable: true
+        issuer:
+          type: string
+          nullable: true
+        subject:
+          type: string
+          nullable: true
+        authorityKeyIdentifier:
+          type: string
+          nullable: true
+        subjectKeyIdentifier:
+          type: string
+          nullable: true
+        subjectAlternativeName:
+          type: string
+          nullable: true
+        enhancedKeyUsage:
+          type: string
+          nullable: true
+        crlDistributionPoints:
+          type: string
+          nullable: true
+        certificatePolicies:
+          type: string
+          nullable: true
+        authorityInformationAccess:
+          type: string
+          nullable: true
+        keyUsage:
+          type: string
+          nullable: true
+        basicConstraints:
+          type: string
+          nullable: true
+        hostCertificateThumbprint:
+          type: string
+          nullable: true
+        pinCertificateThumbprint:
+          type: string
+          nullable: true
+        hostPublicKeyThumprint:
+          type: string
+          nullable: true
+        pinPublicKeyThumbprint:
+          type: string
+          nullable: true
+        serialNumber:
+          type: string
+          nullable: true
+        publicKey:
+          type: string
+          nullable: true
+        publicKeyParameters:
+          type: string
+          nullable: true
+        isEndangeredCertificate:
+          type: boolean
+        errorCode:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Response.ErrorCode'
+      additionalProperties: false
+    Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordSmtpData:
+      type: object
+      properties:
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.RecordMetricItem'
+          nullable: true
+        host:
+          type: string
+          nullable: true
+        port:
+          type: integer
+          format: int32
+        ipAddress:
+          type: string
+          nullable: true
+        errorCode:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Response.ErrorCode'
+      additionalProperties: false
+    Catchpoint.Symphony.ViewModels.InternetServiceStackMapDataAssociationModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        objectTypeId:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.ObjectType'
+        objectId:
+          type: integer
+          format: int64
+        serviceObjectTypeId:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.ObjectType'
+        serviceObjectId:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+          readOnly: true
+        changeLogObjectType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.ObjectType'
+      additionalProperties: false
+    Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordTransactionStep:
+      type: object
+      properties:
+        stepName:
+          type: string
+          nullable: true
+        testUri:
+          type: string
+          nullable: true
+        actualRunTime:
+          type: string
+          format: date-time
+        httpMethodType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.WinHttp.WinHttpMethod'
+        isLogable:
+          type: boolean
+        isPost:
+          type: boolean
+        hasScreenShot:
+          type: boolean
+        hasFilmStrip:
+          type: boolean
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.RecordMetricItem'
+          nullable: true
+        items:
+          type: array
+          items:
+            type: number
+            format: double
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Enums.SupportedTimeZone:
+      enum:
+      - id: 0
+        name: Eastern Standard Time
+      - id: 1
+        name: Central Standard Time
+      - id: 2
+        name: Mountain Standard Time
+      - id: 3
+        name: Pacific Standard Time
+      - id: 4
+        name: UTC
+      - id: 5
+        name: Central Europe Standard Time
+      - id: 6
+        name: Israel Standard Time
+      - id: 7
+        name: Japan Standard Time
+      - id: 8
+        name: E. Europe Standard Time
+      - id: 9
+        name: Singapore Standard Time
+      - id: 10
+        name: AUS Eastern Standard Time
+      - id: 11
+        name: SE Asia Standard Time
+      - id: 12
+        name: Hawaiian Standard Time
+      - id: 13
+        name: Alaskan Standard Time
+      - id: 14
+        name: Pacific Standard Time (Mexico)
+      - id: 15
+        name: US Mountain Standard Time
+      - id: 16
+        name: Mountain Standard Time (Mexico)
+      - id: 17
+        name: Central Brazilian Standard Time
+      - id: 18
+        name: E. South America Standard Time
+      - id: 19
+        name: GMT Standard Time
+      - id: 20
+        name: Turkey Standard Time
+      - id: 21
+        name: China Standard Time
+      - id: 22
+        name: Taipei Standard Time
+      - id: 23
+        name: Korea Standard Time
+      - id: 24
+        name: New Zealand Standard Time
+      - id: 25
+        name: Russian Standard Time
+      - id: 26
+        name: Central Asia Standard Time
+      - id: 27
+        name: Pakistan Standard Time
+      - id: 28
+        name: India Standard Time
+      - id: 29
+        name: Gulf Standard Time
+      type: integer
+      format: int32
+    Catchpoint.Symphony.Enums.SyntheticLocation.SyntheticNodeReturnCodeGroup:
+      enum:
+      - id: 0
+        name: None
+      - id: 1
+        name: Failure
+      - id: 2
+        name: Warning
+      - id: 4
+        name: Redirect
+      type: integer
+      format: int32
+    Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordHeader:
+      type: object
+      properties:
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.HeaderItem'
+          nullable: true
+        size:
+          type: integer
+          format: int64
+      additionalProperties: false
+    Catchpoint.Symphony.Orchestra.Response.RecordScriptErrorItem:
+      type: object
+      properties:
+        url:
+          type: string
+          nullable: true
+        lineNumber:
+          type: integer
+          format: int32
+        count:
+          type: integer
+          format: int32
+        errorCode:
+          type: integer
+          format: int32
+        errorMessage:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.ViewModels.SonarPointsPerDay:
+      type: object
+      properties:
+        pointsPerDay:
+          type: number
+          format: double
+        totalPointsPercentPerDay:
+          type: number
+          format: double
+      additionalProperties: false
+    Catchpoint.Symphony.Response.NetworkGraphEdge:
+      type: object
+      properties:
+        hopNumber:
+          type: integer
+          format: int32
+        testId:
+          type: integer
+          format: int64
+        nodeId:
+          type: integer
+          format: int64
+        deadHopCount:
+          type: integer
+          format: int32
+        parentKey:
+          type: string
+          nullable: true
+        childKey:
+          type: string
+          nullable: true
+        totalRuns:
+          type: integer
+          format: int32
+        successfulPackets:
+          type: integer
+          format: int32
+        failedPackets:
+          type: integer
+          format: int32
+        sentPackets:
+          type: integer
+          format: int32
+          readOnly: true
+        destinationSuccessCount:
+          type: integer
+          format: int32
+        destinationFailureCount:
+          type: integer
+          format: int32
+        destinationSuccess_SuccessfulPacketCount:
+          type: integer
+          format: int32
+        destinationSuccess_FailedPacketCount:
+          type: integer
+          format: int32
+        destinationSuccess_PingRoundTripTimeTotal:
+          type: integer
+          format: int32
+        destinationFailure_SuccessfulPacketCount:
+          type: integer
+          format: int32
+        destinationFailure_FailedPacketCount:
+          type: integer
+          format: int32
+        destinationFailure_PingRoundTripTimeTotal:
+          type: integer
+          format: int32
+        pingRoundTripTimeTotal:
+          type: integer
+          format: int32
+        pingRoundTripTimeAvg:
+          type: number
+          format: double
+          nullable: true
+        hasHighLatency:
+          type: boolean
+        mplsData:
+          type: string
+          nullable: true
+        jitterTotal:
+          type: number
+          format: double
+        countHopsWithJitter:
+          type: integer
+          format: int32
+        hasUnreachableDestination:
+          type: boolean
+        mplsHopData:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Response.MplsHopSummaryData'
+          nullable: true
+        dscpHopData:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Response.DscpSummaryData'
+          nullable: true
+        ecnHopData:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Response.EcnSummaryData'
+          nullable: true
+        pingRTTInMs:
+          type: number
+          format: double
+          readOnly: true
+        isDestinationEdge:
+          type: boolean
+        countMssOversized:
+          type: integer
+          format: int32
+          nullable: true
+        countMssUndersized:
+          type: integer
+          format: int32
+          nullable: true
+        bottleneckMtuCounts:
+          type: array
+          items:
+            type: integer
+            format: int32
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Response.MplsHopSummaryData:
+      type: object
+      properties:
+        runsCount:
+          type: integer
+          format: int32
+        mplsLabel:
+          type: string
+          nullable: true
+        pingPacketLoss:
+          type: number
+          format: double
+          nullable: true
+        pingRoundTripTime:
+          type: number
+          format: double
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordNtpData:
+      type: object
+      properties:
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.RecordMetricItem'
+          nullable: true
+        host:
+          type: string
+          nullable: true
+        ipAddress:
+          type: string
+          nullable: true
+        errorCode:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Response.ErrorCode'
+      additionalProperties: false
+    Catchpoint.Symphony.Orchestra.Response.PingData:
+      type: object
+      properties:
+        internetServices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.InternetServiceModel'
+          nullable: true
+        hostName:
+          type: string
+          nullable: true
+        ipAddress:
+          type: string
+          nullable: true
+        asn:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.LookupModel'
+        isDebugData:
+          type: boolean
+        errorCode:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Response.ErrorCode'
+        averageRoundTripTime:
+          type: number
+          format: double
+          nullable: true
+        packetsSent:
+          type: integer
+          format: int32
+        packetsSentSuccess:
+          type: integer
+          format: int32
+        packetLoss:
+          type: number
+          format: double
+        jitter:
+          type: number
+          format: double
+          nullable: true
+        roundTripTimes:
+          type: array
+          items:
+            type: integer
+            format: int32
+          nullable: true
+        city:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.LookupModel'
+        country:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.LookupModel'
+        hasHighLatency:
+          type: boolean
+        matchedPrefix:
+          type: string
+          nullable: true
+        mplsData:
+          type: string
+          nullable: true
+        bottleneckMtu:
+          type: integer
+          format: int32
+          nullable: true
+        isRepeating:
+          type: boolean
+        stepOffset:
+          type: integer
+          format: int32
+          nullable: true
+        pingProbes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.PingProbeData'
+          nullable: true
+        debugProbes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.DebugProbeData'
+          nullable: true
+        ecnValue:
+          type: integer
+          format: int32
+          nullable: true
+        dscpValue:
+          type: integer
+          format: int32
+          nullable: true
+        ecnSummary:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.ECNSummaryData'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Performance.ImageDataAPIModel:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        data:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordAdditionalMonitorData:
+      type: object
+      properties:
+        traceRouteData:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.TraceRouteData'
+        pingData:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.PingData'
+        childPingData:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.PingData'
+        wifiData:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordWifiData'
+        dnsTraceData:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordDnsTraceData'
+      additionalProperties: false
+    Catchpoint.Symphony.Enums.PlaybackSourceType:
+      enum:
+      - id: 0
+        name: Har
+      - id: 1
+        name: IE
+      - id: 2
+        name: Chrome
+      type: integer
+      format: int32
+    Catchpoint.Symphony.Enums.Smartboard.WidgetSourceType:
+      enum:
+      - id: 1
+        name: Test
+      - id: 2
+        name: RumApp
+      - id: 3
+        name: SonarApp
+      - id: 4
+        name: SonarLocation
+      - id: 5
+        name: SonarDevice
+      - id: 6
+        name: SLA
+      - id: 7
+        name: SyntheticAlert
+      - id: 8
+        name: RumAlert
+      - id: 9
+        name: SyntheticError
+      - id: 10
+        name: RumError
+      - id: 11
+        name: UserSentiment
+      - id: 12
+        name: EndpointTest
+      - id: 13
+        name: NodeToNode
+      - id: 14
+        name: InternetWeather
+      - id: 15
+        name: TracingSystem
+      - id: 16
+        name: TracingService
+      - id: 17
+        name: Benchmarks
+      - id: 18
+        name: RumMobileApp
+      - id: 19
+        name: TracingSpan
+      type: integer
+      format: int32
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.AnalyticsApiResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.AnalyticsResponseAggregated]]
+    : type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.AnalyticsApiResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.AnalyticsResponseAggregated]'
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+          nullable: true
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+          nullable: true
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type: string
+          nullable: true
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.MetricResponse:
+      type: object
+      properties:
+        index:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationDetailResponse:
+      type: object
+      properties:
+        section:
+          type: string
+          nullable: true
+        enumeration:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Nullable`1[System.Int32]]'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.FavoriteChart.FavoriteChartDetailsResponse:
+      type: object
+      properties:
+        favoriteCharts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.FavoriteChart.FavoriteChartDetailAPIModel'
+          nullable: true
+        hasMore:
+          type: boolean
+          nullable: true
+        next:
+          type: string
+          nullable: true
+        previous:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.Limit:
+      type: object
+      properties:
+        minute:
+          type: integer
+          format: int32
+        hour:
+          type: integer
+          format: int32
+        day:
+          type: integer
+          format: int32
+      additionalProperties: false
+    Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.ImageDataItem:
+      type: object
+      properties:
+        heightInPixel:
+          type: integer
+          format: int32
+        widthInPixel:
+          type: integer
+          format: int32
+        timeOffsetMSec:
+          type: integer
+          format: int32
+        url:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ? Catchpoint.Symphony.REST.Common.Response.v2_0.AnalyticsApiResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.AnalyticsResponseRaw]
+    : type: object
+      properties:
+        responseItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.AnalyticsResponseRaw'
+          nullable: true
+        hasMore:
+          type: boolean
+          nullable: true
+        next:
+          type: string
+          nullable: true
+        previous:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.FavoriteChart.FavoriteChartResponse]
+    : type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.FavoriteChart.FavoriteChartResponse'
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+          nullable: true
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+          nullable: true
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type: string
+          nullable: true
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+    Catchpoint.Symphony.Enums.Sonar.GraphVertexType:
+      enum:
+      - id: 1
+        name: Gateway
+      - id: 2
+        name: Proxy
+      - id: 3
+        name: VPN
+      - id: 4
+        name: WifiRouter
+      - id: 5
+        name: ISP
+      - id: 6
+        name: Firewall
+      - id: 7
+        name: DNSResolver
+      - id: 8
+        name: Endpoint
+      - id: 9
+        name: AS
+      - id: 10
+        name: App
+      - id: 11
+        name: IP
+      - id: 12
+        name: Unknown
+      type: integer
+      format: int32
+    Catchpoint.Symphony.REST.Common.Response.v2_0.RecordMetricItemAPIModel:
+      type: object
+      properties:
+        metricType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.Metrics.RecordMetric'
+        name:
+          type: string
+          nullable: true
+        value:
+          type: number
+          format: double
+          nullable: true
+        index:
+          type: integer
+          format: int32
+        lookbackValue:
+          type: number
+          format: double
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Nullable`1[System.Int32]]:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          nullable: true
+        name:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Enums.WebTagType:
+      enum:
+      - id: 0
+        name: Unknown
+      - id: 1
+        name: Image
+      - id: 2
+        name: Script
+      - id: 3
+        name: IFrame
+      - id: 4
+        name: Link
+      - id: 5
+        name: Xhr
+      - id: 6
+        name: Flash
+      - id: 7
+        name: Media
+      - id: 8
+        name: Font
+      type: integer
+      format: int32
+    Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordDnsTraceData:
+      type: object
+      properties:
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.RecordMetricItem'
+          nullable: true
+        eDnsSubnet:
+          type: string
+          nullable: true
+        hostName:
+          type: string
+          nullable: true
+        isDebugData:
+          type: boolean
+        isTcp:
+          type: boolean
+        isDnsSecDataAvailable:
+          type: boolean
+        dnsSecItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.RecordDnsSecItem'
+          nullable: true
+        responseContentUrl:
+          type: string
+          nullable: true
+        errorCode:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Response.ErrorCode'
+        levelItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordDnsTraceLevelItems'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Int32]:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordFtpData:
+      type: object
+      properties:
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.RecordMetricItem'
+          nullable: true
+        testLocation:
+          type: string
+          nullable: true
+        ipAddress:
+          type: string
+          nullable: true
+        errorCode:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Response.ErrorCode'
+      additionalProperties: false
+    Catchpoint.Symphony.Response.NetworkGraphPathMtuSummaryData:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        id:
+          type: string
+          nullable: true
+        index:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.MtuIndexType'
+        runsCount:
+          type: number
+          format: double
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.ViewModels.InternetServiceModel:
+      required:
+      - id
+      - name
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        divisionId:
+          type: integer
+          format: int32
+          nullable: true
+        name:
+          minLength: 1
+          type: string
+        description:
+          type: string
+          nullable: true
+        logoUrl:
+          type: string
+          nullable: true
+        internetServiceTypeId:
+          type: integer
+          format: int32
+        internetCustomServiceTypeId:
+          type: integer
+          format: int32
+          nullable: true
+        status:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.DomainStatus'
+        serviceProvider:
+          type: string
+          nullable: true
+        parentId:
+          type: integer
+          format: int32
+          nullable: true
+        internetServiceType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.InternetServiceTypeModel'
+        internetCustomServiceType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.InternetServiceTypeModel'
+        subServices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.InternetServiceModel'
+          nullable: true
+        isDefault:
+          type: boolean
+        isInclude:
+          type: boolean
+          nullable: true
+        stackMapUtilizeApdexThresholdSettingTypeId:
+          type: integer
+          format: int32
+        stackMapDataAssociation:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.InternetServiceStackMapDataAssociationModel'
+          nullable: true
+        associatedInternetServiceId:
+          type: integer
+          format: int32
+          nullable: true
+        associatedInternetService:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.InternetServiceModel'
+        criteria:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.InternetServiceDetailsModel'
+          nullable: true
+        testTimeThreshold:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.ApdexThresholdModel'
+        availabilityThreshold:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.ApdexThresholdModel'
+        internetServiceCloudRegion:
+          type: string
+          nullable: true
+        changeLogObjectType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.ObjectType'
+        changeDate:
+          type: string
+          format: date-time
+        sonarPointsPerDay:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.SonarPointsPerDay'
+      additionalProperties: false
+    Catchpoint.Symphony.ViewModels.RegionModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        countryId:
+          type: integer
+          format: int32
+          nullable: true
+        countries:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.CountryModel'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Response.NetworkGraphTooltipOverrideData:
+      type: object
+      properties:
+        summaryData:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Response.NetworkGraphTooltipOverrideSummaryData'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.AnalyticsResponseRaw:
+      type: object
+      properties:
+        startTimeUtc:
+          type: string
+          format: date-time
+        endTimeUtc:
+          type: string
+          format: date-time
+        timeZoneOffSet:
+          type: string
+          format: date-span
+          nullable: true
+        hasMoreRecords:
+          type: boolean
+        dimensions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Int32]'
+          nullable: true
+        indicators:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Insight.InsightResponse'
+          nullable: true
+        tracepoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Insight.InsightResponse'
+          nullable: true
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.MetricResponse'
+          nullable: true
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.AnalyticsResponseItem'
+          nullable: true
+        summaryItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.AnalyticsResponseItem'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Orchestra.Response.DebugProbeData:
+      type: object
+      properties:
+        index:
+          type: integer
+          format: int32
+        errorCode:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Response.ErrorCode'
+      additionalProperties: false
+    Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordStreamingData:
+      type: object
+      properties:
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.RecordMetricItem'
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        streamingUrl:
+          type: string
+          nullable: true
+        hasCapturedMetaData:
+          type: boolean
+        hasResponseCapturedHeaders:
+          type: boolean
+        hasRequestCapturedHeaders:
+          type: boolean
+        screenshot:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.ImageDataItem'
+        filmStripImages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.ImageDataItem'
+          nullable: true
+        ipAddress:
+          type: string
+          nullable: true
+        errorCode:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Response.ErrorCode'
+        requestHeadersUrl:
+          type: string
+          nullable: true
+        responseHeadersUrl:
+          type: string
+          nullable: true
+        responseContentUrl:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Orchestra.Response.RecordDnsSecItem:
+      type: object
+      properties:
+        trace:
+          type: string
+          nullable: true
+        trustChain:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Enums.SyntheticLocation.SyntheticNetworkType:
+      enum:
+      - id: 0
+        name: Backbone
+      - id: 1
+        name: LastMile
+      - id: 2
+        name: Wireless
+      - id: 3
+        name: Private
+      - id: 4
+        name: Enterprise
+      - id: 5
+        name: PublicCloud
+      - id: 6
+        name: Any
+      - id: 7
+        name: Bgp
+      - id: 8
+        name: WebPageTest
+      - id: 9
+        name: Enterprise Branch
+      type: integer
+      format: int32
+    Catchpoint.Symphony.REST.Common.Response.v2_0.NodeAPIModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+          nullable: true
+        networkType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.SyntheticLocation.SyntheticNetworkType'
+        status:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Int32]'
+        ipAddress:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.FavoriteChart.FavoriteChartResponse:
+      type: object
+      properties:
+        favoriteCharts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.FavoriteChart.FavoriteChartAPIModel'
+          nullable: true
+        hasMore:
+          type: boolean
+          nullable: true
+        next:
+          type: string
+          nullable: true
+        previous:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.WebRecordAPIModel:
+      type: object
+      properties:
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.RecordMetricItemAPIModel'
+          nullable: true
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.WebRecordItem'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Enums.MtuIndexType:
+      enum:
+      - id: 0
+        name: LessThanFifteenHundred
+      - id: 1
+        name: FifteenHundred
+      - id: 2
+        name: GreaterThanFifteenHundred
+      - id: -1
+        name: Unknown
+      type: integer
+      format: int32
+    Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordTcpData:
+      type: object
+      properties:
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.RecordMetricItem'
+          nullable: true
+        host:
+          type: string
+          nullable: true
+        port:
+          type: integer
+          format: int32
+        ipAddress:
+          type: string
+          nullable: true
+        errorCode:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Response.ErrorCode'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.TestWaterfallDataResponse:
+      type: object
+      properties:
+        testWaterfallResults:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.RecordResponseAPIModel'
+          nullable: true
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Performance.ImageDataAPIModel'
+          nullable: true
+        hasMore:
+          type: boolean
+          nullable: true
+        next:
+          type: string
+          nullable: true
+        previous:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Response.EcnSummaryData:
+      type: object
+      properties:
+        runsCount:
+          type: integer
+          format: int32
+        ecnLabel:
+          type: integer
+          format: int32
+      additionalProperties: false
+    Catchpoint.Symphony.Enums.InternetServiceCategoryType:
+      enum:
+      - id: 1
+        name: InternetNetworkProvider
+      - id: 2
+        name: WebApps
+      - id: 3
+        name: InfrastructureProvider
+      - id: 4
+        name: WebService
+      - id: 5
+        name: BusinessServices
+      - id: 6
+        name: StackMapCustomService
+      type: integer
+      format: int32
+    Catchpoint.Symphony.ViewModels.LookupModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        originalName:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        nameStringKey:
+          type: string
+          nullable: true
+        type:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.Dimension.BreakdownDimension'
+        testType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.Test.DisplayTestType'
+      additionalProperties: false
+    Catchpoint.Symphony.Orchestra.Response.TraceRouteData:
+      type: object
+      properties:
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.RecordMetricItem'
+          nullable: true
+        hostName:
+          type: string
+          nullable: true
+        isDebugData:
+          type: boolean
+        isMtuReliable:
+          type: boolean
+        isSackUsed:
+          type: boolean
+        ipAddress:
+          type: string
+          nullable: true
+        duration:
+          type: integer
+          format: int32
+        errorCode:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Response.ErrorCode'
+        pingData:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.PingData'
+          nullable: true
+        pingTraceRouteGraph:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Response.NetworkGraphResponse'
+        destinationPingData:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.PingData'
+        fallbackReason:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Response.FallbackReason'
+        ecnValue:
+          type: integer
+          format: int32
+          nullable: true
+        dscpValue:
+          type: integer
+          format: int32
+          nullable: true
+        transportLayerEcnId:
+          type: integer
+          format: int32
+          nullable: true
+        timeStampUtc:
+          type: string
+          format: date-time
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Insight.InsightResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        index:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Response.GraphPath:
+      type: object
+      properties:
+        path:
+          type: array
+          items:
+            type: string
+          nullable: true
+        isMtuReliable:
+          type: boolean
+        minPathMtu:
+          type: integer
+          format: int32
+        minTcpMss:
+          type: integer
+          format: int32
+        hasRepeatingIp:
+          type: boolean
+        dscpPathData:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Response.DscpSummaryData'
+          nullable: true
+        ecnPathData:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Response.EcnSummaryData'
+          nullable: true
+        dscpChangedPathData:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Response.DscpSummaryData'
+          nullable: true
+        ecnChangedPathData:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Response.EcnSummaryData'
+          nullable: true
+        hasUnreachableDestination:
+          type: boolean
+        hasPathChange:
+          type: boolean
+      additionalProperties: false
+    Catchpoint.Symphony.Enums.Test.PageSpeedRuleType:
+      enum:
+      - id: 0
+        name: None
+      - id: 1
+        name: AvoidBadRequest
+      - id: 2
+        name: AvoidCSSImport
+      - id: 3
+        name: AvoidDocumentWrite
+      - id: 4
+        name: CombineExternalCSS
+      - id: 5
+        name: CombineExternalJavaScript
+      - id: 6
+        name: EnableGzipCompression
+      - id: 7
+        name: LeverageBrowserCaching
+      - id: 8
+        name: MinifyCSS
+      - id: 9
+        name: MinifyHTML
+      - id: 10
+        name: MinifyJavaScript
+      - id: 11
+        name: MinimizeDnsLookups
+      - id: 12
+        name: MinimizeRedirects
+      - id: 13
+        name: MinimizeRequestSize
+      - id: 14
+        name: OptimizeImages
+      - id: 15
+        name: OptimizeTheOrderOfStylesAndScripts
+      - id: 16
+        name: ParallelizeDownloadsAcrossHostnames
+      - id: 17
+        name: PreferAsyncResources
+      - id: 18
+        name: PutCssInTheDocumentHead
+      - id: 19
+        name: RemoveQueryStringsFromStaticResources
+      - id: 20
+        name: ServeResourcesFromAConsistentUrl
+      - id: 21
+        name: ServeScaledImages
+      - id: 22
+        name: ServeStaticContentFromACookielessDomain
+      - id: 23
+        name: SpecifyACacheValidator
+      - id: 24
+        name: SpecifyAVaryAcceptEncodingHeader
+      - id: 25
+        name: SpecifyCharsetEarly
+      - id: 26
+        name: SpecifyImageDimensions
+      - id: 27
+        name: SpriteImages
+      - id: 28
+        name: DeferParsingJavaScript
+      - id: 29
+        name: EnableKeepAlive
+      - id: 30
+        name: InlineSmallCSS
+      - id: 31
+        name: InlineSmallJavaScript
+      - id: 32
+        name: MakeLandingPageRedirectsCacheable
+      - id: 33
+        name: ServerResponseTime
+      - id: 34
+        name: AvoidLandingPageRedirects
+      type: integer
+      format: int32
+    Catchpoint.Symphony.Enums.Test.WebSocketTransferType:
+      enum:
+      - id: 0
+        name: Send
+      - id: 1
+        name: Receive
+      - id: 2
+        name: Ping
+      - id: 3
+        name: Pong
+      - id: 4
+        name: Dns
+      - id: 5
+        name: Connect
+      - id: 6
+        name: Ssl
+      - id: 7
+        name: Handshake
+      type: integer
+      format: int32
+    Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.HttpErrorCodeItem:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        isWarning:
+          type: boolean
+        message:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.TestWaterfallDataResponse]
+    : type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.TestWaterfallDataResponse'
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+          nullable: true
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+          nullable: true
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type: string
+          nullable: true
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+    Catchpoint.Symphony.Enums.Test.DisplayMonitorType:
+      enum:
+      - id: 0
+        name: IE
+      - id: 1
+        name: RealUser
+      - id: 2
+        name: HTTP
+      - id: 3
+        name: Emulated
+      - id: 5
+        name: Mqtt
+      - id: 6
+        name: Imap
+      - id: 7
+        name: Ntp
+      - id: 8
+        name: Ping ICMP
+      - id: 9
+        name: Traceroute ICMP
+      - id: 10
+        name: DnsTrace
+      - id: 11
+        name: PingTcp
+      - id: 12
+        name: DnsExperience
+      - id: 13
+        name: DnsDirect
+      - id: 14
+        name: TraceRouteUdp
+      - id: 15
+        name: Tcp
+      - id: 16
+        name: Ftp
+      - id: 17
+        name: ApiSummary
+      - id: 18
+        name: Chrome
+      - id: 19
+        name: Playback
+      - id: 20
+        name: MobilePlayback
+      - id: 21
+        name: Smtp
+      - id: 22
+        name: TcpUdp
+      - id: 23
+        name: PingUdp
+      - id: 24
+        name: Streaming
+      - id: 25
+        name: Api
+      - id: 26
+        name: Mobile
+      - id: 28
+        name: Ssh
+      - id: 29
+        name: TraceRouteTcp
+      - id: 30
+        name: WebSocket
+      - id: 31
+        name: Ssl
+      - id: 32
+        name: Wifi
+      - id: 33
+        name: ShellScript
+      - id: 34
+        name: Bgp
+      - id: 35
+        name: TraceRouteSack
+      - id: 36
+        name: M-Lab Bandwidth
+      - id: 37
+        name: WebPageTest
+      - id: 39
+        name: Edge
+      - id: 40
+        name: Nprobe
+      - id: 41
+        name: BgpBasic
+      - id: 42
+        name: TracerouteQUIC
+      - id: 43
+        name: NProbeRFactor
+      type: integer
+      format: int32
+    Catchpoint.Symphony.REST.Api.ApiUsageStatistics:
+      type: object
+      properties:
+        clientId:
+          type: integer
+          format: int64
+        lastRequestTimestamp:
+          type: string
+          format: date-time
+        limits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        runs:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        exceededMessage:
+          type: string
+          nullable: true
+          readOnly: true
+        divisionUsageStatistics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.DivisionUsageStatistics'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.AnalyticsResponseAggregated:
+      type: object
+      properties:
+        timeInterval:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Int32]'
+        startTimeUtc:
+          type: string
+          format: date-time
+        endTimeUtc:
+          type: string
+          format: date-time
+        timeZoneOffSet:
+          type: string
+          format: date-span
+          nullable: true
+        hasMoreRecords:
+          type: boolean
+        dimensions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Int32]'
+          nullable: true
+        indicators:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Insight.InsightResponse'
+          nullable: true
+        tracepoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Insight.InsightResponse'
+          nullable: true
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.MetricResponse'
+          nullable: true
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.AnalyticsResponseItem'
+          nullable: true
+        summaryItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.AnalyticsResponseItem'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.ViewModels.ApdexThresholdModel:
+      type: object
+      properties:
+        id:
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+          format: int32
+        objectId:
+          type: integer
+          format: int64
+          nullable: true
+        metricType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.Metrics.AnalyticsMetric'
+        objectTypeId:
+          type: integer
+          format: int32
+          nullable: true
+        monitorTypeId:
+          type: integer
+          format: int32
+          nullable: true
+        apdexThresholdWarning:
+          type: number
+          format: float
+          nullable: true
+        apdexThresholdCritical:
+          type: number
+          format: float
+          nullable: true
+        name:
+          type: string
+          nullable: true
+          readOnly: true
+        changeLogObjectType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.ObjectType'
+      additionalProperties: false
+    Catchpoint.Symphony.Response.DscpSummaryData:
+      type: object
+      properties:
+        runsCount:
+          type: integer
+          format: int32
+        dscpLabel:
+          type: integer
+          format: int32
+      additionalProperties: false
+    Catchpoint.Symphony.Response.NetworkGraphResponse:
+      type: object
+      properties:
+        paths:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Response.GraphPath'
+          nullable: true
+        ipLookups:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Response.TraceRouteIpAddressLookup'
+          nullable: true
+        summary:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Response.NetworkGraphSummary'
+        tooltipOverrideData:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Response.NetworkGraphTooltipOverrideData'
+        vertices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Response.NetworkGraphVertex'
+          nullable: true
+        edges:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Response.NetworkGraphEdge'
+          nullable: true
+        hasLoop:
+          type: boolean
+          readOnly: true
+        pathMtuData:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Response.NetworkGraphPathMtuData'
+        ispOutageData:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Response.NetworkIspOutageData'
+        uniqueTestsCount:
+          type: integer
+          format: int32
+        pageStart:
+          type: integer
+          format: int32
+        pageEnd:
+          type: integer
+          format: int32
+      additionalProperties: false
+    Catchpoint.Symphony.Enums.InternetServiceIdentityType:
+      enum:
+      - id: 0
+        name: None
+      - id: 1
+        name: IP
+      - id: 2
+        name: ASN
+      - id: 3
+        name: DenormalizedHosts
+      - id: 4
+        name: DenormalizedHostsRegex
+      - id: 5
+        name: IsDown Service Name
+      - id: 6
+        name: UrlStartsWith
+      - id: 7
+        name: UrlEndsWith
+      - id: 8
+        name: URL Fragment
+      - id: 9
+        name: URL
+      - id: 10
+        name: UrlRegex
+      type: integer
+      format: int32
+    Catchpoint.Symphony.ViewModels.MessageModel:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        message:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Orchestra.Response.IndicatorData:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        value:
+          type: number
+          format: double
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Performance.WaterfallTokenAPIModel:
+      type: object
+      properties:
+        interval:
+          type: string
+          nullable: true
+        cleaned:
+          type: boolean
+        failureType:
+          type: string
+          nullable: true
+        triggered:
+          type: string
+          nullable: true
+        waterfallToken:
+          type: string
+          nullable: true
+        node:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.NodeAPIModel'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.MetricModel:
+      type: object
+      properties:
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.RecordMetricItemAPIModel'
+          nullable: true
+        items:
+          type: array
+          items:
+            type: number
+            format: double
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.FavoriteChart.FavoriteChartDetailAPIModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        timeFrame:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Int32]'
+        interval:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Int32]'
+        dimension:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Int32]'
+        breakdownOne:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Int32]'
+        breakdownTwo:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Int32]'
+        statisticalValues:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Int32]'
+          nullable: true
+        tests:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.FavoriteChart.FavoriteChartTestDetailAPIModel'
+          nullable: true
+        apps:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.FavoriteChart.FavoriteChartAppDetailAPIModel'
+          nullable: true
+        syntheticMetrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Int32]'
+          nullable: true
+        appMetrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Int32]'
+          nullable: true
+        dataFilters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Int32]'
+          nullable: true
+        changeDate:
+          type: string
+          format: date-time
+        sourceType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.Smartboard.WidgetSourceType'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.DimensionResponse:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Int32]'
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Orchestra.Response.TracepointData:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        value:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.RecordHostDataAPIModel:
+      type: object
+      properties:
+        hostName:
+          type: string
+          nullable: true
+        items:
+          type: array
+          items:
+            type: number
+            format: double
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Enums.Test.WifiSecurityType:
+      enum:
+      - id: 0
+        name: None
+      - id: 1
+        name: Wpa2
+      - id: 2
+        name: Wep
+      - id: 3
+        name: Wps
+      - id: 4
+        name: Wpa
+      - id: 5
+        name: WpaWpa2
+      type: integer
+      format: int32
+    Catchpoint.Symphony.Enums.ObjectType:
+      enum:
+      - id: 0
+        name: None
+      - id: 1
+        name: Language String
+      - id: 2
+        name: User Access
+      - id: 3
+        name: Machine
+      - id: 4
+        name: Partition
+      - id: 5
+        name: System
+      - id: 6
+        name: Application Parameter
+      - id: 7
+        name: ApplicationMachine
+      - id: 8
+        name: ApplicationMachineParameter
+      - id: 9
+        name: UserRole
+      - id: 10
+        name: UserRolePermission
+      - id: 11
+        name: Contact
+      - id: 12
+        name: Contact Group
+      - id: 13
+        name: ContactGroupItem
+      - id: 14
+        name: UserFilter
+      - id: 15
+        name: RestrictedIPAccess
+      - id: 16
+        name: Reseller
+      - id: 17
+        name: Client
+      - id: 18
+        name: Division
+      - id: 19
+        name: Schedule
+      - id: 20
+        name: Schedule Item
+      - id: 21
+        name: Test Location
+      - id: 22
+        name: Test Location Group
+      - id: 23
+        name: SyntheticLocationGroupItem
+      - id: 24
+        name: AlertTemplate
+      - id: 25
+        name: AlertTemplateMessage
+      - id: 26
+        name: Alert Group
+      - id: 27
+        name: Alert Group Item
+      - id: 28
+        name: Product
+      - id: 29
+        name: ProductSubDomain
+      - id: 30
+        name: Folder
+      - id: 31
+        name: Category
+      - id: 32
+        name: Test
+      - id: 33
+        name: TestTransactionStep
+      - id: 34
+        name: TestCategory
+      - id: 35
+        name: Notification Group
+      - id: 36
+        name: Associated Request Header
+      - id: 37
+        name: Alert Type
+      - id: 38
+        name: Alert Subtype
+      - id: 39
+        name: NotificationGroupEmail
+      - id: 40
+        name: Country
+      - id: 41
+        name: CountryState
+      - id: 42
+        name: Permission
+      - id: 43
+        name: ChartTemplate
+      - id: 44
+        name: SyntheticPopulation
+      - id: 45
+        name: InstantTest
+      - id: 46
+        name: InstantTestItem
+      - id: 47
+        name: Incident
+      - id: 48
+        name: IncidentAlertNotification
+      - id: 49
+        name: DivisionInsight
+      - id: 50
+        name: Indicator
+      - id: 51
+        name: Tracepoint
+      - id: 52
+        name: CustomReportRequest
+      - id: 53
+        name: InvalidTestReportDataInterval
+      - id: 54
+        name: Apdex Threshold
+      - id: 55
+        name: DivisionHost
+      - id: 56
+        name: FreeUser
+      - id: 57
+        name: OutclipWebsite
+      - id: 58
+        name: OutclipSnippet
+      - id: 59
+        name: WaterfallTemplate
+      - id: 60
+        name: FreeTest
+      - id: 61
+        name: LightCustomReportTemplate
+      - id: 62
+        name: LightCustomReportTemplateField
+      - id: 63
+        name: LightCustomReportRequest
+      - id: 64
+        name: LightCustomReportRequestFilter
+      - id: 65
+        name: DivisionApi
+      - id: 66
+        name: BusinessContract
+      - id: 67
+        name: Zone
+      - id: 68
+        name: HostCollectionBlacklist
+      - id: 69
+        name: Zone Rule
+      - id: 70
+        name: TestMiniHar
+      - id: 71
+        name: SavedChart
+      - id: 72
+        name: SavedChartFilter
+      - id: 73
+        name: ApdexFrustrationRatio
+      - id: 74
+        name: GlimpseSitePackage
+      - id: 75
+        name: GlimpseSite
+      - id: 76
+        name: Page Group
+      - id: 77
+        name: Variation
+      - id: 78
+        name: BusinessLicenseContract
+      - id: 79
+        name: AssociatedGlimpseLicense
+      - id: 80
+        name: DivisionLicenses
+      - id: 81
+        name: PullApiConsumer
+      - id: 82
+        name: RouterHostPattern
+      - id: 83
+        name: RouterHost
+      - id: 84
+        name: ApiPushTemplate
+      - id: 85
+        name: Dashboard
+      - id: 86
+        name: Widget
+      - id: 87
+        name: DashboardWidget
+      - id: 88
+        name: DashboardPublicLink
+      - id: 89
+        name: Benchmark Index
+      - id: 90
+        name: Browser
+      - id: 91
+        name: DomainGlobal
+      - id: 92
+        name: OrganizationGlobal
+      - id: 93
+        name: InternetServiceProviderGlobal
+      - id: 94
+        name: Continent
+      - id: 95
+        name: CountryStateCity
+      - id: 96
+        name: NetworkSpeed
+      - id: 97
+        name: Os
+      - id: 98
+        name: MobileDevice
+      - id: 99
+        name: Certificate
+      - id: 100
+        name: Alert Webhook
+      - id: 101
+        name: SyntheticMonitorSet
+      - id: 102
+        name: SyntheticMonitorPackage
+      - id: 103
+        name: SavedChartField
+      - id: 104
+        name: GlobalVariable
+      - id: 105
+        name: PullApiUsage
+      - id: 106
+        name: File
+      - id: 107
+        name: MachineHardwareType
+      - id: 108
+        name: MachineOperatingSystemFlavor
+      - id: 109
+        name: MachineVirtualizationType
+      - id: 110
+        name: InternetServiceProvider
+      - id: 111
+        name: City
+      - id: 112
+        name: ContactTestAccessRestriction
+      - id: 113
+        name: PricingModel
+      - id: 114
+        name: Visualization
+      - id: 115
+        name: Facility
+      - id: 116
+        name: Storage
+      - id: 117
+        name: DataView
+      - id: 118
+        name: IdentityProvider
+      - id: 119
+        name: Assertions
+      - id: 120
+        name: Alert Group Item Filter
+      - id: 121
+        name: DataViewDimension
+      - id: 122
+        name: DataViewMetric
+      - id: 123
+        name: AssociatedApplicationVersion
+      - id: 124
+        name: CaptureServerSyntheticPopulation
+      - id: 125
+        name: BandwidthThrottleSettings
+      - id: 126
+        name: AlertInstruction
+      - id: 127
+        name: AssociatedModel
+      - id: 128
+        name: Model
+      - id: 129
+        name: GlimpseProvider
+      - id: 130
+        name: Integration
+      - id: 131
+        name: IntegrationType
+      - id: 132
+        name: SLAPurgeItem
+      - id: 133
+        name: IntegrationGroup
+      - id: 134
+        name: Associated Advanced Settings
+      - id: 135
+        name: EnterpriseInstanceLicense
+      - id: 136
+        name: InstanceDnsRecord
+      - id: 137
+        name: VisualizationScript
+      - id: 138
+        name: GlimpseEvent
+      - id: 139
+        name: SyntheticInstanceRejected
+      - id: 140
+        name: PointsAllocation
+      - id: 141
+        name: GlimpseProviderType
+      - id: 142
+        name: ApplicationVersion
+      - id: 143
+        name: ApplicationType
+      - id: 144
+        name: ApplicationCheck
+      - id: 145
+        name: PerformanceReport
+      - id: 146
+        name: Regex Association
+      - id: 147
+        name: GlimpseSonarEntity
+      - id: 148
+        name: GlimpseSonarGroup
+      - id: 149
+        name: TestTemplateStatusType
+      - id: 150
+        name: TestTypeSchema
+      - id: 151
+        name: TestTemplate
+      - id: 152
+        name: Template Field
+      - id: 153
+        name: Associated Test Template Parameter
+      - id: 154
+        name: TestTemplateApplicationGroup
+      - id: 155
+        name: Associated Restricted Test Template
+      - id: 156
+        name: Label
+      - id: 157
+        name: LabelValue
+      - id: 158
+        name: Associated Label Value
+      - id: 159
+        name: Endpoint Location
+      - id: 160
+        name: Endpoint Device
+      - id: 161
+        name: SonarBusinessContract
+      - id: 162
+        name: TestModuleDisplayPreferences
+      - id: 163
+        name: Smartboard
+      - id: 164
+        name: Component
+      - id: 165
+        name: SmartboardComponent
+      - id: 166
+        name: AssociatedBenchmarkIndex
+      - id: 167
+        name: BgpPeer
+      - id: 168
+        name: SmartboardFolder
+      - id: 169
+        name: EndpointInstantTest
+      - id: 170
+        name: Endpoint Scheduled Test
+      - id: 171
+        name: GlimpseSonarNetworkDevice
+      - id: 172
+        name: GeographyIpAddressLocationOverride
+      - id: 173
+        name: Favorite Chart
+      - id: 174
+        name: WptApiKey
+      - id: 175
+        name: QuickChart
+      - id: 176
+        name: Custom Visualization
+      - id: 177
+        name: EndpointInstantTestItem
+      - id: 178
+        name: WptBusinessContract
+      - id: 179
+        name: WptFolder
+      - id: 180
+        name: WptScheduleInterval
+      - id: 181
+        name: WptDeviceType
+      - id: 182
+        name: WptBrowserType
+      - id: 183
+        name: WptConnectionType
+      - id: 184
+        name: WptDevice
+      - id: 185
+        name: Authentication
+      - id: 186
+        name: AuthenticationContact
+      - id: 187
+        name: Spotlight
+      - id: 188
+        name: EndpointEmployeeApp
+      - id: 189
+        name: Service Level Objective
+      - id: 190
+        name: ASN
+      - id: 191
+        name: Associated Service Level Objective
+      - id: 192
+        name: System Service
+      - id: 193
+        name: InternetWeatherConfig
+      - id: 194
+        name: InternetServiceOverride
+      - id: 195
+        name: InternetWeatherContract
+      - id: 196
+        name: InternetWeatherAlert
+      - id: 197
+        name: WptInstantTest
+      - id: 198
+        name: Custom Service
+      - id: 199
+        name: Mapped Service
+      - id: 200
+        name: Test Suite
+      - id: 201
+        name: LocationFromRtt
+      - id: 202
+        name: IsDownIncident
+      - id: 203
+        name: Tracing Contract
+      - id: 204
+        name: InternetServiceRegion
+      - id: 205
+        name: TracingSystem
+      - id: 206
+        name: TracingService
+      - id: 207
+        name: RumMobileApp
+      - id: 208
+        name: Associated Benchmark Test
+      - id: 209
+        name: BgpPrivatePeer
+      - id: 210
+        name: AssociatedInternetWeatherServicePoint
+      - id: 211
+        name: BenchmarkApp
+      - id: 212
+        name: InternetSonarPointPricing
+      - id: 213
+        name: Benchmark Test
+      - id: 214
+        name: ClickHouseCluster
+      - id: 215
+        name: Destination Url
+      - id: 216
+        name: StackMap
+      - id: 217
+        name: EarthView
+      - id: 218
+        name: HeartbeatProduct
+      - id: 219
+        name: HeartbeatTest
+      - id: 220
+        name: EndpointAlertGroupItem
+      - id: 221
+        name: ProxyConfig
+      - id: 222
+        name: CompositeAlertGroup
+      - id: 223
+        name: Scope
+      type: integer
+      format: int32
+    Catchpoint.Symphony.Enums.WinHttpErrorCode:
+      enum:
+      - id: 0
+        name: None
+      - id: 114
+        name: OtherSslFailure
+      - id: 12000
+        name: WinHttpBase
+      - id: 12001
+        name: WinHttpOutOfHandles
+      - id: 12002
+        name: WinHttpTimeout
+      - id: 12004
+        name: WinHttpInternalError
+      - id: 12005
+        name: WinHttpInvalidUrl
+      - id: 12006
+        name: WinHttpUnrecognizedScheme
+      - id: 12007
+        name: WinHttpNameNotResolved
+      - id: 12009
+        name: WinHttpInvalidOption
+      - id: 12011
+        name: WinHttpOptionNotSettable
+      - id: 12012
+        name: WinHttpShutdown
+      - id: 12015
+        name: WinHttpLogOnFailure
+      - id: 12017
+        name: WinHttpOperationCanceled
+      - id: 12018
+        name: WinHttpIncorrectHandleType
+      - id: 12019
+        name: WinHttpIncorrectHandleState
+      - id: 12029
+        name: WinHttpCannotConnect
+      - id: 12030
+        name: WinHttpConnectionError
+      - id: 12031
+        name: ErrorInternetConnectionReset
+      - id: 12032
+        name: WinHttpResendRequest
+      - id: 12037
+        name: WinHttpSecureCertDateInvalid
+      - id: 12038
+        name: WinHttpSecureCertCNInvalid
+      - id: 12044
+        name: WinHttpClientAuthCertNeeded
+      - id: 12045
+        name: WinHttpSecureInvalidCA
+      - id: 12055
+        name: ErrorInternetSecCertErrors
+      - id: 12056
+        name: ErrorInternetSecCertNoRev
+      - id: 12057
+        name: WinHttpSecureCertRevFailed
+      - id: 12100
+        name: WinHttpCannotCallBeforeOpen
+      - id: 12101
+        name: WinHttpCannotCallBeforeSend
+      - id: 12102
+        name: WinHttpCannotCallAfterSend
+      - id: 12103
+        name: WinHttpCannotCallAfterOpen
+      - id: 12150
+        name: WinHttpHeaderNotFound
+      - id: 12151
+        name: ErrorHttpDownlevelServer
+      - id: 12152
+        name: WinHttpInvalidServerResponse
+      - id: 12153
+        name: WinHttpInvalidHeader
+      - id: 12154
+        name: WinHttpInvalidQueryRequest
+      - id: 12155
+        name: WinHttpHeaderAlreadyExists
+      - id: 12156
+        name: WinHttpRedirectFailed
+      - id: 12157
+        name: WinHttpSecureChannelError
+      - id: 12166
+        name: WinHttpBadAutoProxyScript
+      - id: 12167
+        name: WinHttpUnableToDownloadScript
+      - id: 12168
+        name: WinHttpRedirectNeedsConfirmation
+      - id: 12169
+        name: WinHttpSecureInvalidCert
+      - id: 12170
+        name: WinHttpSecureCertRevoked
+      - id: 12172
+        name: WinHttpNotInitialized
+      - id: 12175
+        name: WinHttpSecureFailure
+      - id: 12178
+        name: WinHttpAutoProxyServiceError
+      - id: 12179
+        name: WinHttpSecureCertWrongUsage
+      - id: 12180
+        name: WinHttpAutoDetectionFailed
+      - id: 12181
+        name: WinHttpHeaderCountExceeded
+      - id: 12182
+        name: WinHttpHeaderSizeOverflow
+      - id: 12183
+        name: WinHttpChunkedEncodingHeaderSizeOverflow
+      - id: 12184
+        name: WinHttpResponseDrainOverflow
+      - id: 12185
+        name: WinHttpClientCertNoPrivateKey
+      - id: 12186
+        name: WinHttpClientCertNoAccessPrivateKey
+      - id: 50000
+        name: OtherBase
+      - id: 50001
+        name: OtherInvalidUrl
+      - id: 50002
+        name: OtherTooManyRedirects
+      - id: 50003
+        name: OtherDecompressionFailure
+      - id: 50004
+        name: OtherTooManyUrls
+      - id: 50005
+        name: OtherTooMuchTime
+      - id: 50006
+        name: OtherTooManyFrameRecursions
+      - id: 50007
+        name: OtherTooManyDomains
+      - id: 50008
+        name: OtherTooManyUrlsPerDomain
+      - id: 50009
+        name: OtherMissingReturnCode
+      - id: 50010
+        name: OtherDnsFailure
+      - id: 50011
+        name: OtherConnectionFailure
+      - id: 50012
+        name: OtherTooManyBytesUrl
+      - id: 50013
+        name: OtherTooManyBytesTest
+      - id: 50014
+        name: OtherResponseCodeFailure
+      - id: 50019
+        name: OtherFileDownloadRejectionFailure
+      - id: 50020
+        name: OtherTooManyBytesTestFromObjectUrl
+      - id: 50021
+        name: OtherTooManyRedirectsTestFromObjectUrl
+      - id: 50022
+        name: OtherTooMuchTimeTest
+      - id: 50023
+        name: OtherSendFailure
+      - id: 50024
+        name: OtherReceiveFailure
+      - id: 50025
+        name: OtherResponseCodeFailureOK
+      - id: 50026
+        name: OtherInitializationFailure
+      - id: 50027
+        name: OtherBlockedByClient
+      - id: 50028
+        name: OtherFileUploadNotFound
+      - id: 50029
+        name: OtherBlockedByResponse
+      - id: 50051
+        name: OtherContentCompareFileFailure
+      - id: 50052
+        name: OtherContentComparePreviousFailure
+      - id: 50053
+        name: OtherContentCompareRegexFailure
+      - id: 50054
+        name: OtherContentSizeTestUrlFailure
+      - id: 50055
+        name: OtherContentSizePageFailure
+      - id: 50056
+        name: OtherContentCountRequestsFailure
+      - id: 50057
+        name: OtherContentCountHostsFailure
+      - id: 50058
+        name: OtherAddressFailure
+      - id: 50059
+        name: OtherAddressChildFailure
+      - id: 50060
+        name: OtherContentCompareHttpResponseCode
+      - id: 50061
+        name: OtherContentCompareHttpResponseHeaders
+      - id: 50101
+        name: OtherNoTransactionSteps
+      - id: 50102
+        name: OtherInvalidTransactionNavigationLocation
+      - id: 50103
+        name: OtherNoTransactionNavigationOnFirstStep
+      - id: 50104
+        name: OtherNoTransactionNavigationOnLastStep
+      - id: 50105
+        name: OtherTooManyTransactionSteps
+      - id: 50106
+        name: OtherInvalidTransactionSubmitForm
+      - id: 50107
+        name: OtherTooMuchTimeTransactionTest
+      - id: 50108
+        name: OtherExpectedNextTransactionStep
+      - id: 50109
+        name: OtherNoEndToExecVerb
+      - id: 50110
+        name: OtherNoNavigateVerbForNavigatePostData
+      - id: 50111
+        name: OtherInvalidTransactionClickAndWait
+      - id: 50112
+        name: OtherTransactionStepItemFailure
+      - id: 50113
+        name: OtherSecureUnknownCertificateFailure
+      - id: 50115
+        name: OtherAuthorizationFailure
+      - id: 50116
+        name: OtherNetworkChangedFailure
+      - id: 50117
+        name: OtherSpdyProtocolError
+      - id: 50200
+        name: UnexpectedBrowserError
+      - id: 50201
+        name: UnexplainedInterstitialError
+      - id: 65534
+        name: UnknownWindowsApiError
+      - id: 65535
+        name: Unknown
+      type: integer
+      format: int32
+    Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordWifiData:
+      type: object
+      properties:
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.RecordMetricItem'
+          nullable: true
+        channel:
+          type: integer
+          format: int32
+        ip4Address:
+          type: string
+          nullable: true
+        ip6Address:
+          type: string
+          nullable: true
+        macAddress:
+          type: string
+          nullable: true
+        ssid:
+          type: string
+          nullable: true
+        wifiModeType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.Test.WifiModeType'
+        wifiSecurityType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.Test.WifiSecurityType'
+        isDebugData:
+          type: boolean
+        errorCode:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Response.ErrorCode'
+      additionalProperties: false
+    Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordImapData:
+      type: object
+      properties:
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.RecordMetricItem'
+          nullable: true
+        host:
+          type: string
+          nullable: true
+        port:
+          type: integer
+          format: int32
+        ipAddress:
+          type: string
+          nullable: true
+        errorCode:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Response.ErrorCode'
+      additionalProperties: false
+    Catchpoint.Symphony.Enums.RecordWebItemRequestType:
+      enum:
+      - id: 0
+        name: None
+      - id: 1
+        name: Failed
+      - id: 2
+        name: Cancelled
+      - id: 3
+        name: Uncompressed
+      - id: 4
+        name: Http1Dot0
+      - id: 5
+        name: Http1Dot1
+      - id: 6
+        name: Secure
+      - id: 7
+        name: Unsecure
+      - id: 8
+        name: Closed
+      - id: 9
+        name: Http2Dot0
+      - id: 10
+        name: Http3Dot0
+      type: integer
+      format: int32
+    Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.HeaderItem:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        value:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordTransactionData:
+      type: object
+      properties:
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.RecordMetricItem'
+          nullable: true
+        transactionSteps:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordTransactionStep'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Enums.DomainStatus:
+      enum:
+      - id: 0
+        name: Active
+      - id: 1
+        name: Inactive
+      - id: 2
+        name: Archived
+      - id: 3
+        name: Suspended
+      - id: 4
+        name: SuspendedByAdmin
+      - id: 5
+        name: Open
+      - id: 6
+        name: Resolved
+      - id: 7
+        name: Deleted
+      - id: 8
+        name: OverSubscribed
+      - id: 9
+        name: Published
+      - id: 10
+        name: Draft
+      - id: 11
+        name: NeedsApproval
+      type: integer
+      format: int32
+    Catchpoint.Symphony.Response.NetworkGraphSummary:
+      type: object
+      properties:
+        pingPacketLoss:
+          type: number
+          format: double
+          nullable: true
+        pingRoundTripTime:
+          type: number
+          format: double
+          nullable: true
+        pathCount:
+          type: number
+          format: double
+          nullable: true
+        asCount:
+          type: number
+          format: double
+          nullable: true
+        cityCount:
+          type: number
+          format: double
+          nullable: true
+        hopIpCount:
+          type: number
+          format: double
+          nullable: true
+        destinationIpCount:
+          type: number
+          format: double
+          nullable: true
+        historicalPingPacketLoss:
+          type: number
+          format: double
+          nullable: true
+        historicalPingRoundTripTime:
+          type: number
+          format: double
+          nullable: true
+        historicalPathCount:
+          type: number
+          format: double
+          nullable: true
+        historicalASCount:
+          type: number
+          format: double
+          nullable: true
+        historicalCityCount:
+          type: number
+          format: double
+          nullable: true
+        historicalHopIpCount:
+          type: number
+          format: double
+          nullable: true
+        historicalDestinationIpCount:
+          type: number
+          format: double
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Orchestra.Response.SyntheticRecords.RecordDnsTraceLevelItemQuery:
+      type: object
+      properties:
+        serverAddress:
+          type: string
+          nullable: true
+        serverHostName:
+          type: string
+          nullable: true
+        serverName:
+          type: string
+          nullable: true
+        serverId:
+          type: string
+          nullable: true
+        serverPort:
+          type: integer
+          format: int32
+        averageTime:
+          type: integer
+          format: int32
+        responseBytes:
+          type: integer
+          format: int32
+        returnCode:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.LookupModel'
+        errorMessage:
+          type: string
+          nullable: true
+        pingData:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.PingData'
+        traceRouteData:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Orchestra.Response.TraceRouteData'
+      additionalProperties: false
+    Catchpoint.Symphony.Response.FallbackReason:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        message:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Response.NetworkGraphVertex:
+      type: object
+      properties:
+        key:
+          type: string
+          nullable: true
+        id:
+          type: string
+          nullable: true
+        asnId:
+          type: integer
+          format: int64
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        isOrigin:
+          type: boolean
+        isDestination:
+          type: boolean
+        vertexTypeId:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.Sonar.GraphVertexType'
+        additionalNetworkData:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.LookupModel'
+          nullable: true
+        isRepeating:
+          type: boolean
+        hasUnreachableDestination:
+          type: boolean
+        consecutiveRepetitionsCount:
+          type: integer
+          format: int32
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.AnalyticsResponseItem:
+      type: object
+      properties:
+        dateTime:
+          type: string
+          format: date-time
+          nullable: true
+        reportDate:
+          type: string
+          format: date-time
+          nullable: true
+        values:
+          type: array
+          items:
+            type: number
+            format: double
+          nullable: true
+        dimensions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.DimensionResponse'
+          nullable: true
+        indicators:
+          type: array
+          items:
+            type: number
+            format: double
+          nullable: true
+        tracepoints:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

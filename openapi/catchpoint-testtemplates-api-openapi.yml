@@ -1,0 +1,1107 @@
+openapi: 3.0.1
+info:
+  title: Catchpoint REST API v2.0 Account TestTemplates API
+  version: '2.0'
+servers:
+- url: /api
+tags:
+- name: TestTemplates
+paths:
+  /v2/testtemplates/{ids}:
+    get:
+      tags:
+      - TestTemplates
+      summary: Returns Test Template details by the IDs passed.
+      parameters:
+      - name: ids
+        in: path
+        description: Comma-separated list of test template IDs
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.TestTemplateResponseModel]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.TestTemplateResponseModel]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.TestTemplateResponseModel]'
+      security:
+      - bearer: []
+      order: 1
+  /v2/testtemplates:
+    get:
+      tags:
+      - TestTemplates
+      summary: Returns Test Template details by parameters passed.
+      parameters:
+      - name: statusId
+        in: query
+        description: Test Template status type ID (Draft = 0, Published = 2, Deprecated = 3)
+        schema:
+          type: integer
+          format: int32
+      - name: applicationGroupId
+        in: query
+        description: Application group ID (refer InternalLink[Application Group Enumeration Endpoint,operations-tag-TestTemplates,operations-TestTemplates-get_v2_testtemplates_applicationgroups])
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.TestTemplateResponseModel]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.TestTemplateResponseModel]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.TestTemplateResponseModel]'
+      security:
+      - bearer: []
+      order: 2
+    post:
+      tags:
+      - TestTemplates
+      summary: Create a new test template based on the PostData.
+      description: To get payload for creating a new test template and to get the created test template details refer InternalLink[Test Template by ID Endpoint,operations-tag-TestTemplates,operations-TestTemplates-get_v2_testtemplates__ids_]. Pass “0” for Test Template ID to create a new test template.
+      parameters:
+      - name: objectDetails
+        in: query
+        description: Set to true to return the created object in the response body, otherwise the response body will only return created object ID.
+        schema:
+          type: boolean
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TestTemplateAPIModel'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TestTemplateAPIModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TestTemplateAPIModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TestTemplateAPIModel'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.TestTemplateResponseModel]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.TestTemplateResponseModel]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.TestTemplateResponseModel]'
+      security:
+      - bearer: []
+      order: 3
+  /v2/testtemplates/{id}:
+    patch:
+      tags:
+      - TestTemplates
+      summary: Update an existing test template based on the request body.
+      description: "**Request:**\r\n            \r\nOnly the property to be updated can be passed in the request body instead of the whole object. The update request body requires a total of three keys to be filled with appropriate value as listed below:\r\n* **value** – The value property provides the new value.\r\n            \r\n* **path** – The path property indicates the element to update. The entire path with slashes needs to be provided here. Example: /status/id\r\n            \r\n* **op** –  The op property indicates the type of operation; we support the following three operations.\r\n            \r\n    * **add** - Add a property or array element. For existing property: set value.\r\n            \r\n    * **Remove** - Remove a property or array element.\r\n            \r\n    * **replace** - Same as remove followed by add at same location.\r\n            \r\n* **from** - [Not Used]\r\n            \r\n    * **Explanation** - The \"from\" parameter represents the starting or current value of the resource that the operation intends to modify. The from parameter is included in the example value schema but is not utilized in this endpoint's functionality. It is reserved for potential future use or could be used in specific scenarios not covered by the current implementation."
+      parameters:
+      - name: id
+        in: path
+        description: Test template ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: objectDetails
+        in: query
+        description: Set to true to return the updated object in the response body, otherwise the response body will only return the updated object ID.
+        schema:
+          type: boolean
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.JsonPatch.Operations.Operation'
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.JsonPatch.Operations.Operation'
+          text/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.JsonPatch.Operations.Operation'
+          application/*+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.JsonPatch.Operations.Operation'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.TestTemplateResponseModel]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.TestTemplateResponseModel]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.TestTemplateResponseModel]'
+      security:
+      - bearer: []
+      order: 4
+  /v2/testtemplates/applicationgroups:
+    get:
+      tags:
+      - TestTemplates
+      summary: Returns the Application group enumeration details for automation.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationResponse]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationResponse]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationResponse]'
+      security:
+      - bearer: []
+      order: 5
+components:
+  schemas:
+    Catchpoint.Symphony.REST.Common.Response.v2_0.TestTemplateResponseModel:
+      type: object
+      properties:
+        testTemplates:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TestTemplateAPIModel'
+          nullable: true
+        testTemplate:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TestTemplateAPIModel'
+        id:
+          type: integer
+          format: int32
+          nullable: true
+        hasMore:
+          type: boolean
+          nullable: true
+        next:
+          type: string
+          nullable: true
+        previous:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Microsoft.AspNetCore.JsonPatch.Operations.Operation:
+      type: object
+      properties:
+        value:
+          nullable: true
+        path:
+          type: string
+          nullable: true
+        op:
+          type: string
+          nullable: true
+        from:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TemplatesDisplayConstructor.TestDisplayConstructorAPIModel:
+      type: object
+      properties:
+        detailSection:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TemplatesDisplayConstructor.DetailSectionAPIModel'
+        requestSection:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TemplatesDisplayConstructor.RequestSectionAPIModel'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.ApiUsageStatistics:
+      type: object
+      properties:
+        clientId:
+          type: integer
+          format: int64
+        lastRequestTimestamp:
+          type: string
+          format: date-time
+        limits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        runs:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        exceededMessage:
+          type: string
+          nullable: true
+          readOnly: true
+        divisionUsageStatistics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.DivisionUsageStatistics'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationResponse:
+      type: object
+      properties:
+        sections:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationDetailResponse'
+          nullable: true
+        hasMore:
+          type: boolean
+          nullable: true
+        next:
+          type: string
+          nullable: true
+        previous:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.InfoMessage:
+      type: object
+      properties:
+        information:
+          type: string
+          nullable: true
+        ignoredPath:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.AssociatedRestrictedTestTemplateAPIModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        testTemplateId:
+          type: integer
+          format: int32
+        objectType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.ObjectType'
+        objectId:
+          type: integer
+          format: int64
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.ConsumerStatistics:
+      type: object
+      properties:
+        consumerId:
+          type: integer
+          format: int32
+        requestCount:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        maxPerDay:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationDetailResponse:
+      type: object
+      properties:
+        section:
+          type: string
+          nullable: true
+        enumeration:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Nullable`1[System.Int32]]'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TemplatesDisplayConstructor.AuthenticationSectionAPIModel:
+      type: object
+      properties:
+        required:
+          type: boolean
+      additionalProperties: false
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.TestTemplateResponseModel]
+    : type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.TestTemplateResponseModel'
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+          nullable: true
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+          nullable: true
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type: string
+          nullable: true
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+    Catchpoint.Symphony.ViewModels.MessageModel:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        message:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TemplatesDisplayConstructor.ScriptSectionAPIModel:
+      type: object
+      properties:
+        visible:
+          type: boolean
+      additionalProperties: false
+    Catchpoint.Symphony.Enums.AccessLevel:
+      enum:
+      - id: 5
+        name: System
+      - id: 16
+        name: Reseller
+      - id: 17
+        name: Client
+      - id: 18
+        name: Division
+      type: integer
+      format: int32
+    Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath:
+      type: object
+      properties:
+        ops:
+          type: string
+          nullable: true
+        path:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.Limit:
+      type: object
+      properties:
+        minute:
+          type: integer
+          format: int32
+        hour:
+          type: integer
+          format: int32
+        day:
+          type: integer
+          format: int32
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.FileReferenceAPIModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        refName:
+          maxLength: 128
+          type: string
+          nullable: true
+        checksum:
+          maxLength: 32
+          type: string
+          format: byte
+          nullable: true
+        changeDate:
+          type: string
+          format: date-time
+        changeContactId:
+          type: integer
+          format: int32
+          nullable: true
+        description:
+          maxLength: 255
+          type: string
+          nullable: true
+        fileName:
+          maxLength: 128
+          type: string
+          nullable: true
+        fileData:
+          type: string
+          format: byte
+          nullable: true
+        fileSize:
+          type: integer
+          format: int32
+        fileType:
+          maxLength: 32
+          minLength: 0
+          type: string
+          nullable: true
+        statusTypeId:
+          type: integer
+          format: int32
+        uId:
+          type: string
+          format: uuid
+      additionalProperties: false
+    Catchpoint.Symphony.Enums.ObjectType:
+      enum:
+      - id: 0
+        name: None
+      - id: 1
+        name: Language String
+      - id: 2
+        name: User Access
+      - id: 3
+        name: Machine
+      - id: 4
+        name: Partition
+      - id: 5
+        name: System
+      - id: 6
+        name: Application Parameter
+      - id: 7
+        name: ApplicationMachine
+      - id: 8
+        name: ApplicationMachineParameter
+      - id: 9
+        name: UserRole
+      - id: 10
+        name: UserRolePermission
+      - id: 11
+        name: Contact
+      - id: 12
+        name: Contact Group
+      - id: 13
+        name: ContactGroupItem
+      - id: 14
+        name: UserFilter
+      - id: 15
+        name: RestrictedIPAccess
+      - id: 16
+        name: Reseller
+      - id: 17
+        name: Client
+      - id: 18
+        name: Division
+      - id: 19
+        name: Schedule
+      - id: 20
+        name: Schedule Item
+      - id: 21
+        name: Test Location
+      - id: 22
+        name: Test Location Group
+      - id: 23
+        name: SyntheticLocationGroupItem
+      - id: 24
+        name: AlertTemplate
+      - id: 25
+        name: AlertTemplateMessage
+      - id: 26
+        name: Alert Group
+      - id: 27
+        name: Alert Group Item
+      - id: 28
+        name: Product
+      - id: 29
+        name: ProductSubDomain
+      - id: 30
+        name: Folder
+      - id: 31
+        name: Category
+      - id: 32
+        name: Test
+      - id: 33
+        name: TestTransactionStep
+      - id: 34
+        name: TestCategory
+      - id: 35
+        name: Notification Group
+      - id: 36
+        name: Associated Request Header
+      - id: 37
+        name: Alert Type
+      - id: 38
+        name: Alert Subtype
+      - id: 39
+        name: NotificationGroupEmail
+      - id: 40
+        name: Country
+      - id: 41
+        name: CountryState
+      - id: 42
+        name: Permission
+      - id: 43
+        name: ChartTemplate
+      - id: 44
+        name: SyntheticPopulation
+      - id: 45
+        name: InstantTest
+      - id: 46
+        name: InstantTestItem
+      - id: 47
+        name: Incident
+      - id: 48
+        name: IncidentAlertNotification
+      - id: 49
+        name: DivisionInsight
+      - id: 50
+        name: Indicator
+      - id: 51
+        name: Tracepoint
+      - id: 52
+        name: CustomReportRequest
+      - id: 53
+        name: InvalidTestReportDataInterval
+      - id: 54
+        name: Apdex Threshold
+      - id: 55
+        name: DivisionHost
+      - id: 56
+        name: FreeUser
+      - id: 57
+        name: OutclipWebsite
+      - id: 58
+        name: OutclipSnippet
+      - id: 59
+        name: WaterfallTemplate
+      - id: 60
+        name: FreeTest
+      - id: 61
+        name: LightCustomReportTemplate
+      - id: 62
+        name: LightCustomReportTemplateField
+      - id: 63
+        name: LightCustomReportRequest
+      - id: 64
+        name: LightCustomReportRequestFilter
+      - id: 65
+        name: DivisionApi
+      - id: 66
+        name: BusinessContract
+      - id: 67
+        name: Zone
+      - id: 68
+        name: HostCollectionBlacklist
+      - id: 69
+        name: Zone Rule
+      - id: 70
+        name: TestMiniHar
+      - id: 71
+        name: SavedChart
+      - id: 72
+        name: SavedChartFilter
+      - id: 73
+        name: ApdexFrustrationRatio
+      - id: 74
+        name: GlimpseSitePackage
+      - id: 75
+        name: GlimpseSite
+      - id: 76
+        name: Page Group
+      - id: 77
+        name: Variation
+      - id: 78
+        name: BusinessLicenseContract
+      - id: 79
+        name: AssociatedGlimpseLicense
+      - id: 80
+        name: DivisionLicenses
+      - id: 81
+        name: PullApiConsumer
+      - id: 82
+        name: RouterHostPattern
+      - id: 83
+        name: RouterHost
+      - id: 84
+        name: ApiPushTemplate
+      - id: 85
+        name: Dashboard
+      - id: 86
+        name: Widget
+      - id: 87
+        name: DashboardWidget
+      - id: 88
+        name: DashboardPublicLink
+      - id: 89
+        name: Benchmark Index
+      - id: 90
+        name: Browser
+      - id: 91
+        name: DomainGlobal
+      - id: 92
+        name: OrganizationGlobal
+      - id: 93
+        name: InternetServiceProviderGlobal
+      - id: 94
+        name: Continent
+      - id: 95
+        name: CountryStateCity
+      - id: 96
+        name: NetworkSpeed
+      - id: 97
+        name: Os
+      - id: 98
+        name: MobileDevice
+      - id: 99
+        name: Certificate
+      - id: 100
+        name: Alert Webhook
+      - id: 101
+        name: SyntheticMonitorSet
+      - id: 102
+        name: SyntheticMonitorPackage
+      - id: 103
+        name: SavedChartField
+      - id: 104
+        name: GlobalVariable
+      - id: 105
+        name: PullApiUsage
+      - id: 106
+        name: File
+      - id: 107
+        name: MachineHardwareType
+      - id: 108
+        name: MachineOperatingSystemFlavor
+      - id: 109
+        name: MachineVirtualizationType
+      - id: 110
+        name: InternetServiceProvider
+      - id: 111
+        name: City
+      - id: 112
+        name: ContactTestAccessRestriction
+      - id: 113
+        name: PricingModel
+      - id: 114
+        name: Visualization
+      - id: 115
+        name: Facility
+      - id: 116
+        name: Storage
+      - id: 117
+        name: DataView
+      - id: 118
+        name: IdentityProvider
+      - id: 119
+        name: Assertions
+      - id: 120
+        name: Alert Group Item Filter
+      - id: 121
+        name: DataViewDimension
+      - id: 122
+        name: DataViewMetric
+      - id: 123
+        name: AssociatedApplicationVersion
+      - id: 124
+        name: CaptureServerSyntheticPopulation
+      - id: 125
+        name: BandwidthThrottleSettings
+      - id: 126
+        name: AlertInstruction
+      - id: 127
+        name: AssociatedModel
+      - id: 128
+        name: Model
+      - id: 129
+        name: GlimpseProvider
+      - id: 130
+        name: Integration
+      - id: 131
+        name: IntegrationType
+      - id: 132
+        name: SLAPurgeItem
+      - id: 133
+        name: IntegrationGroup
+      - id: 134
+        name: Associated Advanced Settings
+      - id: 135
+        name: EnterpriseInstanceLicense
+      - id: 136
+        name: InstanceDnsRecord
+      - id: 137
+        name: VisualizationScript
+      - id: 138
+        name: GlimpseEvent
+      - id: 139
+        name: SyntheticInstanceRejected
+      - id: 140
+        name: PointsAllocation
+      - id: 141
+        name: GlimpseProviderType
+      - id: 142
+        name: ApplicationVersion
+      - id: 143
+        name: ApplicationType
+      - id: 144
+        name: ApplicationCheck
+      - id: 145
+        name: PerformanceReport
+      - id: 146
+        name: Regex Association
+      - id: 147
+        name: GlimpseSonarEntity
+      - id: 148
+        name: GlimpseSonarGroup
+      - id: 149
+        name: TestTemplateStatusType
+      - id: 150
+        name: TestTypeSchema
+      - id: 151
+        name: TestTemplate
+      - id: 152
+        name: Template Field
+      - id: 153
+        name: Associated Test Template Parameter
+      - id: 154
+        name: TestTemplateApplicationGroup
+      - id: 155
+        name: Associated Restricted Test Template
+      - id: 156
+        name: Label
+      - id: 157
+        name: LabelValue
+      - id: 158
+        name: Associated Label Value
+      - id: 159
+        name: Endpoint Location
+      - id: 160
+        name: Endpoint Device
+      - id: 161
+        name: SonarBusinessContract
+      - id: 162
+        name: TestModuleDisplayPreferences
+      - id: 163
+        name: Smartboard
+      - id: 164
+        name: Component
+      - id: 165
+        name: SmartboardComponent
+      - id: 166
+        name: AssociatedBenchmarkIndex
+      - id: 167
+        name: BgpPeer
+      - id: 168
+        name: SmartboardFolder
+      - id: 169
+        name: EndpointInstantTest
+      - id: 170
+        name: Endpoint Scheduled Test
+      - id: 171
+        name: GlimpseSonarNetworkDevice
+      - id: 172
+        name: GeographyIpAddressLocationOverride
+      - id: 173
+        name: Favorite Chart
+      - id: 174
+        name: WptApiKey
+      - id: 175
+        name: QuickChart
+      - id: 176
+        name: Custom Visualization
+      - id: 177
+        name: EndpointInstantTestItem
+      - id: 178
+        name: WptBusinessContract
+      - id: 179
+        name: WptFolder
+      - id: 180
+        name: WptScheduleInterval
+      - id: 181
+        name: WptDeviceType
+      - id: 182
+        name: WptBrowserType
+      - id: 183
+        name: WptConnectionType
+      - id: 184
+        name: WptDevice
+      - id: 185
+        name: Authentication
+      - id: 186
+        name: AuthenticationContact
+      - id: 187
+        name: Spotlight
+      - id: 188
+        name: EndpointEmployeeApp
+      - id: 189
+        name: Service Level Objective
+      - id: 190
+        name: ASN
+      - id: 191
+        name: Associated Service Level Objective
+      - id: 192
+        name: System Service
+      - id: 193
+        name: InternetWeatherConfig
+      - id: 194
+        name: InternetServiceOverride
+      - id: 195
+        name: InternetWeatherContract
+      - id: 196
+        name: InternetWeatherAlert
+      - id: 197
+        name: WptInstantTest
+      - id: 198
+        name: Custom Service
+      - id: 199
+        name: Mapped Service
+      - id: 200
+        name: Test Suite
+      - id: 201
+        name: LocationFromRtt
+      - id: 202
+        name: IsDownIncident
+      - id: 203
+        name: Tracing Contract
+      - id: 204
+        name: InternetServiceRegion
+      - id: 205
+        name: TracingSystem
+      - id: 206
+        name: TracingService
+      - id: 207
+        name: RumMobileApp
+      - id: 208
+        name: Associated Benchmark Test
+      - id: 209
+        name: BgpPrivatePeer
+      - id: 210
+        name: AssociatedInternetWeatherServicePoint
+      - id: 211
+        name: BenchmarkApp
+      - id: 212
+        name: InternetSonarPointPricing
+      - id: 213
+        name: Benchmark Test
+      - id: 214
+        name: ClickHouseCluster
+      - id: 215
+        name: Destination Url
+      - id: 216
+        name: StackMap
+      - id: 217
+        name: EarthView
+      - id: 218
+        name: HeartbeatProduct
+      - id: 219
+        name: HeartbeatTest
+      - id: 220
+        name: EndpointAlertGroupItem
+      - id: 221
+        name: ProxyConfig
+      - id: 222
+        name: CompositeAlertGroup
+      - id: 223
+        name: Scope
+      type: integer
+      format: int32
+    Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TemplatesDisplayConstructor.RequestSectionAPIModel:
+      type: object
+      properties:
+        authentication:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TemplatesDisplayConstructor.AuthenticationSectionAPIModel'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TemplatesDisplayConstructor.DetailSectionAPIModel:
+      type: object
+      properties:
+        supportedMonitors:
+          type: array
+          items:
+            type: integer
+            format: int32
+          nullable: true
+        scriptSection:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TemplatesDisplayConstructor.ScriptSectionAPIModel'
+        scriptFileName:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Nullable`1[System.Int32]]:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          nullable: true
+        name:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.DivisionUsageStatistics:
+      type: object
+      properties:
+        divisionId:
+          type: integer
+          format: int32
+        consumerStatistics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ConsumerStatistics'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Int32]:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TestTypeSchemaAPIModel:
+      type: object
+      properties:
+        description:
+          maxLength: 255
+          type: string
+          nullable: true
+        version:
+          type: integer
+          format: int32
+          nullable: true
+        testSchema:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TemplatesDisplayConstructor.TestDisplayConstructorAPIModel'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TestTemplateAPIModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        version:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        status:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Int32]'
+        applicationGroup:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TestTemplateApplicationGroupAPIModel'
+        parentTestType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Int32]'
+        testTemplateParameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TestTemplateParameterAPIModel'
+          nullable: true
+        testTypeSchema:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TestTypeSchemaAPIModel'
+        associatedClientsList:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.AssociatedRestrictedTestTemplateAPIModel'
+          nullable: true
+        testTypeSchemaId:
+          type: integer
+          format: int32
+        levelType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.AccessLevel'
+        levelId:
+          type: integer
+          format: int64
+          nullable: true
+        script:
+          type: string
+          nullable: true
+        transactionScriptType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Int32]'
+        deprecationDate:
+          type: string
+          format: date-time
+          nullable: true
+        changeDate:
+          type: string
+          format: date-time
+        isLocked:
+          type: boolean
+        file:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.FileReferenceAPIModel'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TestTemplateParameterAPIModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        displayName:
+          maxLength: 115
+          type: string
+          nullable: true
+        macroName:
+          maxLength: 128
+          type: string
+          nullable: true
+          readOnly: true
+        defaultValue:
+          maxLength: 512
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationResponse]:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationResponse'
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+          nullable: true
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+          nullable: true
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type: string
+          nullable: true
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TestTemplateApplicationGroupAPIModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          maxLength: 128
+          type: string
+          nullable: true
+        description:
+          maxLength: 255
+          type: string
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

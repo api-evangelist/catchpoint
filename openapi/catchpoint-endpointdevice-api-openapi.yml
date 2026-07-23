@@ -1,0 +1,745 @@
+openapi: 3.0.1
+info:
+  title: Catchpoint REST API v2.0 Account EndpointDevice API
+  version: '2.0'
+servers:
+- url: /api
+tags:
+- name: EndpointDevice
+paths:
+  /v2/endpoints/device/{userIds}:
+    get:
+      tags:
+      - EndpointDevice
+      summary: Returns the details of endpoint devices based on the User ID.
+      parameters:
+      - name: userIds
+        in: path
+        description: Comma-separated list of Endpoint User IDs
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.EndpointDeviceResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Endpoint.EndpointDeviceModel]]]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.EndpointDeviceResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Endpoint.EndpointDeviceModel]]]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.EndpointDeviceResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Endpoint.EndpointDeviceModel]]]'
+      security:
+      - bearer: []
+      order: 1
+  /v2/endpoints/device:
+    get:
+      tags:
+      - EndpointDevice
+      summary: Returns the details of endpoint devices based on the parameters passed.
+      description: If no parameters are passed, the properties of all active endpoint devices within the Client or Division are returned.
+      parameters:
+      - name: deviceName
+        in: query
+        description: Device Name
+        schema:
+          type: string
+      - name: aliasName
+        in: query
+        description: Alias name of the device
+        schema:
+          type: string
+      - name: statusId
+        in: query
+        description: Device status. “0” for Active; “1” for Inactive
+        schema:
+          type: integer
+          format: int32
+      - name: labelKeyIds
+        in: query
+        description: Label ID the device is attached to
+        schema:
+          type: string
+      - name: labelValueIds
+        in: query
+        description: Label Value ID the device is attached to.
+        schema:
+          type: string
+      - name: pageNumber
+        in: query
+        description: Page number to return records from when the number of records exceeds pageSize
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        description: Number of results that is returned per page. Maximum value is 100.
+        schema:
+          type: integer
+          format: int32
+          default: 100
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.EndpointDeviceResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Endpoint.EndpointDeviceModel]]]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.EndpointDeviceResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Endpoint.EndpointDeviceModel]]]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.EndpointDeviceResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Endpoint.EndpointDeviceModel]]]'
+      security:
+      - bearer: []
+      order: 2
+  /v2/endpoints/device/status/{userIds}:
+    get:
+      tags:
+      - EndpointDevice
+      summary: Returns the endpoint device status based on the User ID.
+      parameters:
+      - name: userIds
+        in: path
+        description: Comma-separated list of Endpoint User IDs
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.EndpointDeviceResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Endpoint.EndpointStatusModel]]]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.EndpointDeviceResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Endpoint.EndpointStatusModel]]]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.EndpointDeviceResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Endpoint.EndpointStatusModel]]]'
+      security:
+      - bearer: []
+      order: 4
+  /v2/endpoints/device/status:
+    patch:
+      tags:
+      - EndpointDevice
+      summary: Allows to set the status of an existing endpoint device to Active or Inactive.
+      description: To get payload for updating an endpoint device status refer InternalLink[Endpoint Device Status Endpoint,operations-tag-EndpointDevice,operations-EndpointDevice-get_v2_endpoints_device_status__userIds_]. Status ID values – “0” for Active; “1” for Inactive. There can be multiple endpoint devices in the payload for which the status update is intended.
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Endpoint.EndpointStatusModel'
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Endpoint.EndpointStatusModel'
+          text/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Endpoint.EndpointStatusModel'
+          application/*+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Endpoint.EndpointStatusModel'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.EndpointDeviceResponse`1[System.Collections.Generic.List`1[System.Int64]]]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.EndpointDeviceResponse`1[System.Collections.Generic.List`1[System.Int64]]]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.EndpointDeviceResponse`1[System.Collections.Generic.List`1[System.Int64]]]'
+      security:
+      - bearer: []
+      order: 5
+  /v2/endpoints/device/label/{userIds}:
+    get:
+      tags:
+      - EndpointDevice
+      summary: Returns the endpoint device labels based on the User ID.
+      parameters:
+      - name: userIds
+        in: path
+        description: Comma-separated list of Endpoint User IDs
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.EndpointDeviceResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Endpoint.EndpointLabelModel]]]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.EndpointDeviceResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Endpoint.EndpointLabelModel]]]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.EndpointDeviceResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Endpoint.EndpointLabelModel]]]'
+      security:
+      - bearer: []
+      order: 6
+  /v2/endpoints/device/label:
+    patch:
+      tags:
+      - EndpointDevice
+      summary: Allows to update the existing endpoint device label.
+      description: To get payload for updating an endpoint device label refer InternalLink[Endpoint Device Label Endpoint,operations-tag-EndpointDevice,operations-EndpointDevice-get_v2_endpoints_device_label__userIds_]. There can be multiple endpoint devices in the payload for which the label update is intended.
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Endpoint.EndpointLabelUpdateModel'
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Endpoint.EndpointLabelUpdateModel'
+          text/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Endpoint.EndpointLabelUpdateModel'
+          application/*+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Endpoint.EndpointLabelUpdateModel'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.EndpointDeviceResponse`1[System.Collections.Generic.List`1[System.Int64]]]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.EndpointDeviceResponse`1[System.Collections.Generic.List`1[System.Int64]]]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.EndpointDeviceResponse`1[System.Collections.Generic.List`1[System.Int64]]]'
+      security:
+      - bearer: []
+      order: 7
+  /v2/endpoints/device/{userId}:
+    patch:
+      tags:
+      - EndpointDevice
+      summary: Update properties of an existing endpoint device based on the request body.
+      description: "**Request:**\r\n            \r\nOnly the property to be updated can be passed in the request body instead of the whole object. The update request body requires a total of three keys to be filled with appropriate value as listed below:\r\n* **value** – The value property provides the new value.\r\n            \r\n* **path** – The path property indicates the element to update. The entire path with slashes needs to be provided here. Example: /status/id\r\n            \r\n* **op** – The op property indicates the type of operation; we support the following three operations.\r\n            \r\n    * **add** - Add a property or array element. For existing property: set value.\r\n            \r\n    * **Remove** - Remove a property or array element.\r\n            \r\n    * **replace** - Same as remove followed by add at same location.\r\n            \r\n* **from** - [Not Used]\r\n            \r\n    * **Explanation** - The \"from\" parameter represents the starting or current value of the resource that the operation intends to modify. The from parameter is included in the example value schema but is not utilized in this endpoint's functionality. It is reserved for potential future use or could be used in specific scenarios not covered by the current implementation."
+      parameters:
+      - name: userId
+        in: path
+        description: Endpoint User ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: objectDetails
+        in: query
+        description: Set to true to return the updated object in the response body, otherwise the response body will only return the updated object ID.
+        schema:
+          type: boolean
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.JsonPatch.Operations.Operation'
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.JsonPatch.Operations.Operation'
+          text/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.JsonPatch.Operations.Operation'
+          application/*+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.JsonPatch.Operations.Operation'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.EndpointDeviceResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Endpoint.IEndpointDeviceModel]]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.EndpointDeviceResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Endpoint.IEndpointDeviceModel]]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.EndpointDeviceResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Endpoint.IEndpointDeviceModel]]'
+      security:
+      - bearer: []
+      order: 3
+components:
+  schemas:
+    ? Catchpoint.Symphony.REST.Common.Response.v2_0.EndpointDeviceResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Endpoint.IEndpointDeviceModel]
+    : type: object
+      properties:
+        endpoints:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Endpoint.IEndpointDeviceModel'
+        hasMore:
+          type: boolean
+          nullable: true
+        next:
+          type: string
+          nullable: true
+        previous:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Microsoft.AspNetCore.JsonPatch.Operations.Operation:
+      type: object
+      properties:
+        value:
+          nullable: true
+        path:
+          type: string
+          nullable: true
+        op:
+          type: string
+          nullable: true
+        from:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.EndpointDeviceResponse`1[System.Collections.Generic.List`1[System.Int64]]]
+    : type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.EndpointDeviceResponse`1[System.Collections.Generic.List`1[System.Int64]]'
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+          nullable: true
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+          nullable: true
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type: string
+          nullable: true
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Endpoint.IEndpointDeviceModel:
+      type: object
+      properties:
+        userId:
+          type: integer
+          format: int64
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.ApiUsageStatistics:
+      type: object
+      properties:
+        clientId:
+          type: integer
+          format: int64
+        lastRequestTimestamp:
+          type: string
+          format: date-time
+        limits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        runs:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        exceededMessage:
+          type: string
+          nullable: true
+          readOnly: true
+        divisionUsageStatistics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.DivisionUsageStatistics'
+          nullable: true
+      additionalProperties: false
+    ? Catchpoint.Symphony.REST.Common.Response.v2_0.EndpointDeviceResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Endpoint.EndpointDeviceModel]]
+    : type: object
+      properties:
+        endpoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Endpoint.EndpointDeviceModel'
+          nullable: true
+        hasMore:
+          type: boolean
+          nullable: true
+        next:
+          type: string
+          nullable: true
+        previous:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ? Catchpoint.Symphony.REST.Common.Response.v2_0.EndpointDeviceResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Endpoint.EndpointLabelModel]]
+    : type: object
+      properties:
+        endpoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Endpoint.EndpointLabelModel'
+          nullable: true
+        hasMore:
+          type: boolean
+          nullable: true
+        next:
+          type: string
+          nullable: true
+        previous:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Endpoint.EndpointLabelModel:
+      type: object
+      properties:
+        userId:
+          type: integer
+          format: int64
+        deviceName:
+          type: string
+          nullable: true
+        labels:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelAPIModel'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.InfoMessage:
+      type: object
+      properties:
+        information:
+          type: string
+          nullable: true
+        ignoredPath:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Byte]:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.ConsumerStatistics:
+      type: object
+      properties:
+        consumerId:
+          type: integer
+          format: int32
+        requestCount:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        maxPerDay:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.ViewModels.MessageModel:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        message:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.EndpointDeviceResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Endpoint.IEndpointDeviceModel]]
+    : type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.EndpointDeviceResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Endpoint.IEndpointDeviceModel]'
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+          nullable: true
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+          nullable: true
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type: string
+          nullable: true
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.EndpointDeviceResponse`1[System.Collections.Generic.List`1[System.Int64]]:
+      type: object
+      properties:
+        endpoints:
+          type: array
+          items:
+            type: integer
+            format: int64
+          nullable: true
+        hasMore:
+          type: boolean
+          nullable: true
+        next:
+          type: string
+          nullable: true
+        previous:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath:
+      type: object
+      properties:
+        ops:
+          type: string
+          nullable: true
+        path:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelAPIModel:
+      type: object
+      properties:
+        color:
+          type: string
+          nullable: true
+        id:
+          type: integer
+          format: int32
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        values:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.Limit:
+      type: object
+      properties:
+        minute:
+          type: integer
+          format: int32
+        hour:
+          type: integer
+          format: int32
+        day:
+          type: integer
+          format: int32
+      additionalProperties: false
+    ? Catchpoint.Symphony.REST.Common.Response.v2_0.EndpointDeviceResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Endpoint.EndpointStatusModel]]
+    : type: object
+      properties:
+        endpoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Endpoint.EndpointStatusModel'
+          nullable: true
+        hasMore:
+          type: boolean
+          nullable: true
+        next:
+          type: string
+          nullable: true
+        previous:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.EndpointDeviceResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Endpoint.EndpointLabelModel]]]
+    : type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.EndpointDeviceResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Endpoint.EndpointLabelModel]]'
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+          nullable: true
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+          nullable: true
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type: string
+          nullable: true
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Endpoint.EndpointLabelUpdateModel:
+      type: object
+      properties:
+        userId:
+          type: integer
+          format: int64
+        labels:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Requests.v2_0.Endpoint.EndpointLabelAPIInputModel'
+          nullable: true
+      additionalProperties: false
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.EndpointDeviceResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Endpoint.EndpointStatusModel]]]
+    : type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.EndpointDeviceResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Endpoint.EndpointStatusModel]]'
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+          nullable: true
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+          nullable: true
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type: string
+          nullable: true
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Endpoint.EndpointDeviceModel:
+      type: object
+      properties:
+        deviceId:
+          type: integer
+          format: int32
+        userId:
+          type: integer
+          format: int64
+        deviceName:
+          type: string
+          nullable: true
+        aliasName:
+          type: string
+          nullable: true
+        labels:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelAPIModel'
+          nullable: true
+        status:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Byte]'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Endpoint.EndpointStatusModel:
+      type: object
+      properties:
+        userId:
+          type: integer
+          format: int64
+        deviceName:
+          type: string
+          nullable: true
+        status:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Byte]'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Requests.v2_0.Endpoint.EndpointLabelAPIInputModel:
+      required:
+      - name
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          maxLength: 128
+          minLength: 1
+          pattern: ^[^:<>%&\/?\\]+$
+          type: string
+        values:
+          pattern: ^[^:<>%&\/?\\]+$
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.DivisionUsageStatistics:
+      type: object
+      properties:
+        divisionId:
+          type: integer
+          format: int32
+        consumerStatistics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ConsumerStatistics'
+          nullable: true
+      additionalProperties: false
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.EndpointDeviceResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Endpoint.EndpointDeviceModel]]]
+    : type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.EndpointDeviceResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Endpoint.EndpointDeviceModel]]'
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+          nullable: true
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+          nullable: true
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type: string
+          nullable: true
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

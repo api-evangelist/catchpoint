@@ -1,0 +1,165 @@
+openapi: 3.0.1
+info:
+  title: Catchpoint REST API v2.0 Account InternetWeather API
+  version: '2.0'
+servers:
+- url: /api
+tags:
+- name: InternetWeather
+paths:
+  /v2/iw/outages:
+    get:
+      tags:
+      - InternetWeather
+      summary: Returns the list of internet service outages. Default last one hour data.
+      description: '*[Analytics Endpoint]*'
+      parameters:
+      - name: startTimeUtc
+        in: query
+        description: Start time in UTC (YYYY-MM-DDThh:mm:ss)
+        schema:
+          type: string
+      - name: endTimeUtc
+        in: query
+        description: End time in UTC (YYYY-MM-DDThh:mm:ss)
+        schema:
+          type: string
+      - name: serviceName
+        in: query
+        description: Service name
+        schema:
+          type: string
+      - name: city
+        in: query
+        description: City
+        schema:
+          type: string
+      - name: country
+        in: query
+        description: Country
+        schema:
+          type: string
+      - name: region
+        in: query
+        description: Region
+        schema:
+          type: string
+      - name: ongoing
+        in: query
+        description: Ongoing outage
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.InternetWeatherResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.InternetWeatherResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.InternetWeatherResponse'
+      security:
+      - bearer: []
+components:
+  schemas:
+    Catchpoint.Symphony.Enums.SyntheticErrorType.SyntheticErrorType:
+      enum:
+      - id: 0
+        name: None
+      - id: 1
+        name: DNS
+      - id: 2
+        name: Connection
+      - id: 3
+        name: SSL
+      - id: 4
+        name: NoResponse
+      - id: 5
+        name: Response
+      - id: 6
+        name: Timeout
+      - id: 7
+        name: SystemLimit
+      - id: 8
+        name: Transaction
+      - id: 9
+        name: Content
+      - id: 10
+        name: Other
+      - id: 11
+        name: ScriptFailure
+      - id: 12
+        name: ChildRequestFailure
+      - id: 13
+        name: PacketLoss
+      type: integer
+      format: int32
+    Catchpoint.Symphony.REST.Common.Response.v2_0.InternetWeatherResponse:
+      type: object
+      properties:
+        outages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.InternetWeather.InternetWeatherServiceOutage'
+          nullable: true
+        hasMore:
+          type: boolean
+          nullable: true
+        next:
+          type: string
+          nullable: true
+        previous:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.v2_0.InternetWeather.InternetWeatherServiceOutage:
+      type: object
+      properties:
+        serviceId:
+          type: integer
+          format: int64
+        serviceName:
+          type: string
+          nullable: true
+        locations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.InternetWeather.InternetWeatherOutageLocation'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.v2_0.InternetWeather.InternetWeatherOutageLocation:
+      type: object
+      properties:
+        startTime:
+          type: string
+          format: date-time
+        endTime:
+          type: string
+          format: date-time
+          nullable: true
+        ongoing:
+          type: boolean
+        city:
+          type: string
+          nullable: true
+        country:
+          type: string
+          nullable: true
+        region:
+          type: string
+          nullable: true
+        errorTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Enums.SyntheticErrorType.SyntheticErrorType'
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

@@ -1,0 +1,475 @@
+openapi: 3.0.1
+info:
+  title: Catchpoint REST API v2.0 Account SLA API
+  version: '2.0'
+servers:
+- url: /api
+tags:
+- name: SLA
+paths:
+  /v2/slapurgeitems/{ids}:
+    get:
+      tags:
+      - SLA
+      summary: Return SLA purge item details by the IDs passed.
+      parameters:
+      - name: ids
+        in: path
+        description: Comma-separated list of SLA purge item IDs
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.SLAItemResponseModel]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.SLAItemResponseModel]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.SLAItemResponseModel]'
+      security:
+      - bearer: []
+      order: 1
+  /v2/slapurgeitems:
+    get:
+      tags:
+      - SLA
+      summary: Returns Schedule details by parameters passed.
+      parameters:
+      - name: statusId
+        in: query
+        description: SLA purge item Status Type. “0” for Active; “1” for Inactive.
+        schema:
+          type: integer
+          format: int32
+      - name: purgeTypeId
+        in: query
+        description: Purge Type. “0” for AllRuns; “1” for FailedRunsOnly
+        schema:
+          type: integer
+          format: int32
+      - name: startTime
+        in: query
+        description: SLA purge item Start time in UTC (YYYY-MM-DDThh:mm:ss).
+        schema:
+          type: string
+          format: date-time
+      - name: endTime
+        in: query
+        description: SLA purge item End time in UTC (YYYY-MM-DDThh:mm:ss).
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.SLAItemResponseModel]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.SLAItemResponseModel]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.SLAItemResponseModel]'
+      security:
+      - bearer: []
+      order: 2
+    post:
+      tags:
+      - SLA
+      summary: Create an SLA purge item based on the PostData.
+      description: To get payload for creating a new SLA purge item and to get the created SLA purge item details refer InternalLink[SLA purge item by ID Endpoint,operations-tag-SLAClassification,operations-SLAClassification-get_v2_slapurgeitems__ids_]. Pass “0” for SLA purge item ID to create a new SLA purge item.
+      parameters:
+      - name: objectDetails
+        in: query
+        description: Set to true to return the created object in the response body, otherwise the response body will only return created object ID.
+        schema:
+          type: boolean
+      - name: isConsentAgreed
+        in: query
+        description: Set to true always when an SLA purge item is created from REST API.
+        schema:
+          type: boolean
+          default: true
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Requests.v2_0.SLAItemAPIModel'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Requests.v2_0.SLAItemAPIModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Requests.v2_0.SLAItemAPIModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Requests.v2_0.SLAItemAPIModel'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.SLAItemResponseModel]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.SLAItemResponseModel]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.SLAItemResponseModel]'
+      security:
+      - bearer: []
+      order: 3
+  /v2/slapurgeitems/status:
+    patch:
+      tags:
+      - SLA
+      summary: Update the status of existing SLA purge items based on the request body.
+      parameters:
+      - name: isConsentAgreed
+        in: query
+        description: Set to true always when an SLA purge item is created from REST API.
+        schema:
+          type: boolean
+          default: true
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Requests.v2_0.SLAPurgeItemPutModel'
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Requests.v2_0.SLAPurgeItemPutModel'
+          text/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Requests.v2_0.SLAPurgeItemPutModel'
+          application/*+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Requests.v2_0.SLAPurgeItemPutModel'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.SLAItemResponseModel]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.SLAItemResponseModel]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.SLAItemResponseModel]'
+      security:
+      - bearer: []
+      order: 5
+  /v2/slapurgeitems/{slaId}:
+    patch:
+      tags:
+      - SLA
+      summary: Update an existing SLA purge item based on the request body.
+      description: "**Request:**\r\n\r\nOnly the property to be updated can be passed in the request body instead of the whole object. The update request body requires a total of three keys to be filled with appropriate value as listed below:\r\n* **value** – The value property provides the new value.\r\n\r\n* **path** – The path property indicates the element to update. The entire path with slashes needs to be provided here. Example: /status/id\r\n\r\n* **op** – The op property indicates the type of operation; we support the following three operations.\r\n\r\n    * **add** - Add a property or array element. For existing property: set value.\r\n    \r\n    * **Remove** - Remove a property or array element.\r\n    \r\n    * **replace** - Same as remove followed by add at same location.\r\n    \r\n* **from** - [Not Used]\r\n\r\n    * **Explanation** - The \"from\" parameter represents the starting or current value of the resource that the operation intends to modify. The from parameter is included in the example value schema but is not utilized in this endpoint's functionality. It is reserved for potential future use or could be used in specific scenarios not covered by the current implementation."
+      parameters:
+      - name: slaId
+        in: path
+        description: SLA purge item ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: objectDetails
+        in: query
+        description: Set to true to return the updated object in the response body, otherwise the response body will only return the updated object ID.
+        schema:
+          type: boolean
+      - name: isConsentAgreed
+        in: query
+        description: Set to true always when an SLA purge item is created from REST API.
+        schema:
+          type: boolean
+          default: true
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.JsonPatch.Operations.Operation'
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.JsonPatch.Operations.Operation'
+          text/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.JsonPatch.Operations.Operation'
+          application/*+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.JsonPatch.Operations.Operation'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.SLAItemResponseModel]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.SLAItemResponseModel]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.SLAItemResponseModel]'
+      security:
+      - bearer: []
+      order: 4
+components:
+  schemas:
+    Catchpoint.Symphony.REST.Common.Response.v2_0.SLAItemResponseModel:
+      type: object
+      properties:
+        slaItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Requests.v2_0.SLAItemAPIModel'
+          nullable: true
+        slaPurgeItem:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Requests.v2_0.SLAItemAPIModel'
+        id:
+          type: integer
+          format: int32
+          nullable: true
+        slaPurgeItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Requests.v2_0.SLAPurgeItemPutModel'
+          nullable: true
+        hasMore:
+          type: boolean
+          nullable: true
+        next:
+          type: string
+          nullable: true
+        previous:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.ApiUsageStatistics:
+      type: object
+      properties:
+        clientId:
+          type: integer
+          format: int64
+        lastRequestTimestamp:
+          type: string
+          format: date-time
+        limits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        runs:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        exceededMessage:
+          type: string
+          nullable: true
+          readOnly: true
+        divisionUsageStatistics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.DivisionUsageStatistics'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.DivisionUsageStatistics:
+      type: object
+      properties:
+        divisionId:
+          type: integer
+          format: int32
+        consumerStatistics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ConsumerStatistics'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath:
+      type: object
+      properties:
+        ops:
+          type: string
+          nullable: true
+        path:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.Limit:
+      type: object
+      properties:
+        minute:
+          type: integer
+          format: int32
+        hour:
+          type: integer
+          format: int32
+        day:
+          type: integer
+          format: int32
+      additionalProperties: false
+    Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Int32]:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Requests.v2_0.SLAPurgeItemPutModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        statusType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Int32]'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.InfoMessage:
+      type: object
+      properties:
+        information:
+          type: string
+          nullable: true
+        ignoredPath:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Int64]:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.SLAItemResponseModel]:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.SLAItemResponseModel'
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+          nullable: true
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+          nullable: true
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type: string
+          nullable: true
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+    Microsoft.AspNetCore.JsonPatch.Operations.Operation:
+      type: object
+      properties:
+        value:
+          nullable: true
+        path:
+          type: string
+          nullable: true
+        op:
+          type: string
+          nullable: true
+        from:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Requests.v2_0.SLAItemAPIModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        reason:
+          type: string
+          nullable: true
+        statusType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Int32]'
+        intervalStart:
+          type: string
+          format: date-time
+          nullable: true
+        intervalEnd:
+          type: string
+          format: date-time
+          nullable: true
+        purgeRuns:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Int32]'
+        tests:
+          maxItems: 50
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Int64]'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.ConsumerStatistics:
+      type: object
+      properties:
+        consumerId:
+          type: integer
+          format: int32
+        requestCount:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        maxPerDay:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.ViewModels.MessageModel:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        message:
+          type: string
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

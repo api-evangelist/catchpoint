@@ -1,0 +1,771 @@
+openapi: 3.0.1
+info:
+  title: Catchpoint REST API v2.0 Account Contacts API
+  version: '2.0'
+servers:
+- url: /api
+tags:
+- name: Contacts
+paths:
+  /v2/contacts/{contactIds}:
+    get:
+      tags:
+      - Contacts
+      summary: Return contact details by the IDs passed.
+      parameters:
+      - name: contactIds
+        in: path
+        description: Comma-separated list of contact IDs
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactGetResponse]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactGetResponse]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactGetResponse]'
+      security:
+      - bearer: []
+      order: 1
+  /v2/contacts:
+    get:
+      tags:
+      - Contacts
+      summary: Returns Contact details by parameters passed.
+      description: If no parameters are passed all “Active” contacts are returned.
+      parameters:
+      - name: statusId
+        in: query
+        description: Contact Status Type. “0” for Active; “1” for Inactive.
+        schema:
+          type: integer
+          format: int32
+      - name: divisionId
+        in: query
+        description: Division ID
+        schema:
+          type: integer
+          format: int32
+      - name: pageNumber
+        in: query
+        description: Page number to return records from when the number of records exceeds pageSize
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        description: Number of results per page. Maximum value is 100.
+        schema:
+          type: integer
+          format: int32
+          default: 100
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactGetResponse]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactGetResponse]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactGetResponse]'
+      security:
+      - bearer: []
+      order: 2
+    delete:
+      tags:
+      - Contacts
+      summary: Deletes existing contacts by parameters passed.
+      description: To delete contacts based on the specified list of IDs, the IDs need to be separated by commas. This endpoint allows partial deletion; if you provide a list of five IDs and only three of them are valid, then it will delete those three contacts. The response will indicate the three that were deleted, and the two invalid IDs will be listed as errors.
+      parameters:
+      - name: contactIds
+        in: query
+        description: Comma-separated list of Contact IDs
+        schema:
+          type: string
+      - name: email
+        in: query
+        description: Email of contact
+        schema:
+          type: string
+      - name: divisionId
+        in: query
+        description: Division ID. If the contact to delete is within a division, provide the Division ID
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactDeleteResponse]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactDeleteResponse]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactDeleteResponse]'
+      security:
+      - bearer: []
+      order: 5
+    post:
+      tags:
+      - Contacts
+      summary: Create a new contact based on the PostData.
+      description: To get payload for creating a new contact and to get the created contact details refer InternalLink[Contact Details by ID Endpoint,operations-tag-Contact,operations-Contact-get_v2_contacts__contactIds_]. Pass “0” for contact ID to create a new contact.
+      parameters:
+      - name: objectDetails
+        in: query
+        description: Set to true to return the created object in the response body, otherwise the response body will only return created object ID.
+        schema:
+          type: boolean
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactAPIModel'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactAPIModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactAPIModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactAPIModel'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactPostResponse]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactPostResponse]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactPostResponse]'
+      security:
+      - bearer: []
+      order: 3
+  /v2/contacts/{contactId}:
+    patch:
+      tags:
+      - Contacts
+      summary: Update an existing contact based on the request body.
+      description: "**Request:**\r\n            \r\nOnly the property to be updated can be passed in the request body instead of the whole object. The update request body requires a total of three keys to be filled with appropriate value as listed below:\r\n* **value** – The value property provides the new value.\r\n            \r\n* **path** – The path property indicates the element to update. The entire path with slashes needs to be provided here. Example: /status/id\r\n            \r\n* **op** – The op property indicates the type of operation; we support the following three operations.\r\n            \r\n    * **add** - Add a property or array element. For existing property: set value.\r\n            \r\n    * **Remove** - Remove a property or array element.\r\n            \r\n    * **replace** - Same as remove followed by add at same location.\r\n            \r\n* **from** - [Not Used]\r\n            \r\n    * **Explanation** - The \"from\" parameter represents the starting or current value of the resource that the operation intends to modify. The from parameter is included in the example value schema but is not utilized in this endpoint's functionality. It is reserved for potential future use or could be used in specific scenarios not covered by the current implementation."
+      parameters:
+      - name: contactId
+        in: path
+        description: Contact ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: objectDetails
+        in: query
+        description: Set to true to return the updated object in the response body, otherwise the response body will only return the updated object ID.
+        schema:
+          type: boolean
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.JsonPatch.Operations.Operation'
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.JsonPatch.Operations.Operation'
+          text/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.JsonPatch.Operations.Operation'
+          application/*+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.JsonPatch.Operations.Operation'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactPostResponse]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactPostResponse]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactPostResponse]'
+      security:
+      - bearer: []
+      order: 4
+components:
+  schemas:
+    Catchpoint.Symphony.Enums.User.TestAccessRestrictionType:
+      enum:
+      - id: 0
+        name: All
+      - id: 1
+        name: Test
+      - id: 2
+        name: Product
+      type: integer
+      format: int32
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactGroupAPIModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        division:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Utility.IdNameModel`1[System.Int32]'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactRumAccessRestrictionAPIModel:
+      type: object
+      properties:
+        rumAccessRestrictType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.RUM.RumAccessType'
+        rumAccessRestrictionList:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Utility.IdNameModel`1[System.Int32]'
+          nullable: true
+        viewAllSites:
+          type: boolean
+          nullable: true
+      additionalProperties: false
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactPostResponse]
+    : type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactPostResponse'
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+          nullable: true
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+          nullable: true
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type: string
+          nullable: true
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+    Microsoft.AspNetCore.JsonPatch.Operations.Operation:
+      type: object
+      properties:
+        value:
+          nullable: true
+        path:
+          type: string
+          nullable: true
+        op:
+          type: string
+          nullable: true
+        from:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactPostResponse:
+      type: object
+      properties:
+        contact:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactAPIModel'
+        id:
+          type: integer
+          format: int32
+          nullable: true
+        hasMore:
+          type: boolean
+          nullable: true
+        next:
+          type: string
+          nullable: true
+        previous:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Enums.RUM.RumAccessType:
+      enum:
+      - id: 0
+        name: All
+      - id: 1
+        name: Site
+      type: integer
+      format: int32
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactGetResponse]
+    : type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactGetResponse'
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+          nullable: true
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+          nullable: true
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type: string
+          nullable: true
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactDeleteResponse]
+    : type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactDeleteResponse'
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+          nullable: true
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+          nullable: true
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type: string
+          nullable: true
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.ApiUsageStatistics:
+      type: object
+      properties:
+        clientId:
+          type: integer
+          format: int64
+        lastRequestTimestamp:
+          type: string
+          format: date-time
+        limits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        runs:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        exceededMessage:
+          type: string
+          nullable: true
+          readOnly: true
+        divisionUsageStatistics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.DivisionUsageStatistics'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.InfoMessage:
+      type: object
+      properties:
+        information:
+          type: string
+          nullable: true
+        ignoredPath:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.ConsumerStatistics:
+      type: object
+      properties:
+        consumerId:
+          type: integer
+          format: int32
+        requestCount:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        maxPerDay:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactTestAccessRestrictionAPIModel:
+      type: object
+      properties:
+        testAccessRestrictType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.User.TestAccessRestrictionType'
+        testAccessRestrictionList:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Utility.IdNameModel`1[System.Int64]'
+          nullable: true
+        viewAllTests:
+          type: boolean
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactAPIModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        firstName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        email:
+          type: string
+          nullable: true
+        status:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.DomainStatus'
+        authentication:
+          type: string
+          nullable: true
+        division:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Utility.IdNameModel`1[System.Int64]'
+        systemAccess:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Utility.IdNameModel`1[System.Int32]'
+        primaryDashboard:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactDashboardAPIModel'
+        testAccessRestriction:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactTestAccessRestrictionAPIModel'
+        rumAccessRestriction:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactRumAccessRestrictionAPIModel'
+        timeZone:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.SupportedTimeZone'
+        isNewUIEnabled:
+          type: boolean
+        waterfallOpensInNewTab:
+          type: boolean
+        notificationType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactNotificationTypeAPIModel'
+        companyName:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        address:
+          type: string
+          nullable: true
+        address2:
+          type: string
+          nullable: true
+        city:
+          type: string
+          nullable: true
+        country:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Utility.IdNameModel`1[System.Int32]'
+        state:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Utility.IdNameModel`1[System.Int32]'
+        zipCode:
+          type: string
+          nullable: true
+        telephone:
+          type: string
+          nullable: true
+        cellPhone:
+          type: string
+          nullable: true
+        fax:
+          type: string
+          nullable: true
+        notes:
+          type: string
+          nullable: true
+        contactGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactGroupAPIModel'
+          nullable: true
+        lastLogin:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.ViewModels.MessageModel:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        message:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Utility.IdNameModel`1[System.Int32]:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath:
+      type: object
+      properties:
+        ops:
+          type: string
+          nullable: true
+        path:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.Limit:
+      type: object
+      properties:
+        minute:
+          type: integer
+          format: int32
+        hour:
+          type: integer
+          format: int32
+        day:
+          type: integer
+          format: int32
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Utility.IdNameModel`1[System.Int64]:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactDashboardAPIModel:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.ContactPrimaryDashboardType'
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        doNotDisplayOtherDashboards:
+          type: boolean
+      additionalProperties: false
+    Catchpoint.Symphony.Enums.ContactPrimaryDashboardType:
+      enum:
+      - id: 0
+        name: Dashboard
+      - id: 1
+        name: Smartboard
+      type: integer
+      format: int32
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactGetResponse:
+      type: object
+      properties:
+        contacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactAPIModel'
+          nullable: true
+        hasMore:
+          type: boolean
+          nullable: true
+        next:
+          type: string
+          nullable: true
+        previous:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactNotificationTypeAPIModel:
+      type: object
+      properties:
+        notificationList:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Enums.Alerts.ContactNotificationType'
+          nullable: true
+        smsEmail:
+          type: string
+          nullable: true
+        voiceCallNumber:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.DivisionUsageStatistics:
+      type: object
+      properties:
+        divisionId:
+          type: integer
+          format: int32
+        consumerStatistics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ConsumerStatistics'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Enums.Alerts.ContactNotificationType:
+      enum:
+      - id: 0
+        name: None
+      - id: 1
+        name: Email
+      - id: 4
+        name: EmailSms
+      - id: 16
+        name: Sms
+      - id: 32
+        name: Apns
+      - id: 64
+        name: Gcm
+      - id: 128
+        name: VoiceCall
+      type: integer
+      format: int32
+    Catchpoint.Symphony.Enums.SupportedTimeZone:
+      enum:
+      - id: 0
+        name: Eastern Standard Time
+      - id: 1
+        name: Central Standard Time
+      - id: 2
+        name: Mountain Standard Time
+      - id: 3
+        name: Pacific Standard Time
+      - id: 4
+        name: UTC
+      - id: 5
+        name: Central Europe Standard Time
+      - id: 6
+        name: Israel Standard Time
+      - id: 7
+        name: Japan Standard Time
+      - id: 8
+        name: E. Europe Standard Time
+      - id: 9
+        name: Singapore Standard Time
+      - id: 10
+        name: AUS Eastern Standard Time
+      - id: 11
+        name: SE Asia Standard Time
+      - id: 12
+        name: Hawaiian Standard Time
+      - id: 13
+        name: Alaskan Standard Time
+      - id: 14
+        name: Pacific Standard Time (Mexico)
+      - id: 15
+        name: US Mountain Standard Time
+      - id: 16
+        name: Mountain Standard Time (Mexico)
+      - id: 17
+        name: Central Brazilian Standard Time
+      - id: 18
+        name: E. South America Standard Time
+      - id: 19
+        name: GMT Standard Time
+      - id: 20
+        name: Turkey Standard Time
+      - id: 21
+        name: China Standard Time
+      - id: 22
+        name: Taipei Standard Time
+      - id: 23
+        name: Korea Standard Time
+      - id: 24
+        name: New Zealand Standard Time
+      - id: 25
+        name: Russian Standard Time
+      - id: 26
+        name: Central Asia Standard Time
+      - id: 27
+        name: Pakistan Standard Time
+      - id: 28
+        name: India Standard Time
+      - id: 29
+        name: Gulf Standard Time
+      type: integer
+      format: int32
+    Catchpoint.Symphony.Enums.DomainStatus:
+      enum:
+      - id: 0
+        name: Active
+      - id: 1
+        name: Inactive
+      - id: 2
+        name: Archived
+      - id: 3
+        name: Suspended
+      - id: 4
+        name: SuspendedByAdmin
+      - id: 5
+        name: Open
+      - id: 6
+        name: Resolved
+      - id: 7
+        name: Deleted
+      - id: 8
+        name: OverSubscribed
+      - id: 9
+        name: Published
+      - id: 10
+        name: Draft
+      - id: 11
+        name: NeedsApproval
+      type: integer
+      format: int32
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactDeleteResponse:
+      type: object
+      properties:
+        archivedIds:
+          type: string
+          nullable: true
+        hasMore:
+          type: boolean
+          nullable: true
+        next:
+          type: string
+          nullable: true
+        previous:
+          type: string
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

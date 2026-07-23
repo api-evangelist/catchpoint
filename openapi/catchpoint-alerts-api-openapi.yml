@@ -1,0 +1,959 @@
+openapi: 3.0.1
+info:
+  title: Catchpoint REST API v2.0 Account Alerts API
+  version: '2.0'
+servers:
+- url: /api
+tags:
+- name: Alerts
+paths:
+  /v2/tests/alerts/{alertIds}:
+    get:
+      tags:
+      - Alerts
+      summary: Returns alert details based on the alert IDs.
+      description: "*[Analytics Endpoint]*\r\n\r\nThe data returned is in UTC."
+      parameters:
+      - name: alertIds
+        in: path
+        description: Comma-separated list of alert IDs
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertApiModel]]]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertApiModel]]]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertApiModel]]]'
+      security:
+      - bearer: []
+      order: 1
+  /v2/tests/alerts:
+    get:
+      tags:
+      - Alerts
+      summary: Returns alert details based on the parameters.
+      description: "*[Analytics Endpoint]*\r\n\r\nIf no time is specified, the alerts from the last 24 hours are returned. The data returned is in UTC."
+      parameters:
+      - name: startTimeUtc
+        in: query
+        description: Start time in UTC (YYYY-MM-DDThh:mm:ss). Specify an End time if Start time is set.
+        schema:
+          type: string
+          format: date-time
+      - name: endTimeUtc
+        in: query
+        description: End time in UTC (YYYY-MM-DDThh:mm:ss). Specify a Start time if End time is set.
+        schema:
+          type: string
+          format: date-time
+      - name: levelId
+        in: query
+        description: Alert level Id. (Warning = 0, Critical = 1, Information = 2, Improved = 3)
+        schema:
+          type: integer
+          format: int32
+      - name: testName
+        in: query
+        description: Test name to filter alerts for
+        schema:
+          type: string
+      - name: testIds
+        in: query
+        description: Comma-separated list of test IDs to filter alerts for
+        schema:
+          type: string
+      - name: alertTypeId
+        in: query
+        description: Alert Type ID (refer InternalLink[Test Enumeration Endpoint,operations-tag-Test,operations-Test-get_v2_tests_enumeration])
+        schema:
+          type: integer
+          format: int32
+      - name: alertTypeSubId
+        in: query
+        description: Alert Type Sub ID (refer InternalLink[Test Enumeration Endpoint,operations-tag-Test,operations-Test-get_v2_tests_enumeration])
+        schema:
+          type: integer
+          format: int32
+      - name: productIds
+        in: query
+        description: Comma-separated list of Product IDs to filter alerts for
+        schema:
+          type: string
+      - name: productName
+        in: query
+        description: Product name to filter alerts for
+        schema:
+          type: string
+      - name: acknowledgedBy
+        in: query
+        description: Contact ID that acknowledged the test alert
+        schema:
+          type: integer
+          format: int32
+      - name: includeNodeDetails
+        in: query
+        description: Include Node details
+        schema:
+          type: boolean
+          default: false
+      - name: pageNumber
+        in: query
+        description: Page number to return records from when the number of records exceeds pageSize
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        description: Number of results per page. Maximum value is 100.
+        schema:
+          type: integer
+          format: int32
+          default: 100
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertApiModel]]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertApiModel]]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertApiModel]]'
+      security:
+      - bearer: []
+      order: 2
+    patch:
+      tags:
+      - Alerts
+      summary: Assign, Acknowledge or Drop alerts.
+      description: "The request body requires 3 keys to be filled with appropriate value as listed below.\r\n\r\n* **alertId** - Alert ID\r\n\r\n* **acknowledgeAlert** - set to true or false\r\n\r\n* **dropAlert** - set to true or false\r\n\r\n* **assignToContactByEmail** - email address string"
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertUpdateModel'
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertUpdateModel'
+          text/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertUpdateModel'
+          application/*+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertUpdateModel'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse`1[System.Collections.Generic.List`1[System.String]]]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse`1[System.Collections.Generic.List`1[System.String]]]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse`1[System.Collections.Generic.List`1[System.String]]]'
+      security:
+      - bearer: []
+      order: 3
+components:
+  schemas:
+    ? Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertApiModel]]
+    : type: object
+      properties:
+        alerts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertApiModel'
+          nullable: true
+        hasMore:
+          type: boolean
+          nullable: true
+        next:
+          type: string
+          nullable: true
+        previous:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertApiModel]]
+    : type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertApiModel]'
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+          nullable: true
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+          nullable: true
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type: string
+          nullable: true
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse`1[System.Collections.Generic.List`1[System.String]]:
+      type: object
+      properties:
+        alerts:
+          type: array
+          items:
+            type: string
+          nullable: true
+        hasMore:
+          type: boolean
+          nullable: true
+        next:
+          type: string
+          nullable: true
+        previous:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Enums.Alerts.OperatorType:
+      enum:
+      - id: 0
+        name: NotEquals
+      - id: 1
+        name: Equals
+      - id: 2
+        name: GreaterThan
+      - id: 3
+        name: GreaterThanOrEquals
+      - id: 4
+        name: LessThan
+      - id: 5
+        name: LessThanOrEquals
+      - id: 6
+        name: NotBetween
+      - id: 7
+        name: Between
+      type: integer
+      format: int32
+    Catchpoint.Symphony.Enums.Alerts.NotificationLevel:
+      enum:
+      - id: 0
+        name: Warning
+      - id: 1
+        name: Critical
+      - id: 2
+        name: Information
+      - id: 3
+        name: Improved
+      type: integer
+      format: int32
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertUpdateModel:
+      required:
+      - alertId
+      type: object
+      properties:
+        alertId:
+          minLength: 1
+          type: string
+        acknowledgeAlert:
+          type: boolean
+          nullable: true
+        dropAlert:
+          type: boolean
+          nullable: true
+        assignToContactByEmail:
+          type: string
+          nullable: true
+        testId:
+          type: integer
+          format: int64
+          readOnly: true
+      additionalProperties: false
+    ? Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertApiModel]
+    : type: object
+      properties:
+        alerts:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertApiModel'
+        hasMore:
+          type: boolean
+          nullable: true
+        next:
+          type: string
+          nullable: true
+        previous:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Enums.Alerts.AlertTriggerType:
+      enum:
+      - id: 0
+        name: None
+      - id: 1
+        name: SpecificValue
+      - id: 2
+        name: TrailingValue
+      - id: 3
+        name: TrendShift
+      type: integer
+      format: int32
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertApiModel]]]
+    : type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertApiModel]]'
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+          nullable: true
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+          nullable: true
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type: string
+          nullable: true
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.ApiUsageStatistics:
+      type: object
+      properties:
+        clientId:
+          type: integer
+          format: int64
+        lastRequestTimestamp:
+          type: string
+          format: date-time
+        limits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        runs:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        exceededMessage:
+          type: string
+          nullable: true
+          readOnly: true
+        divisionUsageStatistics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.DivisionUsageStatistics'
+          nullable: true
+      additionalProperties: false
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse`1[System.Collections.Generic.List`1[System.String]]]
+    : type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse`1[System.Collections.Generic.List`1[System.String]]'
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+          nullable: true
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+          nullable: true
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type: string
+          nullable: true
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+    Catchpoint.Symphony.Enums.Alerts.ReportAlertSubtype:
+      enum:
+      - id: 0
+        name: None
+      - id: 1
+        name: Byte Length
+      - id: 2
+        name: Page
+      - id: 3
+        name: File Size
+      - id: 9
+        name: Test Failure
+      - id: 10
+        name: Regular Expression
+      - id: 11
+        name: Compare to Previous
+      - id: 12
+        name: Compare to File
+      - id: 13
+        name: Response Code
+      - id: 14
+        name: Response Code
+      - id: 15
+        name: Response Headers
+      - id: 16
+        name: MAC Address
+      - id: 20
+        name: Any
+      - id: 21
+        name: DNS
+      - id: 22
+        name: Connection
+      - id: 23
+        name: Response
+      - id: 30
+        name: Connection
+      - id: 31
+        name: Content Type
+      - id: 32
+        name: Custom
+      - id: 33
+        name: Encoding
+      - id: 34
+        name: Redirect
+      - id: 35
+        name: Version
+      - id: 40
+        name: Unknown
+      - id: 41
+        name: Iframes
+      - id: 42
+        name: Images
+      - id: 43
+        name: Style Sheets
+      - id: 44
+        name: Scripts
+      - id: 45
+        name: XMLHttpRequest
+      - id: 50
+        name: DNS
+      - id: 51
+        name: Connect
+      - id: 52
+        name: Send
+      - id: 53
+        name: Wait
+      - id: 54
+        name: Load
+      - id: 55
+        name: TTFB
+      - id: 56
+        name: Page Load
+      - id: 57
+        name: Content Load
+      - id: 58
+        name: Response
+      - id: 59
+        name: Test Time
+      - id: 60
+        name: DO NOT USE
+      - id: 61
+        name: DOM Load
+      - id: 62
+        name: Perceived Page Load
+      - id: 63
+        name: Test Time with Suspect
+      - id: 64
+        name: Server Response
+      - id: 65
+        name: Delete
+      - id: 66
+        name: Document Complete
+      - id: 67
+        name: Redirect
+      - id: 68
+        name: SSL
+      - id: 70
+        name: Page Views
+      - id: 71
+        name: Unique Visits
+      - id: 72
+        name: Unique User
+      - id: 80
+        name: Any
+      - id: 81
+        name: DNS
+      - id: 82
+        name: Connection
+      - id: 83
+        name: Response
+      - id: 84
+        name: SSL
+      - id: 85
+        name: Other
+      - id: 90
+        name: Tracepoints
+      - id: 91
+        name: Indicators
+      - id: 100
+        name: Ping RTT
+      - id: 101
+        name: Ping Packet Loss
+      - id: 102
+        name: Ping Jitter
+      - id: 110
+        name: '# Requests'
+      - id: 111
+        name: '# Hosts'
+      - id: 112
+        name: '# Connections'
+      - id: 113
+        name: '# Redirects'
+      - id: 114
+        name: '# Other'
+      - id: 115
+        name: '# Images'
+      - id: 116
+        name: '# Scripts'
+      - id: 117
+        name: '# HTML'
+      - id: 118
+        name: '# CSS'
+      - id: 119
+        name: '# XML'
+      - id: 120
+        name: '# Flash'
+      - id: 121
+        name: '# Media'
+      - id: 130
+        name: Page Response
+      - id: 131
+        name: Bottleneck Time
+      - id: 132
+        name: '% Bottleneck'
+      - id: 133
+        name: '# Requests'
+      - id: 134
+        name: '# Failures'
+      - id: 135
+        name: Byte Length
+      - id: 136
+        name: Self Downloaded Bytes
+      - id: 137
+        name: '% Self Bottleneck'
+      - id: 138
+        name: '% Third Party Bottleneck'
+      - id: 140
+        name: Test
+      - id: 141
+        name: Content
+      - id: 142
+        name: '% Downtime'
+      - id: 143
+        name: Reachability
+      - id: 150
+        name: Test URL
+      - id: 151
+        name: Child URLs
+      - id: 152
+        name: Any URLs
+      - id: 160
+        name: DNS General
+      - id: 161
+        name: DNS Answer
+      - id: 162
+        name: DNS Authority
+      - id: 163
+        name: DNS Additional
+      - id: 170
+        name: Page Views
+      - id: 171
+        name: Bounces
+      - id: 172
+        name: DNS Additional
+      - id: 173
+        name: Visits
+      - id: 180
+        name: Bounce Rate
+      - id: 181
+        name: Conversion Rate
+      - id: 190
+        name: '# Cities'
+      - id: 191
+        name: '# ASNs'
+      - id: 192
+        name: Speed Index
+      - id: 193
+        name: '# Countries'
+      - id: 194
+        name: '# Hops'
+      - id: 195
+        name: Handshake Time
+      - id: 196
+        name: Days to Expiration
+      - id: 200
+        name: Signal Quality
+      - id: 201
+        name: Signal Strength
+      - id: 210
+        name: Origin AS
+      - id: 211
+        name: Path AS
+      - id: 212
+        name: Origin Neighbor
+      - id: 213
+        name: Prefix Mismatch
+      - id: 220
+        name: Endpoint Experience Score
+      - id: 230
+        name: Internet Sonar Benchmark Incidents
+      - id: 233
+        name: Internet Sonar Isp incidents
+      - id: 240
+        name: Tracing Response Time
+      - id: 241
+        name: Tracing Request
+      - id: 242
+        name: Tracing Errors
+      - id: 243
+        name: Tracing Score
+      - id: 250
+        name: Division Wide Node Run Rate
+      - id: 251
+        name: Division Wide Node Utilization Capacity
+      - id: 252
+        name: Division Wide Complex Alert
+      - id: 254
+        name: Division Wide Node Offline Status
+      - id: 255
+        name: Division Wide Node Utilization Cpu
+      - id: 256
+        name: Division Wide Node Utilization Disk
+      - id: 257
+        name: Division Wide Node Utilization Memory
+      type: integer
+      format: int32
+    Catchpoint.Symphony.REST.Common.Models.InfoMessage:
+      type: object
+      properties:
+        information:
+          type: string
+          nullable: true
+        ignoredPath:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.ConsumerStatistics:
+      type: object
+      properties:
+        consumerId:
+          type: integer
+          format: int32
+        requestCount:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        maxPerDay:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.ViewModels.MessageModel:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        message:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath:
+      type: object
+      properties:
+        ops:
+          type: string
+          nullable: true
+        path:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.Limit:
+      type: object
+      properties:
+        minute:
+          type: integer
+          format: int32
+        hour:
+          type: integer
+          format: int32
+        day:
+          type: integer
+          format: int32
+      additionalProperties: false
+    Catchpoint.Symphony.Enums.Alerts.ReportAlertType:
+      enum:
+      - id: 0
+        name: None
+      - id: 1
+        name: Exits
+      - id: 2
+        name: ByteLength
+      - id: 3
+        name: ContentMatch
+      - id: 4
+        name: HostFailure
+      - id: 5
+        name: HttpHeaderMatch
+      - id: 6
+        name: TagFailure
+      - id: 7
+        name: ResponseTime
+      - id: 8
+        name: Traffic
+      - id: 9
+        name: PageFailure
+      - id: 10
+        name: CustomTestData
+      - id: 11
+        name: ScriptFailure
+      - id: 12
+        name: Ping
+      - id: 13
+        name: Requests
+      - id: 14
+        name: ContentZone
+      - id: 15
+        name: Availability
+      - id: 16
+        name: Address
+      - id: 17
+        name: Dns
+      - id: 18
+        name: GlimpseCounter
+      - id: 19
+        name: GlimpseRate
+      - id: 20
+        name: Path
+      - id: 21
+        name: Score
+      - id: 22
+        name: Wifi
+      - id: 23
+        name: Asn
+      - id: 24
+        name: WebPageTest
+      - id: 25
+        name: Endpoint
+      - id: 26
+        name: ExperienceScore
+      - id: 27
+        name: InternetWeather
+      - id: 28
+        name: Ecn
+      - id: 29
+        name: Tracing
+      - id: 30
+        name: DivisionWide
+      type: integer
+      format: int32
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelAPIModel:
+      type: object
+      properties:
+        color:
+          type: string
+          nullable: true
+        id:
+          type: integer
+          format: int32
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        values:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Enums.Test.DisplayTestType:
+      enum:
+      - id: 0
+        name: Web
+      - id: 1
+        name: TransactionLegacy
+      - id: 2
+        name: HtmlCode
+      - id: 3
+        name: Ftp
+      - id: 4
+        name: Tcp
+      - id: 5
+        name: Dns
+      - id: 6
+        name: Ping
+      - id: 7
+        name: Smtp
+      - id: 8
+        name: Udp
+      - id: 9
+        name: Api
+      - id: 10
+        name: Streaming
+      - id: 11
+        name: Ssh
+      - id: 12
+        name: TraceRoute
+      - id: 13
+        name: WebSocket
+      - id: 14
+        name: Ntp
+      - id: 15
+        name: Imap
+      - id: 16
+        name: Mqtt
+      - id: 17
+        name: Bulk
+      - id: 18
+        name: Ssl
+      - id: 19
+        name: Wifi
+      - id: 20
+        name: Bgp
+      - id: 21
+        name: NodeToNode
+      - id: 22
+        name: Bandwidth
+      - id: 23
+        name: WebPageTestWeb
+      - id: 24
+        name: WebPageTestTransaction
+      - id: 25
+        name: Playwright
+      - id: 26
+        name: Puppeteer
+      - id: 27
+        name: Transaction
+      type: integer
+      format: int32
+    Catchpoint.Symphony.REST.Api.DivisionUsageStatistics:
+      type: object
+      properties:
+        divisionId:
+          type: integer
+          format: int32
+        consumerStatistics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ConsumerStatistics'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertApiModel:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        reportTime:
+          type: string
+          format: date-time
+        processingTimestamp:
+          type: string
+          format: date-time
+        startTime:
+          type: string
+          format: date-time
+        level:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.Alerts.NotificationLevel'
+        test:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Nullable`1[System.Int64]]'
+        testPath:
+          type: array
+          items:
+            type: string
+          nullable: true
+        testPathStyled:
+          type: string
+          nullable: true
+        testUrl:
+          type: string
+          nullable: true
+        testSmartboardUrl:
+          type: string
+          nullable: true
+        testPerformanceUrl:
+          type: string
+          nullable: true
+        testStatisticalUrl:
+          type: string
+          nullable: true
+        testScatterplotUrl:
+          type: string
+          nullable: true
+        testRecordUrl:
+          type: string
+          nullable: true
+        testType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.Test.DisplayTestType'
+        alertType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.Alerts.ReportAlertType'
+        alertSubtype:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.Alerts.ReportAlertSubtype'
+        triggerType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.Alerts.AlertTriggerType'
+        operationType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.Alerts.OperatorType'
+        warningTrigger:
+          type: number
+          format: float
+          nullable: true
+        criticalTrigger:
+          type: number
+          format: float
+          nullable: true
+        durationInSecond:
+          type: integer
+          format: int32
+          nullable: true
+        node:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Nullable`1[System.Int64]]'
+        acknowledgedBy:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Nullable`1[System.Int64]]'
+        labels:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelAPIModel'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Nullable`1[System.Int64]]:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          nullable: true
+        name:
+          type: string
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

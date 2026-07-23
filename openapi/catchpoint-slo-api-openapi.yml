@@ -1,0 +1,1614 @@
+openapi: 3.0.1
+info:
+  title: Catchpoint REST API v2.0 Account SLO API
+  version: '2.0'
+servers:
+- url: /api
+tags:
+- name: SLO
+paths:
+  /v2/slo/{sloIds}:
+    get:
+      tags:
+      - SLO
+      summary: Retrieve properties of one or more SLOs based on SLO IDs.
+      description: Multiple SLO IDs may be included in a comma-separated list.
+      parameters:
+      - name: sloIds
+        in: path
+        description: A comma-separated list of SLO IDs to look up.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.SloGetResponse]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.SloGetResponse]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.SloGetResponse]'
+      security:
+      - bearer: []
+      order: 1
+    patch:
+      tags:
+      - SLO
+      summary: Update properties of an existing SLO based on the request body.
+      description: "**Request:**\r\n            \r\nOnly the property to be updated can be passed in the request body instead of the whole object. The update request body requires a total of three keys to be filled with appropriate value as listed below:\r\n* **value** – The value property provides the new value.\r\n            \r\n* **path** – The path property indicates the element to update. The entire path with slashes needs to be provided here. Example: /status/id\r\n            \r\n* **op** – The op property indicates the type of operation; we support the following three operations.\r\n            \r\n    * **add** - Add a property or array element. For existing property: set value.\r\n            \r\n    * **Remove** - Remove a property or array element.\r\n            \r\n    * **replace** - Same as remove followed by add at same location.\r\n            \r\n* **from** - [Not Used]\r\n            \r\n    * **Explanation** - The \"from\" parameter represents the starting or current value of the resource that the operation intends to modify. The from parameter is included in the example value schema but is not utilized in this endpoint's functionality. It is reserved for potential future use or could be used in specific scenarios not covered by the current implementation."
+      parameters:
+      - name: sloIds
+        in: path
+        description: A comma delimited list of SLO IDs to update an SLO.
+        required: true
+        schema:
+          type: string
+      - name: objectDetails
+        in: query
+        description: Retrieves object details after update.
+        schema:
+          type: boolean
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.JsonPatch.Operations.Operation'
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.JsonPatch.Operations.Operation'
+          text/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.JsonPatch.Operations.Operation'
+          application/*+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.JsonPatch.Operations.Operation'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.SloPostResponse]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.SloPostResponse]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.SloPostResponse]'
+      security:
+      - bearer: []
+      order: 4
+    delete:
+      tags:
+      - SLO
+      summary: Delete one or more SLOs based on SLO IDs.
+      description: "This endpoint allows partial success.\r\nFor example, if the request includes a list of five SLO IDs but only three of them match existing SLOs, then those three SLOs will be deleted and indicated as such in the response.\r\nThe two invalid SLO IDs will be listed in the response with an error message."
+      parameters:
+      - name: sloIds
+        in: path
+        description: A comma-separated list of SLO IDs to delete.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.SloDeleteResponse]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.SloDeleteResponse]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.SloDeleteResponse]'
+      security:
+      - bearer: []
+      order: 5
+  /v2/slo:
+    get:
+      tags:
+      - SLO
+      summary: Retrieve SLOs that match all included parameters.
+      description: All parameters are optional, and if no parameters are provided then details for all active SLOs are returned.
+      parameters:
+      - name: statusType
+        in: query
+        description: The SLO status ID. “0” for Active, “1” for inactive.
+        schema:
+          type: integer
+          format: int32
+      - name: sloName
+        in: query
+        description: An SLO name.
+        schema:
+          type: string
+      - name: testName
+        in: query
+        description: A Test name assigned to the SLOs to look up.
+        schema:
+          type: string
+      - name: metricType
+        in: query
+        description: The SLO metric ID. “15” for Availability, “89” for Test Time.
+        schema:
+          type: integer
+          format: int32
+      - name: testIds
+        in: query
+        description: A comma-separated list of Test IDs assigned to the SLOs to look up.
+        schema:
+          type: string
+      - name: divisionId
+        in: query
+        description: The Division ID of the SLOs to look up. If left empty, the default division of the API user will be used.
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.SloGetResponse]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.SloGetResponse]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.SloGetResponse]'
+      security:
+      - bearer: []
+      order: 2
+    post:
+      tags:
+      - SLO
+      summary: Create a new SLO configured per the request body.
+      description: "The request body must include all required SLO properties, and may include any optional properties as well.\r\nTo get a sample payload to pass along with the request, use the response from endpoint GET: /api/v2/slo/{sloIds} with {sloIds} as “0”."
+      parameters:
+      - name: objectDetails
+        in: query
+        description: Retrieves object details after creating it.
+        schema:
+          type: boolean
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Slo.SloAPIModel'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Slo.SloAPIModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Slo.SloAPIModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Slo.SloAPIModel'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.SloPostResponse]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.SloPostResponse]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.SloPostResponse]'
+      security:
+      - bearer: []
+      order: 3
+  /v2/slo/enumeration:
+    get:
+      tags:
+      - SLO
+      summary: Retrieve SLO property enumerations.
+      description: All parameters are optional, and if no parameters are provided then all enumerations are returned.
+      parameters:
+      - name: analyticsMetric
+        in: query
+        description: Return analyticsMetric enumeration
+        schema:
+          type: boolean
+      - name: domainStatus
+        in: query
+        description: Return domainStatus enumeration
+        schema:
+          type: boolean
+      - name: nodeThresholdType
+        in: query
+        description: Return nodeThresholdType enumeration
+        schema:
+          type: boolean
+      - name: operatorType
+        in: query
+        description: Return operatorType enumeration
+        schema:
+          type: boolean
+      - name: timeThresholdInterval
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationResponse]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationResponse]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationResponse]'
+      security:
+      - bearer: []
+      order: 2
+  /v2/slo/violations:
+    get:
+      tags:
+      - SLO
+      summary: Retrieve violation data for all SLOs matching request parameters within the requested date range.
+      description: ''
+      parameters:
+      - name: startTime
+        in: query
+        description: Start Time in UTC. Format (YYYY-MM-DDThh:mm:ss).
+        schema:
+          type: string
+          format: date-time
+      - name: endTime
+        in: query
+        description: End Time in UTC. Format (YYYY-MM-DDThh:mm:ss).
+        schema:
+          type: string
+          format: date-time
+      - name: sloIds
+        in: query
+        description: A comma-separated list of SLO IDs to look up.
+        schema:
+          type: string
+      - name: testIds
+        in: query
+        description: A comma-separated list of Test IDs to look up.
+        schema:
+          type: string
+      - name: sloName
+        in: query
+        description: The name of an SLO to look up.
+        schema:
+          type: string
+      - name: testName
+        in: query
+        description: The name of a Test to look up.
+        schema:
+          type: string
+      - name: metricType
+        in: query
+        description: The SLO metric ID. “15” for Availability, “89” for Test Time.
+        schema:
+          type: integer
+          format: int32
+      - name: statusType
+        in: query
+        description: The SLO status ID. “0” for Active, “1” for inactive.
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.SloGetViolationsResponse]'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.SloGetViolationsResponse]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.SloGetViolationsResponse]'
+      security:
+      - bearer: []
+      order: 10
+components:
+  schemas:
+    Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.SloGetResponse]:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.SloGetResponse'
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+          nullable: true
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+          nullable: true
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type: string
+          nullable: true
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.SloGetViolationsResponse:
+      type: object
+      properties:
+        violations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Slo.SloViolationAPIModel'
+          nullable: true
+        hasMore:
+          type: boolean
+          nullable: true
+        next:
+          type: string
+          nullable: true
+        previous:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Enums.Alerts.OperatorType:
+      enum:
+      - id: 0
+        name: NotEquals
+      - id: 1
+        name: Equals
+      - id: 2
+        name: GreaterThan
+      - id: 3
+        name: GreaterThanOrEquals
+      - id: 4
+        name: LessThan
+      - id: 5
+        name: LessThanOrEquals
+      - id: 6
+        name: NotBetween
+      - id: 7
+        name: Between
+      type: integer
+      format: int32
+    Microsoft.AspNetCore.JsonPatch.Operations.Operation:
+      type: object
+      properties:
+        value:
+          nullable: true
+        path:
+          type: string
+          nullable: true
+        op:
+          type: string
+          nullable: true
+        from:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.SloDeleteResponse:
+      type: object
+      properties:
+        deleted:
+          type: string
+          nullable: true
+        hasMore:
+          type: boolean
+          nullable: true
+        next:
+          type: string
+          nullable: true
+        previous:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.ApiUsageStatistics:
+      type: object
+      properties:
+        clientId:
+          type: integer
+          format: int64
+        lastRequestTimestamp:
+          type: string
+          format: date-time
+        limits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        runs:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        exceededMessage:
+          type: string
+          nullable: true
+          readOnly: true
+        divisionUsageStatistics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.DivisionUsageStatistics'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationResponse:
+      type: object
+      properties:
+        sections:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationDetailResponse'
+          nullable: true
+        hasMore:
+          type: boolean
+          nullable: true
+        next:
+          type: string
+          nullable: true
+        previous:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Enums.Metrics.AnalyticsMetric:
+      enum:
+      - id: 0
+        name: None
+      - id: 1
+        name: DNS (ms)
+      - id: 2
+        name: Connect (ms)
+      - id: 3
+        name: Upload (ms)
+      - id: 4
+        name: Wait (ms)
+      - id: 5
+        name: TimeToFirstByte
+      - id: 6
+        name: Load (ms)
+      - id: 7
+        name: Base Response (ms)
+      - id: 8
+        name: Dom Loaded (ms)
+      - id: 9
+        name: ContentLoadTime
+      - id: 10
+        name: Response (ms)
+      - id: 11
+        name: Download File Size
+      - id: 12
+        name: Throughput
+      - id: 13
+        name: ExternalHostsCount
+      - id: 14
+        name: '# Items (Total)'
+      - id: 15
+        name: '% Availability'
+      - id: 16
+        name: ContentAvailabilityPercent
+      - id: 17
+        name: JSErrorsPerPageCount
+      - id: 18
+        name: ContentLoadErrorCount
+      - id: 19
+        name: TestsWithJSErrorsCount
+      - id: 20
+        name: '% Packet Loss'
+      - id: 21
+        name: Ping Round Trip (ms)
+      - id: 22
+        name: Message Size
+      - id: 23
+        name: WebpageThroughput
+      - id: 24
+        name: DnsFailuresCount
+      - id: 25
+        name: ConnectionFailuresCount
+      - id: 26
+        name: SslFailuresCount
+      - id: 27
+        name: ResponseFailuresCount
+      - id: 28
+        name: ContentFailuresCount
+      - id: 29
+        name: InvalidTestsCount
+      - id: 30
+        name: SSL (ms)
+      - id: 31
+        name: LoadFailuresCount
+      - id: 32
+        name: Server Response (ms)
+      - id: 33
+        name: '# Errors'
+      - id: 34
+        name: DeleteTime
+      - id: 35
+        name: Apdex
+      - id: 36
+        name: '# Bytes'
+      - id: 37
+        name: StepContentAvailabilityPercent
+      - id: 38
+        name: RenderStartTime
+      - id: 39
+        name: DocumentCompleteTime
+      - id: 40
+        name: PageSpeedScore
+      - id: 41
+        name: TimeToTitle
+      - id: 42
+        name: ConnectionCount
+      - id: 43
+        name: TimeoutFailuresCount
+      - id: 44
+        name: ZoneCount
+      - id: 45
+        name: DnsToReceiveInclusiveTime
+      - id: 46
+        name: WaitAndReceiveTime
+      - id: 47
+        name: StartToEndTime
+      - id: 48
+        name: BottleneckTime
+      - id: 49
+        name: '% Bottleneck'
+      - id: 50
+        name: AuthenticationTime
+      - id: 51
+        name: Helo Time (ms)
+      - id: 52
+        name: RedirectRequestCount
+      - id: 53
+        name: '# Other'
+      - id: 54
+        name: '# Image'
+      - id: 55
+        name: '# Script'
+      - id: 56
+        name: '# Html'
+      - id: 57
+        name: '# Css'
+      - id: 58
+        name: '# Xml'
+      - id: 59
+        name: '# Flash'
+      - id: 60
+        name: '# Media'
+      - id: 61
+        name: '# Runs'
+      - id: 62
+        name: PlayTime
+      - id: 63
+        name: TotalBufferTime
+      - id: 64
+        name: BufferCount
+      - id: 65
+        name: InitialBufferTime
+      - id: 66
+        name: WireTime
+      - id: 67
+        name: ClientTime
+      - id: 68
+        name: '# Font'
+      - id: 69
+        name: Image Bytes
+      - id: 70
+        name: Script Bytes
+      - id: 71
+        name: Html Bytes
+      - id: 72
+        name: Css Bytes
+      - id: 73
+        name: Xml Bytes
+      - id: 74
+        name: Flash Bytes
+      - id: 75
+        name: Media Bytes
+      - id: 76
+        name: Other Bytes
+      - id: 77
+        name: Font Bytes
+      - id: 78
+        name: '% Ping Packet Loss'
+      - id: 79
+        name: RedirectTime
+      - id: 80
+        name: SatisfiedPercent
+      - id: 81
+        name: ToleratingPercent
+      - id: 82
+        name: FrustratedPercent
+      - id: 83
+        name: NotFrustratedPercent
+      - id: 84
+        name: SpeedIndex
+      - id: 85
+        name: '# Sends'
+      - id: 86
+        name: Send Data Bytes
+      - id: 87
+        name: '# Receives'
+      - id: 88
+        name: Receive Data Bytes
+      - id: 89
+        name: Test Time (ms)
+      - id: 90
+        name: PositiveOffsetTime
+      - id: 91
+        name: NegativeOffsetTime
+      - id: 92
+        name: RoundTripDelayTime
+      - id: 93
+        name: RootDelayTime
+      - id: 94
+        name: RootDispersionTime
+      - id: 95
+        name: '% Downtime'
+      - id: 96
+        name: '% Self Bottleneck'
+      - id: 97
+        name: ThirdPartyBottleneckPercent
+      - id: 98
+        name: SelfDownloadedBytes
+      - id: 99
+        name: LogoutTime
+      - id: 100
+        name: MessageBytes
+      - id: 101
+        name: SearchTime
+      - id: 102
+        name: ListTime
+      - id: 103
+        name: FetchTime
+      - id: 104
+        name: ASNs
+      - id: 105
+        name: Cities
+      - id: 106
+        name: Countries
+      - id: 107
+        name: Hops
+      - id: 108
+        name: SLAAdjustedAvailability
+      - id: 109
+        name: SLAPurgedRuns
+      - id: 110
+        name: PublishTime
+      - id: 111
+        name: PublishSize
+      - id: 112
+        name: SubscribeTime
+      - id: 113
+        name: SubscribeSize
+      - id: 114
+        name: ContentTypeTimeImage
+      - id: 115
+        name: ContentTypeTimeScript
+      - id: 116
+        name: ContentTypeTimeHtml
+      - id: 117
+        name: ContentTypeTimeCss
+      - id: 118
+        name: ContentTypeTimeXml
+      - id: 119
+        name: ContentTypeTimeFlash
+      - id: 120
+        name: ContentTypeTimeMedia
+      - id: 121
+        name: ContentTypeTimeOther
+      - id: 122
+        name: ContentTypeTimeFont
+      - id: 123
+        name: HandshakeTime
+      - id: 124
+        name: ExpirationTime
+      - id: 125
+        name: SignalQuality
+      - id: 126
+        name: SignalStrength
+      - id: 127
+        name: ConnectionDuration
+      - id: 128
+        name: MaxReceiveRate
+      - id: 129
+        name: MaxTransmitRate
+      - id: 130
+        name: ExitToEntryTime
+      - id: 131
+        name: ExitToOnLoadTime
+      - id: 132
+        name: EntryToOnLoadTime
+      - id: 133
+        name: ResponseTime
+      - id: 134
+        name: DomInteractiveTime
+      - id: 135
+        name: DomLoadedTime
+      - id: 136
+        name: UniqueVisitCount
+      - id: 137
+        name: PageViewsCount
+      - id: 138
+        name: PagesPerVisitCount
+      - id: 139
+        name: BounceCount
+      - id: 140
+        name: BounceRate
+      - id: 141
+        name: Revenue
+      - id: 142
+        name: ConversionCount
+      - id: 143
+        name: ItemsSoldCount
+      - id: 144
+        name: ConversionRate
+      - id: 145
+        name: BounceRatePerAverageDocumentCompleteTime
+      - id: 146
+        name: ConversionRatePerAverageDocumentCompleteTime
+      - id: 147
+        name: RevenueRatePerAverageDocumentCompleteTime
+      - id: 148
+        name: PageViewRatePerAverageDocumentCompleteTime
+      - id: 149
+        name: ProcessTime
+      - id: 150
+        name: AppearTime
+      - id: 151
+        name: CrashCount
+      - id: 152
+        name: MemoryWarningCount
+      - id: 153
+        name: ScreenViewsCount
+      - id: 154
+        name: ScreenPerVisitCount
+      - id: 155
+        name: RequestCount
+      - id: 156
+        name: SublevelRequestCount
+      - id: 157
+        name: TotalAjaxTime
+      - id: 158
+        name: VisuallyCompleteTime
+      - id: 159
+        name: WaterfallsCount
+      - id: 160
+        name: DnsLookupTimeAvg
+      - id: 161
+        name: ConnectTimeAvg
+      - id: 162
+        name: SslTimeAvg
+      - id: 163
+        name: WaitTimeAvg
+      - id: 164
+        name: LoadTimeAvg
+      - id: 165
+        name: ResponseTimeAvg
+      - id: 166
+        name: NetworkErrors
+      - id: 167
+        name: TotalPageLoadTime
+      - id: 168
+        name: FirstPaint
+      - id: 169
+        name: FirstContentfulPaint
+      - id: 170
+        name: TimeToInteractive
+      - id: 171
+        name: FirstInputDelay
+      - id: 172
+        name: EngagementTime
+      - id: 173
+        name: FirstEngagement
+      - id: 174
+        name: PageAborts
+      - id: 175
+        name: FullyLoadedMark
+      - id: 176
+        name: FullyVisibleMark
+      - id: 177
+        name: AboveTheFoldMark
+      - id: 178
+        name: TimeToUserActionMark
+      - id: 179
+        name: TimeonPage
+      - id: 180
+        name: ItemErrors
+      - id: 181
+        name: TimeToFirstByteTimePage
+      - id: 182
+        name: Announcements
+      - id: 183
+        name: Withdrawals
+      - id: 184
+        name: RoutingEvents
+      - id: 185
+        name: FullConnect
+      - id: 186
+        name: BgpEvents
+      - id: 187
+        name: AverageFramesPerSecond
+      - id: 188
+        name: DnsA
+      - id: 189
+        name: DnsAaaa
+      - id: 190
+        name: DnsCname
+      - id: 191
+        name: DnsNs
+      - id: 192
+        name: '# Alerts'
+      - id: 193
+        name: '# Alerts'
+      - id: 194
+        name: '# Alerts'
+      - id: 195
+        name: CachedItemsCount
+      - id: 196
+        name: CpuUtilization
+      - id: 197
+        name: MemoryUtilization
+      - id: 198
+        name: WifiSignalStrength
+      - id: 199
+        name: WifiSignalQuality
+      - id: 200
+        name: DownloadTime
+      - id: 201
+        name: Response (ms)
+      - id: 202
+        name: DownloadThroughput
+      - id: 203
+        name: GetTime
+      - id: 204
+        name: DownloadFileSize
+      - id: 205
+        name: UploadTime
+      - id: 206
+        name: TimeToFetch
+      - id: 207
+        name: MessageSizeBytes
+      - id: 208
+        name: TestErrorCount
+      - id: 209
+        name: MessageSize
+      - id: 210
+        name: RequestsCount
+      - id: 211
+        name: PageLoadTime
+      - id: 212
+        name: TraceRouteRoundtripTime
+      - id: 213
+        name: Latency
+      - id: 214
+        name: EndpointTestRunCount
+      - id: 238
+        name: App Score
+      - id: 239
+        name: Endpoint Score
+      - id: 240
+        name: Network Score
+      - id: 241
+        name: Experience Score
+      - id: 242
+        name: PageViewsWithPageUnavailable
+      - id: 243
+        name: LargestContentfulPaint
+      - id: 244
+        name: CumulativeLayoutShift
+      - id: 245
+        name: Formula
+      - id: 246
+        name: Jitter
+      - id: 247
+        name: UniqueNodes
+      - id: 248
+        name: Upload (Mbps)
+      - id: 249
+        name: Download (Mbps)
+      - id: 250
+        name: SubSourceWebPageResponse
+      - id: 251
+        name: LighthousePerformanceScore
+      - id: 252
+        name: LighthouseAccessibilityScore
+      - id: 253
+        name: LighthouseBestPracticesScore
+      - id: 254
+        name: LighthousePwaScore
+      - id: 255
+        name: LighthouseSeoScore
+      - id: 256
+        name: CpuEvaluateScript
+      - id: 257
+        name: Cpuv8Compile
+      - id: 258
+        name: CpuParseHTML
+      - id: 259
+        name: CpuParseAuthorStyleSheet
+      - id: 260
+        name: CpuUpdateLayoutTree
+      - id: 261
+        name: CpuLayout
+      - id: 262
+        name: CpuPaint
+      - id: 263
+        name: CpuFunctionCall
+      - id: 264
+        name: CpuFireAnimationFrame
+      - id: 265
+        name: CpuXhrLoad
+      - id: 266
+        name: CpuIdle
+      - id: 267
+        name: FullyLoadedCpuTime
+      - id: 268
+        name: FullyLoadedCpuPct
+      - id: 269
+        name: DomElements
+      - id: 270
+        name: EffectiveBpsDoc
+      - id: 271
+        name: LongJsTaskTime
+      - id: 272
+        name: LongJsTaskCount
+      - id: 273
+        name: LongestJsTaskTime
+      - id: 274
+        name: RenderBlockingCss
+      - id: 275
+        name: RenderBlockingJs
+      - id: 276
+        name: WebPageResponse
+      - id: 277
+        name: EndpointEmployeeAppTracerouteRuns
+      - id: 278
+        name: EndpointTraceroutePingRuns
+      - id: 279
+        name: EndpointEmployeeAppPageViews
+      - id: 280
+        name: EndpointRuns
+      - id: 281
+        name: TotalBlockingTime
+      - id: 282
+        name: EndpointTraceroutePingErrorCount
+      - id: 283
+        name: NamedField
+      - id: 284
+        name: BgpReachabilityPct
+      - id: 285
+        name: SyntheticExperienceScore
+      - id: 286
+        name: EndpointTracerouteRuns
+      - id: 287
+        name: DnssecTime
+      - id: 288
+        name: WptRequestDuration
+      - id: 289
+        name: WptRequestStartTime
+      - id: 290
+        name: WptRequestSizeBytes
+      - id: 291
+        name: MainThreadExecution
+      - id: 292
+        name: TransferTime
+      - id: 293
+        name: TransferSize
+      - id: 294
+        name: LongJsTasks
+      - id: 295
+        name: BgpRpkiMatches
+      - id: 296
+        name: BgpRpkiUnmatchedLength
+      - id: 297
+        name: BgpRpkiUnmatchedOriginAsn
+      - id: 298
+        name: PathMtu
+      - id: 299
+        name: TcpMss
+      - id: 300
+        name: NprobePacketsIn
+      - id: 301
+        name: NprobePacketsOut
+      - id: 302
+        name: CallQualityScore
+      - id: 303
+        name: CallThroughput
+      - id: 304
+        name: SelfBottleneckTime
+      - id: 305
+        name: ThirdPartyBottleneckTime
+      - id: 306
+        name: LoadEventTime
+      - id: 307
+        name: PageViewsWithTraceRouteLoops
+      - id: 308
+        name: AlertTriggerPercent
+      - id: 309
+        name: InteractionToNextPaint
+      - id: 310
+        name: PacketDropPercent
+      - id: 311
+        name: NProbeRFactor25Percentile
+      - id: 312
+        name: PingPacketLossPercentPerRun
+      - id: 313
+        name: OutageScorePageViews
+      - id: 314
+        name: OutageScorePageViewsIncomplete
+      - id: 315
+        name: OutageScorePageViewsBenchmarks
+      - id: 316
+        name: OutageScorePageViewsIncompleteBenchmarks
+      - id: 317
+        name: OutageScoreClientCount
+      - id: 318
+        name: OutageScoreDivisionCount
+      - id: 319
+        name: OutageScoreIsEndOfOutage
+      - id: 320
+        name: OutageScore
+      - id: 321
+        name: OutageScoreClientsWithDowntimeCount
+      - id: 322
+        name: OutageScoreDivisionsWithDowntimeCount
+      - id: 323
+        name: CallJitter
+      - id: 324
+        name: HistoricalDownTimePct
+      - id: 325
+        name: '% Impact'
+      - id: 326
+        name: TracingDuration
+      - id: 327
+        name: TracingThroughput
+      - id: 328
+        name: TracingAppScore
+      - id: 329
+        name: TracingTransactionCount
+      - id: 330
+        name: TracingFailedTransactionCount
+      - id: 331
+        name: TracingSuccessfulTransactionCount
+      - id: 332
+        name: OutageDuration
+      - id: 333
+        name: TracingTargetDuration
+      - id: 334
+        name: DeadClicks
+      - id: 335
+        name: ErrorClicks
+      - id: 336
+        name: RageClicks
+      - id: 337
+        name: ThrashedCursor
+      - id: 338
+        name: ThrashedCursorPct
+      - id: 339
+        name: ProcessCpuUtilization
+      - id: 340
+        name: ProcessMemoryUtilization
+      - id: 341
+        name: PageViewsByOutageIspAsnDestinationPair
+      - id: 342
+        name: BGPPathChanges
+      - id: 343
+        name: DataTransferTime
+      - id: 344
+        name: HttpErrorsCount
+      - id: 345
+        name: NetworkErrorCount
+      - id: 346
+        name: BatteryPercent
+      - id: 347
+        name: TimeToFirstByteTime
+      - id: 348
+        name: NumberOfRequests
+      - id: 349
+        name: TimeOnScreen
+      - id: 350
+        name: SessionsCount
+      - id: 351
+        name: ScreensPerSessionCount
+      - id: 352
+        name: RequestsPerSessionCount
+      - id: 353
+        name: SessionsWithHttpErrorsCount
+      - id: 354
+        name: SessionsWithNetworkErrorsCount
+      - id: 355
+        name: TimeToFullyDisplay
+      - id: 356
+        name: MemoryCapacity
+      - id: 357
+        name: MobileRequestsCount
+      - id: 358
+        name: MobileErrorsCount
+      - id: 359
+        name: MobileSessionsWithCrashes
+      - id: 360
+        name: MobileErrorRatePerSession
+      - id: 361
+        name: MobileCrashRatePerSession
+      - id: 362
+        name: MobilePercentCrashRate
+      - id: 363
+        name: MobileSessionErrorPercent
+      - id: 364
+        name: MobileAppErrorCount
+      - id: 365
+        name: MobileSessionCrashPercent
+      - id: 366
+        name: MobileErrorCount
+      - id: 367
+        name: BannerExchangeTimeMSec
+      - id: 368
+        name: ServiceRequestExchangeTimeMSec
+      - id: 369
+        name: MobileRequestErrorCount
+      - id: 370
+        name: ErrorSessionsCount
+      - id: 371
+        name: TracingOperationScore
+      - id: 372
+        name: TracingOperationCount
+      - id: 373
+        name: TracingSuccessfulOperationCount
+      - id: 374
+        name: TracingFailedOperationCount
+      - id: 375
+        name: SessionLength
+      - id: 376
+        name: TracingMetricValue
+      - id: 377
+        name: WebCrashCount
+      - id: 378
+        name: FirstContentfulPaintScore
+      - id: 379
+        name: TotalBlockingTimeScore
+      - id: 380
+        name: LargestContentfulPaintScore
+      - id: 381
+        name: CumulativeLayoutShiftScore
+      - id: 382
+        name: LegacyExperienceScore
+      type: integer
+      format: int32
+    Catchpoint.Symphony.REST.Common.Models.InfoMessage:
+      type: object
+      properties:
+        information:
+          type: string
+          nullable: true
+        ignoredPath:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.ConsumerStatistics:
+      type: object
+      properties:
+        consumerId:
+          type: integer
+          format: int32
+        requestCount:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        maxPerDay:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationDetailResponse:
+      type: object
+      properties:
+        section:
+          type: string
+          nullable: true
+        enumeration:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Nullable`1[System.Int32]]'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.ViewModels.MessageModel:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        message:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath:
+      type: object
+      properties:
+        ops:
+          type: string
+          nullable: true
+        path:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Slo.SloViolationAPIModel:
+      type: object
+      properties:
+        testId:
+          type: integer
+          format: int64
+        sloId:
+          type: integer
+          format: int32
+        testName:
+          type: string
+          nullable: true
+        objectiveName:
+          type: string
+          nullable: true
+        metricType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.Metrics.AnalyticsMetric'
+        statusType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.DomainStatus'
+        goal:
+          type: number
+          format: double
+        violationStart:
+          type: string
+          format: date-time
+        violationEnd:
+          type: string
+          format: date-time
+        minsInViolation:
+          type: integer
+          format: int32
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.Limit:
+      type: object
+      properties:
+        minute:
+          type: integer
+          format: int32
+        hour:
+          type: integer
+          format: int32
+        day:
+          type: integer
+          format: int32
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.SloDeleteResponse]:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.SloDeleteResponse'
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+          nullable: true
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+          nullable: true
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type: string
+          nullable: true
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+    Catchpoint.Symphony.Enums.Alerts.NodeThresholdType:
+      enum:
+      - id: 0
+        name: Runs
+      - id: 1
+        name: AverageAcrossNodes
+      - id: 2
+        name: Node
+      type: integer
+      format: int32
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Slo.SloAPIModel:
+      required:
+      - goal
+      - goalOperatorType
+      - id
+      - metricType
+      - name
+      - status
+      - testIds
+      - violationConditionInTheLast
+      - violationThresholdType
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          maxLength: 128
+          minLength: 0
+          type: string
+        description:
+          maxLength: 128
+          minLength: 0
+          type: string
+          nullable: true
+        divisionId:
+          type: integer
+          format: int32
+          nullable: true
+        testIds:
+          minItems: 1
+          type: array
+          items:
+            type: integer
+            format: int64
+        status:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.DomainStatus'
+        metricType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.Metrics.AnalyticsMetric'
+        violationThresholdType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.Alerts.NodeThresholdType'
+        violationThresholdOperatorType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.Alerts.OperatorType'
+        violationThresholdValue:
+          type: number
+          format: float
+          nullable: true
+        violationConditionNumberOfUnits:
+          type: integer
+          format: int64
+          nullable: true
+        violationConditionPercentageOfUnits:
+          type: number
+          format: float
+          nullable: true
+        violationConditionConsecutiveRunsEnabled:
+          type: boolean
+          nullable: true
+        violationConditionConsecutiveRuns:
+          type: integer
+          format: int32
+          nullable: true
+        violationConditionInTheLast:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.Alerts.AlertTimeThresholdInterval'
+        goal:
+          type: number
+          format: float
+        goalOperatorType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.Alerts.OperatorType'
+        changeDate:
+          type: string
+          format: date-time
+          nullable: true
+        createDate:
+          type: string
+          format: date-time
+          nullable: true
+        changeContactId:
+          type: integer
+          format: int32
+          nullable: true
+        createContactId:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Enums.Alerts.AlertTimeThresholdInterval:
+      enum:
+      - id: 0
+        name: Default
+      - id: 1
+        name: 1 Minute
+      - id: 5
+        name: 5 Minutes
+      - id: 10
+        name: 10 Minutes
+      - id: 15
+        name: 15 Minutes
+      - id: 20
+        name: 20 Minutes
+      - id: 30
+        name: 30 Minutes
+      - id: 45
+        name: 45 Minutes
+      - id: 60
+        name: 60 Minutes
+      - id: 120
+        name: 2 Hours
+      - id: 360
+        name: 6 Hours
+      - id: 720
+        name: 12 Hours
+      type: integer
+      format: int32
+    Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Nullable`1[System.Int32]]:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          nullable: true
+        name:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.DivisionUsageStatistics:
+      type: object
+      properties:
+        divisionId:
+          type: integer
+          format: int32
+        consumerStatistics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ConsumerStatistics'
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.SloGetResponse:
+      type: object
+      properties:
+        slos:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Slo.SloAPIModel'
+          nullable: true
+        hasMore:
+          type: boolean
+          nullable: true
+        next:
+          type: string
+          nullable: true
+        previous:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.SloPostResponse:
+      type: object
+      properties:
+        slos:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Slo.SloAPIModel'
+          nullable: true
+        ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+          nullable: true
+        hasMore:
+          type: boolean
+          nullable: true
+        next:
+          type: string
+          nullable: true
+        previous:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.Enums.DomainStatus:
+      enum:
+      - id: 0
+        name: Active
+      - id: 1
+        name: Inactive
+      - id: 2
+        name: Archived
+      - id: 3
+        name: Suspended
+      - id: 4
+        name: SuspendedByAdmin
+      - id: 5
+        name: Open
+      - id: 6
+        name: Resolved
+      - id: 7
+        name: Deleted
+      - id: 8
+        name: OverSubscribed
+      - id: 9
+        name: Published
+      - id: 10
+        name: Draft
+      - id: 11
+        name: NeedsApproval
+      type: integer
+      format: int32
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.SloGetViolationsResponse]
+    : type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.SloGetViolationsResponse'
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+          nullable: true
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+          nullable: true
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type: string
+          nullable: true
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationResponse]:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationResponse'
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+          nullable: true
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+          nullable: true
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type: string
+          nullable: true
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.SloPostResponse]:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.SloPostResponse'
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+          nullable: true
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+          nullable: true
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type: string
+          nullable: true
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
