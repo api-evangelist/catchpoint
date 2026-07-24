@@ -1,0 +1,45 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.catchpoint.com/docs/release-notes
+scheme: named-monthly-releases
+detail: >-
+  Catchpoint ships dated, code-named platform releases (roughly monthly). Release
+  notes are published per release; agent releases are tracked separately under Agent
+  Releases. The list below is the recent window from the documentation index.
+current_release: 2026-06-Miranda
+entries:
+  - release: Miranda
+    date: '2026-06'
+    url: https://docs.catchpoint.com/docs/2026-06-miranda-release-notes
+    highlights:
+      - No-Code Transaction Test with browser recorder extension and WYSIWYG editor, exportable to Playwright.
+      - Playwright-based Streaming Test for HLS/DASH/MP4 video playback metrics (initial buffer, play time, total buffer time, buffer counter).
+      - Redesigned Point Allocation UI with allocation health indicators and projected usage.
+  - release: Europa
+    date: '2026-04'
+    url: https://docs.catchpoint.com/docs/2026-04-europa-release-notes
+  - release: Triton
+    date: '2026-03'
+    url: https://docs.catchpoint.com/docs/2026-03-triton-release-notes
+  - release: Afterglow
+    date: '2026-01'
+    url: https://docs.catchpoint.com/docs/2026-01-afterglow-release-notes
+  - release: Halo
+    date: '2025-10'
+    url: https://docs.catchpoint.com/docs/2025-10-halo-release-notes
+  - release: Moonbeam
+    date: '2025-09'
+    url: https://docs.catchpoint.com/docs/2025-09-moonbeam-release-notes
+  - release: Starlight
+    date: '2025-07'
+    url: https://docs.catchpoint.com/docs/2025-07-starlight-release-notes
+  - release: Glimmer
+    date: '2025-05'
+    url: https://docs.catchpoint.com/docs/2025-05-glimmer-release-notes
+  - release: Eclipse
+    date: '2025-03'
+    url: https://docs.catchpoint.com/docs/2025-03-eclipse-release-notes
+  - release: Aurora
+    date: '2025-02'
+    url: https://docs.catchpoint.com/docs/2025-02-aurora-release-notes
+agent_releases: https://docs.catchpoint.com/docs/agent-releases

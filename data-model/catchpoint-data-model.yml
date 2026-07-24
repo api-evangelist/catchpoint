@@ -1,0 +1,101 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/catchpoint-rest-api-v2-openapi-original.json
+docs: https://docs.catchpoint.com/docs/products-and-folders-overview
+detail: >-
+  Entity graph derived from REST API v2 resource paths (/v2/*) and the documented
+  Catchpoint control-center hierarchy (Division > Product > Folder > Test). Test
+  execution binds Tests to Nodes/Node Groups via targeting; Alerts and Contacts
+  provide the notification model. Schema names in the spec are .NET-style
+  (Catchpoint.Symphony.REST.Common.Response.v2_0.*APIModel).
+entities:
+  - name: Division
+    path: /v2/divisions
+    description: Top-level tenant partition; keys can be client-level or division-level.
+  - name: Product
+    path: /v2/products
+    description: Container grouping folders/tests within a division; also carries point allocation.
+  - name: Folder
+    path: /v2/folders
+    description: Organizational container for tests, supporting inheritance from parent product/folder.
+  - name: Test
+    path: /v2/tests
+    description: A synthetic monitoring test (Web, Transaction, API, DNS, BGP, SSL, Ping, etc.); the core resource.
+  - name: Alert
+    path: /v2/tests/alerts
+    description: Alert configuration/state associated with a test.
+  - name: Node
+    path: /v2/nodes
+    description: A monitoring vantage point (backbone, cloud, last-mile, wireless, enterprise).
+  - name: NodeGroup
+    path: /v2/nodegroups
+    description: Named group of nodes used for test targeting.
+  - name: Instance
+    path: /v2/instances
+    description: A running instance of a node.
+  - name: Contact
+    path: /v2/contacts
+    description: A person/endpoint that receives alert notifications.
+  - name: Label
+    path: /v2/library/labels
+    description: Key/value labels applied to tests and other resources.
+  - name: Credential
+    path: /v2/library/credentials
+    description: Stored credentials/certificates library used by tests.
+  - name: SLO
+    path: /v2/slos
+    description: Service Level Objective definition and violations.
+  - name: SLA
+    path: /v2/slas
+    description: Service Level Agreement items.
+  - name: Insight
+    path: /v2/insights
+    description: Analytical insight tokens over test data.
+  - name: EndpointDevice
+    path: /v2/endpoints/device
+    description: Employee/endpoint device (workforce experience monitoring).
+relationships:
+  - from: Product
+    to: Division
+    type: belongs_to
+    via: divisionId
+  - from: Folder
+    to: Product
+    type: belongs_to
+    via: productId
+  - from: Test
+    to: Folder
+    type: belongs_to
+    via: folderId
+  - from: Test
+    to: Node
+    type: has_many
+    via: nodeIds (targeting)
+  - from: Test
+    to: NodeGroup
+    type: has_many
+    via: nodeGroupIds (targeting)
+  - from: Alert
+    to: Test
+    type: belongs_to
+    via: testId
+  - from: Alert
+    to: Contact
+    type: has_many
+    via: contactGroupIds (notifications)
+  - from: Instance
+    to: Node
+    type: belongs_to
+    via: nodeId
+  - from: SLO
+    to: Test
+    type: has_many
+    via: testIds
+  - from: Test
+    to: Label
+    type: has_many
+    via: labels
+  - from: Test
+    to: Credential
+    type: has_many
+    via: credentialIds

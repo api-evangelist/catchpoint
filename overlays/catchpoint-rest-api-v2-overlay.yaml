@@ -1,0 +1,35 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Catchpoint REST API v2.0
+  version: 1.0.0
+extends: openapi/catchpoint-rest-api-v2-openapi-original.json
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-enriched: '2026-07-18'
+      x-apievangelist-provider: catchpoint
+      description: >-
+        Catchpoint REST API v2 — programmatic access to the Catchpoint Internet
+        Performance Monitoring platform: synthetic tests, monitoring nodes and node
+        groups, products/folders, alerts, contacts, SLOs, insights, and account/usage
+        reporting. Base URL https://io.catchpoint.com/api. Authenticate with a REST
+        API key passed as a bearer token. JSON responses; page-number pagination with
+        a hasMore flag; HTTP 429 on rate-limit excess.
+      x-authentication-docs: https://docs.catchpoint.com/docs/rest-api-v2-guide
+      x-status-page: https://status.catchpoint.com
+      x-rate-limits:
+        per_second: 7
+        per_minute: 20
+        per_hour: 500
+        per_day: 2000
+  - target: $.servers
+    update:
+      - url: https://io.catchpoint.com/api
+        description: Catchpoint production REST API host (original spec declares the relative path /api)
+  - target: $.info
+    update:
+      x-apievangelist-error-envelope: '{ "errors": [ { "message": "string" } ] }'
+      x-apievangelist-notes: >-
+        Original spec declares only 200 responses and no operationIds; error semantics
+        (400/401/404/429) and the error envelope are captured from the docs in
+        errors/catchpoint-problem-types.yml.

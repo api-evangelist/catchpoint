@@ -1,0 +1,36 @@
+generated: '2026-07-18'
+method: searched
+source: https://github.com/catchpoint
+packages:
+  - language: hcl
+    registry: terraform
+    name: catchpoint/catchpoint
+    url: https://registry.terraform.io/providers/catchpoint/catchpoint/latest
+    source_code: https://github.com/catchpoint/terraform-provider-catchpoint
+    install: 'terraform { required_providers { catchpoint = { source = "catchpoint/catchpoint" } } }'
+    version: 2.0.0
+    official: true
+    description: Official Catchpoint Terraform provider for managing tests and Catchpoint resources as code via the REST API v2.
+  - language: javascript
+    registry: npm
+    name: webpagetest
+    url: https://www.npmjs.com/package/webpagetest
+    source_code: https://github.com/catchpoint/WebPageTest.api-nodejs
+    install: npm install webpagetest
+    version: 0.7.6
+    official: true
+    description: Node.js client and CLI for the Catchpoint WebPageTest API (WebPageTest is a Catchpoint product).
+  - language: javascript
+    registry: github
+    name: foresight-client-sdk
+    url: https://github.com/catchpoint/foresight-client-sdk
+    source_code: https://github.com/catchpoint/foresight-client-sdk
+    official: true
+    description: Client SDK for Catchpoint Foresight (CI observability), maintained in the Catchpoint GitHub org.
+notes: >-
+  Catchpoint's REST API v2 is consumed via a bearer API key; the company does not
+  ship a general-purpose per-language REST SDK. The clearly first-party, published
+  client tooling is the Terraform provider (infrastructure-as-code over the REST API),
+  the WebPageTest Node.js client/CLI, and the Foresight client SDK. Official
+  integration connectors (Splunk, New Relic, Sumo Logic, Google Cloud Monitoring)
+  also live under github.com/catchpoint as Integrations.* repositories.

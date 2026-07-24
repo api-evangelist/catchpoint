@@ -1,0 +1,39 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/catchpoint-rest-api-v2-openapi-original.json
+standards:
+  - id: openapi-3.0
+    conforms: true
+    evidence: Provider publishes an OpenAPI 3.0.1 document at https://io.catchpoint.com/api/swagger/v2.0/swagger.json
+  - id: http-bearer-auth
+    conforms: true
+    evidence: securitySchemes declares http bearer (JWT) applied to operations
+  - id: oauth2
+    conforms: false
+    evidence: REST API v2 uses bearer API keys, not OAuth2 flows
+  - id: oidc
+    conforms: false
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: "Errors use a custom { errors: [ { message } ] } JSON envelope, not application/problem+json"
+  - id: pagination
+    conforms: true
+    evidence: pageNumber/pageSize params with hasMore response flag
+  - id: idempotency
+    conforms: false
+    evidence: No documented idempotency-key contract
+  - id: opentelemetry
+    conforms: true
+    evidence: Test Data Webhook ships an OpenTelemetry template; Tracing product supports OpenTelemetry ingestion
+  - id: soc2-type2
+    conforms: true
+    evidence: Published on trust page (security/catchpoint-trust-center.yml)
+  - id: iso-27001
+    conforms: true
+    evidence: Published on trust page (security/catchpoint-trust-center.yml)
+  - id: gdpr
+    conforms: true
+    evidence: Published on trust page
+  - id: ccpa
+    conforms: true
+    evidence: Published on trust page

@@ -1,0 +1,16 @@
+generated: '2026-07-18'
+method: generated
+api: openapi/catchpoint-rest-api-v2-openapi-original.json
+note: >-
+  The Catchpoint REST API v2 OpenAPI document defines no operationIds, so each skill
+  grounds its steps in the real METHOD + path of the operation (verified present in
+  openapi/catchpoint-rest-api-v2-openapi-original.json).
+skills:
+  - file: catchpoint-provision-synthetic-test.md
+    name: Provision a Catchpoint synthetic test
+    api: openapi/catchpoint-rest-api-v2-openapi-original.json
+    operations: ["GET /v2/nodes", "GET /v2/nodes/groups", "GET /v2/folders", "POST /v2/tests", "GET /v2/tests/{testIds}"]
+  - file: catchpoint-triage-alerts.md
+    name: Triage Catchpoint alerts
+    api: openapi/catchpoint-rest-api-v2-openapi-original.json
+    operations: ["GET /v2/tests/alerts", "GET /v2/tests/alerts/{alertIds}", "GET /v2/tests/alert/state/{testIds}"]

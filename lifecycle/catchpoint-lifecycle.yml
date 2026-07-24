@@ -1,0 +1,28 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.catchpoint.com/docs/rest-api-v2-guide
+versioning:
+  scheme: uri-path
+  current: v2
+  detail: REST API v2 is versioned in the URI path (/api/v2). Swagger UI exposes a version dropdown; v2 rolls out new features additively without breaking existing scripts.
+  docs: https://docs.catchpoint.com/docs/using-catchpoints-swagger-ui
+credentials_lifecycle:
+  key_validity: REST API keys valid for two years from generation; regeneration restarts the window; keys can be revoked.
+  rotation: Account-level key expiration (30 days–2 years) with up to two active keys per consumer for zero-downtime rotation.
+  docs: https://docs.catchpoint.com/docs/rest-api-v2-guide
+status_page: https://status.catchpoint.com
+status_page_docs: https://docs.catchpoint.com/docs/catchpoint-system-status
+release_notes: https://docs.catchpoint.com/docs/release-notes
+sla:
+  detail: Catchpoint offers enterprise SLAs contractually; no public uptime SLA document is published on the docs site.
+deprecation:
+  policy_published: false
+  detail: >-
+    No standalone RFC 8594 Sunset/Deprecation-header policy is published for the REST
+    API. Platform changes are communicated through the dated, named monthly release
+    notes (see changelog/catchpoint-changelog.yml). Agent end-of-support changes (e.g.
+    CentOS 7 / RHEL 7 in the Glimmer agent release) are announced in release notes.
+deprecated_operations: []
+cross_references:
+  changelog: changelog/catchpoint-changelog.yml
+  conventions: conventions/catchpoint-conventions.yml

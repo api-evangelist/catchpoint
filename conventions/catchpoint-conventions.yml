@@ -1,0 +1,57 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.catchpoint.com/docs/rest-api-v2-guide
+api: openapi/catchpoint-rest-api-v2-openapi-original.json
+authentication:
+  style: bearer-api-key
+  header: Authorization
+  detail: REST API key passed as a bearer token; see authentication/catchpoint-authentication.yml
+idempotency:
+  supported: false
+  detail: >-
+    Catchpoint REST API v2 does not document an idempotency-key header or parameter.
+    Resource mutation uses REST verbs (POST create, PATCH partial update with
+    add/remove/replace operations, DELETE) without a documented idempotency contract.
+pagination:
+  style: page-number
+  params:
+  - pageNumber
+  - pageSize
+  response_fields:
+  - hasMore
+  detail: >-
+    Endpoints returning large data sets paginate and set hasMore=true in the response
+    while more pages remain. Page is selected with pageNumber and pageSize query params.
+versioning:
+  scheme: uri-path
+  current: v2
+  detail: Version is in the URI path (/api/v2/...). Swagger UI exposes a version dropdown; v2 supports additive versioning to roll out features without breaking scripts.
+  reference: https://docs.catchpoint.com/docs/using-catchpoints-swagger-ui
+date_format:
+  format: 'YYYY-MM-DDTHH:MI:SS'
+  timezone: UTC
+  detail: All start/end time query parameters are UTC in YYYY-MM-DDTHH:MI:SS.
+parameters:
+  case_sensitive: true
+  multi_param_logic: AND
+  detail: All parameters are case sensitive; multiple query parameters are combined with AND.
+error_envelope:
+  shape: '{ "errors": [ { "message": "..." } ] }'
+  detail: Errors are returned as a JSON object with an errors[] array of message objects; see errors/catchpoint-problem-types.yml
+  cross_ref: errors/catchpoint-problem-types.yml
+rate_limit_signaling:
+  detail: Per-consumer/IP limits; exceeding them returns HTTP 429. Default limits 7/sec, 20/min, 500/hour, 2000/day (account limits configurable).
+  cross_ref: rate-limits/catchpoint-rate-limits.yml
+  reference: https://docs.catchpoint.com/docs/enforcing-rest-api-limits
+response_format:
+  media_types:
+  - application/json
+  accept_headers:
+  - '*/*'
+  - application/json
+  - text/json
+  - text/plain
+cross_references:
+  authentication: authentication/catchpoint-authentication.yml
+  errors: errors/catchpoint-problem-types.yml
+  lifecycle: lifecycle/catchpoint-lifecycle.yml

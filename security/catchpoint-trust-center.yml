@@ -1,0 +1,26 @@
+generated: '2026-07-18'
+method: searched
+probe: false
+url: https://www.catchpoint.com/legal/trust
+certifications:
+  - SOC 2 Type 2
+  - ISO 27001
+compliance_programs:
+  - GDPR
+  - CCPA
+practices:
+  - Annual third-party penetration testing
+  - Quarterly vulnerability scans with remediation
+  - NIST-aligned server deployment standards
+  - 24x7 Security Operations Center (SOC) with SIEM, IDS, and threat response
+contacts:
+  privacy: privacy@catchpoint.com
+  legal: Legal-dept@catchpoint.com
+evidence:
+  - source: https://www.catchpoint.com/legal/trust
+    keywords: [soc 2 type 2, iso 27001, gdpr, ccpa, penetration testing, trust center]
+notes: >-
+  Certifications and compliance programs are published on the Catchpoint trust page.
+  No public bug-bounty or formal responsible-disclosure program (HackerOne/Bugcrowd/
+  Intigriti or a /.well-known/security.txt) was found, so no VulnerabilityDisclosure
+  artifact is emitted.

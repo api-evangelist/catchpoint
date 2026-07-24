@@ -1,0 +1,40 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.catchpoint.com/docs/rest-api-v2-guide
+format: custom-json
+envelope:
+  shape: '{ "errors": [ { "message": "string" } ] }'
+  detail: >-
+    Catchpoint REST API v2 returns errors as a JSON object containing an errors[]
+    array; each item carries a human-readable message. This is not RFC 9457
+    problem+json. The OpenAPI document (openapi/catchpoint-rest-api-v2-openapi-original.json)
+    only declares 200 responses, so the error catalog below is sourced from the docs.
+problems:
+  - status: 400
+    title: Validation error
+    detail: >-
+      Returned for request validation failures — e.g. creating a test with a name that
+      already exists, payload deserialization errors (reports the line number and
+      invalid value), or missing required fields in the JSON body.
+    remediation: Correct the payload per the endpoint schema in the Swagger UI and resubmit.
+    source: https://docs.catchpoint.com/docs/rest-api-v2-guide
+  - status: 401
+    title: Unauthorized
+    detail: Missing, invalid, revoked, or expired REST API bearer key.
+    remediation: Supply a valid REST API key as a bearer token in the Authorization header; regenerate the key in the Portal if expired/revoked.
+    source: https://io.catchpoint.com/api/v2/nodes
+  - status: 429
+    title: Too Many Requests
+    detail: >-
+      Per-second/minute/hour/day rate limit exceeded for the consumer or account.
+      Default per-consumer limits are 7/sec, 20/min, 500/hour, 2000/day; account-level
+      limits apply across divisions/consumers.
+    remediation: Back off and retry; distribute load across consumers/divisions or request higher account limits.
+    source: https://docs.catchpoint.com/docs/enforcing-rest-api-limits
+  - status: 404
+    title: Not found / does not match filter
+    detail: >-
+      Returned when a referenced resource does not exist or does not match the supplied
+      filter criteria (e.g. GET /v2/tests/alerts with filters that match no alert).
+    remediation: Relax or correct the filter criteria / resource id.
+    source: https://docs.catchpoint.com/docs/rest-api-response-when-the-alert-condition-is-set-to-average-across-nodes

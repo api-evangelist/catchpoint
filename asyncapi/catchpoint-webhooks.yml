@@ -1,0 +1,37 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.catchpoint.com/docs/webhooks
+spec_type: Webhooks
+detail: >-
+  Catchpoint does not publish an AsyncAPI document. It delivers events via
+  configurable outbound webhooks (HTTP POST) from the platform. The webhook families
+  below are documented in the Catchpoint knowledge base; payloads are templated
+  (JSON/XML) with macro substitution and can carry security headers.
+webhooks:
+  - name: Alert Webhook
+    trigger: Alert state changes (warning/critical/recovery) for tests and BGP.
+    payload_formats: [JSON, XML]
+    docs: https://docs.catchpoint.com/docs/alert-webhook-guide
+    templates: https://docs.catchpoint.com/docs/alert-webhook-templates
+    json_result: https://docs.catchpoint.com/docs/alert-webhook-json-result
+    macros: https://docs.catchpoint.com/docs/alert-webhook-macro-index
+    schema: https://docs.catchpoint.com/docs/alertwebhookxsd
+  - name: Test Data Webhook
+    trigger: Streams raw/aggregated synthetic test result data as it is collected.
+    payload_formats: [JSON, XML, OpenTelemetry]
+    docs: https://docs.catchpoint.com/docs/test-data-webhook-guide
+    templates: https://docs.catchpoint.com/docs/test-data-webhook-templates
+    opentelemetry_template: https://docs.catchpoint.com/docs/test-data-webhook-template-example-opentelemetry
+    macros: https://docs.catchpoint.com/docs/test-data-webhook-macros-1
+    security: https://docs.catchpoint.com/docs/test-data-webhook-security-and-wait-times
+    schema: https://docs.catchpoint.com/docs/test-data-webhookxsd
+  - name: BGP Data Webhook
+    trigger: Streams BGP monitoring data / route-change events.
+    docs: https://docs.catchpoint.com/docs/bgp-data-webhook
+  - name: Endpoint Status Page Webhook
+    trigger: Endpoint status-page notifications.
+    docs: https://docs.catchpoint.com/docs/endpoint-status-page-webhook-integration
+security:
+  detail: Webhooks support added security headers/signing; see Add Security for Webhooks.
+  docs: https://docs.catchpoint.com/docs/add-security-for-webhooks
+webhook_mapping: https://docs.catchpoint.com/docs/webhook-mapping
