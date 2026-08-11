@@ -426,6 +426,8 @@ apis:
   - type: APIReference
     url: https://io.catchpoint.com/api/swagger/index.html
 common:
+- type: MCPServer
+  url: mcp/catchpoint-mcp.yml
 - type: Website
   url: https://www.catchpoint.com/
 - type: DeveloperPortal
