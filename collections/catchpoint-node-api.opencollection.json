@@ -1,0 +1,444 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Catchpoint REST API v2.0 Account Node API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Node",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns node details by Node ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/nodes/:nodeIds",
+            "params": [
+              {
+                "name": "nodeIds",
+                "value": "",
+                "type": "path",
+                "description": "Comma-separated list of Node IDs"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Works only on Enterprise and Customer owned Nodes."
+        },
+        {
+          "info": {
+            "name": "Returns the details of Enterprise Nodes within a Client or a Division.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/nodes",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Node name"
+              },
+              {
+                "name": "statusId",
+                "value": "",
+                "type": "query",
+                "description": "Node status. “0” for Active; “1” for Inactive"
+              },
+              {
+                "name": "networkType",
+                "value": "",
+                "type": "query",
+                "description": "Network Type (refer InternalLink[Test Enumeration Endpoint,operations-tag-Test,operations-Test-get_v2_tests_enumeration]). Accepted values: “3” for Enterprise (pt); “4” for Enterprise"
+              },
+              {
+                "name": "city",
+                "value": "",
+                "type": "query",
+                "description": "City name"
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "Country name"
+              },
+              {
+                "name": "paused",
+                "value": "",
+                "type": "query",
+                "description": "Nodes paused"
+              },
+              {
+                "name": "ipv6",
+                "value": "",
+                "type": "query",
+                "description": "IPV6 nodes"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "When no parameter is passed, all active node details are returned."
+        },
+        {
+          "info": {
+            "name": "Returns the details of nodes of all network types based on parameters passed.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/nodes/all",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Node Name"
+              },
+              {
+                "name": "targeted",
+                "value": "",
+                "type": "query",
+                "description": "Nodes used in tests"
+              },
+              {
+                "name": "active",
+                "value": "",
+                "type": "query",
+                "description": "Nodes in active state"
+              },
+              {
+                "name": "paused",
+                "value": "",
+                "type": "query",
+                "description": "Nodes paused"
+              },
+              {
+                "name": "networkType",
+                "value": "",
+                "type": "query",
+                "description": "Network Type (refer InternalLink[Test Enumeration Endpoint,operations-tag-Test,operations-Test-get_v2_tests_enumeration])"
+              },
+              {
+                "name": "city",
+                "value": "",
+                "type": "query",
+                "description": "City Name"
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "Country Name"
+              },
+              {
+                "name": "ipv6",
+                "value": "",
+                "type": "query",
+                "description": "IPV6 nodes"
+              },
+              {
+                "name": "asn",
+                "value": "",
+                "type": "query",
+                "description": "AS name"
+              },
+              {
+                "name": "asNumber",
+                "value": "",
+                "type": "query",
+                "description": "AS number"
+              },
+              {
+                "name": "pageNumber",
+                "value": "",
+                "type": "query",
+                "description": "Page number to return records from when the number of records exceeds pageSize."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results that is returned per page. Maximum value is 100."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "*[Analytics Endpoint]*"
+        },
+        {
+          "info": {
+            "name": "Returns the Node state, paused or not, based on the Node IDs passed.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/nodes/state/:nodeIds",
+            "params": [
+              {
+                "name": "nodeIds",
+                "value": "",
+                "type": "path",
+                "description": "Comma-separated list of Node IDs"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Works only on Enterprise and Customer owned Nodes."
+        },
+        {
+          "info": {
+            "name": "Allows to pause or resume an existing node.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/api/v2/nodes/state",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Works only on Enterprise and Customer owned Nodes.\r\n            \r\nTo get payload for updating a Node State refer InternalLink[Node State Endpoint,operations-tag-Node,operations-Node-get_v2_nodes_state__nodeIds_]. State ID values – “0” for Resume; “1” for Pause. There can be multiple nodes in the payload for which the state update is intended."
+        },
+        {
+          "info": {
+            "name": "Returns the Node status, active or inactive, based on the Node IDs passed.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/nodes/status/:nodeIds",
+            "params": [
+              {
+                "name": "nodeIds",
+                "value": "",
+                "type": "path",
+                "description": "Comma-separated list of Node IDs"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Works on Enterprise Nodes and Customer owned Nodes."
+        },
+        {
+          "info": {
+            "name": "Allows to set the status of an existing node to Active or Inactive.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/api/v2/nodes/status",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Works only on Enterprise and Customer owned Nodes.\r\n            \r\nTo get payload for updating a Node Status refer InternalLink[Node Status Endpoint,operations-tag-Node,operations-Node-get_v2_nodes_status__nodeIds_] Endpoint. Status ID values – “0” for Active; “1” for Inactive. There can be multiple nodes in the payload for which the status update is intended."
+        },
+        {
+          "info": {
+            "name": "Update properties of an existing node.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/api/v2/nodes/:nodeId",
+            "params": [
+              {
+                "name": "nodeId",
+                "value": "",
+                "type": "path",
+                "description": "Node ID"
+              },
+              {
+                "name": "objectDetails",
+                "value": "",
+                "type": "query",
+                "description": "Set to true to return the updated object in the response body, otherwise the response body will only return the updated object ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Works only on Enterprise and Customer owned Nodes.\r\n            \r\n**Request:**\r\n            \r\nOnly the property to be updated can be passed in the request body instead of the whole object. The update request body requires a total of three keys to be filled with appropriate value as listed below:\r\n* **value** – The value property provides the new value.\r\n            \r\n* **path** – The path property indicates the element to update. The entire path with slashes needs to be provided here. Example: /"
+        },
+        {
+          "info": {
+            "name": "Returns a list of all the operating system names that match the parameter passed.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/nodes/os",
+            "params": [
+              {
+                "name": "osName",
+                "value": "",
+                "type": "query",
+                "description": "Operating System Name. A “contains” operation is performed on the parameter."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "If no parameter is passed, list of all the operating system names running on the nodes are returned."
+        },
+        {
+          "info": {
+            "name": "Returns a list of all the ISP names that match the parameter passed.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/nodes/isp",
+            "params": [
+              {
+                "name": "ispName",
+                "value": "",
+                "type": "query",
+                "description": "ISP Name. A “contains” operation is performed on the parameter."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "If no parameter is passed, list of all the ISP names of the nodes are returned."
+        },
+        {
+          "info": {
+            "name": "Returns the available enterprise packages for the Client or Division.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/nodes/package",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the available enterprise packages for the Client or Division."
+        },
+        {
+          "info": {
+            "name": "Returns all the available cities that can be used while creating a Node.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/nodes/geographycity",
+            "params": [
+              {
+                "name": "cityName",
+                "value": "",
+                "type": "query",
+                "description": "City Name. A “contains” operation is performed on the parameter."
+              },
+              {
+                "name": "pageNumber",
+                "value": "",
+                "type": "query",
+                "description": "Page number to return records from when the number of records exceeds pageSize"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results that is returned per page. Maximum value is 100."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns all the available cities that can be used while creating a Node."
+        },
+        {
+          "info": {
+            "name": "Retrieves the Chrome versions information for the Enterprise node, this will include all versions installed on the node, even if not targeted.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/nodes/chromeversions",
+            "params": [
+              {
+                "name": "nodeId",
+                "value": "",
+                "type": "query",
+                "description": "The id of an enterprise node."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves the Chrome versions information for the Enterprise node, this will include all versions installed on the node, even if not targeted."
+        },
+        {
+          "info": {
+            "name": "Update the chrome versions for the specified Enterprise node based on the payload sent.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v2/nodes/chromeversions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update the chrome versions for the specified Enterprise node based on the payload sent."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

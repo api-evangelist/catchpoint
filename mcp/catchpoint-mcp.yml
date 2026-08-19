@@ -741,3 +741,9 @@ tools:
   source_operation: openapi/catchpoint-rest-api-v2-openapi-original.json#POST /v2/workflow/{workflow_id}
   tags:
   - Workflow
+deployment:
+  mode: none
+  verified: derived
+  tools: 145
+  checked: '2026-08-12'
+  source: catalog MCP census

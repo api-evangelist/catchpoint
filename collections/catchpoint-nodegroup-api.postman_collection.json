@@ -1,0 +1,906 @@
+{
+  "item": [
+    {
+      "id": "6fb6765f-0968-4974-91df-f2a8d33baa44",
+      "name": "NodeGroup",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "00cdb661-008c-40fd-9218-1bb8057345a1",
+          "name": "Returns the node group details based on the ID.",
+          "request": {
+            "name": "Returns the node group details based on the ID.",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "nodes",
+                "groups",
+                ":nodeGroupIds"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "nodeGroupIds",
+                  "description": "(Required) Comma-separated list of Node Group IDs"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a8ab1a44-4ea3-4eeb-8e2e-14de37962d21",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "nodes",
+                    "groups",
+                    ":nodeGroupIds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "nodeGroupIds",
+                      "description": "(Required) Comma-separated list of Node Group IDs"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"nodeGroups\": [\n      {\n        \"id\": 9958,\n        \"name\": \"string\",\n        \"changeDate\": \"1954-06-04T14:40:25.065Z\",\n        \"description\": \"string\",\n        \"syntheticNetworkType\": {\n          \"id\": 4153,\n          \"name\": \"string\"\n        },\n        \"divisionId\": 3078,\n        \"nodesCount\": 4998,\n        \"nodes\": [\n          {\n            \"id\": 6533,\n            \"name\": \"string\",\n            \"networkType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ipAddress\": \"string\"\n          },\n          {\n            \"id\": 2236,\n            \"name\": \"string\",\n            \"networkType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ipAddress\": \"string\"\n          }\n        ],\n        \"nodeLocations\": [\n          {\n            \"objectType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"nodesCount\": 2601,\n            \"city\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"continent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"objectType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"nodesCount\": 1656,\n            \"city\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"continent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      {\n        \"id\": 6997,\n        \"name\": \"string\",\n        \"changeDate\": \"1961-01-26T01:50:30.977Z\",\n        \"description\": \"string\",\n        \"syntheticNetworkType\": {\n          \"id\": 7833,\n          \"name\": \"string\"\n        },\n        \"divisionId\": 8560,\n        \"nodesCount\": 5219,\n        \"nodes\": [\n          {\n            \"id\": 3291,\n            \"name\": \"string\",\n            \"networkType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ipAddress\": \"string\"\n          },\n          {\n            \"id\": 9685,\n            \"name\": \"string\",\n            \"networkType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ipAddress\": \"string\"\n          }\n        ],\n        \"nodeLocations\": [\n          {\n            \"objectType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"nodesCount\": 7763,\n            \"city\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"continent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"objectType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"nodesCount\": 2515,\n            \"city\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"continent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    ],\n    \"hasMore\": false,\n    \"next\": \"string\",\n    \"previous\": \"string\"\n  },\n  \"messages\": [\n    {\n      \"information\": \"string\",\n      \"ignoredPath\": [\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        },\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        }\n      ]\n    },\n    {\n      \"information\": \"string\",\n      \"ignoredPath\": [\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        },\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"message\": \"string\"\n    }\n  ],\n  \"completed\": true,\n  \"traceId\": \"string\",\n  \"usageLimits\": {\n    \"clientId\": 4307,\n    \"lastRequestTimestamp\": \"1990-02-05T04:27:40.080Z\",\n    \"limits\": {\n      \"minute\": 5579,\n      \"hour\": 4357,\n      \"day\": 6943\n    },\n    \"runs\": {\n      \"minute\": 2025,\n      \"hour\": 8932,\n      \"day\": 593\n    },\n    \"exceededMessage\": \"string\",\n    \"divisionUsageStatistics\": [\n      {\n        \"divisionId\": 9412,\n        \"consumerStatistics\": [\n          {\n            \"consumerId\": 2689,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 5395\n          },\n          {\n            \"consumerId\": 9300,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 366\n          }\n        ]\n      },\n      {\n        \"divisionId\": 3219,\n        \"consumerStatistics\": [\n          {\n            \"consumerId\": 8691,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 7600\n          },\n          {\n            \"consumerId\": 1857,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 8681\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fd443e99-e543-42dd-9cb8-7c8126b74bfc",
+          "name": "Returns the node group details based on the parameters passed.",
+          "request": {
+            "name": "Returns the node group details based on the parameters passed.",
+            "description": {
+              "content": "When no parameters are passed, all node groups from within the Client or Division are returned.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "nodes",
+                "groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Node group name"
+                },
+                {
+                  "disabled": false,
+                  "key": "networkType",
+                  "value": "<integer>",
+                  "description": "Network Type (refer InternalLink[Network Type Enumeration Endpoint,operations-tag-NodeGroup,operations-NodeGroup-get_v2_nodes_groups_networktype])"
+                },
+                {
+                  "disabled": false,
+                  "key": "nodeId",
+                  "value": "<integer>",
+                  "description": "Node ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "nodeName",
+                  "value": "<string>",
+                  "description": "Node name"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f2b5f9da-a947-4b63-a324-912a701f906e",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "nodes",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "networkType",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nodeId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nodeName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"nodeGroups\": [\n      {\n        \"id\": 6264,\n        \"name\": \"string\",\n        \"changeDate\": \"1992-02-02T23:49:08.976Z\",\n        \"description\": \"string\",\n        \"syntheticNetworkType\": {\n          \"id\": 2588,\n          \"name\": \"string\"\n        },\n        \"divisionId\": 6405,\n        \"nodesCount\": 1564,\n        \"nodes\": [\n          {\n            \"id\": 1240,\n            \"name\": \"string\",\n            \"networkType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ipAddress\": \"string\"\n          },\n          {\n            \"id\": 4951,\n            \"name\": \"string\",\n            \"networkType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ipAddress\": \"string\"\n          }\n        ],\n        \"nodeLocations\": [\n          {\n            \"objectType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"nodesCount\": 5290,\n            \"city\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"continent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"objectType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"nodesCount\": 6695,\n            \"city\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"continent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      {\n        \"id\": 7299,\n        \"name\": \"string\",\n        \"changeDate\": \"1980-02-22T01:05:06.663Z\",\n        \"description\": \"string\",\n        \"syntheticNetworkType\": {\n          \"id\": 2695,\n          \"name\": \"string\"\n        },\n        \"divisionId\": 8602,\n        \"nodesCount\": 2862,\n        \"nodes\": [\n          {\n            \"id\": 456,\n            \"name\": \"string\",\n            \"networkType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ipAddress\": \"string\"\n          },\n          {\n            \"id\": 1021,\n            \"name\": \"string\",\n            \"networkType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ipAddress\": \"string\"\n          }\n        ],\n        \"nodeLocations\": [\n          {\n            \"objectType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"nodesCount\": 2082,\n            \"city\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"continent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"objectType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"nodesCount\": 5187,\n            \"city\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"continent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    ],\n    \"hasMore\": false,\n    \"next\": \"string\",\n    \"previous\": \"string\"\n  },\n  \"messages\": [\n    {\n      \"information\": \"string\",\n      \"ignoredPath\": [\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        },\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        }\n      ]\n    },\n    {\n      \"information\": \"string\",\n      \"ignoredPath\": [\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        },\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"message\": \"string\"\n    }\n  ],\n  \"completed\": false,\n  \"traceId\": \"string\",\n  \"usageLimits\": {\n    \"clientId\": 2750,\n    \"lastRequestTimestamp\": \"1971-09-08T13:39:01.680Z\",\n    \"limits\": {\n      \"minute\": 9204,\n      \"hour\": 6226,\n      \"day\": 9085\n    },\n    \"runs\": {\n      \"minute\": 9387,\n      \"hour\": 1546,\n      \"day\": 2412\n    },\n    \"exceededMessage\": \"string\",\n    \"divisionUsageStatistics\": [\n      {\n        \"divisionId\": 3525,\n        \"consumerStatistics\": [\n          {\n            \"consumerId\": 8355,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 2811\n          },\n          {\n            \"consumerId\": 9152,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 7595\n          }\n        ]\n      },\n      {\n        \"divisionId\": 3771,\n        \"consumerStatistics\": [\n          {\n            \"consumerId\": 2993,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 5292\n          },\n          {\n            \"consumerId\": 9652,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 4909\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1967aa7d-352a-4420-a20c-1d4e15cd5e6d",
+          "name": "Create a new node group based on the PostData.",
+          "request": {
+            "name": "Create a new node group based on the PostData.",
+            "description": {
+              "content": "To get payload for creating a new node group and to get the created node group details refer InternalLink[Node Group by ID Endpoint,operations-tag-NodeGroup,operations-NodeGroup-get_v2_nodes_groups__nodeGroupIds_]. Pass “0” for Node Group ID to create a new Node Group.\r\n            \r\nNote: The divisionId field cannot be used to create a node group in another division. If divisionId is provided, it must match the current level's default division ID; otherwise the request is rejected.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "nodes",
+                "groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "objectDetails",
+                  "value": "<boolean>",
+                  "description": "Set to true to return the created object in the response body, otherwise the response body will only return created object ID."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"changeDate\": \"<dateTime>\",\n  \"description\": \"<string>\",\n  \"syntheticNetworkType\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\"\n  },\n  \"divisionId\": \"<integer>\",\n  \"nodesCount\": \"<integer>\",\n  \"nodes\": [\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"networkType\": \"<integer>\",\n      \"status\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      },\n      \"ipAddress\": \"<string>\"\n    },\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"networkType\": \"<integer>\",\n      \"status\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      },\n      \"ipAddress\": \"<string>\"\n    }\n  ],\n  \"nodeLocations\": [\n    {\n      \"objectType\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      },\n      \"nodesCount\": \"<integer>\",\n      \"city\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      },\n      \"country\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      },\n      \"continent\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      }\n    },\n    {\n      \"objectType\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      },\n      \"nodesCount\": \"<integer>\",\n      \"city\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      },\n      \"country\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      },\n      \"continent\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "581e823b-d8f0-424a-862e-0a8ed52f0083",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "nodes",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "objectDetails",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"changeDate\": \"<dateTime>\",\n  \"description\": \"<string>\",\n  \"syntheticNetworkType\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\"\n  },\n  \"divisionId\": \"<integer>\",\n  \"nodesCount\": \"<integer>\",\n  \"nodes\": [\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"networkType\": \"<integer>\",\n      \"status\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      },\n      \"ipAddress\": \"<string>\"\n    },\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"networkType\": \"<integer>\",\n      \"status\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      },\n      \"ipAddress\": \"<string>\"\n    }\n  ],\n  \"nodeLocations\": [\n    {\n      \"objectType\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      },\n      \"nodesCount\": \"<integer>\",\n      \"city\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      },\n      \"country\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      },\n      \"continent\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      }\n    },\n    {\n      \"objectType\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      },\n      \"nodesCount\": \"<integer>\",\n      \"city\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      },\n      \"country\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      },\n      \"continent\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"nodeGroups\": {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"changeDate\": \"<dateTime>\",\n      \"description\": \"<string>\",\n      \"syntheticNetworkType\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      },\n      \"divisionId\": \"<integer>\",\n      \"nodesCount\": \"<integer>\",\n      \"nodes\": [\n        {\n          \"id\": \"<long>\",\n          \"name\": \"<string>\",\n          \"networkType\": \"<integer>\",\n          \"status\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"ipAddress\": \"<string>\"\n        },\n        {\n          \"id\": \"<long>\",\n          \"name\": \"<string>\",\n          \"networkType\": \"<integer>\",\n          \"status\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"ipAddress\": \"<string>\"\n        }\n      ],\n      \"nodeLocations\": [\n        {\n          \"objectType\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"nodesCount\": \"<integer>\",\n          \"city\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"country\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"continent\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"objectType\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"nodesCount\": \"<integer>\",\n          \"city\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"country\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"continent\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ]\n    },\n    \"hasMore\": false,\n    \"next\": \"string\",\n    \"previous\": \"string\"\n  },\n  \"messages\": [\n    {\n      \"information\": \"string\",\n      \"ignoredPath\": [\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        },\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        }\n      ]\n    },\n    {\n      \"information\": \"string\",\n      \"ignoredPath\": [\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        },\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"message\": \"string\"\n    }\n  ],\n  \"completed\": false,\n  \"traceId\": \"string\",\n  \"usageLimits\": {\n    \"clientId\": 6732,\n    \"lastRequestTimestamp\": \"1999-12-06T04:44:08.279Z\",\n    \"limits\": {\n      \"minute\": 9249,\n      \"hour\": 391,\n      \"day\": 8350\n    },\n    \"runs\": {\n      \"minute\": 568,\n      \"hour\": 8522,\n      \"day\": 6128\n    },\n    \"exceededMessage\": \"string\",\n    \"divisionUsageStatistics\": [\n      {\n        \"divisionId\": 928,\n        \"consumerStatistics\": [\n          {\n            \"consumerId\": 3191,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 7609\n          },\n          {\n            \"consumerId\": 5793,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 1587\n          }\n        ]\n      },\n      {\n        \"divisionId\": 9176,\n        \"consumerStatistics\": [\n          {\n            \"consumerId\": 511,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 9992\n          },\n          {\n            \"consumerId\": 8178,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 1588\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c7abde3d-dd49-4c58-8d79-79c158c4de70",
+          "name": "Update properties of an existing node group based on the request body.",
+          "request": {
+            "name": "Update properties of an existing node group based on the request body.",
+            "description": {
+              "content": "**Request:**\r\n            \r\nOnly the property to be updated can be passed in the request body instead of the whole object. The update request body requires a total of three keys to be filled with appropriate value as listed below:\r\n* **value** – The value property provides the new value.\r\n            \r\n* **path** – The path property indicates the element to update. The entire path with slashes needs to be provided here. Example: /status/id\r\n            \r\n* **op** – The op property indicates the type of operation; we support the following three operations.\r\n            \r\n    * **add** - Add a property or array element. For existing property: set value.\r\n            \r\n    * **Remove** - Remove a property or array element.\r\n            \r\n    * **replace** - Same as remove followed by add at same location.\r\n            \r\n* **from** - [Not Used]\r\n            \r\n    * **Explanation** - The \"from\" parameter represents the starting or current value of the resource that the operation intends to modify. The from parameter is included in the example value schema but is not utilized in this endpoint's functionality. It is reserved for potential future use or could be used in specific scenarios not covered by the current implementation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "nodes",
+                "groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "nodeGroupId",
+                  "value": "<integer>",
+                  "description": "Node Group ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "objectDetails",
+                  "value": "<boolean>",
+                  "description": "Set to true to return the updated object in the response body, otherwise the response body will only return the updated object ID."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"value\": {},\n    \"path\": \"<string>\",\n    \"op\": \"<string>\",\n    \"from\": \"<string>\"\n  },\n  {\n    \"value\": {},\n    \"path\": \"<string>\",\n    \"op\": \"<string>\",\n    \"from\": \"<string>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a73f4137-22ef-4ac8-ba39-ef687f8d3e47",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "nodes",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "nodeGroupId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "objectDetails",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"value\": {},\n    \"path\": \"<string>\",\n    \"op\": \"<string>\",\n    \"from\": \"<string>\"\n  },\n  {\n    \"value\": {},\n    \"path\": \"<string>\",\n    \"op\": \"<string>\",\n    \"from\": \"<string>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"nodeGroups\": {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"changeDate\": \"<dateTime>\",\n      \"description\": \"<string>\",\n      \"syntheticNetworkType\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      },\n      \"divisionId\": \"<integer>\",\n      \"nodesCount\": \"<integer>\",\n      \"nodes\": [\n        {\n          \"id\": \"<long>\",\n          \"name\": \"<string>\",\n          \"networkType\": \"<integer>\",\n          \"status\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"ipAddress\": \"<string>\"\n        },\n        {\n          \"id\": \"<long>\",\n          \"name\": \"<string>\",\n          \"networkType\": \"<integer>\",\n          \"status\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"ipAddress\": \"<string>\"\n        }\n      ],\n      \"nodeLocations\": [\n        {\n          \"objectType\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"nodesCount\": \"<integer>\",\n          \"city\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"country\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"continent\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"objectType\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"nodesCount\": \"<integer>\",\n          \"city\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"country\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"continent\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ]\n    },\n    \"hasMore\": true,\n    \"next\": \"string\",\n    \"previous\": \"string\"\n  },\n  \"messages\": [\n    {\n      \"information\": \"string\",\n      \"ignoredPath\": [\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        },\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        }\n      ]\n    },\n    {\n      \"information\": \"string\",\n      \"ignoredPath\": [\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        },\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"message\": \"string\"\n    }\n  ],\n  \"completed\": false,\n  \"traceId\": \"string\",\n  \"usageLimits\": {\n    \"clientId\": 8854,\n    \"lastRequestTimestamp\": \"1992-05-23T17:30:24.907Z\",\n    \"limits\": {\n      \"minute\": 4561,\n      \"hour\": 9046,\n      \"day\": 6361\n    },\n    \"runs\": {\n      \"minute\": 7950,\n      \"hour\": 5492,\n      \"day\": 4217\n    },\n    \"exceededMessage\": \"string\",\n    \"divisionUsageStatistics\": [\n      {\n        \"divisionId\": 6348,\n        \"consumerStatistics\": [\n          {\n            \"consumerId\": 7568,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 2747\n          },\n          {\n            \"consumerId\": 738,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 9616\n          }\n        ]\n      },\n      {\n        \"divisionId\": 9737,\n        \"consumerStatistics\": [\n          {\n            \"consumerId\": 9515,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 7300\n          },\n          {\n            \"consumerId\": 3989,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 8285\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8e060f38-b578-40fe-a767-7a751c69a4e8",
+          "name": "Deletes existing node group by parameters passed.",
+          "request": {
+            "name": "Deletes existing node group by parameters passed.",
+            "description": {
+              "content": "To delete node group based on the specified list of IDs, the IDs need to be separated by commas. This endpoint allows partial deletion; if you provide a list of five IDs and only three of them are valid, then it will delete those three node groups. The response will indicate the three that were deleted, and the two invalid IDs will be listed as errors.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "nodes",
+                "groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "nodegroupIds",
+                  "value": "<string>",
+                  "description": "Comma-separated list of Node Group IDs"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2c73a461-b13f-417a-8772-5abea599189d",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "nodes",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "nodegroupIds",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"nodeGroups\": [\n      301,\n      6640\n    ],\n    \"hasMore\": false,\n    \"next\": \"string\",\n    \"previous\": \"string\"\n  },\n  \"messages\": [\n    {\n      \"information\": \"string\",\n      \"ignoredPath\": [\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        },\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        }\n      ]\n    },\n    {\n      \"information\": \"string\",\n      \"ignoredPath\": [\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        },\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"message\": \"string\"\n    }\n  ],\n  \"completed\": true,\n  \"traceId\": \"string\",\n  \"usageLimits\": {\n    \"clientId\": 7710,\n    \"lastRequestTimestamp\": \"1962-07-06T03:01:14.573Z\",\n    \"limits\": {\n      \"minute\": 5534,\n      \"hour\": 9399,\n      \"day\": 8778\n    },\n    \"runs\": {\n      \"minute\": 7644,\n      \"hour\": 2626,\n      \"day\": 9999\n    },\n    \"exceededMessage\": \"string\",\n    \"divisionUsageStatistics\": [\n      {\n        \"divisionId\": 2993,\n        \"consumerStatistics\": [\n          {\n            \"consumerId\": 5171,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 7832\n          },\n          {\n            \"consumerId\": 2232,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 5559\n          }\n        ]\n      },\n      {\n        \"divisionId\": 8355,\n        \"consumerStatistics\": [\n          {\n            \"consumerId\": 8241,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 9866\n          },\n          {\n            \"consumerId\": 2765,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 341\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b0ee0d07-cd56-4687-b9e1-a5765b7aadcd",
+          "name": "Returns the list of network types supported for node group.",
+          "request": {
+            "name": "Returns the list of network types supported for node group.",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "nodes",
+                "groups",
+                "networktype"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "feea1175-f0f4-4f92-9cd6-466d52239c7c",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "nodes",
+                    "groups",
+                    "networktype"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"nodeGroups\": {\n      \"networkTypes\": [\n        {\n          \"id\": 5622,\n          \"name\": \"string\"\n        },\n        {\n          \"id\": 7652,\n          \"name\": \"string\"\n        }\n      ],\n      \"hasMore\": true,\n      \"next\": \"string\",\n      \"previous\": \"string\"\n    },\n    \"hasMore\": false,\n    \"next\": \"string\",\n    \"previous\": \"string\"\n  },\n  \"messages\": [\n    {\n      \"information\": \"string\",\n      \"ignoredPath\": [\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        },\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        }\n      ]\n    },\n    {\n      \"information\": \"string\",\n      \"ignoredPath\": [\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        },\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"message\": \"string\"\n    }\n  ],\n  \"completed\": true,\n  \"traceId\": \"string\",\n  \"usageLimits\": {\n    \"clientId\": 9026,\n    \"lastRequestTimestamp\": \"1954-11-20T09:39:04.792Z\",\n    \"limits\": {\n      \"minute\": 8713,\n      \"hour\": 431,\n      \"day\": 5954\n    },\n    \"runs\": {\n      \"minute\": 6251,\n      \"hour\": 837,\n      \"day\": 6095\n    },\n    \"exceededMessage\": \"string\",\n    \"divisionUsageStatistics\": [\n      {\n        \"divisionId\": 32,\n        \"consumerStatistics\": [\n          {\n            \"consumerId\": 6799,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 5881\n          },\n          {\n            \"consumerId\": 2361,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 5249\n          }\n        ]\n      },\n      {\n        \"divisionId\": 2952,\n        \"consumerStatistics\": [\n          {\n            \"consumerId\": 7939,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 6372\n          },\n          {\n            \"consumerId\": 6787,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 6674\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ce286462-bc78-4d38-b196-a993491721df",
+          "name": "Retrieves the list of object Types supported for node group location.",
+          "request": {
+            "name": "Retrieves the list of object Types supported for node group location.",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "nodes",
+                "groups",
+                "objecttype"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "73b3ae0a-3313-4b3f-bf14-ae8b9d9f5795",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "nodes",
+                    "groups",
+                    "objecttype"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"objectTypes\": [\n      {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      }\n    ],\n    \"hasMore\": false,\n    \"next\": \"string\",\n    \"previous\": \"string\"\n  },\n  \"messages\": [\n    {\n      \"information\": \"string\",\n      \"ignoredPath\": [\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        },\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        }\n      ]\n    },\n    {\n      \"information\": \"string\",\n      \"ignoredPath\": [\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        },\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"message\": \"string\"\n    }\n  ],\n  \"completed\": true,\n  \"traceId\": \"string\",\n  \"usageLimits\": {\n    \"clientId\": 5619,\n    \"lastRequestTimestamp\": \"1966-04-02T04:15:49.548Z\",\n    \"limits\": {\n      \"minute\": 1816,\n      \"hour\": 6273,\n      \"day\": 2386\n    },\n    \"runs\": {\n      \"minute\": 1203,\n      \"hour\": 5947,\n      \"day\": 2386\n    },\n    \"exceededMessage\": \"string\",\n    \"divisionUsageStatistics\": [\n      {\n        \"divisionId\": 3641,\n        \"consumerStatistics\": [\n          {\n            \"consumerId\": 6736,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 84\n          },\n          {\n            \"consumerId\": 7263,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 6807\n          }\n        ]\n      },\n      {\n        \"divisionId\": 9869,\n        \"consumerStatistics\": [\n          {\n            \"consumerId\": 8039,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 2395\n          },\n          {\n            \"consumerId\": 604,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 5353\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f1462a02-d8fc-46e2-b087-7258e7d5c491",
+          "name": "This endpoint allows to fetch all the available continents, countries and cities that can be used as Node Locations when creating a Node Group",
+          "request": {
+            "name": "This endpoint allows to fetch all the available continents, countries and cities that can be used as Node Locations when creating a Node Group",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "nodes",
+                "groups",
+                "nodelocations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "networkType",
+                  "value": "<integer>",
+                  "description": "Node Locations for the provided Network Type"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "05af76a7-43ae-4b9a-a1ec-43bee6eb3ef6",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "nodes",
+                    "groups",
+                    "nodelocations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "networkType",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"continents\": [\n      {\n        \"id\": 877,\n        \"name\": \"string\",\n        \"nodesCount\": 874,\n        \"countries\": [\n          {\n            \"id\": 3901,\n            \"name\": \"string\",\n            \"nodesCount\": 9123,\n            \"cities\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"id\": 357,\n            \"name\": \"string\",\n            \"nodesCount\": 7184,\n            \"cities\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ]\n      },\n      {\n        \"id\": 3991,\n        \"name\": \"string\",\n        \"nodesCount\": 7206,\n        \"countries\": [\n          {\n            \"id\": 9723,\n            \"name\": \"string\",\n            \"nodesCount\": 7631,\n            \"cities\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"id\": 9466,\n            \"name\": \"string\",\n            \"nodesCount\": 157,\n            \"cities\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ]\n      }\n    ],\n    \"hasMore\": false,\n    \"next\": \"string\",\n    \"previous\": \"string\"\n  },\n  \"messages\": [\n    {\n      \"information\": \"string\",\n      \"ignoredPath\": [\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        },\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        }\n      ]\n    },\n    {\n      \"information\": \"string\",\n      \"ignoredPath\": [\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        },\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"message\": \"string\"\n    }\n  ],\n  \"completed\": true,\n  \"traceId\": \"string\",\n  \"usageLimits\": {\n    \"clientId\": 7230,\n    \"lastRequestTimestamp\": \"1987-12-24T22:10:07.151Z\",\n    \"limits\": {\n      \"minute\": 4095,\n      \"hour\": 651,\n      \"day\": 7970\n    },\n    \"runs\": {\n      \"minute\": 3792,\n      \"hour\": 6367,\n      \"day\": 3649\n    },\n    \"exceededMessage\": \"string\",\n    \"divisionUsageStatistics\": [\n      {\n        \"divisionId\": 5269,\n        \"consumerStatistics\": [\n          {\n            \"consumerId\": 4682,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 1998\n          },\n          {\n            \"consumerId\": 1312,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 9899\n          }\n        ]\n      },\n      {\n        \"divisionId\": 7072,\n        \"consumerStatistics\": [\n          {\n            \"consumerId\": 6227,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 7999\n          },\n          {\n            \"consumerId\": 2992,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 2018\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "8bf96406-3c10-4745-ba4c-19646a951ae2",
+    "name": "Catchpoint REST API v2.0 Account NodeGroup API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

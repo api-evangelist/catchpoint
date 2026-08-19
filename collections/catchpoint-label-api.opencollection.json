@@ -1,0 +1,165 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Catchpoint REST API v2.0 Account Label API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Label",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns the label details for the label key IDs passed.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/labels/:labelKeyIds",
+            "params": [
+              {
+                "name": "labelKeyIds",
+                "value": "",
+                "type": "path",
+                "description": "Comma-separated list of label key IDs"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the label details for the label key IDs passed."
+        },
+        {
+          "info": {
+            "name": "Return the label details based on parameters.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/labels",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Label Name"
+              },
+              {
+                "name": "values",
+                "value": "",
+                "type": "query",
+                "description": "Label Value"
+              },
+              {
+                "name": "pageNumber",
+                "value": "",
+                "type": "query",
+                "description": "Page number to return records from when the number of records exceeds pageSize"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page. Maximum value is 100."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "If no parameters are passed, all labels in an account/division are returned."
+        },
+        {
+          "info": {
+            "name": "Create a new label based on the Post data.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v2/labels",
+            "params": [
+              {
+                "name": "objectDetails",
+                "value": "",
+                "type": "query",
+                "description": "Set to true to return the created object in the response body, otherwise the response body will only return created object ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "To get payload for creating a new label and to get the created label details refer InternalLink[Label Details by ID Endpoint,operations-tag-Label,operations-Label-get_v2_labels__labelKeyIds_]. Pass “0” for label key ID value to create a new label."
+        },
+        {
+          "info": {
+            "name": "Update an existing label based on the request body.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/api/v2/labels/:labelKeyId",
+            "params": [
+              {
+                "name": "labelKeyId",
+                "value": "",
+                "type": "path",
+                "description": "Label Key ID"
+              },
+              {
+                "name": "objectDetails",
+                "value": "",
+                "type": "query",
+                "description": "Set it to true to return the updated object in the response body else the response body will only return the updated object ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "**Request:**\r\n            \r\nOnly the property to be updated can be passed in the request body, (not the whole object.) The update request body requires a total of three keys to be filled with appropriate value as listed below:\r\n* **value** – The value property provides the new value.\r\n            \r\n* **path** – The path property indicates the element to update. The entire path with slashes needs to be provided here. Example: /status/id\r\n            \r\n* **op** – The op property indicates the type"
+        },
+        {
+          "info": {
+            "name": "Delete labels by Label Key ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/v2/labels/:labelKeyId",
+            "params": [
+              {
+                "name": "labelKeyId",
+                "value": "",
+                "type": "path",
+                "description": "Comma-separated list of label IDs"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete labels based on the specified list of IDs. The IDs need to be separated by commas. This endpoint allows partial deletion; if you provide a list of five IDs and only three of them are valid, then it will delete those three labels. The response will indicate the three that were deleted, and the two invalid IDs will be listed as errors."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

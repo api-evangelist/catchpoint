@@ -1,0 +1,177 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Catchpoint REST API v2.0 Account Contacts API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Contacts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Return contact details by the IDs passed.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/contacts/:contactIds",
+            "params": [
+              {
+                "name": "contactIds",
+                "value": "",
+                "type": "path",
+                "description": "Comma-separated list of contact IDs"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Return contact details by the IDs passed."
+        },
+        {
+          "info": {
+            "name": "Returns Contact details by parameters passed.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/contacts",
+            "params": [
+              {
+                "name": "statusId",
+                "value": "",
+                "type": "query",
+                "description": "Contact Status Type. “0” for Active; “1” for Inactive."
+              },
+              {
+                "name": "divisionId",
+                "value": "",
+                "type": "query",
+                "description": "Division ID"
+              },
+              {
+                "name": "pageNumber",
+                "value": "",
+                "type": "query",
+                "description": "Page number to return records from when the number of records exceeds pageSize"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page. Maximum value is 100."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "If no parameters are passed all “Active” contacts are returned."
+        },
+        {
+          "info": {
+            "name": "Create a new contact based on the PostData.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v2/contacts",
+            "params": [
+              {
+                "name": "objectDetails",
+                "value": "",
+                "type": "query",
+                "description": "Set to true to return the created object in the response body, otherwise the response body will only return created object ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "To get payload for creating a new contact and to get the created contact details refer InternalLink[Contact Details by ID Endpoint,operations-tag-Contact,operations-Contact-get_v2_contacts__contactIds_]. Pass “0” for contact ID to create a new contact."
+        },
+        {
+          "info": {
+            "name": "Deletes existing contacts by parameters passed.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/v2/contacts",
+            "params": [
+              {
+                "name": "contactIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of Contact IDs"
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Email of contact"
+              },
+              {
+                "name": "divisionId",
+                "value": "",
+                "type": "query",
+                "description": "Division ID. If the contact to delete is within a division, provide the Division ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "To delete contacts based on the specified list of IDs, the IDs need to be separated by commas. This endpoint allows partial deletion; if you provide a list of five IDs and only three of them are valid, then it will delete those three contacts. The response will indicate the three that were deleted, and the two invalid IDs will be listed as errors."
+        },
+        {
+          "info": {
+            "name": "Update an existing contact based on the request body.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/api/v2/contacts/:contactId",
+            "params": [
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "Contact ID"
+              },
+              {
+                "name": "objectDetails",
+                "value": "",
+                "type": "query",
+                "description": "Set to true to return the updated object in the response body, otherwise the response body will only return the updated object ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "**Request:**\r\n            \r\nOnly the property to be updated can be passed in the request body instead of the whole object. The update request body requires a total of three keys to be filled with appropriate value as listed below:\r\n* **value** – The value property provides the new value.\r\n            \r\n* **path** – The path property indicates the element to update. The entire path with slashes needs to be provided here. Example: /status/id\r\n            \r\n* **op** – The op property indicates the "
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

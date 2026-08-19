@@ -1,0 +1,101 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Catchpoint REST API v2.0 Account API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Account",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns Account Activity details by the parameters passed.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/account/activity",
+            "params": [
+              {
+                "name": "month",
+                "value": "",
+                "type": "query",
+                "description": "Account activity for the month"
+              },
+              {
+                "name": "year",
+                "value": "",
+                "type": "query",
+                "description": "Account activity for the year"
+              },
+              {
+                "name": "testName",
+                "value": "",
+                "type": "query",
+                "description": "Account activity for the Test Name"
+              },
+              {
+                "name": "networkTypes",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of Network Types (refer InternalLink[Test Enumeration Endpoint,operations-tag-Test,operations-Test-get_v2_tests_enumeration])"
+              },
+              {
+                "name": "testTypes",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of Test Types (refer InternalLink[Test Enumeration Endpoint,operations-tag-Test,operations-Test-get_v2_tests_enumeration])"
+              },
+              {
+                "name": "monitorTypes",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of Monitor Types (refer InternalLink[Test Enumeration Endpoint,operations-tag-Test,operations-Test-get_v2_tests_enumeration])"
+              },
+              {
+                "name": "divisionId",
+                "value": "",
+                "type": "query",
+                "description": "Account Activity for the Division ID"
+              },
+              {
+                "name": "productIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of Product IDs"
+              },
+              {
+                "name": "folderIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of Folder IDs"
+              },
+              {
+                "name": "pageNumber",
+                "value": "",
+                "type": "query",
+                "description": "Page number to return records from when the number of records exceeds pageSize"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page. Maximum value is 100."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns Account Activity details by the parameters passed."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

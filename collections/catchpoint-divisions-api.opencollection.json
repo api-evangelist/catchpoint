@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Catchpoint REST API v2.0 Account Divisions API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Divisions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns details about a Division per the parameters.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/divisions",
+            "params": [
+              {
+                "name": "divisionId",
+                "value": "",
+                "type": "query",
+                "description": "Division ID"
+              },
+              {
+                "name": "divisionStatus",
+                "value": "",
+                "type": "query",
+                "description": "Status ID. “0” for Active and “1” for Inactive"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "If no parameters are passed, all active divisions are returned."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

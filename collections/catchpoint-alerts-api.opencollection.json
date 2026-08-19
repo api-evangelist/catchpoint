@@ -1,0 +1,155 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Catchpoint REST API v2.0 Account Alerts API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Alerts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns alert details based on the alert IDs.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/tests/alerts/:alertIds",
+            "params": [
+              {
+                "name": "alertIds",
+                "value": "",
+                "type": "path",
+                "description": "Comma-separated list of alert IDs"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "*[Analytics Endpoint]*\r\n\r\nThe data returned is in UTC."
+        },
+        {
+          "info": {
+            "name": "Returns alert details based on the parameters.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/tests/alerts",
+            "params": [
+              {
+                "name": "startTimeUtc",
+                "value": "",
+                "type": "query",
+                "description": "Start time in UTC (YYYY-MM-DDThh:mm:ss). Specify an End time if Start time is set."
+              },
+              {
+                "name": "endTimeUtc",
+                "value": "",
+                "type": "query",
+                "description": "End time in UTC (YYYY-MM-DDThh:mm:ss). Specify a Start time if End time is set."
+              },
+              {
+                "name": "levelId",
+                "value": "",
+                "type": "query",
+                "description": "Alert level Id. (Warning = 0, Critical = 1, Information = 2, Improved = 3)"
+              },
+              {
+                "name": "testName",
+                "value": "",
+                "type": "query",
+                "description": "Test name to filter alerts for"
+              },
+              {
+                "name": "testIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of test IDs to filter alerts for"
+              },
+              {
+                "name": "alertTypeId",
+                "value": "",
+                "type": "query",
+                "description": "Alert Type ID (refer InternalLink[Test Enumeration Endpoint,operations-tag-Test,operations-Test-get_v2_tests_enumeration])"
+              },
+              {
+                "name": "alertTypeSubId",
+                "value": "",
+                "type": "query",
+                "description": "Alert Type Sub ID (refer InternalLink[Test Enumeration Endpoint,operations-tag-Test,operations-Test-get_v2_tests_enumeration])"
+              },
+              {
+                "name": "productIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of Product IDs to filter alerts for"
+              },
+              {
+                "name": "productName",
+                "value": "",
+                "type": "query",
+                "description": "Product name to filter alerts for"
+              },
+              {
+                "name": "acknowledgedBy",
+                "value": "",
+                "type": "query",
+                "description": "Contact ID that acknowledged the test alert"
+              },
+              {
+                "name": "includeNodeDetails",
+                "value": "",
+                "type": "query",
+                "description": "Include Node details"
+              },
+              {
+                "name": "pageNumber",
+                "value": "",
+                "type": "query",
+                "description": "Page number to return records from when the number of records exceeds pageSize"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page. Maximum value is 100."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "*[Analytics Endpoint]*\r\n\r\nIf no time is specified, the alerts from the last 24 hours are returned. The data returned is in UTC."
+        },
+        {
+          "info": {
+            "name": "Assign, Acknowledge or Drop alerts.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/api/v2/tests/alerts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "The request body requires 3 keys to be filled with appropriate value as listed below.\r\n\r\n* **alertId** - Alert ID\r\n\r\n* **acknowledgeAlert** - set to true or false\r\n\r\n* **dropAlert** - set to true or false\r\n\r\n* **assignToContactByEmail** - email address string"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

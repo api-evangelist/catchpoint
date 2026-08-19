@@ -1,0 +1,147 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Catchpoint REST API v2.0 Account ASNs API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ASNs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Return ASN's details by the IDs passed",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/library/asns/:ids",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "path",
+                "description": "Comma separated list of ASN's IDs"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Return ASN's details by the IDs passed"
+        },
+        {
+          "info": {
+            "name": "Deletes existing ASNs by parameters passed",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/v2/library/asns/:ids",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "path",
+                "description": "To delete ASNs based on the specified list of IDs, the IDs need to be separated by commas. This endpoint allows partial deletion; if you provide a list of five IDs and only three of them are valid, then it will delete those three ASNs. The response will indicate the three that were deleted, and the two invalid IDs will be listed as errors."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Deletes existing ASNs by parameters passed"
+        },
+        {
+          "info": {
+            "name": "Return ASN details by the parameters passed",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/library/asns",
+            "params": [
+              {
+                "name": "asn",
+                "value": "",
+                "type": "query",
+                "description": "ASN"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Return ASN details by the parameters passed"
+        },
+        {
+          "info": {
+            "name": "Create an ASN based on the PostData.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v2/library/asns",
+            "params": [
+              {
+                "name": "objectDetails",
+                "value": "",
+                "type": "query",
+                "description": "Set to true to return the created object in the response body, otherwise the response body will only return created object ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "To get payload for creating a new ASN and to get the created ASN details refer InternalLink[ASN by ID Endpoint,operations-tag-ASN,operations-ASN-get_v2_asns__asnIds_]. Pass “0” for ASN ID to create a new ASN."
+        },
+        {
+          "info": {
+            "name": "Update an existing ASN based on the request body.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/api/v2/library/asns/:asnId",
+            "params": [
+              {
+                "name": "asnId",
+                "value": "",
+                "type": "path",
+                "description": "Asn ID"
+              },
+              {
+                "name": "objectDetails",
+                "value": "",
+                "type": "query",
+                "description": "Set to true to return the updated object in the response body, otherwise the response body will only return the updated object ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Only the property to be updated can be passed in the request body instead of the whole object. The update request body requires a total of three keys to be filled with appropriate value as listed below:\r\n* **value** – The value property provides the new value.\r\n            \r\n* **path** – The path property indicates the element to update. The entire path with slashes needs to be provided here. Example: /status/id\r\n            \r\n* **op** – The op property indicates the type of operation; we suppor"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

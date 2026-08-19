@@ -1,0 +1,136 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Catchpoint REST API v2.0 Account InstantTest API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "InstantTest",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Runs a new instant test based on the POST data.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v2/instanttests",
+            "params": [
+              {
+                "name": "onDemand",
+                "value": "",
+                "type": "query",
+                "description": "Used to run the instant test on public nodes"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Use the onDemand parameter to run from public nodes. An instant test can run from up to five nodes.\r\n\r\n**Request:**\r\n\r\nThe request body must include all required test properties and may include any optional properties as well. By default, the endpoint only allows instant tests to run from enterprise nodes.\r\n\r\nTo get a sample payload, refer InternalLink[Instant Test Configuration Endpoint,operations-tag-InstantTest,operations-InstantTest-get_v2_instanttests_configuration__instantTestId_].\r\n\r\n**Re"
+        },
+        {
+          "info": {
+            "name": "Returns properties of one instant test based on instant test ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/instanttests/configuration/:instantTestId",
+            "params": [
+              {
+                "name": "instantTestId",
+                "value": "",
+                "type": "path",
+                "description": "Instant test ID to look up the test results. Pass “0” to get post data for creating a new instant test."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Results include all the properties set in the instant test during creation. The response from this request can be used to trigger new instant test runs using the POST method."
+        },
+        {
+          "info": {
+            "name": "Return instant test results performance data based on an instant test ID and node ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/instanttests/:instantTestId",
+            "params": [
+              {
+                "name": "instantTestId",
+                "value": "",
+                "type": "path",
+                "description": "Instant test ID to look up the test results"
+              },
+              {
+                "name": "nodeId",
+                "value": "",
+                "type": "query",
+                "description": "Node ID to look up the test results"
+              },
+              {
+                "name": "stepId",
+                "value": "",
+                "type": "query",
+                "description": "Step ID to look up the test results"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "*[Analytics Endpoint]*\r\n\r\nPerformance data is for one node and a single step. To get transactions data with multiple steps, use the parameter step ID. If no step ID is passed, the endpoint pulls data for the first step.\r\n\r\nThe endpoint pulls all the instant test result details seen in the Catchpoint portal. This includes test run details, summary metrics, waterfall details, hosts, zones, and content type. This also includes a public link to the instant test run, screenshot, filmstrip, and reques"
+        },
+        {
+          "info": {
+            "name": "Runs an instant test by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v2/instanttests/:testId",
+            "params": [
+              {
+                "name": "testId",
+                "value": "",
+                "type": "path",
+                "description": "Test ID to run an instant test"
+              },
+              {
+                "name": "onDemand",
+                "value": "",
+                "type": "query",
+                "description": "Used to run the instant test on public nodes"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "By default the instant test can only be run on enterprise nodes. Use the onDemand parameter to run from public nodes. An instant test can run from up to five nodes.\r\n\r\n**Request:**\r\n\r\nThe request body must include all required test properties and may include any optional properties as well.\r\n\r\nTo get a sample payload, refer InternalLink[Instant Test Configuration Endpoint,operations-tag-InstantTest,operations-InstantTest-get_v2_instanttests_configuration__instantTestId_].\r\n\r\n**Response:**\r\n\r\nThe"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

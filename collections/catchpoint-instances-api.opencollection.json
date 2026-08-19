@@ -1,0 +1,243 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Catchpoint REST API v2.0 Account Instances API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Instances",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Return details of the Node and all associated Instances.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/instances/:nodeIds",
+            "params": [
+              {
+                "name": "nodeIds",
+                "value": "",
+                "type": "path",
+                "description": "Comma-separated list of Node IDs"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Works only on Enterprise Nodes."
+        },
+        {
+          "info": {
+            "name": "Returns the Instance details based on the parameters passed.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/instances",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Instance Name"
+              },
+              {
+                "name": "nodeId",
+                "value": "",
+                "type": "query",
+                "description": "Node ID"
+              },
+              {
+                "name": "statusId",
+                "value": "",
+                "type": "query",
+                "description": "Instance Status. “0” for Active; “1” for Inactive"
+              },
+              {
+                "name": "core",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of core values"
+              },
+              {
+                "name": "os",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of OS names"
+              },
+              {
+                "name": "memory",
+                "value": "",
+                "type": "query",
+                "description": "Memory value"
+              },
+              {
+                "name": "pageNumber",
+                "value": "",
+                "type": "query",
+                "description": "Page number to return records from when the number of records exceeds pageSize"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results that is returned per page. Maximum value is 100."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Works only on Enterprise Nodes.\r\n            \r\nWhen no parameter is passed, all Instances within the Client or Division are returned."
+        },
+        {
+          "info": {
+            "name": "Create a new instance within a new node or add a new instance to an existing node.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v2/instances",
+            "params": [
+              {
+                "name": "objectDetails",
+                "value": "",
+                "type": "query",
+                "description": "Set to true to return the created object in the response body, otherwise the response body will only return created object ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Works only on Enterprise Nodes.\r\n            \r\nTo get payload for creating a new instance and to get the created instance details refer InternalLink[Instance Details By Node ID Endpoint,operations-tag-Instance,operations-Instance-get_v2_instances__nodeIds_]. Pass “0” for instance ID to create a new instance."
+        },
+        {
+          "info": {
+            "name": "Update properties of an existing instance based on the request body.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/api/v2/instances/:instanceId",
+            "params": [
+              {
+                "name": "instanceId",
+                "value": "",
+                "type": "path",
+                "description": "Instance ID"
+              },
+              {
+                "name": "objectDetails",
+                "value": "",
+                "type": "query",
+                "description": "Set to true to return the updated object in the response body, otherwise the response body will only return the updated object ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Works only on Enterprise Nodes.\r\n            \r\n**Request:**\r\n            \r\nOnly the property to be updated can be passed in the request body instead of the whole object. The update request body requires a total of three keys to be filled with appropriate value as listed below:\r\n* **value** – The value property provides the new value.\r\n            \r\n* **path** – The path property indicates the element to update. The entire path with slashes needs to be provided here. Example: /status/id\r\n        "
+        },
+        {
+          "info": {
+            "name": "Returns the Instance status, active or inactive, based on the Instance IDs passed.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/instances/status/:instanceIds",
+            "params": [
+              {
+                "name": "instanceIds",
+                "value": "",
+                "type": "path",
+                "description": "Comma-separated list of Instance IDs"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Works on Enterprise Nodes and Customer owned Nodes."
+        },
+        {
+          "info": {
+            "name": "Allows to set the status of an existing instance to Active or Inactive.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/api/v2/instances/status",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Works only on Enterprise and Customer owned Nodes.\r\n            \r\nTo get payload for updating an Instance Status refer InternalLink[Instance Status Endpoint,operations-tag-Instance,operations-Instance-get_v2_instances_status__instanceIds_]. Status ID values – “0” for Active; “1” for Inactive. There can be multiple instances in the payload for which the status update is intended."
+        },
+        {
+          "info": {
+            "name": "Returns the instance hardware usage based on the Node ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/instances/hardware/:nodeId",
+            "params": [
+              {
+                "name": "nodeId",
+                "value": "",
+                "type": "path",
+                "description": "Node ID"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Start date in UTC (YYYY-MM-DDThh:mm)"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "End date in UTC (YYYY-MM-DDThh:mm)"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Works only on Enterprise Nodes.\r\n            \r\nThe maximum time range allowed is 7 days over the period of last 365 days."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

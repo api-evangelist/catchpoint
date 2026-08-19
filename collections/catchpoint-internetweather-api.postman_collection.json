@@ -1,0 +1,194 @@
+{
+  "item": [
+    {
+      "id": "077c7260-30b4-4ef9-8897-403522490357",
+      "name": "InternetWeather",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ad5d31a6-0652-405a-bdd9-8d8601c29595",
+          "name": "Returns the list of internet service outages. Default last one hour data.",
+          "request": {
+            "name": "Returns the list of internet service outages. Default last one hour data.",
+            "description": {
+              "content": "*[Analytics Endpoint]*",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "iw",
+                "outages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startTimeUtc",
+                  "value": "<string>",
+                  "description": "Start time in UTC (YYYY-MM-DDThh:mm:ss)"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTimeUtc",
+                  "value": "<string>",
+                  "description": "End time in UTC (YYYY-MM-DDThh:mm:ss)"
+                },
+                {
+                  "disabled": false,
+                  "key": "serviceName",
+                  "value": "<string>",
+                  "description": "Service name"
+                },
+                {
+                  "disabled": false,
+                  "key": "city",
+                  "value": "<string>",
+                  "description": "City"
+                },
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>",
+                  "description": "Country"
+                },
+                {
+                  "disabled": false,
+                  "key": "region",
+                  "value": "<string>",
+                  "description": "Region"
+                },
+                {
+                  "disabled": false,
+                  "key": "ongoing",
+                  "value": "<boolean>",
+                  "description": "Ongoing outage"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "aed4a27a-d7e7-4b79-96dc-9b547948ee14",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "iw",
+                    "outages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTimeUtc",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "endTimeUtc",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "serviceName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "city",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "region",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ongoing",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"outages\": [\n    {\n      \"serviceId\": 1354,\n      \"serviceName\": \"string\",\n      \"locations\": [\n        {\n          \"startTime\": \"1956-07-21T10:23:24.645Z\",\n          \"endTime\": \"1962-01-26T12:27:03.307Z\",\n          \"ongoing\": false,\n          \"city\": \"string\",\n          \"country\": \"string\",\n          \"region\": \"string\",\n          \"errorTypes\": [\n            null,\n            null\n          ]\n        },\n        {\n          \"startTime\": \"2004-11-09T13:54:05.634Z\",\n          \"endTime\": \"1949-07-15T07:32:02.653Z\",\n          \"ongoing\": true,\n          \"city\": \"string\",\n          \"country\": \"string\",\n          \"region\": \"string\",\n          \"errorTypes\": [\n            null,\n            null\n          ]\n        }\n      ]\n    },\n    {\n      \"serviceId\": 7556,\n      \"serviceName\": \"string\",\n      \"locations\": [\n        {\n          \"startTime\": \"1991-02-27T04:19:15.389Z\",\n          \"endTime\": \"1973-06-24T00:30:30.336Z\",\n          \"ongoing\": true,\n          \"city\": \"string\",\n          \"country\": \"string\",\n          \"region\": \"string\",\n          \"errorTypes\": [\n            null,\n            null\n          ]\n        },\n        {\n          \"startTime\": \"1954-03-30T14:13:35.315Z\",\n          \"endTime\": \"1951-08-26T07:34:56.413Z\",\n          \"ongoing\": true,\n          \"city\": \"string\",\n          \"country\": \"string\",\n          \"region\": \"string\",\n          \"errorTypes\": [\n            null,\n            null\n          ]\n        }\n      ]\n    }\n  ],\n  \"hasMore\": true,\n  \"next\": \"string\",\n  \"previous\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4bd93318-053b-4608-ac50-970268eba2ff",
+    "name": "Catchpoint REST API v2.0 Account InternetWeather API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

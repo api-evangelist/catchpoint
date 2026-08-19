@@ -1,0 +1,177 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Catchpoint REST API v2.0 Account EndpointDevicePerformance API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "EndpointDevicePerformance",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns the enumeration to help automate endpoint performance data pull.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/endpoints/device/explorer/enumeration",
+            "params": [
+              {
+                "name": "subSourceTypeId",
+                "value": "",
+                "type": "query",
+                "description": "Sub source type ID. “2” for Provider; “3” for Process."
+              },
+              {
+                "name": "dimensions",
+                "value": "",
+                "type": "query",
+                "description": "Set to “true” to return enumerations of dimensions"
+              },
+              {
+                "name": "timeIntervals",
+                "value": "",
+                "type": "query",
+                "description": "Set to “true” to return enumerations of metrics"
+              },
+              {
+                "name": "subSourceTypes",
+                "value": "",
+                "type": "query",
+                "description": "Set to “true” to return enumerations of sub sources"
+              },
+              {
+                "name": "metrics",
+                "value": "",
+                "type": "query",
+                "description": "Set to “true” to return enumerations of time intervals"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the enumeration to help automate endpoint performance data pull."
+        },
+        {
+          "info": {
+            "name": "Returns the raw performance chart data based on the User ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/endpoints/device/explorer/raw",
+            "params": [
+              {
+                "name": "userIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of Endpoint User IDs"
+              },
+              {
+                "name": "startTimeUtc",
+                "value": "",
+                "type": "query",
+                "description": "Start time in UTC (YYYY-MM-DDThh:mm:ss)"
+              },
+              {
+                "name": "endTimeUtc",
+                "value": "",
+                "type": "query",
+                "description": "End time in UTC (YYYY-MM-DDThh:mm:ss)"
+              },
+              {
+                "name": "metricIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of Metric IDs (refer InternalLink[Endpoint Device Explorer Enumerations Endpoint,operations-tag-EndpointDevicePerformance,operations-EndpointDevicePerformance-get_v2_endpoints_device_explorer_enumeration])"
+              },
+              {
+                "name": "dimensionIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of Dimension IDs. Default: Time dimension (refer InternalLink[Endpoint Device Explorer Enumerations Endpoint,operations-tag-EndpointDevicePerformance,operations-EndpointDevicePerformance-get_v2_endpoints_device_explorer_enumeration])"
+              },
+              {
+                "name": "subSourceTypeId",
+                "value": "",
+                "type": "query",
+                "description": "Sub Source Type ID to return Sub Source Data. “2” for Provider; “3” for Process. (refer InternalLink[Endpoint Device Explorer Enumerations Endpoint,operations-tag-EndpointDevicePerformance,operations-EndpointDevicePerformance-get_v2_endpoints_device_explorer_enumeration])"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "*[Analytics Endpoint]*\r\n            \r\nIf no parameters are passed, the last 1-hour raw data of all active endpoint devices within the Client or Division is returned. The data returned is in UTC."
+        },
+        {
+          "info": {
+            "name": "Returns the aggregated performance chart data based on the User ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/endpoints/device/explorer/aggregated",
+            "params": [
+              {
+                "name": "userIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of Endpoint User IDs"
+              },
+              {
+                "name": "startTimeUtc",
+                "value": "",
+                "type": "query",
+                "description": "Start time in UTC (YYYY-MM-DDThh:mm:ss)"
+              },
+              {
+                "name": "endTimeUtc",
+                "value": "",
+                "type": "query",
+                "description": "End time in UTC (YYYY-MM-DDThh:mm:ss)"
+              },
+              {
+                "name": "timeInterval",
+                "value": "",
+                "type": "query",
+                "description": "Time Interval Window to aggregate data (refer InternalLink[Endpoint Device Explorer Enumerations Endpoint,operations-tag-EndpointDevicePerformance,operations-EndpointDevicePerformance-get_v2_endpoints_device_explorer_enumeration])"
+              },
+              {
+                "name": "metricIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of Metric IDs (refer InternalLink[Endpoint Device Explorer Enumerations Endpoint,operations-tag-EndpointDevicePerformance,operations-EndpointDevicePerformance-get_v2_endpoints_device_explorer_enumeration])"
+              },
+              {
+                "name": "dimensionIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of Dimension IDs. Default: Time dimension (refer InternalLink[Endpoint Device Explorer Enumerations Endpoint,operations-tag-EndpointDevicePerformance,operations-EndpointDevicePerformance-get_v2_endpoints_device_explorer_enumeration])"
+              },
+              {
+                "name": "subSourceTypeId",
+                "value": "",
+                "type": "query",
+                "description": "Sub Source Type ID to return Sub Source Data. “2” for Provider; “3” for Process. (refer InternalLink[Endpoint Device Explorer Enumerations Endpoint,operations-tag-EndpointDevicePerformance,operations-EndpointDevicePerformance-get_v2_endpoints_device_explorer_enumeration])"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "*[Analytics Endpoint]*\r\n            \r\nIf no parameters are passed, the last 24-hour data aggregated by 15 minutes, of all active endpoint devices within the Client or Division is returned. Data from over 1 month support aggregation. The data returned is in UTC."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

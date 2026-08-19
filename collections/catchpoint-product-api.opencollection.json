@@ -1,0 +1,178 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Catchpoint REST API v2.0 Account Product API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Product",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns properties of one or more products based on product ID(s).",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/products/:productIds",
+            "params": [
+              {
+                "name": "productIds",
+                "value": "",
+                "type": "path",
+                "description": "Comma-separated list of product IDs to look up"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Results include properties from all sections available in the UI: Product Properties, Advanced Settings, Requests, Insights, Targeting & Scheduling, and Alerts.\r\n\r\nAssigning “0” to Product ID would return the payload to create a new product."
+        },
+        {
+          "info": {
+            "name": "Return products that match all provided parameters.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/products",
+            "params": [
+              {
+                "name": "statusId",
+                "value": "",
+                "type": "query",
+                "description": "Product status ID. “0” for active and “1” for inactive"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Product name"
+              },
+              {
+                "name": "credentialIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of Credential IDs"
+              },
+              {
+                "name": "includeAdvanceSettings",
+                "value": "",
+                "type": "query",
+                "description": "Include Advance settings section in the response"
+              },
+              {
+                "name": "includeRequest",
+                "value": "",
+                "type": "query",
+                "description": "Include Request settings section in the response"
+              },
+              {
+                "name": "includeInsight",
+                "value": "",
+                "type": "query",
+                "description": "Include insights section in the response"
+              },
+              {
+                "name": "includeTargeting",
+                "value": "",
+                "type": "query",
+                "description": "Include Target and Scheduling section in the response"
+              },
+              {
+                "name": "includeAlerts",
+                "value": "",
+                "type": "query",
+                "description": "Include alerts section in the response"
+              },
+              {
+                "name": "pageNumber",
+                "value": "",
+                "type": "query",
+                "description": "Page number to return records from when the number of records exceeds pageSize"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results that is returned per page. Maximum value is 100."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "All parameters are optional, and you may include any of them to customize the query. To pass multiple values for a parameter, provide a comma-separated list. If no parameters are passed, then details for all active products are returned. Results include properties from all sections available in the UI: Product Properties, Advanced Settings, Requests, Insights, Targeting & Scheduling, and Alerts. The query returns 100 records per page; if there are more than 100 records then the response will hav"
+        },
+        {
+          "info": {
+            "name": "Create a new product per the request body.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v2/products",
+            "params": [
+              {
+                "name": "objectDetails",
+                "value": "",
+                "type": "query",
+                "description": "Set to true to return the created object in the response body. Otherwise the response body will only return the created object ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "The request body must include all required product properties and may include any optional properties as well. To get a sample payload to pass along with the request, refer InternalLink[Product Details by ID Endpoint,operations-tag-Product,operations-Product-get_v2_products__productIds_]. Assign “0” to product ID when creating a new product."
+        },
+        {
+          "info": {
+            "name": "Update a property of an existing product.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/api/v2/products/:productId",
+            "params": [
+              {
+                "name": "productId",
+                "value": "",
+                "type": "path",
+                "description": "Product ID to update a product."
+              },
+              {
+                "name": "objectDetails",
+                "value": "",
+                "type": "query",
+                "description": "Set to true to return the updated object in the response body, otherwise the response body will only return the updated object ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Only the property to be updated can be passed in the request body (do not pass the whole object.) The update request body requires a total of three keys to be filled with appropriate value as listed below:\r\n* **value** – The value property provides the new value.\r\n\r\n* **path** – The path property indicates the element to update. The entire path with slashes needs to be provided here. Example: /status/id\r\n\r\n* **op** – The op property indicates the type of operation we support the following three "
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

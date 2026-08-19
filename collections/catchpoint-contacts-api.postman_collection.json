@@ -1,0 +1,645 @@
+{
+  "item": [
+    {
+      "id": "181dbe4f-4042-480e-a5b0-ed5f6b2e0510",
+      "name": "Contacts",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4aac21ab-0c82-4bf0-afd6-c62a619119a6",
+          "name": "Return contact details by the IDs passed.",
+          "request": {
+            "name": "Return contact details by the IDs passed.",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "contacts",
+                ":contactIds"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "contactIds",
+                  "description": "(Required) Comma-separated list of contact IDs"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "73a11049-248b-45e4-bcfe-d31cdac93bd1",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "contacts",
+                    ":contactIds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contactIds",
+                      "description": "(Required) Comma-separated list of contact IDs"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"contacts\": [\n      {\n        \"id\": 5440,\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"email\": \"string\",\n        \"status\": null,\n        \"authentication\": \"string\",\n        \"division\": {\n          \"id\": 4035,\n          \"name\": \"string\"\n        },\n        \"systemAccess\": {\n          \"id\": 860,\n          \"name\": \"string\"\n        },\n        \"primaryDashboard\": {\n          \"type\": null,\n          \"id\": 1,\n          \"name\": \"string\",\n          \"doNotDisplayOtherDashboards\": false\n        },\n        \"testAccessRestriction\": {\n          \"testAccessRestrictType\": null,\n          \"testAccessRestrictionList\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"viewAllTests\": false\n        },\n        \"rumAccessRestriction\": {\n          \"rumAccessRestrictType\": null,\n          \"rumAccessRestrictionList\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"viewAllSites\": true\n        },\n        \"timeZone\": null,\n        \"isNewUIEnabled\": false,\n        \"waterfallOpensInNewTab\": false,\n        \"notificationType\": {\n          \"notificationList\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"smsEmail\": \"string\",\n          \"voiceCallNumber\": \"string\"\n        },\n        \"companyName\": \"string\",\n        \"title\": \"string\",\n        \"address\": \"string\",\n        \"address2\": \"string\",\n        \"city\": \"string\",\n        \"country\": {\n          \"id\": 5427,\n          \"name\": \"string\"\n        },\n        \"state\": {\n          \"id\": 5837,\n          \"name\": \"string\"\n        },\n        \"zipCode\": \"string\",\n        \"telephone\": \"string\",\n        \"cellPhone\": \"string\",\n        \"fax\": \"string\",\n        \"notes\": \"string\",\n        \"contactGroups\": [\n          {\n            \"id\": 1575,\n            \"name\": \"string\",\n            \"division\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": 8547,\n            \"name\": \"string\",\n            \"division\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"lastLogin\": \"1997-11-04T19:50:44.362Z\"\n      },\n      {\n        \"id\": 4511,\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"email\": \"string\",\n        \"status\": null,\n        \"authentication\": \"string\",\n        \"division\": {\n          \"id\": 7452,\n          \"name\": \"string\"\n        },\n        \"systemAccess\": {\n          \"id\": 3384,\n          \"name\": \"string\"\n        },\n        \"primaryDashboard\": {\n          \"type\": null,\n          \"id\": 7674,\n          \"name\": \"string\",\n          \"doNotDisplayOtherDashboards\": true\n        },\n        \"testAccessRestriction\": {\n          \"testAccessRestrictType\": null,\n          \"testAccessRestrictionList\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"viewAllTests\": true\n        },\n        \"rumAccessRestriction\": {\n          \"rumAccessRestrictType\": null,\n          \"rumAccessRestrictionList\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"viewAllSites\": false\n        },\n        \"timeZone\": null,\n        \"isNewUIEnabled\": false,\n        \"waterfallOpensInNewTab\": false,\n        \"notificationType\": {\n          \"notificationList\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"smsEmail\": \"string\",\n          \"voiceCallNumber\": \"string\"\n        },\n        \"companyName\": \"string\",\n        \"title\": \"string\",\n        \"address\": \"string\",\n        \"address2\": \"string\",\n        \"city\": \"string\",\n        \"country\": {\n          \"id\": 5939,\n          \"name\": \"string\"\n        },\n        \"state\": {\n          \"id\": 1301,\n          \"name\": \"string\"\n        },\n        \"zipCode\": \"string\",\n        \"telephone\": \"string\",\n        \"cellPhone\": \"string\",\n        \"fax\": \"string\",\n        \"notes\": \"string\",\n        \"contactGroups\": [\n          {\n            \"id\": 133,\n            \"name\": \"string\",\n            \"division\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": 54,\n            \"name\": \"string\",\n            \"division\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"lastLogin\": \"1981-03-27T14:11:09.993Z\"\n      }\n    ],\n    \"hasMore\": true,\n    \"next\": \"string\",\n    \"previous\": \"string\"\n  },\n  \"messages\": [\n    {\n      \"information\": \"string\",\n      \"ignoredPath\": [\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        },\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        }\n      ]\n    },\n    {\n      \"information\": \"string\",\n      \"ignoredPath\": [\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        },\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"message\": \"string\"\n    }\n  ],\n  \"completed\": true,\n  \"traceId\": \"string\",\n  \"usageLimits\": {\n    \"clientId\": 5050,\n    \"lastRequestTimestamp\": \"1962-04-16T10:19:39.205Z\",\n    \"limits\": {\n      \"minute\": 4573,\n      \"hour\": 2331,\n      \"day\": 7108\n    },\n    \"runs\": {\n      \"minute\": 9452,\n      \"hour\": 6966,\n      \"day\": 954\n    },\n    \"exceededMessage\": \"string\",\n    \"divisionUsageStatistics\": [\n      {\n        \"divisionId\": 8935,\n        \"consumerStatistics\": [\n          {\n            \"consumerId\": 6437,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 73\n          },\n          {\n            \"consumerId\": 5193,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 1397\n          }\n        ]\n      },\n      {\n        \"divisionId\": 3080,\n        \"consumerStatistics\": [\n          {\n            \"consumerId\": 818,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 6017\n          },\n          {\n            \"consumerId\": 5148,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 1087\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "607da5a6-9044-45fe-acf7-f1599eeb091e",
+          "name": "Returns Contact details by parameters passed.",
+          "request": {
+            "name": "Returns Contact details by parameters passed.",
+            "description": {
+              "content": "If no parameters are passed all “Active” contacts are returned.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "contacts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "statusId",
+                  "value": "<integer>",
+                  "description": "Contact Status Type. “0” for Active; “1” for Inactive."
+                },
+                {
+                  "disabled": false,
+                  "key": "divisionId",
+                  "value": "<integer>",
+                  "description": "Division ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageNumber",
+                  "value": "1",
+                  "description": "Page number to return records from when the number of records exceeds pageSize"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "100",
+                  "description": "Number of results per page. Maximum value is 100."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "17b19707-096f-4efb-bd06-ff7e604daa7b",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "statusId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "divisionId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageNumber",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"contacts\": [\n      {\n        \"id\": 2382,\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"email\": \"string\",\n        \"status\": null,\n        \"authentication\": \"string\",\n        \"division\": {\n          \"id\": 256,\n          \"name\": \"string\"\n        },\n        \"systemAccess\": {\n          \"id\": 1508,\n          \"name\": \"string\"\n        },\n        \"primaryDashboard\": {\n          \"type\": null,\n          \"id\": 4844,\n          \"name\": \"string\",\n          \"doNotDisplayOtherDashboards\": true\n        },\n        \"testAccessRestriction\": {\n          \"testAccessRestrictType\": null,\n          \"testAccessRestrictionList\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"viewAllTests\": false\n        },\n        \"rumAccessRestriction\": {\n          \"rumAccessRestrictType\": null,\n          \"rumAccessRestrictionList\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"viewAllSites\": true\n        },\n        \"timeZone\": null,\n        \"isNewUIEnabled\": false,\n        \"waterfallOpensInNewTab\": true,\n        \"notificationType\": {\n          \"notificationList\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"smsEmail\": \"string\",\n          \"voiceCallNumber\": \"string\"\n        },\n        \"companyName\": \"string\",\n        \"title\": \"string\",\n        \"address\": \"string\",\n        \"address2\": \"string\",\n        \"city\": \"string\",\n        \"country\": {\n          \"id\": 1096,\n          \"name\": \"string\"\n        },\n        \"state\": {\n          \"id\": 3519,\n          \"name\": \"string\"\n        },\n        \"zipCode\": \"string\",\n        \"telephone\": \"string\",\n        \"cellPhone\": \"string\",\n        \"fax\": \"string\",\n        \"notes\": \"string\",\n        \"contactGroups\": [\n          {\n            \"id\": 2344,\n            \"name\": \"string\",\n            \"division\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": 2887,\n            \"name\": \"string\",\n            \"division\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"lastLogin\": \"1953-03-23T03:21:46.523Z\"\n      },\n      {\n        \"id\": 679,\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"email\": \"string\",\n        \"status\": null,\n        \"authentication\": \"string\",\n        \"division\": {\n          \"id\": 3973,\n          \"name\": \"string\"\n        },\n        \"systemAccess\": {\n          \"id\": 6015,\n          \"name\": \"string\"\n        },\n        \"primaryDashboard\": {\n          \"type\": null,\n          \"id\": 6019,\n          \"name\": \"string\",\n          \"doNotDisplayOtherDashboards\": false\n        },\n        \"testAccessRestriction\": {\n          \"testAccessRestrictType\": null,\n          \"testAccessRestrictionList\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"viewAllTests\": false\n        },\n        \"rumAccessRestriction\": {\n          \"rumAccessRestrictType\": null,\n          \"rumAccessRestrictionList\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"viewAllSites\": true\n        },\n        \"timeZone\": null,\n        \"isNewUIEnabled\": false,\n        \"waterfallOpensInNewTab\": true,\n        \"notificationType\": {\n          \"notificationList\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"smsEmail\": \"string\",\n          \"voiceCallNumber\": \"string\"\n        },\n        \"companyName\": \"string\",\n        \"title\": \"string\",\n        \"address\": \"string\",\n        \"address2\": \"string\",\n        \"city\": \"string\",\n        \"country\": {\n          \"id\": 4810,\n          \"name\": \"string\"\n        },\n        \"state\": {\n          \"id\": 2883,\n          \"name\": \"string\"\n        },\n        \"zipCode\": \"string\",\n        \"telephone\": \"string\",\n        \"cellPhone\": \"string\",\n        \"fax\": \"string\",\n        \"notes\": \"string\",\n        \"contactGroups\": [\n          {\n            \"id\": 2939,\n            \"name\": \"string\",\n            \"division\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": 6075,\n            \"name\": \"string\",\n            \"division\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"lastLogin\": \"1954-02-10T18:10:28.159Z\"\n      }\n    ],\n    \"hasMore\": true,\n    \"next\": \"string\",\n    \"previous\": \"string\"\n  },\n  \"messages\": [\n    {\n      \"information\": \"string\",\n      \"ignoredPath\": [\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        },\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        }\n      ]\n    },\n    {\n      \"information\": \"string\",\n      \"ignoredPath\": [\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        },\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"message\": \"string\"\n    }\n  ],\n  \"completed\": false,\n  \"traceId\": \"string\",\n  \"usageLimits\": {\n    \"clientId\": 4332,\n    \"lastRequestTimestamp\": \"1981-01-21T15:48:27.474Z\",\n    \"limits\": {\n      \"minute\": 5160,\n      \"hour\": 5890,\n      \"day\": 7801\n    },\n    \"runs\": {\n      \"minute\": 6777,\n      \"hour\": 1467,\n      \"day\": 5240\n    },\n    \"exceededMessage\": \"string\",\n    \"divisionUsageStatistics\": [\n      {\n        \"divisionId\": 3861,\n        \"consumerStatistics\": [\n          {\n            \"consumerId\": 5548,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 6817\n          },\n          {\n            \"consumerId\": 6489,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 3636\n          }\n        ]\n      },\n      {\n        \"divisionId\": 58,\n        \"consumerStatistics\": [\n          {\n            \"consumerId\": 5749,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 3408\n          },\n          {\n            \"consumerId\": 8375,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 3851\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cf6ffee3-4633-4cde-885e-c76bb1ea9269",
+          "name": "Deletes existing contacts by parameters passed.",
+          "request": {
+            "name": "Deletes existing contacts by parameters passed.",
+            "description": {
+              "content": "To delete contacts based on the specified list of IDs, the IDs need to be separated by commas. This endpoint allows partial deletion; if you provide a list of five IDs and only three of them are valid, then it will delete those three contacts. The response will indicate the three that were deleted, and the two invalid IDs will be listed as errors.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "contacts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "contactIds",
+                  "value": "<string>",
+                  "description": "Comma-separated list of Contact IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<string>",
+                  "description": "Email of contact"
+                },
+                {
+                  "disabled": false,
+                  "key": "divisionId",
+                  "value": "<integer>",
+                  "description": "Division ID. If the contact to delete is within a division, provide the Division ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "23906eb7-f201-456b-9ca3-10832f7f9b80",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "contactIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "divisionId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"archivedIds\": \"string\",\n    \"hasMore\": true,\n    \"next\": \"string\",\n    \"previous\": \"string\"\n  },\n  \"messages\": [\n    {\n      \"information\": \"string\",\n      \"ignoredPath\": [\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        },\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        }\n      ]\n    },\n    {\n      \"information\": \"string\",\n      \"ignoredPath\": [\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        },\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"message\": \"string\"\n    }\n  ],\n  \"completed\": true,\n  \"traceId\": \"string\",\n  \"usageLimits\": {\n    \"clientId\": 3384,\n    \"lastRequestTimestamp\": \"1963-04-23T21:10:10.297Z\",\n    \"limits\": {\n      \"minute\": 9908,\n      \"hour\": 2788,\n      \"day\": 4032\n    },\n    \"runs\": {\n      \"minute\": 1614,\n      \"hour\": 9775,\n      \"day\": 2039\n    },\n    \"exceededMessage\": \"string\",\n    \"divisionUsageStatistics\": [\n      {\n        \"divisionId\": 9988,\n        \"consumerStatistics\": [\n          {\n            \"consumerId\": 8692,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 3414\n          },\n          {\n            \"consumerId\": 4323,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 5305\n          }\n        ]\n      },\n      {\n        \"divisionId\": 7694,\n        \"consumerStatistics\": [\n          {\n            \"consumerId\": 9115,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 6582\n          },\n          {\n            \"consumerId\": 3112,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 2855\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1d467323-07eb-4461-aa2c-16b4a8cc3e9e",
+          "name": "Create a new contact based on the PostData.",
+          "request": {
+            "name": "Create a new contact based on the PostData.",
+            "description": {
+              "content": "To get payload for creating a new contact and to get the created contact details refer InternalLink[Contact Details by ID Endpoint,operations-tag-Contact,operations-Contact-get_v2_contacts__contactIds_]. Pass “0” for contact ID to create a new contact.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "contacts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "objectDetails",
+                  "value": "<boolean>",
+                  "description": "Set to true to return the created object in the response body, otherwise the response body will only return created object ID."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<integer>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"authentication\": \"<string>\",\n  \"division\": {\n    \"id\": \"<long>\",\n    \"name\": \"<string>\"\n  },\n  \"systemAccess\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\"\n  },\n  \"primaryDashboard\": {\n    \"type\": \"<integer>\",\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"doNotDisplayOtherDashboards\": \"<boolean>\"\n  },\n  \"testAccessRestriction\": {\n    \"testAccessRestrictType\": \"<integer>\",\n    \"testAccessRestrictionList\": [\n      {\n        \"id\": \"<long>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"id\": \"<long>\",\n        \"name\": \"<string>\"\n      }\n    ],\n    \"viewAllTests\": \"<boolean>\"\n  },\n  \"rumAccessRestriction\": {\n    \"rumAccessRestrictType\": \"<integer>\",\n    \"rumAccessRestrictionList\": [\n      {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      }\n    ],\n    \"viewAllSites\": \"<boolean>\"\n  },\n  \"timeZone\": \"<integer>\",\n  \"isNewUIEnabled\": \"<boolean>\",\n  \"waterfallOpensInNewTab\": \"<boolean>\",\n  \"notificationType\": {\n    \"notificationList\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"smsEmail\": \"<string>\",\n    \"voiceCallNumber\": \"<string>\"\n  },\n  \"companyName\": \"<string>\",\n  \"title\": \"<string>\",\n  \"address\": \"<string>\",\n  \"address2\": \"<string>\",\n  \"city\": \"<string>\",\n  \"country\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\"\n  },\n  \"state\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\"\n  },\n  \"zipCode\": \"<string>\",\n  \"telephone\": \"<string>\",\n  \"cellPhone\": \"<string>\",\n  \"fax\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"contactGroups\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"division\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"division\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      }\n    }\n  ],\n  \"lastLogin\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c8f1929b-7a87-44e7-a079-27f15a540149",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "objectDetails",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<integer>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"authentication\": \"<string>\",\n  \"division\": {\n    \"id\": \"<long>\",\n    \"name\": \"<string>\"\n  },\n  \"systemAccess\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\"\n  },\n  \"primaryDashboard\": {\n    \"type\": \"<integer>\",\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"doNotDisplayOtherDashboards\": \"<boolean>\"\n  },\n  \"testAccessRestriction\": {\n    \"testAccessRestrictType\": \"<integer>\",\n    \"testAccessRestrictionList\": [\n      {\n        \"id\": \"<long>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"id\": \"<long>\",\n        \"name\": \"<string>\"\n      }\n    ],\n    \"viewAllTests\": \"<boolean>\"\n  },\n  \"rumAccessRestriction\": {\n    \"rumAccessRestrictType\": \"<integer>\",\n    \"rumAccessRestrictionList\": [\n      {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      }\n    ],\n    \"viewAllSites\": \"<boolean>\"\n  },\n  \"timeZone\": \"<integer>\",\n  \"isNewUIEnabled\": \"<boolean>\",\n  \"waterfallOpensInNewTab\": \"<boolean>\",\n  \"notificationType\": {\n    \"notificationList\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"smsEmail\": \"<string>\",\n    \"voiceCallNumber\": \"<string>\"\n  },\n  \"companyName\": \"<string>\",\n  \"title\": \"<string>\",\n  \"address\": \"<string>\",\n  \"address2\": \"<string>\",\n  \"city\": \"<string>\",\n  \"country\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\"\n  },\n  \"state\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\"\n  },\n  \"zipCode\": \"<string>\",\n  \"telephone\": \"<string>\",\n  \"cellPhone\": \"<string>\",\n  \"fax\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"contactGroups\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"division\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"division\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      }\n    }\n  ],\n  \"lastLogin\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"contact\": {\n      \"id\": \"<integer>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"email\": \"<string>\",\n      \"status\": \"<integer>\",\n      \"authentication\": \"<string>\",\n      \"division\": {\n        \"id\": \"<long>\",\n        \"name\": \"<string>\"\n      },\n      \"systemAccess\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      },\n      \"primaryDashboard\": {\n        \"type\": \"<integer>\",\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"doNotDisplayOtherDashboards\": \"<boolean>\"\n      },\n      \"testAccessRestriction\": {\n        \"testAccessRestrictType\": \"<integer>\",\n        \"testAccessRestrictionList\": [\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"viewAllTests\": \"<boolean>\"\n      },\n      \"rumAccessRestriction\": {\n        \"rumAccessRestrictType\": \"<integer>\",\n        \"rumAccessRestrictionList\": [\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"viewAllSites\": \"<boolean>\"\n      },\n      \"timeZone\": \"<integer>\",\n      \"isNewUIEnabled\": \"<boolean>\",\n      \"waterfallOpensInNewTab\": \"<boolean>\",\n      \"notificationType\": {\n        \"notificationList\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"smsEmail\": \"<string>\",\n        \"voiceCallNumber\": \"<string>\"\n      },\n      \"companyName\": \"<string>\",\n      \"title\": \"<string>\",\n      \"address\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      },\n      \"state\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      },\n      \"zipCode\": \"<string>\",\n      \"telephone\": \"<string>\",\n      \"cellPhone\": \"<string>\",\n      \"fax\": \"<string>\",\n      \"notes\": \"<string>\",\n      \"contactGroups\": [\n        {\n          \"id\": \"<integer>\",\n          \"name\": \"<string>\",\n          \"division\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"id\": \"<integer>\",\n          \"name\": \"<string>\",\n          \"division\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ],\n      \"lastLogin\": \"<dateTime>\"\n    },\n    \"id\": 7544,\n    \"hasMore\": false,\n    \"next\": \"string\",\n    \"previous\": \"string\"\n  },\n  \"messages\": [\n    {\n      \"information\": \"string\",\n      \"ignoredPath\": [\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        },\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        }\n      ]\n    },\n    {\n      \"information\": \"string\",\n      \"ignoredPath\": [\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        },\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"message\": \"string\"\n    }\n  ],\n  \"completed\": false,\n  \"traceId\": \"string\",\n  \"usageLimits\": {\n    \"clientId\": 6408,\n    \"lastRequestTimestamp\": \"1987-01-19T09:29:40.185Z\",\n    \"limits\": {\n      \"minute\": 3458,\n      \"hour\": 3662,\n      \"day\": 5096\n    },\n    \"runs\": {\n      \"minute\": 2840,\n      \"hour\": 7672,\n      \"day\": 8016\n    },\n    \"exceededMessage\": \"string\",\n    \"divisionUsageStatistics\": [\n      {\n        \"divisionId\": 8285,\n        \"consumerStatistics\": [\n          {\n            \"consumerId\": 5750,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 4813\n          },\n          {\n            \"consumerId\": 1166,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 5772\n          }\n        ]\n      },\n      {\n        \"divisionId\": 4863,\n        \"consumerStatistics\": [\n          {\n            \"consumerId\": 4020,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 932\n          },\n          {\n            \"consumerId\": 2211,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 3327\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d7d6c795-d337-45aa-970d-c413d199d9f5",
+          "name": "Update an existing contact based on the request body.",
+          "request": {
+            "name": "Update an existing contact based on the request body.",
+            "description": {
+              "content": "**Request:**\r\n            \r\nOnly the property to be updated can be passed in the request body instead of the whole object. The update request body requires a total of three keys to be filled with appropriate value as listed below:\r\n* **value** – The value property provides the new value.\r\n            \r\n* **path** – The path property indicates the element to update. The entire path with slashes needs to be provided here. Example: /status/id\r\n            \r\n* **op** – The op property indicates the type of operation; we support the following three operations.\r\n            \r\n    * **add** - Add a property or array element. For existing property: set value.\r\n            \r\n    * **Remove** - Remove a property or array element.\r\n            \r\n    * **replace** - Same as remove followed by add at same location.\r\n            \r\n* **from** - [Not Used]\r\n            \r\n    * **Explanation** - The \"from\" parameter represents the starting or current value of the resource that the operation intends to modify. The from parameter is included in the example value schema but is not utilized in this endpoint's functionality. It is reserved for potential future use or could be used in specific scenarios not covered by the current implementation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "contacts",
+                ":contactId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "objectDetails",
+                  "value": "<boolean>",
+                  "description": "Set to true to return the updated object in the response body, otherwise the response body will only return the updated object ID."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "contactId",
+                  "description": "(Required) Contact ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"value\": {},\n    \"path\": \"<string>\",\n    \"op\": \"<string>\",\n    \"from\": \"<string>\"\n  },\n  {\n    \"value\": {},\n    \"path\": \"<string>\",\n    \"op\": \"<string>\",\n    \"from\": \"<string>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4c1a3501-d8c4-4571-a54d-aff0adfa9e64",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "contacts",
+                    ":contactId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "objectDetails",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "contactId",
+                      "description": "(Required) Contact ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"value\": {},\n    \"path\": \"<string>\",\n    \"op\": \"<string>\",\n    \"from\": \"<string>\"\n  },\n  {\n    \"value\": {},\n    \"path\": \"<string>\",\n    \"op\": \"<string>\",\n    \"from\": \"<string>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"contact\": {\n      \"id\": \"<integer>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"email\": \"<string>\",\n      \"status\": \"<integer>\",\n      \"authentication\": \"<string>\",\n      \"division\": {\n        \"id\": \"<long>\",\n        \"name\": \"<string>\"\n      },\n      \"systemAccess\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      },\n      \"primaryDashboard\": {\n        \"type\": \"<integer>\",\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"doNotDisplayOtherDashboards\": \"<boolean>\"\n      },\n      \"testAccessRestriction\": {\n        \"testAccessRestrictType\": \"<integer>\",\n        \"testAccessRestrictionList\": [\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"viewAllTests\": \"<boolean>\"\n      },\n      \"rumAccessRestriction\": {\n        \"rumAccessRestrictType\": \"<integer>\",\n        \"rumAccessRestrictionList\": [\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"viewAllSites\": \"<boolean>\"\n      },\n      \"timeZone\": \"<integer>\",\n      \"isNewUIEnabled\": \"<boolean>\",\n      \"waterfallOpensInNewTab\": \"<boolean>\",\n      \"notificationType\": {\n        \"notificationList\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"smsEmail\": \"<string>\",\n        \"voiceCallNumber\": \"<string>\"\n      },\n      \"companyName\": \"<string>\",\n      \"title\": \"<string>\",\n      \"address\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      },\n      \"state\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      },\n      \"zipCode\": \"<string>\",\n      \"telephone\": \"<string>\",\n      \"cellPhone\": \"<string>\",\n      \"fax\": \"<string>\",\n      \"notes\": \"<string>\",\n      \"contactGroups\": [\n        {\n          \"id\": \"<integer>\",\n          \"name\": \"<string>\",\n          \"division\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"id\": \"<integer>\",\n          \"name\": \"<string>\",\n          \"division\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ],\n      \"lastLogin\": \"<dateTime>\"\n    },\n    \"id\": 5849,\n    \"hasMore\": true,\n    \"next\": \"string\",\n    \"previous\": \"string\"\n  },\n  \"messages\": [\n    {\n      \"information\": \"string\",\n      \"ignoredPath\": [\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        },\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        }\n      ]\n    },\n    {\n      \"information\": \"string\",\n      \"ignoredPath\": [\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        },\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"message\": \"string\"\n    }\n  ],\n  \"completed\": false,\n  \"traceId\": \"string\",\n  \"usageLimits\": {\n    \"clientId\": 2802,\n    \"lastRequestTimestamp\": \"1971-03-30T03:07:08.284Z\",\n    \"limits\": {\n      \"minute\": 7134,\n      \"hour\": 7102,\n      \"day\": 9385\n    },\n    \"runs\": {\n      \"minute\": 1684,\n      \"hour\": 4932,\n      \"day\": 3586\n    },\n    \"exceededMessage\": \"string\",\n    \"divisionUsageStatistics\": [\n      {\n        \"divisionId\": 9446,\n        \"consumerStatistics\": [\n          {\n            \"consumerId\": 5512,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 796\n          },\n          {\n            \"consumerId\": 4555,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 6018\n          }\n        ]\n      },\n      {\n        \"divisionId\": 4281,\n        \"consumerStatistics\": [\n          {\n            \"consumerId\": 3819,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 7796\n          },\n          {\n            \"consumerId\": 3900,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 9837\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a2ecddd8-5b00-4755-96df-580f5555e611",
+    "name": "Catchpoint REST API v2.0 Account Contacts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

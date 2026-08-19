@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Catchpoint REST API v2.0 Account UserIdentity API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "UserIdentity",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns the user contact details based on the REST API Key.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/useridentity",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the user contact details based on the REST API Key."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

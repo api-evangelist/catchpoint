@@ -1,0 +1,461 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Catchpoint REST API v2.0 Account TestPerformance API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "TestPerformance",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns waterfall tokens based on test IDs.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/tests/records/waterfall/:testId",
+            "params": [
+              {
+                "name": "testId",
+                "value": "",
+                "type": "path",
+                "description": "Test ID to get waterfall tokens for"
+              },
+              {
+                "name": "nodeIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of Node IDs"
+              },
+              {
+                "name": "startTimeUtc",
+                "value": "",
+                "type": "query",
+                "description": "Start time in UTC (YYYY-MM-DDThh:mm:ss)"
+              },
+              {
+                "name": "endTimeUtc",
+                "value": "",
+                "type": "query",
+                "description": "End time in UTC (YYYY-MM-DDThh:mm:ss)"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "*[Analytics Endpoint]*\r\n            \r\nReturns the waterfall tokens for last three hours of a specified test if no time range is specified. The tokens returned include “verify on failure” test runs too."
+        },
+        {
+          "info": {
+            "name": "Returns the test waterfall data for a waterfall token.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/tests/records/waterfall/data/:waterfallToken",
+            "params": [
+              {
+                "name": "waterfallToken",
+                "value": "",
+                "type": "path",
+                "description": "Test waterfall token"
+              },
+              {
+                "name": "step",
+                "value": "",
+                "type": "query",
+                "description": "Step number to pull data for"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "*[Analytics Endpoint]*\r\n            \r\nFor tests with multiple steps, each step data needs to be pulled separately."
+        },
+        {
+          "info": {
+            "name": "Returns the test records waterfall screenshot based on the waterfall token.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/tests/records/waterfall/screenshot/:waterfallToken",
+            "params": [
+              {
+                "name": "waterfallToken",
+                "value": "",
+                "type": "path",
+                "description": "Test waterfall token"
+              },
+              {
+                "name": "step",
+                "value": "",
+                "type": "query",
+                "description": "Step number to pull data for"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "*[Analytics Endpoint]*\r\n            \r\nFor tests with multiple steps, each screenshot needs to be pulled separately.\r\n            \r\nThe screenshot details are returned in Base64."
+        },
+        {
+          "info": {
+            "name": "Returns the test records waterfall filmstrip based on the waterfall token.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/tests/records/waterfall/filmstrip/:waterfallToken",
+            "params": [
+              {
+                "name": "waterfallToken",
+                "value": "",
+                "type": "path",
+                "description": "Test waterfall token"
+              },
+              {
+                "name": "step",
+                "value": "",
+                "type": "query",
+                "description": "Step number to pull data for"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "*[Analytics Endpoint]*\r\n            \r\nFor tests with multiple steps, each filmstrip needs to be pulled separately.\r\n            \r\nThe filmstrip details are returned in Base64."
+        },
+        {
+          "info": {
+            "name": "Returns the list of favorite charts from a client or a division.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/tests/explorer/favoritechart",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the list of favorite charts from a client or a division."
+        },
+        {
+          "info": {
+            "name": "Returns the favorite chart details based on the favorite chart ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/tests/explorer/favoritechart/:favoriteChartId",
+            "params": [
+              {
+                "name": "favoriteChartId",
+                "value": "",
+                "type": "path",
+                "description": "Favorite chart ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the favorite chart details based on the favorite chart ID."
+        },
+        {
+          "info": {
+            "name": "Returns favorite chart data based on the ID and parameters provided.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/tests/explorer/favoritechart/data/:favoriteChartId",
+            "params": [
+              {
+                "name": "favoriteChartId",
+                "value": "",
+                "type": "path",
+                "description": "Favorite chart ID"
+              },
+              {
+                "name": "startTimeUtc",
+                "value": "",
+                "type": "query",
+                "description": "Start Time in UTC (YYYY-MM-DDThh:mm:ss)"
+              },
+              {
+                "name": "endTimeUtc",
+                "value": "",
+                "type": "query",
+                "description": "End Time in UTC (YYYY-MM-DDThh:mm:ss)"
+              },
+              {
+                "name": "timeInterval",
+                "value": "",
+                "type": "query",
+                "description": "Time interval window to aggregate data (refer InternalLink[Test Raw Enumeration Endpoint,operations-tag-TestPerformance,operations-TestPerformance-get_v2_tests_explorer_enumeration])"
+              },
+              {
+                "name": "tests",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of test IDs to get favorite chart data for"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "*[Analytics Endpoint]*\r\n            \r\nThe favorite chart data returned is in UTC time."
+        },
+        {
+          "info": {
+            "name": "Returns raw performance data for the provided Test IDs.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/tests/explorer/raw",
+            "params": [
+              {
+                "name": "testIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of Test IDs"
+              },
+              {
+                "name": "startTimeUtc",
+                "value": "",
+                "type": "query",
+                "description": "Start Time in UTC (YYYY-MM-DDThh:mm:ss)"
+              },
+              {
+                "name": "endTimeUtc",
+                "value": "",
+                "type": "query",
+                "description": "End Time in UTC (YYYY-MM-DDThh:mm:ss)"
+              },
+              {
+                "name": "subSourceTypeId",
+                "value": "",
+                "type": "query",
+                "description": "Sub source type ID (refer InternalLink[Test Raw Enumeration Endpoint,operations-tag-TestPerformance,operations-TestPerformance-get_v2_tests_explorer_enumeration])"
+              },
+              {
+                "name": "dimensionIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of dimensions (refer InternalLink[Test Raw Enumeration Endpoint,operations-tag-TestPerformance,operations-TestPerformance-get_v2_tests_explorer_enumeration]). The data will be grouped and broken down based on these dimensions"
+              },
+              {
+                "name": "metricIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of metric IDs (refer InternalLink[Test Raw Enumeration Endpoint,operations-tag-TestPerformance,operations-TestPerformance-get_v2_tests_explorer_enumeration]). All metrics are returned if no value is passed."
+              },
+              {
+                "name": "tracepointIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of Tracepoint IDs"
+              },
+              {
+                "name": "zoneTypeIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of Zone Type IDs. ”-2” for Self Zone and “-3” for Third Party Zone."
+              },
+              {
+                "name": "availabilityFilter",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of Availability Filter IDs. (OnlyFailures = 0, OnlySuccesses = 1, All = 2, OnlyContentFailures = 3, OnlyJavascriptFailures = 4, SLA = 5, SLAAcceptedRuns = 6, SLAPurgedRuns = 7, RealTimePushApiFailures = 8)"
+              },
+              {
+                "name": "verifyOnError",
+                "value": "",
+                "type": "query",
+                "description": "Include Verify on Error Run. Default is false."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "*[Analytics Endpoint]*\r\n            \r\nThe raw data returned is in UTC. If no time is specified, the last 1-hour raw data is returned. Use parameters to query specific dimensions."
+        },
+        {
+          "info": {
+            "name": "Returns aggregated performance data for the provided Test IDs.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/tests/explorer/aggregated",
+            "params": [
+              {
+                "name": "testIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of Test IDs"
+              },
+              {
+                "name": "startTimeUtc",
+                "value": "",
+                "type": "query",
+                "description": "Start Time in UTC (YYYY-MM-DDThh:mm:ss)"
+              },
+              {
+                "name": "endTimeUtc",
+                "value": "",
+                "type": "query",
+                "description": "End Time in UTC (YYYY-MM-DDThh:mm:ss)"
+              },
+              {
+                "name": "subSourceTypeId",
+                "value": "",
+                "type": "query",
+                "description": "Sub source type ID (refer InternalLink[Test Raw Enumeration Endpoint,operations-tag-TestPerformance,operations-TestPerformance-get_v2_tests_explorer_enumeration])"
+              },
+              {
+                "name": "timeInterval",
+                "value": "",
+                "type": "query",
+                "description": "Time interval window to aggregate data (refer InternalLink[Test Raw Enumeration Endpoint,operations-tag-TestPerformance,operations-TestPerformance-get_v2_tests_explorer_enumeration])"
+              },
+              {
+                "name": "dimensionIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of dimensions (refer InternalLink[Test Raw Enumeration Endpoint,operations-tag-TestPerformance,operations-TestPerformance-get_v2_tests_explorer_enumeration]). The data will be grouped and broken down based on these dimensions"
+              },
+              {
+                "name": "metricIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of metric IDs (refer InternalLink[Test Raw Enumeration Endpoint,operations-tag-TestPerformance,operations-TestPerformance-get_v2_tests_explorer_enumeration]). All metrics are returned if no value is passed."
+              },
+              {
+                "name": "tracepointIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of Tracepoint IDs"
+              },
+              {
+                "name": "zoneTypeIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of Zone Type IDs. ”-2” for Self Zone and “-3” for Third Party Zone."
+              },
+              {
+                "name": "availabilityFilter",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of Availability Filter IDs. (OnlyFailures = 0, OnlySuccesses = 1, All = 2, OnlyContentFailures = 3, OnlyJavascriptFailures = 4, SLA = 5, SLAAcceptedRuns = 6, SLAPurgedRuns = 7, RealTimePushApiFailures = 8)"
+              },
+              {
+                "name": "verifyOnError",
+                "value": "",
+                "type": "query",
+                "description": "Include Verify on Error Run. Default is false."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "*[Analytics Endpoint]*\r\n            \r\nThe aggregated performance data returned is in UTC. If no time is specified, the last 24-hour data aggregated by 15 minutes is returned. Use parameters to query specific dimensions."
+        },
+        {
+          "info": {
+            "name": "Returns the test raw enumeration details for automation.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/tests/explorer/enumeration",
+            "params": [
+              {
+                "name": "subSourceId",
+                "value": "",
+                "type": "query",
+                "description": "Sub source type ID"
+              },
+              {
+                "name": "includeDimensions",
+                "value": "",
+                "type": "query",
+                "description": "Set to “true” to return enumerations of dimensions"
+              },
+              {
+                "name": "includeMetrics",
+                "value": "",
+                "type": "query",
+                "description": "Set to “true” to return enumerations of metrics"
+              },
+              {
+                "name": "includeSubSourceTypes",
+                "value": "",
+                "type": "query",
+                "description": "Set to “true” to return enumerations of sub sources"
+              },
+              {
+                "name": "includeTimeIntervals",
+                "value": "",
+                "type": "query",
+                "description": "Set to “true” to return enumerations of time intervals"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Use parameters to specify which enumeration to pull, if no parameter is passed then it returns all the enumerations. Returns the enumeration based on the parameters."
+        },
+        {
+          "info": {
+            "name": "Returns favorite chart default data set by the user when the favorite chart was created based on the ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/tests/explorer/favoritechart/defaultdata/:favoriteChartId",
+            "params": [
+              {
+                "name": "favoriteChartId",
+                "value": "",
+                "type": "path",
+                "description": "Favorite chart ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "*[Analytics Endpoint]*\r\n            \r\nThe favorite chart data returned is in UTC time."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

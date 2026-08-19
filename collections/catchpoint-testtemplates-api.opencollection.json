@@ -1,0 +1,145 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Catchpoint REST API v2.0 Account TestTemplates API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "TestTemplates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns Test Template details by the IDs passed.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/testtemplates/:ids",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "path",
+                "description": "Comma-separated list of test template IDs"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns Test Template details by the IDs passed."
+        },
+        {
+          "info": {
+            "name": "Returns Test Template details by parameters passed.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/testtemplates",
+            "params": [
+              {
+                "name": "statusId",
+                "value": "",
+                "type": "query",
+                "description": "Test Template status type ID (Draft = 0, Published = 2, Deprecated = 3)"
+              },
+              {
+                "name": "applicationGroupId",
+                "value": "",
+                "type": "query",
+                "description": "Application group ID (refer InternalLink[Application Group Enumeration Endpoint,operations-tag-TestTemplates,operations-TestTemplates-get_v2_testtemplates_applicationgroups])"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns Test Template details by parameters passed."
+        },
+        {
+          "info": {
+            "name": "Create a new test template based on the PostData.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v2/testtemplates",
+            "params": [
+              {
+                "name": "objectDetails",
+                "value": "",
+                "type": "query",
+                "description": "Set to true to return the created object in the response body, otherwise the response body will only return created object ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "To get payload for creating a new test template and to get the created test template details refer InternalLink[Test Template by ID Endpoint,operations-tag-TestTemplates,operations-TestTemplates-get_v2_testtemplates__ids_]. Pass “0” for Test Template ID to create a new test template."
+        },
+        {
+          "info": {
+            "name": "Update an existing test template based on the request body.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/api/v2/testtemplates/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Test template ID"
+              },
+              {
+                "name": "objectDetails",
+                "value": "",
+                "type": "query",
+                "description": "Set to true to return the updated object in the response body, otherwise the response body will only return the updated object ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "**Request:**\r\n            \r\nOnly the property to be updated can be passed in the request body instead of the whole object. The update request body requires a total of three keys to be filled with appropriate value as listed below:\r\n* **value** – The value property provides the new value.\r\n            \r\n* **path** – The path property indicates the element to update. The entire path with slashes needs to be provided here. Example: /status/id\r\n            \r\n* **op** –  The op property indicates the"
+        },
+        {
+          "info": {
+            "name": "Returns the Application group enumeration details for automation.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/testtemplates/applicationgroups",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the Application group enumeration details for automation."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

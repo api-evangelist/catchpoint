@@ -1,0 +1,145 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Catchpoint REST API v2.0 Account UserRole API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "UserRole",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Return user role details by the IDs passed.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/userroles/:userRoleIds",
+            "params": [
+              {
+                "name": "userRoleIds",
+                "value": "",
+                "type": "path",
+                "description": "Comma-separated list of user role IDs"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Return user role details by the IDs passed."
+        },
+        {
+          "info": {
+            "name": "Return user role details by the Parameters passed",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/userroles",
+            "params": [
+              {
+                "name": "divisionIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of Division IDs"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Return user role details by the Parameters passed"
+        },
+        {
+          "info": {
+            "name": "Create a new User Role based on the PostData.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v2/userroles",
+            "params": [
+              {
+                "name": "objectDetails",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a new User Role based on the PostData."
+        },
+        {
+          "info": {
+            "name": "Delete existing User Roles by Ids.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/v2/userroles",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "To delete User Roles based on the specified list of IDs, the IDs need to be separated by commas. This endpoint allows partial deletion; if you provide a list of five IDs and only three of them are valid, then it will delete those three User Roles. The response will indicate the three that were deleted, and the two invalid IDs will be listed as errors."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete existing User Roles by Ids."
+        },
+        {
+          "info": {
+            "name": "Update an existing User Role based on the request body.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/api/v2/userroles/:userRoleId",
+            "params": [
+              {
+                "name": "userRoleId",
+                "value": "",
+                "type": "path",
+                "description": "User Role Id"
+              },
+              {
+                "name": "objectDetails",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "**Request:**\r\n            \r\nOnly the property to be updated can be passed in the request body instead of the whole object. The update request body requires a total of three keys to be filled with appropriate value as listed below:\r\n* **value** – The value property provides the new value.\r\n            \r\n* **path** – The path property indicates the element to update. The entire path with slashes needs to be provided here. Example: /status/id\r\n            \r\n* **op** – The op property indicates the "
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

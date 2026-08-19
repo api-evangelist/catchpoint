@@ -1,0 +1,77 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Catchpoint REST API v2.0 Account InternetWeather API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "InternetWeather",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns the list of internet service outages. Default last one hour data.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/iw/outages",
+            "params": [
+              {
+                "name": "startTimeUtc",
+                "value": "",
+                "type": "query",
+                "description": "Start time in UTC (YYYY-MM-DDThh:mm:ss)"
+              },
+              {
+                "name": "endTimeUtc",
+                "value": "",
+                "type": "query",
+                "description": "End time in UTC (YYYY-MM-DDThh:mm:ss)"
+              },
+              {
+                "name": "serviceName",
+                "value": "",
+                "type": "query",
+                "description": "Service name"
+              },
+              {
+                "name": "city",
+                "value": "",
+                "type": "query",
+                "description": "City"
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "Country"
+              },
+              {
+                "name": "region",
+                "value": "",
+                "type": "query",
+                "description": "Region"
+              },
+              {
+                "name": "ongoing",
+                "value": "",
+                "type": "query",
+                "description": "Ongoing outage"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "*[Analytics Endpoint]*"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

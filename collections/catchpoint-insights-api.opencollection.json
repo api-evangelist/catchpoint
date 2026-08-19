@@ -1,0 +1,142 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Catchpoint REST API v2.0 Account Insights API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Insights",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns the insight details from tracepoints and indicators for tokens passed.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/insights/:insightTokens",
+            "params": [
+              {
+                "name": "insightTokens",
+                "value": "",
+                "type": "path",
+                "description": "Comma-separated list of Insight Tokens. Tokens can be Tracepoint or Indicator tokens."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the insight details from tracepoints and indicators for tokens passed."
+        },
+        {
+          "info": {
+            "name": "Returns the insight details from tracepoints and indicators for parameters passed.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/insights/insights",
+            "params": [
+              {
+                "name": "insightName",
+                "value": "",
+                "type": "query",
+                "description": "Insight name"
+              },
+              {
+                "name": "insightStatus",
+                "value": "",
+                "type": "query",
+                "description": "Insight Status. “0” for Active and “1” for Inactive"
+              },
+              {
+                "name": "insightType",
+                "value": "",
+                "type": "query",
+                "description": "Insight Type. “0” for Tracepoint and “1” for Indicator (refer InternalLink[Test Enumeration Endpoint,operations-tag-Test,operations-Test-get_v2_tests_enumeration])"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the insight details from tracepoints and indicators for parameters passed."
+        },
+        {
+          "info": {
+            "name": "Create a new insight based on the PostData.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v2/insights",
+            "params": [
+              {
+                "name": "objectDetails",
+                "value": "",
+                "type": "query",
+                "description": "Set to true to return the created object in the response body, otherwise the response body will only return created object ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "To get payload for creating a new insight and to get the created insight details refer InternalLink[Insight Details with Tokens Endpoint,operations-tag-Insights,operations-Insights-get_v2_insights__insightTokens_]. Pass “0” for Insight ID to create a new insight."
+        },
+        {
+          "info": {
+            "name": "Update an existing insight based on the request body.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/api/v2/insights/:insightType/:insightToken",
+            "params": [
+              {
+                "name": "insightType",
+                "value": "",
+                "type": "path",
+                "description": "Insight Type. “0” for Tracepoint and “1” for Indicator (refer InternalLink[Test Enumeration Endpoint,operations-tag-Test,operations-Test-get_v2_tests_enumeration])"
+              },
+              {
+                "name": "insightToken",
+                "value": "",
+                "type": "path",
+                "description": "Insight Token"
+              },
+              {
+                "name": "objectDetails",
+                "value": "",
+                "type": "query",
+                "description": "Set to true to return the updated object in the response body, otherwise the response body will only return the updated object ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "**Request:**\r\n\r\nOnly the property to be updated can be passed in the request body instead of the whole object. The update request body requires a total of three keys to be filled with appropriate value as listed below:\r\n* **value** – The value property provides the new value.\r\n\r\n* **path** – The path property indicates the element to update. The entire path with slashes needs to be provided here. Example: /status/id\r\n\r\n* **op** – The op property indicates the type of operation; we support the fo"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

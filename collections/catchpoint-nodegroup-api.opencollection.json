@@ -1,0 +1,218 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Catchpoint REST API v2.0 Account NodeGroup API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "NodeGroup",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns the node group details based on the ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/nodes/groups/:nodeGroupIds",
+            "params": [
+              {
+                "name": "nodeGroupIds",
+                "value": "",
+                "type": "path",
+                "description": "Comma-separated list of Node Group IDs"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the node group details based on the ID."
+        },
+        {
+          "info": {
+            "name": "Returns the node group details based on the parameters passed.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/nodes/groups",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Node group name"
+              },
+              {
+                "name": "networkType",
+                "value": "",
+                "type": "query",
+                "description": "Network Type (refer InternalLink[Network Type Enumeration Endpoint,operations-tag-NodeGroup,operations-NodeGroup-get_v2_nodes_groups_networktype])"
+              },
+              {
+                "name": "nodeId",
+                "value": "",
+                "type": "query",
+                "description": "Node ID"
+              },
+              {
+                "name": "nodeName",
+                "value": "",
+                "type": "query",
+                "description": "Node name"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "When no parameters are passed, all node groups from within the Client or Division are returned."
+        },
+        {
+          "info": {
+            "name": "Create a new node group based on the PostData.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v2/nodes/groups",
+            "params": [
+              {
+                "name": "objectDetails",
+                "value": "",
+                "type": "query",
+                "description": "Set to true to return the created object in the response body, otherwise the response body will only return created object ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "To get payload for creating a new node group and to get the created node group details refer InternalLink[Node Group by ID Endpoint,operations-tag-NodeGroup,operations-NodeGroup-get_v2_nodes_groups__nodeGroupIds_]. Pass “0” for Node Group ID to create a new Node Group.\r\n            \r\nNote: The divisionId field cannot be used to create a node group in another division. If divisionId is provided, it must match the current level's default division ID; otherwise the request is rejected."
+        },
+        {
+          "info": {
+            "name": "Update properties of an existing node group based on the request body.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/api/v2/nodes/groups",
+            "params": [
+              {
+                "name": "nodeGroupId",
+                "value": "",
+                "type": "query",
+                "description": "Node Group ID"
+              },
+              {
+                "name": "objectDetails",
+                "value": "",
+                "type": "query",
+                "description": "Set to true to return the updated object in the response body, otherwise the response body will only return the updated object ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "**Request:**\r\n            \r\nOnly the property to be updated can be passed in the request body instead of the whole object. The update request body requires a total of three keys to be filled with appropriate value as listed below:\r\n* **value** – The value property provides the new value.\r\n            \r\n* **path** – The path property indicates the element to update. The entire path with slashes needs to be provided here. Example: /status/id\r\n            \r\n* **op** – The op property indicates the "
+        },
+        {
+          "info": {
+            "name": "Deletes existing node group by parameters passed.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/v2/nodes/groups",
+            "params": [
+              {
+                "name": "nodegroupIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of Node Group IDs"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "To delete node group based on the specified list of IDs, the IDs need to be separated by commas. This endpoint allows partial deletion; if you provide a list of five IDs and only three of them are valid, then it will delete those three node groups. The response will indicate the three that were deleted, and the two invalid IDs will be listed as errors."
+        },
+        {
+          "info": {
+            "name": "Returns the list of network types supported for node group.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/nodes/groups/networktype",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the list of network types supported for node group."
+        },
+        {
+          "info": {
+            "name": "Retrieves the list of object Types supported for node group location.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/nodes/groups/objecttype",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves the list of object Types supported for node group location."
+        },
+        {
+          "info": {
+            "name": "This endpoint allows to fetch all the available continents, countries and cities that can be used as Node Locations when creating a Node Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/nodes/groups/nodelocations",
+            "params": [
+              {
+                "name": "networkType",
+                "value": "",
+                "type": "query",
+                "description": "Node Locations for the provided Network Type"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "This endpoint allows to fetch all the available continents, countries and cities that can be used as Node Locations when creating a Node Group"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

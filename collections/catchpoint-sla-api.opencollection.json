@@ -1,0 +1,181 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Catchpoint REST API v2.0 Account SLA API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SLA",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Return SLA purge item details by the IDs passed.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/slapurgeitems/:ids",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "path",
+                "description": "Comma-separated list of SLA purge item IDs"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Return SLA purge item details by the IDs passed."
+        },
+        {
+          "info": {
+            "name": "Returns Schedule details by parameters passed.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/slapurgeitems",
+            "params": [
+              {
+                "name": "statusId",
+                "value": "",
+                "type": "query",
+                "description": "SLA purge item Status Type. “0” for Active; “1” for Inactive."
+              },
+              {
+                "name": "purgeTypeId",
+                "value": "",
+                "type": "query",
+                "description": "Purge Type. “0” for AllRuns; “1” for FailedRunsOnly"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "SLA purge item Start time in UTC (YYYY-MM-DDThh:mm:ss)."
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "SLA purge item End time in UTC (YYYY-MM-DDThh:mm:ss)."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns Schedule details by parameters passed."
+        },
+        {
+          "info": {
+            "name": "Create an SLA purge item based on the PostData.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v2/slapurgeitems",
+            "params": [
+              {
+                "name": "objectDetails",
+                "value": "",
+                "type": "query",
+                "description": "Set to true to return the created object in the response body, otherwise the response body will only return created object ID."
+              },
+              {
+                "name": "isConsentAgreed",
+                "value": "",
+                "type": "query",
+                "description": "Set to true always when an SLA purge item is created from REST API."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "To get payload for creating a new SLA purge item and to get the created SLA purge item details refer InternalLink[SLA purge item by ID Endpoint,operations-tag-SLAClassification,operations-SLAClassification-get_v2_slapurgeitems__ids_]. Pass “0” for SLA purge item ID to create a new SLA purge item."
+        },
+        {
+          "info": {
+            "name": "Update the status of existing SLA purge items based on the request body.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/api/v2/slapurgeitems/status",
+            "params": [
+              {
+                "name": "isConsentAgreed",
+                "value": "",
+                "type": "query",
+                "description": "Set to true always when an SLA purge item is created from REST API."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update the status of existing SLA purge items based on the request body."
+        },
+        {
+          "info": {
+            "name": "Update an existing SLA purge item based on the request body.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/api/v2/slapurgeitems/:slaId",
+            "params": [
+              {
+                "name": "slaId",
+                "value": "",
+                "type": "path",
+                "description": "SLA purge item ID"
+              },
+              {
+                "name": "objectDetails",
+                "value": "",
+                "type": "query",
+                "description": "Set to true to return the updated object in the response body, otherwise the response body will only return the updated object ID."
+              },
+              {
+                "name": "isConsentAgreed",
+                "value": "",
+                "type": "query",
+                "description": "Set to true always when an SLA purge item is created from REST API."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "**Request:**\r\n\r\nOnly the property to be updated can be passed in the request body instead of the whole object. The update request body requires a total of three keys to be filled with appropriate value as listed below:\r\n* **value** – The value property provides the new value.\r\n\r\n* **path** – The path property indicates the element to update. The entire path with slashes needs to be provided here. Example: /status/id\r\n\r\n* **op** – The op property indicates the type of operation; we support the fo"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

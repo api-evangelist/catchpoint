@@ -1,0 +1,118 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Catchpoint REST API v2.0 Account RecentErrors API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "RecentErrors",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns errors from the last 3 hours for the provided Test IDs.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/tests/errors/raw/:testIds",
+            "params": [
+              {
+                "name": "testIds",
+                "value": "",
+                "type": "path",
+                "description": "Comma-separated list of Test IDs"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "*[Analytics Endpoint]*\r\n            \r\nThe data is returned in UTC."
+        },
+        {
+          "info": {
+            "name": "Returns errors based on the parameters.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/tests/errors/raw",
+            "params": [
+              {
+                "name": "startTimeUtc",
+                "value": "",
+                "type": "query",
+                "description": "Start time in UTC (YYYY-MM-DDThh:mm:ss)"
+              },
+              {
+                "name": "endTimeUtc",
+                "value": "",
+                "type": "query",
+                "description": "End time in UTC (YYYY-MM-DDThh:mm:ss)"
+              },
+              {
+                "name": "timeInterval",
+                "value": "",
+                "type": "query",
+                "description": "Time interval window to aggregate data (refer InternalLink[Test Raw Enumeration Endpoint,operations-tag-TestPerformance,operations-TestPerformance-get_v2_tests_explorer_enumeration])"
+              },
+              {
+                "name": "testTypeId",
+                "value": "",
+                "type": "query",
+                "description": "Test Type ID. Default is “All”."
+              },
+              {
+                "name": "testIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of Test IDs"
+              },
+              {
+                "name": "errorTypes",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of Error Types (None = 0, DNS = 1, Connection = 2, SSL = 3, NoResponse = 4, Response = 5, Timeout = 6, SystemLimit = 7, Transaction = 8, Content = 9, Other = 10, ScriptFailure = 11, ChildRequestFailure = 12)"
+              },
+              {
+                "name": "ips",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of IP addresses"
+              },
+              {
+                "name": "tracepoints",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of tracepoints"
+              },
+              {
+                "name": "pageNumber",
+                "value": "",
+                "type": "query",
+                "description": "Page number to return records from when the number of records exceeds pageSize"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page. Maximum value is 200."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "*[Analytics Endpoint]*\r\n            \r\n If no parameters are passed, the errors from last 3 hours are returned.\r\n            \r\nThe data is returned in UTC."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

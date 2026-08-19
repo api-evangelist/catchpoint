@@ -1,0 +1,288 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Catchpoint REST API v2.0 Account SLO API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SLO",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve properties of one or more SLOs based on SLO IDs.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/slo/:sloIds",
+            "params": [
+              {
+                "name": "sloIds",
+                "value": "",
+                "type": "path",
+                "description": "A comma-separated list of SLO IDs to look up."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Multiple SLO IDs may be included in a comma-separated list."
+        },
+        {
+          "info": {
+            "name": "Update properties of an existing SLO based on the request body.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/api/v2/slo/:sloIds",
+            "params": [
+              {
+                "name": "sloIds",
+                "value": "",
+                "type": "path",
+                "description": "A comma delimited list of SLO IDs to update an SLO."
+              },
+              {
+                "name": "objectDetails",
+                "value": "",
+                "type": "query",
+                "description": "Retrieves object details after update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "**Request:**\r\n            \r\nOnly the property to be updated can be passed in the request body instead of the whole object. The update request body requires a total of three keys to be filled with appropriate value as listed below:\r\n* **value** – The value property provides the new value.\r\n            \r\n* **path** – The path property indicates the element to update. The entire path with slashes needs to be provided here. Example: /status/id\r\n            \r\n* **op** – The op property indicates the "
+        },
+        {
+          "info": {
+            "name": "Delete one or more SLOs based on SLO IDs.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/v2/slo/:sloIds",
+            "params": [
+              {
+                "name": "sloIds",
+                "value": "",
+                "type": "path",
+                "description": "A comma-separated list of SLO IDs to delete."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "This endpoint allows partial success.\r\nFor example, if the request includes a list of five SLO IDs but only three of them match existing SLOs, then those three SLOs will be deleted and indicated as such in the response.\r\nThe two invalid SLO IDs will be listed in the response with an error message."
+        },
+        {
+          "info": {
+            "name": "Retrieve SLOs that match all included parameters.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/slo",
+            "params": [
+              {
+                "name": "statusType",
+                "value": "",
+                "type": "query",
+                "description": "The SLO status ID. “0” for Active, “1” for inactive."
+              },
+              {
+                "name": "sloName",
+                "value": "",
+                "type": "query",
+                "description": "An SLO name."
+              },
+              {
+                "name": "testName",
+                "value": "",
+                "type": "query",
+                "description": "A Test name assigned to the SLOs to look up."
+              },
+              {
+                "name": "metricType",
+                "value": "",
+                "type": "query",
+                "description": "The SLO metric ID. “15” for Availability, “89” for Test Time."
+              },
+              {
+                "name": "testIds",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of Test IDs assigned to the SLOs to look up."
+              },
+              {
+                "name": "divisionId",
+                "value": "",
+                "type": "query",
+                "description": "The Division ID of the SLOs to look up. If left empty, the default division of the API user will be used."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "All parameters are optional, and if no parameters are provided then details for all active SLOs are returned."
+        },
+        {
+          "info": {
+            "name": "Create a new SLO configured per the request body.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v2/slo",
+            "params": [
+              {
+                "name": "objectDetails",
+                "value": "",
+                "type": "query",
+                "description": "Retrieves object details after creating it."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "The request body must include all required SLO properties, and may include any optional properties as well.\r\nTo get a sample payload to pass along with the request, use the response from endpoint GET: /api/v2/slo/{sloIds} with {sloIds} as “0”."
+        },
+        {
+          "info": {
+            "name": "Retrieve SLO property enumerations.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/slo/enumeration",
+            "params": [
+              {
+                "name": "analyticsMetric",
+                "value": "",
+                "type": "query",
+                "description": "Return analyticsMetric enumeration"
+              },
+              {
+                "name": "domainStatus",
+                "value": "",
+                "type": "query",
+                "description": "Return domainStatus enumeration"
+              },
+              {
+                "name": "nodeThresholdType",
+                "value": "",
+                "type": "query",
+                "description": "Return nodeThresholdType enumeration"
+              },
+              {
+                "name": "operatorType",
+                "value": "",
+                "type": "query",
+                "description": "Return operatorType enumeration"
+              },
+              {
+                "name": "timeThresholdInterval",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "All parameters are optional, and if no parameters are provided then all enumerations are returned."
+        },
+        {
+          "info": {
+            "name": "Retrieve violation data for all SLOs matching request parameters within the requested date range.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/slo/violations",
+            "params": [
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "Start Time in UTC. Format (YYYY-MM-DDThh:mm:ss)."
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "End Time in UTC. Format (YYYY-MM-DDThh:mm:ss)."
+              },
+              {
+                "name": "sloIds",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of SLO IDs to look up."
+              },
+              {
+                "name": "testIds",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of Test IDs to look up."
+              },
+              {
+                "name": "sloName",
+                "value": "",
+                "type": "query",
+                "description": "The name of an SLO to look up."
+              },
+              {
+                "name": "testName",
+                "value": "",
+                "type": "query",
+                "description": "The name of a Test to look up."
+              },
+              {
+                "name": "metricType",
+                "value": "",
+                "type": "query",
+                "description": "The SLO metric ID. “15” for Availability, “89” for Test Time."
+              },
+              {
+                "name": "statusType",
+                "value": "",
+                "type": "query",
+                "description": "The SLO status ID. “0” for Active, “1” for inactive."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve violation data for all SLOs matching request parameters within the requested date range."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

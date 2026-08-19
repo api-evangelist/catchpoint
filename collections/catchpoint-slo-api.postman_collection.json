@@ -1,0 +1,967 @@
+{
+  "item": [
+    {
+      "id": "9892e837-2636-4bed-9838-ae489ee4a778",
+      "name": "SLO",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9da28f86-654a-47a1-b7be-53df6bb115af",
+          "name": "Retrieve properties of one or more SLOs based on SLO IDs.",
+          "request": {
+            "name": "Retrieve properties of one or more SLOs based on SLO IDs.",
+            "description": {
+              "content": "Multiple SLO IDs may be included in a comma-separated list.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "slo",
+                ":sloIds"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sloIds",
+                  "description": "(Required) A comma-separated list of SLO IDs to look up."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ba4409c9-b311-4fd5-a314-da7fe436af5a",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "slo",
+                    ":sloIds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sloIds",
+                      "description": "(Required) A comma-separated list of SLO IDs to look up."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"slos\": [\n      {\n        \"goal\": 3971.8588888682084,\n        \"goalOperatorType\": null,\n        \"id\": 1649,\n        \"metricType\": null,\n        \"name\": \"string\",\n        \"status\": null,\n        \"testIds\": [\n          6776\n        ],\n        \"violationConditionInTheLast\": null,\n        \"violationThresholdType\": null,\n        \"description\": \"string\",\n        \"divisionId\": 5852,\n        \"violationThresholdOperatorType\": null,\n        \"violationThresholdValue\": 6394.912238534796,\n        \"violationConditionNumberOfUnits\": 5073,\n        \"violationConditionPercentageOfUnits\": 4577.518619761707,\n        \"violationConditionConsecutiveRunsEnabled\": true,\n        \"violationConditionConsecutiveRuns\": 5558,\n        \"changeDate\": \"1979-05-24T05:59:43.705Z\",\n        \"createDate\": \"2022-09-15T10:17:17.933Z\",\n        \"changeContactId\": 6271,\n        \"createContactId\": 1617\n      },\n      {\n        \"goal\": 9374.026374815,\n        \"goalOperatorType\": null,\n        \"id\": 80,\n        \"metricType\": null,\n        \"name\": \"string\",\n        \"status\": null,\n        \"testIds\": [\n          8189\n        ],\n        \"violationConditionInTheLast\": null,\n        \"violationThresholdType\": null,\n        \"description\": \"string\",\n        \"divisionId\": 4094,\n        \"violationThresholdOperatorType\": null,\n        \"violationThresholdValue\": 1294.2997207062567,\n        \"violationConditionNumberOfUnits\": 9124,\n        \"violationConditionPercentageOfUnits\": 2470.37717442788,\n        \"violationConditionConsecutiveRunsEnabled\": false,\n        \"violationConditionConsecutiveRuns\": 6892,\n        \"changeDate\": \"1957-03-09T03:14:39.534Z\",\n        \"createDate\": \"2015-04-03T17:36:42.120Z\",\n        \"changeContactId\": 6535,\n        \"createContactId\": 9370\n      }\n    ],\n    \"hasMore\": true,\n    \"next\": \"string\",\n    \"previous\": \"string\"\n  },\n  \"messages\": [\n    {\n      \"information\": \"string\",\n      \"ignoredPath\": [\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        },\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        }\n      ]\n    },\n    {\n      \"information\": \"string\",\n      \"ignoredPath\": [\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        },\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"message\": \"string\"\n    }\n  ],\n  \"completed\": true,\n  \"traceId\": \"string\",\n  \"usageLimits\": {\n    \"clientId\": 3177,\n    \"lastRequestTimestamp\": \"2024-12-01T09:36:34.229Z\",\n    \"limits\": {\n      \"minute\": 9174,\n      \"hour\": 1253,\n      \"day\": 2386\n    },\n    \"runs\": {\n      \"minute\": 3201,\n      \"hour\": 3677,\n      \"day\": 8496\n    },\n    \"exceededMessage\": \"string\",\n    \"divisionUsageStatistics\": [\n      {\n        \"divisionId\": 8036,\n        \"consumerStatistics\": [\n          {\n            \"consumerId\": 8729,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 2842\n          },\n          {\n            \"consumerId\": 4028,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 7309\n          }\n        ]\n      },\n      {\n        \"divisionId\": 6926,\n        \"consumerStatistics\": [\n          {\n            \"consumerId\": 6401,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 9706\n          },\n          {\n            \"consumerId\": 7784,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 704\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a2d7b92d-0398-44bd-a23f-eab7a173dbe0",
+          "name": "Update properties of an existing SLO based on the request body.",
+          "request": {
+            "name": "Update properties of an existing SLO based on the request body.",
+            "description": {
+              "content": "**Request:**\r\n            \r\nOnly the property to be updated can be passed in the request body instead of the whole object. The update request body requires a total of three keys to be filled with appropriate value as listed below:\r\n* **value** – The value property provides the new value.\r\n            \r\n* **path** – The path property indicates the element to update. The entire path with slashes needs to be provided here. Example: /status/id\r\n            \r\n* **op** – The op property indicates the type of operation; we support the following three operations.\r\n            \r\n    * **add** - Add a property or array element. For existing property: set value.\r\n            \r\n    * **Remove** - Remove a property or array element.\r\n            \r\n    * **replace** - Same as remove followed by add at same location.\r\n            \r\n* **from** - [Not Used]\r\n            \r\n    * **Explanation** - The \"from\" parameter represents the starting or current value of the resource that the operation intends to modify. The from parameter is included in the example value schema but is not utilized in this endpoint's functionality. It is reserved for potential future use or could be used in specific scenarios not covered by the current implementation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "slo",
+                ":sloIds"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "objectDetails",
+                  "value": "<boolean>",
+                  "description": "Retrieves object details after update."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sloIds",
+                  "description": "(Required) A comma delimited list of SLO IDs to update an SLO."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"value\": {},\n    \"path\": \"<string>\",\n    \"op\": \"<string>\",\n    \"from\": \"<string>\"\n  },\n  {\n    \"value\": {},\n    \"path\": \"<string>\",\n    \"op\": \"<string>\",\n    \"from\": \"<string>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f9beff4b-8c61-41d1-b885-9de023c4024f",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "slo",
+                    ":sloIds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "objectDetails",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sloIds",
+                      "description": "(Required) A comma delimited list of SLO IDs to update an SLO."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"value\": {},\n    \"path\": \"<string>\",\n    \"op\": \"<string>\",\n    \"from\": \"<string>\"\n  },\n  {\n    \"value\": {},\n    \"path\": \"<string>\",\n    \"op\": \"<string>\",\n    \"from\": \"<string>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"slos\": [\n      {\n        \"goal\": 5524.692571660883,\n        \"goalOperatorType\": null,\n        \"id\": 7343,\n        \"metricType\": null,\n        \"name\": \"string\",\n        \"status\": null,\n        \"testIds\": [\n          7649\n        ],\n        \"violationConditionInTheLast\": null,\n        \"violationThresholdType\": null,\n        \"description\": \"string\",\n        \"divisionId\": 1652,\n        \"violationThresholdOperatorType\": null,\n        \"violationThresholdValue\": 7586.911636999451,\n        \"violationConditionNumberOfUnits\": 9952,\n        \"violationConditionPercentageOfUnits\": 1091.5372601520369,\n        \"violationConditionConsecutiveRunsEnabled\": false,\n        \"violationConditionConsecutiveRuns\": 2269,\n        \"changeDate\": \"1983-03-30T18:39:56.275Z\",\n        \"createDate\": \"1966-12-01T08:06:28.690Z\",\n        \"changeContactId\": 2889,\n        \"createContactId\": 5370\n      },\n      {\n        \"goal\": 2635.0747231731652,\n        \"goalOperatorType\": null,\n        \"id\": 3093,\n        \"metricType\": null,\n        \"name\": \"string\",\n        \"status\": null,\n        \"testIds\": [\n          8889\n        ],\n        \"violationConditionInTheLast\": null,\n        \"violationThresholdType\": null,\n        \"description\": \"string\",\n        \"divisionId\": 2797,\n        \"violationThresholdOperatorType\": null,\n        \"violationThresholdValue\": 5344.4239856232225,\n        \"violationConditionNumberOfUnits\": 2047,\n        \"violationConditionPercentageOfUnits\": 5644.716377068021,\n        \"violationConditionConsecutiveRunsEnabled\": false,\n        \"violationConditionConsecutiveRuns\": 4053,\n        \"changeDate\": \"1961-06-24T02:36:15.122Z\",\n        \"createDate\": \"2020-01-12T01:08:04.443Z\",\n        \"changeContactId\": 9407,\n        \"createContactId\": 5760\n      }\n    ],\n    \"ids\": [\n      963,\n      9732\n    ],\n    \"hasMore\": false,\n    \"next\": \"string\",\n    \"previous\": \"string\"\n  },\n  \"messages\": [\n    {\n      \"information\": \"string\",\n      \"ignoredPath\": [\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        },\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        }\n      ]\n    },\n    {\n      \"information\": \"string\",\n      \"ignoredPath\": [\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        },\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"message\": \"string\"\n    }\n  ],\n  \"completed\": false,\n  \"traceId\": \"string\",\n  \"usageLimits\": {\n    \"clientId\": 1746,\n    \"lastRequestTimestamp\": \"1964-09-11T17:57:48.590Z\",\n    \"limits\": {\n      \"minute\": 4880,\n      \"hour\": 9050,\n      \"day\": 2325\n    },\n    \"runs\": {\n      \"minute\": 4415,\n      \"hour\": 9754,\n      \"day\": 6947\n    },\n    \"exceededMessage\": \"string\",\n    \"divisionUsageStatistics\": [\n      {\n        \"divisionId\": 3668,\n        \"consumerStatistics\": [\n          {\n            \"consumerId\": 1716,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 9538\n          },\n          {\n            \"consumerId\": 5204,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 3562\n          }\n        ]\n      },\n      {\n        \"divisionId\": 5143,\n        \"consumerStatistics\": [\n          {\n            \"consumerId\": 4056,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 1119\n          },\n          {\n            \"consumerId\": 7723,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 9428\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "32016440-2543-4c61-aca3-59402f805a83",
+          "name": "Delete one or more SLOs based on SLO IDs.",
+          "request": {
+            "name": "Delete one or more SLOs based on SLO IDs.",
+            "description": {
+              "content": "This endpoint allows partial success.\r\nFor example, if the request includes a list of five SLO IDs but only three of them match existing SLOs, then those three SLOs will be deleted and indicated as such in the response.\r\nThe two invalid SLO IDs will be listed in the response with an error message.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "slo",
+                ":sloIds"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sloIds",
+                  "description": "(Required) A comma-separated list of SLO IDs to delete."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "527bfca5-6cbf-4f94-91cc-5d49853d2bb3",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "slo",
+                    ":sloIds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sloIds",
+                      "description": "(Required) A comma-separated list of SLO IDs to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"deleted\": \"string\",\n    \"hasMore\": true,\n    \"next\": \"string\",\n    \"previous\": \"string\"\n  },\n  \"messages\": [\n    {\n      \"information\": \"string\",\n      \"ignoredPath\": [\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        },\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        }\n      ]\n    },\n    {\n      \"information\": \"string\",\n      \"ignoredPath\": [\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        },\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"message\": \"string\"\n    }\n  ],\n  \"completed\": false,\n  \"traceId\": \"string\",\n  \"usageLimits\": {\n    \"clientId\": 2957,\n    \"lastRequestTimestamp\": \"1965-05-02T08:28:18.520Z\",\n    \"limits\": {\n      \"minute\": 5002,\n      \"hour\": 4147,\n      \"day\": 7611\n    },\n    \"runs\": {\n      \"minute\": 3666,\n      \"hour\": 5941,\n      \"day\": 8412\n    },\n    \"exceededMessage\": \"string\",\n    \"divisionUsageStatistics\": [\n      {\n        \"divisionId\": 9509,\n        \"consumerStatistics\": [\n          {\n            \"consumerId\": 7695,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 1911\n          },\n          {\n            \"consumerId\": 3174,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 8570\n          }\n        ]\n      },\n      {\n        \"divisionId\": 5486,\n        \"consumerStatistics\": [\n          {\n            \"consumerId\": 4887,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 8742\n          },\n          {\n            \"consumerId\": 2355,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 8685\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8b92731a-85f6-4662-9713-4c9d6cf42d5b",
+          "name": "Retrieve SLOs that match all included parameters.",
+          "request": {
+            "name": "Retrieve SLOs that match all included parameters.",
+            "description": {
+              "content": "All parameters are optional, and if no parameters are provided then details for all active SLOs are returned.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "slo"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "statusType",
+                  "value": "<integer>",
+                  "description": "The SLO status ID. “0” for Active, “1” for inactive."
+                },
+                {
+                  "disabled": false,
+                  "key": "sloName",
+                  "value": "<string>",
+                  "description": "An SLO name."
+                },
+                {
+                  "disabled": false,
+                  "key": "testName",
+                  "value": "<string>",
+                  "description": "A Test name assigned to the SLOs to look up."
+                },
+                {
+                  "disabled": false,
+                  "key": "metricType",
+                  "value": "<integer>",
+                  "description": "The SLO metric ID. “15” for Availability, “89” for Test Time."
+                },
+                {
+                  "disabled": false,
+                  "key": "testIds",
+                  "value": "<string>",
+                  "description": "A comma-separated list of Test IDs assigned to the SLOs to look up."
+                },
+                {
+                  "disabled": false,
+                  "key": "divisionId",
+                  "value": "<integer>",
+                  "description": "The Division ID of the SLOs to look up. If left empty, the default division of the API user will be used."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d0740b3f-a1f1-4ad5-835b-e2525815cfd1",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "slo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "statusType",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sloName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "testName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "metricType",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "testIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "divisionId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"slos\": [\n      {\n        \"goal\": 8122.186680572173,\n        \"goalOperatorType\": null,\n        \"id\": 3466,\n        \"metricType\": null,\n        \"name\": \"st\",\n        \"status\": null,\n        \"testIds\": [\n          5348\n        ],\n        \"violationConditionInTheLast\": null,\n        \"violationThresholdType\": null,\n        \"description\": \"string\",\n        \"divisionId\": 8093,\n        \"violationThresholdOperatorType\": null,\n        \"violationThresholdValue\": 7107.884131317299,\n        \"violationConditionNumberOfUnits\": 6894,\n        \"violationConditionPercentageOfUnits\": 4883.75981002241,\n        \"violationConditionConsecutiveRunsEnabled\": false,\n        \"violationConditionConsecutiveRuns\": 3306,\n        \"changeDate\": \"2025-12-10T06:18:25.737Z\",\n        \"createDate\": \"1978-08-16T10:16:27.152Z\",\n        \"changeContactId\": 4240,\n        \"createContactId\": 5638\n      },\n      {\n        \"goal\": 5236.784906947692,\n        \"goalOperatorType\": null,\n        \"id\": 6809,\n        \"metricType\": null,\n        \"name\": \"string\",\n        \"status\": null,\n        \"testIds\": [\n          8201\n        ],\n        \"violationConditionInTheLast\": null,\n        \"violationThresholdType\": null,\n        \"description\": \"string\",\n        \"divisionId\": 1484,\n        \"violationThresholdOperatorType\": null,\n        \"violationThresholdValue\": 7395.653834639124,\n        \"violationConditionNumberOfUnits\": 6320,\n        \"violationConditionPercentageOfUnits\": 6604.830594665216,\n        \"violationConditionConsecutiveRunsEnabled\": false,\n        \"violationConditionConsecutiveRuns\": 8287,\n        \"changeDate\": \"1993-05-14T13:57:15.334Z\",\n        \"createDate\": \"1990-08-12T19:18:00.200Z\",\n        \"changeContactId\": 1307,\n        \"createContactId\": 1951\n      }\n    ],\n    \"hasMore\": false,\n    \"next\": \"string\",\n    \"previous\": \"string\"\n  },\n  \"messages\": [\n    {\n      \"information\": \"string\",\n      \"ignoredPath\": [\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        },\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        }\n      ]\n    },\n    {\n      \"information\": \"string\",\n      \"ignoredPath\": [\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        },\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"message\": \"string\"\n    }\n  ],\n  \"completed\": true,\n  \"traceId\": \"string\",\n  \"usageLimits\": {\n    \"clientId\": 8502,\n    \"lastRequestTimestamp\": \"1950-01-14T15:52:21.924Z\",\n    \"limits\": {\n      \"minute\": 6664,\n      \"hour\": 3958,\n      \"day\": 9203\n    },\n    \"runs\": {\n      \"minute\": 3740,\n      \"hour\": 6031,\n      \"day\": 4511\n    },\n    \"exceededMessage\": \"string\",\n    \"divisionUsageStatistics\": [\n      {\n        \"divisionId\": 9769,\n        \"consumerStatistics\": [\n          {\n            \"consumerId\": 4387,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 4254\n          },\n          {\n            \"consumerId\": 1852,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 4458\n          }\n        ]\n      },\n      {\n        \"divisionId\": 2762,\n        \"consumerStatistics\": [\n          {\n            \"consumerId\": 993,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 9461\n          },\n          {\n            \"consumerId\": 784,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 2515\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "35df816b-2790-4d9a-80c5-f3c7e428d6cf",
+          "name": "Create a new SLO configured per the request body.",
+          "request": {
+            "name": "Create a new SLO configured per the request body.",
+            "description": {
+              "content": "The request body must include all required SLO properties, and may include any optional properties as well.\r\nTo get a sample payload to pass along with the request, use the response from endpoint GET: /api/v2/slo/{sloIds} with {sloIds} as “0”.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "slo"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "objectDetails",
+                  "value": "<boolean>",
+                  "description": "Retrieves object details after creating it."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"goal\": \"<float>\",\n  \"goalOperatorType\": \"<integer>\",\n  \"id\": \"<integer>\",\n  \"metricType\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"testIds\": [\n    \"<long>\"\n  ],\n  \"violationConditionInTheLast\": \"<integer>\",\n  \"violationThresholdType\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"divisionId\": \"<integer>\",\n  \"violationThresholdOperatorType\": \"<integer>\",\n  \"violationThresholdValue\": \"<float>\",\n  \"violationConditionNumberOfUnits\": \"<long>\",\n  \"violationConditionPercentageOfUnits\": \"<float>\",\n  \"violationConditionConsecutiveRunsEnabled\": \"<boolean>\",\n  \"violationConditionConsecutiveRuns\": \"<integer>\",\n  \"changeDate\": \"<dateTime>\",\n  \"createDate\": \"<dateTime>\",\n  \"changeContactId\": \"<integer>\",\n  \"createContactId\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ce002a6a-79d7-469e-b1e7-8b2245b05822",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "slo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "objectDetails",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"goal\": \"<float>\",\n  \"goalOperatorType\": \"<integer>\",\n  \"id\": \"<integer>\",\n  \"metricType\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"testIds\": [\n    \"<long>\"\n  ],\n  \"violationConditionInTheLast\": \"<integer>\",\n  \"violationThresholdType\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"divisionId\": \"<integer>\",\n  \"violationThresholdOperatorType\": \"<integer>\",\n  \"violationThresholdValue\": \"<float>\",\n  \"violationConditionNumberOfUnits\": \"<long>\",\n  \"violationConditionPercentageOfUnits\": \"<float>\",\n  \"violationConditionConsecutiveRunsEnabled\": \"<boolean>\",\n  \"violationConditionConsecutiveRuns\": \"<integer>\",\n  \"changeDate\": \"<dateTime>\",\n  \"createDate\": \"<dateTime>\",\n  \"changeContactId\": \"<integer>\",\n  \"createContactId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"slos\": [\n      {\n        \"goal\": \"<float>\",\n        \"goalOperatorType\": \"<integer>\",\n        \"id\": \"<integer>\",\n        \"metricType\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"status\": \"<integer>\",\n        \"testIds\": [\n          \"<long>\"\n        ],\n        \"violationConditionInTheLast\": \"<integer>\",\n        \"violationThresholdType\": \"<integer>\",\n        \"description\": \"<string>\",\n        \"divisionId\": \"<integer>\",\n        \"violationThresholdOperatorType\": \"<integer>\",\n        \"violationThresholdValue\": \"<float>\",\n        \"violationConditionNumberOfUnits\": \"<long>\",\n        \"violationConditionPercentageOfUnits\": \"<float>\",\n        \"violationConditionConsecutiveRunsEnabled\": \"<boolean>\",\n        \"violationConditionConsecutiveRuns\": \"<integer>\",\n        \"changeDate\": \"<dateTime>\",\n        \"createDate\": \"<dateTime>\",\n        \"changeContactId\": \"<integer>\",\n        \"createContactId\": \"<integer>\"\n      },\n      {\n        \"goal\": \"<float>\",\n        \"goalOperatorType\": \"<integer>\",\n        \"id\": \"<integer>\",\n        \"metricType\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"status\": \"<integer>\",\n        \"testIds\": [\n          \"<long>\"\n        ],\n        \"violationConditionInTheLast\": \"<integer>\",\n        \"violationThresholdType\": \"<integer>\",\n        \"description\": \"<string>\",\n        \"divisionId\": \"<integer>\",\n        \"violationThresholdOperatorType\": \"<integer>\",\n        \"violationThresholdValue\": \"<float>\",\n        \"violationConditionNumberOfUnits\": \"<long>\",\n        \"violationConditionPercentageOfUnits\": \"<float>\",\n        \"violationConditionConsecutiveRunsEnabled\": \"<boolean>\",\n        \"violationConditionConsecutiveRuns\": \"<integer>\",\n        \"changeDate\": \"<dateTime>\",\n        \"createDate\": \"<dateTime>\",\n        \"changeContactId\": \"<integer>\",\n        \"createContactId\": \"<integer>\"\n      }\n    ],\n    \"ids\": [\n      3112,\n      6633\n    ],\n    \"hasMore\": false,\n    \"next\": \"string\",\n    \"previous\": \"string\"\n  },\n  \"messages\": [\n    {\n      \"information\": \"string\",\n      \"ignoredPath\": [\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        },\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        }\n      ]\n    },\n    {\n      \"information\": \"string\",\n      \"ignoredPath\": [\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        },\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"message\": \"string\"\n    }\n  ],\n  \"completed\": false,\n  \"traceId\": \"string\",\n  \"usageLimits\": {\n    \"clientId\": 1288,\n    \"lastRequestTimestamp\": \"1966-11-29T00:06:00.094Z\",\n    \"limits\": {\n      \"minute\": 8007,\n      \"hour\": 2989,\n      \"day\": 8707\n    },\n    \"runs\": {\n      \"minute\": 7167,\n      \"hour\": 2327,\n      \"day\": 9170\n    },\n    \"exceededMessage\": \"string\",\n    \"divisionUsageStatistics\": [\n      {\n        \"divisionId\": 1241,\n        \"consumerStatistics\": [\n          {\n            \"consumerId\": 1739,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 9365\n          },\n          {\n            \"consumerId\": 6179,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 7553\n          }\n        ]\n      },\n      {\n        \"divisionId\": 3460,\n        \"consumerStatistics\": [\n          {\n            \"consumerId\": 7678,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 7504\n          },\n          {\n            \"consumerId\": 2645,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 3515\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4554ac36-4ca4-4998-81aa-d7e5afb3ca93",
+          "name": "Retrieve SLO property enumerations.",
+          "request": {
+            "name": "Retrieve SLO property enumerations.",
+            "description": {
+              "content": "All parameters are optional, and if no parameters are provided then all enumerations are returned.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "slo",
+                "enumeration"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "analyticsMetric",
+                  "value": "<boolean>",
+                  "description": "Return analyticsMetric enumeration"
+                },
+                {
+                  "disabled": false,
+                  "key": "domainStatus",
+                  "value": "<boolean>",
+                  "description": "Return domainStatus enumeration"
+                },
+                {
+                  "disabled": false,
+                  "key": "nodeThresholdType",
+                  "value": "<boolean>",
+                  "description": "Return nodeThresholdType enumeration"
+                },
+                {
+                  "disabled": false,
+                  "key": "operatorType",
+                  "value": "<boolean>",
+                  "description": "Return operatorType enumeration"
+                },
+                {
+                  "disabled": false,
+                  "key": "timeThresholdInterval",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f1df730c-b183-4cb2-ab0f-03d21d8a8a65",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "slo",
+                    "enumeration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "analyticsMetric",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "domainStatus",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "nodeThresholdType",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "operatorType",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "timeThresholdInterval",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"sections\": [\n      {\n        \"section\": \"string\",\n        \"enumeration\": [\n          {\n            \"id\": 1887,\n            \"name\": \"string\"\n          },\n          {\n            \"id\": 7537,\n            \"name\": \"string\"\n          }\n        ]\n      },\n      {\n        \"section\": \"string\",\n        \"enumeration\": [\n          {\n            \"id\": 3336,\n            \"name\": \"string\"\n          },\n          {\n            \"id\": 3397,\n            \"name\": \"string\"\n          }\n        ]\n      }\n    ],\n    \"hasMore\": true,\n    \"next\": \"string\",\n    \"previous\": \"string\"\n  },\n  \"messages\": [\n    {\n      \"information\": \"string\",\n      \"ignoredPath\": [\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        },\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        }\n      ]\n    },\n    {\n      \"information\": \"string\",\n      \"ignoredPath\": [\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        },\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"message\": \"string\"\n    }\n  ],\n  \"completed\": true,\n  \"traceId\": \"string\",\n  \"usageLimits\": {\n    \"clientId\": 5500,\n    \"lastRequestTimestamp\": \"1997-07-30T01:10:08.940Z\",\n    \"limits\": {\n      \"minute\": 9713,\n      \"hour\": 6905,\n      \"day\": 2362\n    },\n    \"runs\": {\n      \"minute\": 3495,\n      \"hour\": 5083,\n      \"day\": 6027\n    },\n    \"exceededMessage\": \"string\",\n    \"divisionUsageStatistics\": [\n      {\n        \"divisionId\": 6987,\n        \"consumerStatistics\": [\n          {\n            \"consumerId\": 9429,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 38\n          },\n          {\n            \"consumerId\": 4268,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 5515\n          }\n        ]\n      },\n      {\n        \"divisionId\": 2239,\n        \"consumerStatistics\": [\n          {\n            \"consumerId\": 6659,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 6408\n          },\n          {\n            \"consumerId\": 1925,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 1725\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2d65526e-f469-4ad8-9204-ac97201249f8",
+          "name": "Retrieve violation data for all SLOs matching request parameters within the requested date range.",
+          "request": {
+            "name": "Retrieve violation data for all SLOs matching request parameters within the requested date range.",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "slo",
+                "violations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<dateTime>",
+                  "description": "Start Time in UTC. Format (YYYY-MM-DDThh:mm:ss)."
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<dateTime>",
+                  "description": "End Time in UTC. Format (YYYY-MM-DDThh:mm:ss)."
+                },
+                {
+                  "disabled": false,
+                  "key": "sloIds",
+                  "value": "<string>",
+                  "description": "A comma-separated list of SLO IDs to look up."
+                },
+                {
+                  "disabled": false,
+                  "key": "testIds",
+                  "value": "<string>",
+                  "description": "A comma-separated list of Test IDs to look up."
+                },
+                {
+                  "disabled": false,
+                  "key": "sloName",
+                  "value": "<string>",
+                  "description": "The name of an SLO to look up."
+                },
+                {
+                  "disabled": false,
+                  "key": "testName",
+                  "value": "<string>",
+                  "description": "The name of a Test to look up."
+                },
+                {
+                  "disabled": false,
+                  "key": "metricType",
+                  "value": "<integer>",
+                  "description": "The SLO metric ID. “15” for Availability, “89” for Test Time."
+                },
+                {
+                  "disabled": false,
+                  "key": "statusType",
+                  "value": "<integer>",
+                  "description": "The SLO status ID. “0” for Active, “1” for inactive."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "35b30ec6-cc68-4b20-a394-a0481621bc74",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "slo",
+                    "violations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "sloIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "testIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sloName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "testName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "metricType",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "statusType",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"violations\": [\n      {\n        \"testId\": 2238,\n        \"sloId\": 5971,\n        \"testName\": \"string\",\n        \"objectiveName\": \"string\",\n        \"metricType\": \"<integer>\",\n        \"statusType\": \"<integer>\",\n        \"goal\": 2448.451111925576,\n        \"violationStart\": \"2021-08-21T13:53:19.478Z\",\n        \"violationEnd\": \"1991-03-30T09:11:34.586Z\",\n        \"minsInViolation\": 470\n      },\n      {\n        \"testId\": 8356,\n        \"sloId\": 1,\n        \"testName\": \"string\",\n        \"objectiveName\": \"string\",\n        \"metricType\": \"<integer>\",\n        \"statusType\": \"<integer>\",\n        \"goal\": 2625.021466757795,\n        \"violationStart\": \"2010-10-19T01:58:21.587Z\",\n        \"violationEnd\": \"1957-09-28T22:45:52.251Z\",\n        \"minsInViolation\": 4219\n      }\n    ],\n    \"hasMore\": true,\n    \"next\": \"string\",\n    \"previous\": \"string\"\n  },\n  \"messages\": [\n    {\n      \"information\": \"string\",\n      \"ignoredPath\": [\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        },\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        }\n      ]\n    },\n    {\n      \"information\": \"string\",\n      \"ignoredPath\": [\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        },\n        {\n          \"ops\": \"string\",\n          \"path\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"message\": \"string\"\n    }\n  ],\n  \"completed\": false,\n  \"traceId\": \"string\",\n  \"usageLimits\": {\n    \"clientId\": 1582,\n    \"lastRequestTimestamp\": \"1973-03-17T04:33:33.447Z\",\n    \"limits\": {\n      \"minute\": 8684,\n      \"hour\": 3785,\n      \"day\": 9127\n    },\n    \"runs\": {\n      \"minute\": 9684,\n      \"hour\": 5462,\n      \"day\": 7905\n    },\n    \"exceededMessage\": \"string\",\n    \"divisionUsageStatistics\": [\n      {\n        \"divisionId\": 6379,\n        \"consumerStatistics\": [\n          {\n            \"consumerId\": 8357,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 5008\n          },\n          {\n            \"consumerId\": 931,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 3979\n          }\n        ]\n      },\n      {\n        \"divisionId\": 3492,\n        \"consumerStatistics\": [\n          {\n            \"consumerId\": 2744,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 4514\n          },\n          {\n            \"consumerId\": 6976,\n            \"requestCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxPerDay\": 2185\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "98dde7a0-79ce-48f0-b6b2-6b16557b1a4f",
+    "name": "Catchpoint REST API v2.0 Account SLO API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

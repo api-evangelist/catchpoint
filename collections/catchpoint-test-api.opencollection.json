@@ -1,0 +1,569 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Catchpoint REST API v2.0 Account Test API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Test",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns properties of one or more tests based on test IDs.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/tests/:testIds",
+            "params": [
+              {
+                "name": "testIds",
+                "value": "",
+                "type": "path",
+                "description": "Comma-separated list of test IDs to return properties for. Pass “0” against the testId value to get the PostData for a new test creation."
+              },
+              {
+                "name": "showInheritedProperties",
+                "value": "",
+                "type": "query",
+                "description": "Flag to set to see inherited properties as part of the test properties returned"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Multiple test IDs may be included in a comma-separated list. Results include properties from all sections available in Catchpoint Portal: Test Properties, More Settings, Thresholds, Advanced Settings, Request, Insights, Targeting & Scheduling, and Alerts."
+        },
+        {
+          "info": {
+            "name": "Delete tests based on the specified list of IDs.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/v2/tests/:testIds",
+            "params": [
+              {
+                "name": "testIds",
+                "value": "",
+                "type": "path",
+                "description": "Comma-separated list of test IDs to delete"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "The IDs need to be separated by commas. This endpoint allows partial deletion; if you provide a list of five IDs and only three of them are valid, then it will delete those three tests. The response will indicate the three that were deleted, and the two invalid IDs will be listed as errors."
+        },
+        {
+          "info": {
+            "name": "Returns tests that match all included parameters.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/tests",
+            "params": [
+              {
+                "name": "productIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of product IDs"
+              },
+              {
+                "name": "parentFolderIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of folder IDs. The response will only include tests contained immediately with a specified folder"
+              },
+              {
+                "name": "statusId",
+                "value": "",
+                "type": "query",
+                "description": "Test status ID. “0” for Active or “1” for Inactive."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Test name"
+              },
+              {
+                "name": "url",
+                "value": "",
+                "type": "query",
+                "description": "Test URLs. The request will only return Web tests with test URLs matching the specified value"
+              },
+              {
+                "name": "alertsPaused",
+                "value": "",
+                "type": "query",
+                "description": "“true” for Tests with alerts paused and “false” for tests with alerts unpaused."
+              },
+              {
+                "name": "typeIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of test type IDs (refer InternalLink[Test Enumeration Endpoint,operations-tag-Test,operations-Test-get_v2_tests_enumeration])"
+              },
+              {
+                "name": "monitorIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of monitor IDs (refer InternalLink[Test Enumeration Endpoint,operations-tag-Test,operations-Test-get_v2_tests_enumeration])"
+              },
+              {
+                "name": "labelKeyIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of label key IDs"
+              },
+              {
+                "name": "labelValueIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of label value IDs"
+              },
+              {
+                "name": "pageNumber",
+                "value": "",
+                "type": "query",
+                "description": "Page number to return records from when the number of records exceeds pageSize"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page. Maximum value is 100."
+              },
+              {
+                "name": "includeAdvanceSettings",
+                "value": "",
+                "type": "query",
+                "description": "Include advanced settings"
+              },
+              {
+                "name": "includeRequest",
+                "value": "",
+                "type": "query",
+                "description": "Include request settings"
+              },
+              {
+                "name": "includeInsight",
+                "value": "",
+                "type": "query",
+                "description": "Include insights"
+              },
+              {
+                "name": "includeTargeting",
+                "value": "",
+                "type": "query",
+                "description": "Include target and scheduling"
+              },
+              {
+                "name": "includeAlerts",
+                "value": "",
+                "type": "query",
+                "description": "Include alerts"
+              },
+              {
+                "name": "showInheritedProperties",
+                "value": "",
+                "type": "query",
+                "description": "Set to true if inherited properties are to be included in the response"
+              },
+              {
+                "name": "maximumFrequencyMinutes",
+                "value": "",
+                "type": "query",
+                "description": "The maximum frequency in minutes that the test runs at"
+              },
+              {
+                "name": "credentialIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of Credential IDs"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "All parameters are optional, and if no parameters are provided then details for all active and inactive tests are returned. Results include properties from all sections available in the UI: Test Properties, More Settings, Thresholds, Advanced Settings, Request, Insights, Targeting & Scheduling, and Alerts. The query returns 100 records per page, if there are more than 100 records then the response will have “hasMore” property set to “true”.\r\n            \r\n**Request:**\r\n            \r\nAll paramete"
+        },
+        {
+          "info": {
+            "name": "Create a new test per the request body.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v2/tests",
+            "params": [
+              {
+                "name": "objectDetails",
+                "value": "",
+                "type": "query",
+                "description": "Set to true to return the created object in the response body, otherwise the response body will only return the created object ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "The request body may contain only the required properties, or it may contain all test properties.\r\n            \r\nNote: For SSL test type we do not support certificate upload when creating a test.\r\n            \r\n**Request:**\r\n            \r\nTo create a test, the required properties need to be passed in the request body. If no details are provided for sections like targeting and scheduling, alerts, etc. then those properties will be set as inherited.\r\n            \r\nTo get a sample payload refer Int"
+        },
+        {
+          "info": {
+            "name": "Return the alert state of one or more tests based on test IDs.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/tests/alert/state/:testIds",
+            "params": [
+              {
+                "name": "testIds",
+                "value": "",
+                "type": "path",
+                "description": "Comma-separated list of test IDs to get alert state for"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Multiple test IDs may be included in a comma-separated list.\r\n            \r\nResults include the alert state for each of the test ID provided.\r\n            \r\n**Response:**\r\n            \r\nThe alert state has status ID and status Name.\r\n            \r\n* Status ID – 0 for Paused, 1 for Unpaused\r\n            \r\n* Status Name – Paused, Unpaused"
+        },
+        {
+          "info": {
+            "name": "Pause or unpause alerts for the specified test IDs.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/api/v2/tests/alert/state",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "There can be multiple tests in the payload, each with its own desired state specified. An alert can be paused for a specific time by passing it in the payload.\r\n            \r\n**Request:**\r\n            \r\nSet “pauseExpiration” with < HH >:< MM > as the value.\r\n            \r\nUse alert state status id “0” to pause and “1” to unpause.\r\n            \r\nTo get a sample payload to pass along with the request, refer InternalLink[Test Alert State Endpoint,operations-tag-Test,operations-Test-get_v2_tests_ale"
+        },
+        {
+          "info": {
+            "name": "Update a property of an existing test.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/api/v2/tests/:testId",
+            "params": [
+              {
+                "name": "testId",
+                "value": "",
+                "type": "path",
+                "description": "Test Id of the test to update"
+              },
+              {
+                "name": "objectDetails",
+                "value": "",
+                "type": "query",
+                "description": "Set to true to return the updated object in the response body, otherwise the response body will only return the updated object ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Only the property that needs to be updated should be passed in the request body, rather than the whole object.\r\n            \r\nNote: Test Type, Test ID, and Division ID cannot be updated. If the Product ID or Folder ID are modified, the test will be moved to that Product or Folder.\r\n            \r\n**Request:**\r\n            \r\nThe request body requires three keys to be filled with appropriate value as listed below.\r\n* **value** – The value property provides the new value.\r\n            \r\n* **path** –"
+        },
+        {
+          "info": {
+            "name": "Returns the enumeration to help automate test creation.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/tests/enumeration",
+            "params": [
+              {
+                "name": "displayTestType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "analyticsMetric",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "domainStatus",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "displayMonitorType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "winHttpMethod",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "webRequestPostDataFormat",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "userAgentType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "apiTransactionScriptType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dnsQueryType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "testAction",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "settingsType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "authenticationMethodType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "passwordStatusType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "webRequestHeaderType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "recipientType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "alertInstructionType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nodeThresholdType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "breakdownDimension",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "reminderFrequency",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "alertTriggerType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "operatorType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "testReportMetricDataType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "alertGroupItemFilterType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dnsTraceType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "alertHistoricalTimeThreshold",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "alertTimeThresholdInterval",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "notificationType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "reportAlertType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "reportAlertSubtype",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "insightType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "insightSourceType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "insightContentType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "displayTestFrequency",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nodeDistribution",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "syntheticNetworkType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "networkType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "domainSchedule",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "testFlag",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "bandwidthThrottling",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "selfZoneMatchingOptions",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "objectType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "applicationVersionType",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Use parameters to specify which enumeration to pull. If no parameter is passed then it returns all the enumerations. The details returned include the name and the ID to be used for test creation for each section."
+        },
+        {
+          "info": {
+            "name": "Convert a script to a specified language. Only Selenium (1) to Playwright (3) is currently supported.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v2/tests/scriptconvert",
+            "params": [
+              {
+                "name": "scriptLanguage",
+                "value": "",
+                "type": "query",
+                "description": "ApiTransactionScriptType Enum value of the original script format"
+              },
+              {
+                "name": "languageScriptShouldConvertTo",
+                "value": "",
+                "type": "query",
+                "description": "ApiTransactionScriptType Enum value of the target script format"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "* scriptLanguage – ApiTransactionScriptType Enum value of the original script format.\r\n            \r\n* languageScriptShouldConvertTo – ApiTransactionScriptType Enum value of the target script format."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

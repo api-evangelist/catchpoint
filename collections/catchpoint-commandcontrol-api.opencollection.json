@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Catchpoint REST API v2.0 Account CommandControl API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "CommandControl",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns all the external IPs and hostnames of the available Catchpoint Servers for whitelisting purposes.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/commandcontrol",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns all the external IPs and hostnames of the available Catchpoint Servers for whitelisting purposes."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

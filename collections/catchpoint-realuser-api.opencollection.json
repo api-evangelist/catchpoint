@@ -1,0 +1,256 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Catchpoint REST API v2.0 Account RealUser API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "RealUser",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns the list of real user favorite charts from a client or a division.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/realuser/favoritechart",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the list of real user favorite charts from a client or a division."
+        },
+        {
+          "info": {
+            "name": "Returns the real user favorite chart details based on the favorite chart ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/realuser/favoritechart/:favoritechartIds",
+            "params": [
+              {
+                "name": "favoritechartIds",
+                "value": "",
+                "type": "path",
+                "description": "Comma-separated list of real user favorite chart IDs"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the real user favorite chart details based on the favorite chart ID."
+        },
+        {
+          "info": {
+            "name": "Returns the real user favorite chart data based on the ID and the parameters.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/realuser/favoritechart/data/:favoriteChartId",
+            "params": [
+              {
+                "name": "favoriteChartId",
+                "value": "",
+                "type": "path",
+                "description": "Real user favorite chart ID"
+              },
+              {
+                "name": "startTimeUtc",
+                "value": "",
+                "type": "query",
+                "description": "Start Time in UTC (YYYY-MM-DDThh:mm:ss)"
+              },
+              {
+                "name": "endTimeUtc",
+                "value": "",
+                "type": "query",
+                "description": "End Time in UTC (YYYY-MM-DDThh:mm:ss)"
+              },
+              {
+                "name": "timeInterval",
+                "value": "",
+                "type": "query",
+                "description": "Time interval window to aggregate data (refer InternalLink[Real User Application Enumeration,operations-tag-RealUser,operations-RealUser-get_v2_realuser_explorer_enumeration])"
+              },
+              {
+                "name": "siteIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of site IDs to get favorite chart data for."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "*[Analytics Endpoint]*\r\n            \r\nThe favorite chart data returned is in UTC time.\r\n            \r\n**Note:**\r\n- Time interval \"Second\" is only valid for timeframes less than or equal to 30 minutes.\r\n- Similarly, time interval \"Minutes1\" is only valid for timeframes less than or equal to 12 hours.\r\n- Using these time intervals with other timeframes will result in an error response."
+        },
+        {
+          "info": {
+            "name": "Returns the real user explorer data by site ID and filters.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/realuser/explorer/data/:siteIds",
+            "params": [
+              {
+                "name": "siteIds",
+                "value": "",
+                "type": "path",
+                "description": "Comma-separated list of site IDs"
+              },
+              {
+                "name": "startTimeUtc",
+                "value": "",
+                "type": "query",
+                "description": "Start Time in UTC (YYYY-MM-DDThh:mm:ss)"
+              },
+              {
+                "name": "endTimeUtc",
+                "value": "",
+                "type": "query",
+                "description": "End Time in UTC (YYYY-MM-DDThh:mm:ss)"
+              },
+              {
+                "name": "subSourceTypeId",
+                "value": "",
+                "type": "query",
+                "description": "Sub Source Type ID to return Sub Source Data. “1” for Provider; “2” for Ajax; “6” for Zone"
+              },
+              {
+                "name": "timeInterval",
+                "value": "",
+                "type": "query",
+                "description": "Time interval window to aggregate data (refer InternalLink[Real User Application Enumeration,operations-tag-RealUser,operations-RealUser-get_v2_realuser_explorer_enumeration])"
+              },
+              {
+                "name": "dimensionIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of Dimension IDs (refer InternalLink[Real User Application Enumeration,operations-tag-RealUser,operations-RealUser-get_v2_realuser_explorer_enumeration])"
+              },
+              {
+                "name": "metricIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of metric IDs (refer InternalLink[Real User Application Enumeration,operations-tag-RealUser,operations-RealUser-get_v2_realuser_explorer_enumeration]). Default metrics based on SubSourceTypeId are returned if no value is passed."
+              },
+              {
+                "name": "tracepointIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of Tracepoint IDs"
+              },
+              {
+                "name": "indicatorIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of Indicator IDs"
+              },
+              {
+                "name": "zoneTypeIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of Zone Type IDs. ”-2” for Self Zone and “-3” for Third Party Zone."
+              },
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query",
+                "description": "Add filter dimension, filter value and flag"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "*[Analytics Endpoint]*\r\n            \r\n**Note:**\r\n- Time interval \"Second\" is only valid for timeframes less than or equal to 30 minutes.\r\n- Similarly, time interval \"Minutes1\" is only valid for timeframes less than or equal to 12 hours.\r\n- Using these time intervals with other timeframes will result in an error response."
+        },
+        {
+          "info": {
+            "name": "Returns the real user favorite chart default data set by the user when the favorite chart was created based on the ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/realuser/favoritechart/defaultdata/:favoriteChartId",
+            "params": [
+              {
+                "name": "favoriteChartId",
+                "value": "",
+                "type": "path",
+                "description": "Real user favorite chart ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "*[Analytics Endpoint]*\r\n            \r\nThe favorite chart data returned is in UTC time."
+        },
+        {
+          "info": {
+            "name": "Returns the real user enumeration details for automation.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/realuser/explorer/enumeration",
+            "params": [
+              {
+                "name": "subSourceId",
+                "value": "",
+                "type": "query",
+                "description": "Sub Source Type ID to return Sub Source Data. “1” for Provider; “2” for Ajax; “6” for Zone"
+              },
+              {
+                "name": "includeDimensions",
+                "value": "",
+                "type": "query",
+                "description": "Set to “true” to return enumerations of dimensions."
+              },
+              {
+                "name": "includeMetrics",
+                "value": "",
+                "type": "query",
+                "description": "Set to “true” to return enumerations of metrics."
+              },
+              {
+                "name": "includeSubSourceTypes",
+                "value": "",
+                "type": "query",
+                "description": "Set to “true” to return enumerations of sub sources."
+              },
+              {
+                "name": "includeTimeIntervals",
+                "value": "",
+                "type": "query",
+                "description": "Set to “true” to return enumerations of time intervals."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Use parameters to specify which enumeration to pull, if no parameter is passed then it returns all the enumerations. Returns the enumeration based on the parameters."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

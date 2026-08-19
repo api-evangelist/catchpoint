@@ -1,0 +1,71 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Catchpoint REST API v2.0 Account UsageReport API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "UsageReport",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns the Usage Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/account/usagereport",
+            "params": [
+              {
+                "name": "dataByDays",
+                "value": "",
+                "type": "query",
+                "description": "Usage Report of last 7 days including the present day."
+              },
+              {
+                "name": "dataByWeeks",
+                "value": "",
+                "type": "query",
+                "description": "Usage Report of last 5 weeks including present week."
+              },
+              {
+                "name": "dataByMonths",
+                "value": "",
+                "type": "query",
+                "description": "Usage Report of last 4 Months including the current month."
+              },
+              {
+                "name": "dataByQuarters",
+                "value": "",
+                "type": "query",
+                "description": "Usage Report of last 3 quarters including current quarter."
+              },
+              {
+                "name": "divisionId",
+                "value": "",
+                "type": "query",
+                "description": "Division id of which usage report Required"
+              },
+              {
+                "name": "productId",
+                "value": "",
+                "type": "query",
+                "description": "ProductId if which usage report required"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": " Return usage report for the provided parameters.  \r\nThe parameters are optional, and you may include either of them to customize the query.If no parameters are passed, then usage report by months is returned."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
