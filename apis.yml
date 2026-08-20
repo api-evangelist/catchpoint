@@ -37,6 +37,17 @@ created: '2026-07-17'
 modified: '2026-07-18'
 tags:
 - Company
+- DevOps
+- Monitoring
+- Observability
+- Internet Performance Monitoring
+- Synthetic Monitoring
+- Real User Monitoring
+- Network Monitoring
+- BGP Monitoring
+- Digital Experience Monitoring
+tags_raw:
+- Company
 - Devops
 - Monitoring
 - Observability
@@ -346,7 +357,8 @@ apis:
   description: The Test API from Catchpoint — 7 operation(s) for test.
   humanURL: https://docs.catchpoint.com/docs/rest-api-v2-guide
   baseURL: https://io.catchpoint.com/api
-  tags:
+  tags: []
+  tags_raw:
   - Test
   properties:
   - type: OpenAPI
@@ -395,6 +407,8 @@ apis:
   humanURL: https://docs.catchpoint.com/docs/rest-api-v2-guide
   baseURL: https://io.catchpoint.com/api
   tags:
+  - User Identity
+  tags_raw:
   - UserIdentity
   properties:
   - type: OpenAPI
@@ -419,6 +433,8 @@ apis:
   humanURL: https://docs.catchpoint.com/docs/rest-api-v2-guide
   baseURL: https://io.catchpoint.com/api
   tags:
+  - Workflows
+  tags_raw:
   - Workflow
   properties:
   - type: OpenAPI
