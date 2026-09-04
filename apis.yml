@@ -27,15 +27,16 @@ deliveryModel:
   method: derived
 accessModel:
   pricing: unknown
-  onboarding: self-serve
+  onboarding: unknown
   trial: false
   try_now: false
   public: false
-  label: Self-serve signup
-  confidence: medium
+  label: Unknown
+  confidence: low
   source:
   - authentication
-  generated: '2026-07-22'
+  - security
+  generated: '2026-09-03'
   method: derived
 image: https://cdn.prod.website-files.com/61027bb0bc31fc6cafefbc0c/6387709b977c72057fb211e3_CATCHPOINT_OPENGRAPH_1.png
 x-type: company
@@ -454,8 +455,12 @@ apis:
   - type: APIReference
     url: https://io.catchpoint.com/api/swagger/index.html
 common:
-- type: MCPServer
+- type: CapabilityMap
+  url: capabilities/catchpoint-capability-edges.yml
+  name: Catchpoint Business Capability Map
+- type: X-MCPServerCandidate
   url: mcp/catchpoint-mcp.yml
+  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
 - type: Website
   url: https://www.catchpoint.com/
 - type: DeveloperPortal
