@@ -100,18 +100,6 @@ apis:
     url: openapi/catchpoint-alerts-api-openapi.yml
   - type: APIReference
     url: https://io.catchpoint.com/api/swagger/index.html
-- aid: catchpoint:catchpoint-asns-api
-  name: Catchpoint ASNs API
-  description: The ASNs API from Catchpoint — 3 operation(s) for asns.
-  humanURL: https://docs.catchpoint.com/docs/rest-api-v2-guide
-  baseURL: https://io.catchpoint.com/api
-  tags:
-  - ASNs
-  properties:
-  - type: OpenAPI
-    url: openapi/catchpoint-asns-api-openapi.yml
-  - type: APIReference
-    url: https://io.catchpoint.com/api/swagger/index.html
 - aid: catchpoint:catchpoint-assertions-api
   name: Catchpoint Assertions API
   description: The Assertions API from Catchpoint — 1 operation(s) for assertions.
@@ -281,18 +269,6 @@ apis:
     url: openapi/catchpoint-node-api-openapi.yml
   - type: APIReference
     url: https://io.catchpoint.com/api/swagger/index.html
-- aid: catchpoint:catchpoint-nodegroup-api
-  name: Catchpoint NodeGroup API
-  description: The NodeGroup API from Catchpoint — 5 operation(s) for nodegroup.
-  humanURL: https://docs.catchpoint.com/docs/rest-api-v2-guide
-  baseURL: https://io.catchpoint.com/api
-  tags:
-  - NodeGroup
-  properties:
-  - type: OpenAPI
-    url: openapi/catchpoint-nodegroup-api-openapi.yml
-  - type: APIReference
-    url: https://io.catchpoint.com/api/swagger/index.html
 - aid: catchpoint:catchpoint-nodeutilization-api
   name: Catchpoint NodeUtilization API
   description: The NodeUtilization API from Catchpoint — 6 operation(s) for nodeutilization.
@@ -402,44 +378,6 @@ apis:
     url: openapi/catchpoint-testtemplates-api-openapi.yml
   - type: APIReference
     url: https://io.catchpoint.com/api/swagger/index.html
-- aid: catchpoint:catchpoint-usagereport-api
-  name: Catchpoint UsageReport API
-  description: The UsageReport API from Catchpoint — 1 operation(s) for usagereport.
-  humanURL: https://docs.catchpoint.com/docs/rest-api-v2-guide
-  baseURL: https://io.catchpoint.com/api
-  tags:
-  - UsageReport
-  properties:
-  - type: OpenAPI
-    url: openapi/catchpoint-usagereport-api-openapi.yml
-  - type: APIReference
-    url: https://io.catchpoint.com/api/swagger/index.html
-- aid: catchpoint:catchpoint-useridentity-api
-  name: Catchpoint UserIdentity API
-  description: The UserIdentity API from Catchpoint — 1 operation(s) for useridentity.
-  humanURL: https://docs.catchpoint.com/docs/rest-api-v2-guide
-  baseURL: https://io.catchpoint.com/api
-  tags:
-  - User Identity
-  tags_raw:
-  - UserIdentity
-  properties:
-  - type: OpenAPI
-    url: openapi/catchpoint-useridentity-api-openapi.yml
-  - type: APIReference
-    url: https://io.catchpoint.com/api/swagger/index.html
-- aid: catchpoint:catchpoint-userrole-api
-  name: Catchpoint UserRole API
-  description: The UserRole API from Catchpoint — 3 operation(s) for userrole.
-  humanURL: https://docs.catchpoint.com/docs/rest-api-v2-guide
-  baseURL: https://io.catchpoint.com/api
-  tags:
-  - UserRole
-  properties:
-  - type: OpenAPI
-    url: openapi/catchpoint-userrole-api-openapi.yml
-  - type: APIReference
-    url: https://io.catchpoint.com/api/swagger/index.html
 - aid: catchpoint:catchpoint-workflow-api
   name: Catchpoint Workflow API
   description: The Workflow API from Catchpoint — 1 operation(s) for workflow.
@@ -452,6 +390,66 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/catchpoint-workflow-api-openapi.yml
+  - type: APIReference
+    url: https://io.catchpoint.com/api/swagger/index.html
+- aid: catchpoint:catchpoint-asns-api
+  name: Catchpoint AS Ns API
+  description: The ASNs API from Catchpoint — 3 operation(s) for asns.
+  humanURL: https://docs.catchpoint.com/docs/rest-api-v2-guide
+  baseURL: https://io.catchpoint.com/api
+  tags:
+  - ASNs
+  properties:
+  - type: OpenAPI
+    url: openapi/catchpoint-asns-api-openapi.yml
+  - type: APIReference
+    url: https://io.catchpoint.com/api/swagger/index.html
+- aid: catchpoint:catchpoint-node-group-api
+  name: Catchpoint Node Group API
+  description: The Node Group API from Catchpoint — 5 operation(s) for node group.
+  humanURL: https://docs.catchpoint.com/docs/rest-api-v2-guide
+  baseURL: https://io.catchpoint.com/api
+  tags:
+  - Node Group
+  properties:
+  - type: OpenAPI
+    url: openapi/catchpoint-node-group-api-openapi.yml
+  - type: APIReference
+    url: https://io.catchpoint.com/api/swagger/index.html
+- aid: catchpoint:catchpoint-usage-report-api
+  name: Catchpoint Usage Report API
+  description: The Usage Report API from Catchpoint — 1 operation(s) for usage report.
+  humanURL: https://docs.catchpoint.com/docs/rest-api-v2-guide
+  baseURL: https://io.catchpoint.com/api
+  tags:
+  - Usage Report
+  properties:
+  - type: OpenAPI
+    url: openapi/catchpoint-usage-report-api-openapi.yml
+  - type: APIReference
+    url: https://io.catchpoint.com/api/swagger/index.html
+- aid: catchpoint:catchpoint-user-identity-api
+  name: Catchpoint User Identity API
+  description: The User Identity API from Catchpoint — 1 operation(s) for user identity.
+  humanURL: https://docs.catchpoint.com/docs/rest-api-v2-guide
+  baseURL: https://io.catchpoint.com/api
+  tags:
+  - User Identity
+  properties:
+  - type: OpenAPI
+    url: openapi/catchpoint-user-identity-api-openapi.yml
+  - type: APIReference
+    url: https://io.catchpoint.com/api/swagger/index.html
+- aid: catchpoint:catchpoint-user-role-api
+  name: Catchpoint User Role API
+  description: The User Role API from Catchpoint — 3 operation(s) for user role.
+  humanURL: https://docs.catchpoint.com/docs/rest-api-v2-guide
+  baseURL: https://io.catchpoint.com/api
+  tags:
+  - User Role
+  properties:
+  - type: OpenAPI
+    url: openapi/catchpoint-user-role-api-openapi.yml
   - type: APIReference
     url: https://io.catchpoint.com/api/swagger/index.html
 common:
