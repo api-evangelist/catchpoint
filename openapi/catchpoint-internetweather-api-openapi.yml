@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Catchpoint REST API v2.0 Account InternetWeather API
+  title: Catchpoint REST API v2.0 Internet Weather API
   version: '2.0'
 servers:
 - url: /api
@@ -11,7 +11,7 @@ paths:
     get:
       tags:
       - InternetWeather
-      summary: Returns the list of internet service outages. Default last one hour data.
+      summary: Returns the list of internet service outages. Default last one hour data
       description: '*[Analytics Endpoint]*'
       parameters:
       - name: startTimeUtc
@@ -64,8 +64,81 @@ paths:
                 $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.InternetWeatherResponse'
       security:
       - bearer: []
+      operationId: getV2IwOutages
+      x-operation-id-source: derived
 components:
   schemas:
+    Catchpoint.Symphony.REST.Common.Models.v2_0.InternetWeather.InternetWeatherOutageLocation:
+      type: object
+      properties:
+        startTime:
+          type: string
+          format: date-time
+        endTime:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        ongoing:
+          type: boolean
+        city:
+          type:
+          - string
+          - 'null'
+        country:
+          type:
+          - string
+          - 'null'
+        region:
+          type:
+          - string
+          - 'null'
+        errorTypes:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Enums.SyntheticErrorType.SyntheticErrorType'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.v2_0.InternetWeather.InternetWeatherServiceOutage:
+      type: object
+      properties:
+        serviceId:
+          type: integer
+          format: int64
+        serviceName:
+          type:
+          - string
+          - 'null'
+        locations:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.InternetWeather.InternetWeatherOutageLocation'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.InternetWeatherResponse:
+      type: object
+      properties:
+        outages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.InternetWeather.InternetWeatherServiceOutage'
+        hasMore:
+          type:
+          - boolean
+          - 'null'
+        next:
+          type:
+          - string
+          - 'null'
+        previous:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     Catchpoint.Symphony.Enums.SyntheticErrorType.SyntheticErrorType:
       enum:
       - id: 0
@@ -98,66 +171,6 @@ components:
         name: PacketLoss
       type: integer
       format: int32
-    Catchpoint.Symphony.REST.Common.Response.v2_0.InternetWeatherResponse:
-      type: object
-      properties:
-        outages:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.InternetWeather.InternetWeatherServiceOutage'
-          nullable: true
-        hasMore:
-          type: boolean
-          nullable: true
-        next:
-          type: string
-          nullable: true
-        previous:
-          type: string
-          nullable: true
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Models.v2_0.InternetWeather.InternetWeatherServiceOutage:
-      type: object
-      properties:
-        serviceId:
-          type: integer
-          format: int64
-        serviceName:
-          type: string
-          nullable: true
-        locations:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.InternetWeather.InternetWeatherOutageLocation'
-          nullable: true
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Models.v2_0.InternetWeather.InternetWeatherOutageLocation:
-      type: object
-      properties:
-        startTime:
-          type: string
-          format: date-time
-        endTime:
-          type: string
-          format: date-time
-          nullable: true
-        ongoing:
-          type: boolean
-        city:
-          type: string
-          nullable: true
-        country:
-          type: string
-          nullable: true
-        region:
-          type: string
-          nullable: true
-        errorTypes:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.Enums.SyntheticErrorType.SyntheticErrorType'
-          nullable: true
-      additionalProperties: false
   securitySchemes:
     bearer:
       type: http

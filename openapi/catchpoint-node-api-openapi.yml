@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Catchpoint REST API v2.0 Account Node API
+  title: Catchpoint REST API v2.0 Node API
   version: '2.0'
 servers:
 - url: /api
@@ -11,7 +11,7 @@ paths:
     get:
       tags:
       - Node
-      summary: Returns node details by Node ID.
+      summary: Returns node details by Node ID
       description: Works only on Enterprise and Customer owned Nodes.
       parameters:
       - name: nodeIds
@@ -26,21 +26,23 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Node.NodeResponseModel]]]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse_1_System.Collections.Generic.List_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Node.NodeResponseModel'
             text/plain:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Node.NodeResponseModel]]]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse_1_System.Collections.Generic.List_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Node.NodeResponseModel'
             text/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Node.NodeResponseModel]]]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse_1_System.Collections.Generic.List_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Node.NodeResponseModel'
       security:
       - bearer: []
       order: 2
+      operationId: getV2NodesByNodeIds
+      x-operation-id-source: derived
   /v2/nodes:
     get:
       tags:
       - Node
-      summary: Returns the details of Enterprise Nodes within a Client or a Division.
+      summary: Returns the details of Enterprise Nodes within a Client or a Division
       description: When no parameter is passed, all active node details are returned.
       parameters:
       - name: name
@@ -86,21 +88,23 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Node.NodeResponseModel]]]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse_1_System.Collections.Generic.List_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Node.NodeResponseModel'
             text/plain:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Node.NodeResponseModel]]]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse_1_System.Collections.Generic.List_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Node.NodeResponseModel'
             text/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Node.NodeResponseModel]]]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse_1_System.Collections.Generic.List_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Node.NodeResponseModel'
       security:
       - bearer: []
       order: 3
+      operationId: getV2Nodes
+      x-operation-id-source: derived
   /v2/nodes/all:
     get:
       tags:
       - Node
-      summary: Returns the details of nodes of all network types based on parameters passed.
+      summary: Returns the details of nodes of all network types based on parameters passed
       description: '*[Analytics Endpoint]*'
       parameters:
       - name: name
@@ -175,21 +179,23 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Node.PublicNodeModel]]]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse_1_System.Collections.Generic.List_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Node.PublicNodeModel'
             text/plain:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Node.PublicNodeModel]]]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse_1_System.Collections.Generic.List_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Node.PublicNodeModel'
             text/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Node.PublicNodeModel]]]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse_1_System.Collections.Generic.List_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Node.PublicNodeModel'
       security:
       - bearer: []
       order: 1
+      operationId: getV2NodesAll
+      x-operation-id-source: derived
   /v2/nodes/state/{nodeIds}:
     get:
       tags:
       - Node
-      summary: Returns the Node state, paused or not, based on the Node IDs passed.
+      summary: Returns the Node state, paused or not, based on the Node IDs passed
       description: Works only on Enterprise and Customer owned Nodes.
       parameters:
       - name: nodeIds
@@ -204,22 +210,27 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Node.StatusModel]]]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse_1_System.Collections.Generic.List_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Node.StatusModel'
             text/plain:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Node.StatusModel]]]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse_1_System.Collections.Generic.List_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Node.StatusModel'
             text/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Node.StatusModel]]]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse_1_System.Collections.Generic.List_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Node.StatusModel'
       security:
       - bearer: []
       order: 5
+      operationId: getV2NodesStateByNodeIds
+      x-operation-id-source: derived
   /v2/nodes/state:
     patch:
       tags:
       - Node
-      summary: Allows to pause or resume an existing node.
-      description: "Works only on Enterprise and Customer owned Nodes.\r\n            \r\nTo get payload for updating a Node State refer InternalLink[Node State Endpoint,operations-tag-Node,operations-Node-get_v2_nodes_state__nodeIds_]. State ID values – “0” for Resume; “1” for Pause. There can be multiple nodes in the payload for which the state update is intended."
+      summary: Allows to pause or resume an existing node
+      description: 'Works only on Enterprise and Customer owned Nodes.
+
+
+        To get payload for updating a Node State refer InternalLink[Node State Endpoint,operations-tag-Node,operations-Node-get_v2_nodes_state__nodeIds_]. State ID values – “0” for Resume; “1” for Pause. There can be multiple nodes in the payload for which the state update is intended.'
       requestBody:
         description: ''
         content:
@@ -249,21 +260,23 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse`1[System.Collections.Generic.List`1[System.Int32]]]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse_1_System.Collections.Generic.List_1_System.Int32'
             text/plain:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse`1[System.Collections.Generic.List`1[System.Int32]]]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse_1_System.Collections.Generic.List_1_System.Int32'
             text/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse`1[System.Collections.Generic.List`1[System.Int32]]]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse_1_System.Collections.Generic.List_1_System.Int32'
       security:
       - bearer: []
       order: 6
+      operationId: patchV2NodesState
+      x-operation-id-source: derived
   /v2/nodes/status/{nodeIds}:
     get:
       tags:
       - Node
-      summary: Returns the Node status, active or inactive, based on the Node IDs passed.
+      summary: Returns the Node status, active or inactive, based on the Node IDs passed
       description: Works on Enterprise Nodes and Customer owned Nodes.
       parameters:
       - name: nodeIds
@@ -278,22 +291,27 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Node.StatusModel]]]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse_1_System.Collections.Generic.List_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Node.StatusModel'
             text/plain:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Node.StatusModel]]]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse_1_System.Collections.Generic.List_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Node.StatusModel'
             text/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Node.StatusModel]]]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse_1_System.Collections.Generic.List_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Node.StatusModel'
       security:
       - bearer: []
       order: 7
+      operationId: getV2NodesStatusByNodeIds
+      x-operation-id-source: derived
   /v2/nodes/status:
     patch:
       tags:
       - Node
-      summary: Allows to set the status of an existing node to Active or Inactive.
-      description: "Works only on Enterprise and Customer owned Nodes.\r\n            \r\nTo get payload for updating a Node Status refer InternalLink[Node Status Endpoint,operations-tag-Node,operations-Node-get_v2_nodes_status__nodeIds_] Endpoint. Status ID values – “0” for Active; “1” for Inactive. There can be multiple nodes in the payload for which the status update is intended."
+      summary: Allows to set the status of an existing node to Active or Inactive
+      description: 'Works only on Enterprise and Customer owned Nodes.
+
+
+        To get payload for updating a Node Status refer InternalLink[Node Status Endpoint,operations-tag-Node,operations-Node-get_v2_nodes_status__nodeIds_] Endpoint. Status ID values – “0” for Active; “1” for Inactive. There can be multiple nodes in the payload for which the status update is intended.'
       requestBody:
         description: ''
         content:
@@ -323,22 +341,53 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse`1[System.Collections.Generic.List`1[System.Int32]]]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse_1_System.Collections.Generic.List_1_System.Int32'
             text/plain:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse`1[System.Collections.Generic.List`1[System.Int32]]]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse_1_System.Collections.Generic.List_1_System.Int32'
             text/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse`1[System.Collections.Generic.List`1[System.Int32]]]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse_1_System.Collections.Generic.List_1_System.Int32'
       security:
       - bearer: []
       order: 8
+      operationId: patchV2NodesStatus
+      x-operation-id-source: derived
   /v2/nodes/{nodeId}:
     patch:
       tags:
       - Node
-      summary: Update properties of an existing node.
-      description: "Works only on Enterprise and Customer owned Nodes.\r\n            \r\n**Request:**\r\n            \r\nOnly the property to be updated can be passed in the request body instead of the whole object. The update request body requires a total of three keys to be filled with appropriate value as listed below:\r\n* **value** – The value property provides the new value.\r\n            \r\n* **path** – The path property indicates the element to update. The entire path with slashes needs to be provided here. Example: /status/id\r\n            \r\n* **op** – The op property indicates the type of operation; we support the following three operations.\r\n            \r\n    * **add** - Add a property or array element. For existing property: set value.\r\n            \r\n    * **Remove** - Remove a property or array element.\r\n            \r\n    * **replace** - Same as remove followed by add at same location.\r\n            \r\n* **from** - [Not Used]\r\n            \r\n    * **Explanation** - The \"from\" parameter represents the starting or current value of the resource that the operation intends to modify. The from parameter is included in the example value schema but is not utilized in this endpoint's functionality. It is reserved for potential future use or could be used in specific scenarios not covered by the current implementation."
+      summary: Update properties of an existing node
+      description: 'Works only on Enterprise and Customer owned Nodes.
+
+
+        **Request:**
+
+
+        Only the property to be updated can be passed in the request body instead of the whole object. The update request body requires a total of three keys to be filled with appropriate value as listed below:
+
+        * **value** – The value property provides the new value.
+
+
+        * **path** – The path property indicates the element to update. The entire path with slashes needs to be provided here. Example: /status/id
+
+
+        * **op** – The op property indicates the type of operation; we support the following three operations.
+
+
+        * **add** - Add a property or array element. For existing property: set value.
+
+
+        * **Remove** - Remove a property or array element.
+
+
+        * **replace** - Same as remove followed by add at same location.
+
+
+        * **from** - [Not Used]
+
+
+        * **Explanation** - The "from" parameter represents the starting or current value of the resource that the operation intends to modify. The from parameter is included in the example value schema but is not utilized in this endpoint''s functionality. It is reserved for potential future use or could be used in specific scenarios not covered by the current implementation.'
       parameters:
       - name: nodeId
         in: path
@@ -381,21 +430,23 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Node.IIdResponse`1[System.Int16]]]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Node.IIdResponse_1_System.Int16'
             text/plain:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Node.IIdResponse`1[System.Int16]]]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Node.IIdResponse_1_System.Int16'
             text/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Node.IIdResponse`1[System.Int16]]]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Node.IIdResponse_1_System.Int16'
       security:
       - bearer: []
       order: 4
+      operationId: patchV2NodesByNodeId
+      x-operation-id-source: derived
   /v2/nodes/os:
     get:
       tags:
       - Node
-      summary: Returns a list of all the operating system names that match the parameter passed.
+      summary: Returns a list of all the operating system names that match the parameter passed
       description: If no parameter is passed, list of all the operating system names running on the nodes are returned.
       parameters:
       - name: osName
@@ -409,21 +460,23 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.OsResponse]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.OsResponse'
             text/plain:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.OsResponse]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.OsResponse'
             text/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.OsResponse]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.OsResponse'
       security:
       - bearer: []
       order: 10
+      operationId: getV2NodesOs
+      x-operation-id-source: derived
   /v2/nodes/isp:
     get:
       tags:
       - Node
-      summary: Returns a list of all the ISP names that match the parameter passed.
+      summary: Returns a list of all the ISP names that match the parameter passed
       description: If no parameter is passed, list of all the ISP names of the nodes are returned.
       parameters:
       - name: ispName
@@ -437,42 +490,46 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.IspResponse]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.IspResponse'
             text/plain:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.IspResponse]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.IspResponse'
             text/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.IspResponse]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.IspResponse'
       security:
       - bearer: []
       order: 11
+      operationId: getV2NodesIsp
+      x-operation-id-source: derived
   /v2/nodes/package:
     get:
       tags:
       - Node
-      summary: Returns the available enterprise packages for the Client or Division.
+      summary: Returns the available enterprise packages for the Client or Division
       responses:
         '200':
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.EnterprisePackageResponse]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.EnterprisePackageResponse'
             text/plain:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.EnterprisePackageResponse]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.EnterprisePackageResponse'
             text/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.EnterprisePackageResponse]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.EnterprisePackageResponse'
       security:
       - bearer: []
       order: 9
+      operationId: getV2NodesPackage
+      x-operation-id-source: derived
   /v2/nodes/geographycity:
     get:
       tags:
       - Node
-      summary: Returns all the available cities that can be used while creating a Node.
+      summary: Returns all the available cities that can be used while creating a Node
       parameters:
       - name: cityName
         in: query
@@ -499,21 +556,23 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.GeographyCityResponse]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.GeographyCityResponse'
             text/plain:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.GeographyCityResponse]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.GeographyCityResponse'
             text/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.GeographyCityResponse]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.GeographyCityResponse'
       security:
       - bearer: []
       order: 12
+      operationId: getV2NodesGeographycity
+      x-operation-id-source: derived
   /v2/nodes/chromeversions:
     get:
       tags:
       - Node
-      summary: Retrieves the Chrome versions information for the Enterprise node, this will include all versions installed on the node, even if not targeted.
+      summary: Retrieves the Chrome versions information for the Enterprise node, this will…
       parameters:
       - name: nodeId
         in: query
@@ -527,20 +586,22 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.ChromeVersionsResponse]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.ChromeVersionsResponse'
             text/plain:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.ChromeVersionsResponse]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.ChromeVersionsResponse'
             text/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.ChromeVersionsResponse]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.ChromeVersionsResponse'
       security:
       - bearer: []
       order: 13
+      operationId: getV2NodesChromeversions
+      x-operation-id-source: derived
     post:
       tags:
       - Node
-      summary: Update the chrome versions for the specified Enterprise node based on the payload sent.
+      summary: Update the chrome versions for the specified Enterprise node based on the…
       requestBody:
         description: Specifies the node id, stable version, preview version, and additional specific versions to auto-install on a node.
         content:
@@ -562,285 +623,234 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.ChromeVersionsResponse]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.ChromeVersionsResponse'
             text/plain:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.ChromeVersionsResponse]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.ChromeVersionsResponse'
             text/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.ChromeVersionsResponse]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.ChromeVersionsResponse'
       security:
       - bearer: []
       order: 14
+      operationId: postV2NodesChromeversions
+      x-operation-id-source: derived
 components:
   schemas:
-    ? Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse`1[System.Collections.Generic.List`1[System.Int32]]]
+    Catchpoint.Symphony.REST.Common.Response.v2_0.IspResponse:
+      type: object
+      properties:
+        internetServiceProviders:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Int32'
+        hasMore:
+          type:
+          - boolean
+          - 'null'
+        next:
+          type:
+          - string
+          - 'null'
+        previous:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Node.InstanceResponseModel:
+      type: object
+      properties:
+        activationKey:
+          type:
+          - string
+          - 'null'
+        node:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Node.NodeResponseModel'
+        id:
+          type: integer
+          format: int32
+        hostName:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Byte'
+        operatingSystem:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Byte'
+        macAddress:
+          type:
+          - string
+          - 'null'
+        internalIpAddress:
+          type:
+          - string
+          - 'null'
+        core:
+          type: integer
+          format: int32
+        memory:
+          type: integer
+          format: int32
+      additionalProperties: false
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.EnterprisePackageResponse
     : type: object
       properties:
         data:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse`1[System.Collections.Generic.List`1[System.Int32]]'
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.EnterprisePackageResponse'
         messages:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
-          nullable: true
         errors:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
-          nullable: true
         completed:
           type: boolean
           readOnly: true
         traceId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         usageLimits:
           $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
       additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.v2_0.Node.CityModel:
-      type: object
-      properties:
-        city:
-          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Int32]'
-        state:
-          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Int32]'
-        country:
-          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Int32]'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.IspResponse]:
+    Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.IspResponse:
       type: object
       properties:
         data:
           $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.IspResponse'
         messages:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
-          nullable: true
         errors:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
-          nullable: true
         completed:
           type: boolean
           readOnly: true
         traceId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         usageLimits:
           $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
       additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.v2_0.Node.NodeResponseModel:
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.ChromeVersionsResponse
+    : type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.ChromeVersionsResponse'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type:
+          - string
+          - 'null'
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+    Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Byte:
       type: object
       properties:
-        instances:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Node.InstanceResponseModel'
-          nullable: true
-        isPaused:
-          type: boolean
-        country:
-          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Int16]'
-        state:
-          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Int32]'
-        continent:
-          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Byte]'
-        latitude:
-          type: string
-          nullable: true
-        longitude:
-          type: string
-          nullable: true
-        runRate:
-          type: number
-          format: double
-          nullable: true
-        instanceCount:
-          type: integer
-          format: int32
-        activeInstanceCount:
-          type: integer
-          format: int32
-        capacity:
-          type: integer
-          format: int32
         id:
           type: integer
           format: int32
         name:
-          type: string
-          nullable: true
-        status:
-          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Byte]'
-        networkType:
-          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Byte]'
-        osType:
-          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Byte]'
-        size:
-          type: integer
-          format: int32
-        isIPv6:
-          type: boolean
-        nodeToNodeAddress:
-          type: string
-          nullable: true
-        internetServiceProvider:
-          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Int32]'
-        city:
-          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Int32]'
-        package:
-          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Int32]'
-        utilizedInstances:
-          type: integer
-          format: int32
-          nullable: true
+          type:
+          - string
+          - 'null'
       additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse`1[System.Collections.Generic.List`1[System.Int32]]:
+    Catchpoint.Symphony.REST.Common.Response.v2_0.OsResponse:
       type: object
       properties:
-        nodes:
-          type: array
+        operatingSystems:
+          type:
+          - array
+          - 'null'
           items:
-            type: integer
-            format: int32
-          nullable: true
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Byte'
         hasMore:
-          type: boolean
-          nullable: true
+          type:
+          - boolean
+          - 'null'
         next:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         previous:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
       additionalProperties: false
-    ? Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Node.PublicNodeModel]]]
-    : type: object
+    Catchpoint.Symphony.REST.Api.ConsumerStatistics:
+      type: object
       properties:
-        data:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Node.PublicNodeModel]]'
-        messages:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
-          nullable: true
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
-          nullable: true
-        completed:
-          type: boolean
-          readOnly: true
-        traceId:
-          type: string
-          nullable: true
-        usageLimits:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+        consumerId:
+          type: integer
+          format: int32
+        requestCount:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        maxPerDay:
+          type:
+          - integer
+          - 'null'
+          format: int32
       additionalProperties: false
-    ? Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Node.NodeResponseModel]]]
-    : type: object
+    Catchpoint.Symphony.REST.Api.Limit:
+      type: object
       properties:
-        data:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Node.NodeResponseModel]]'
-        messages:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
-          nullable: true
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
-          nullable: true
-        completed:
-          type: boolean
-          readOnly: true
-        traceId:
-          type: string
-          nullable: true
-        usageLimits:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
-      additionalProperties: false
-    ? Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.GeographyCityResponse]
-    : type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.GeographyCityResponse'
-        messages:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
-          nullable: true
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
-          nullable: true
-        completed:
-          type: boolean
-          readOnly: true
-        traceId:
-          type: string
-          nullable: true
-        usageLimits:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+        minute:
+          type: integer
+          format: int32
+        hour:
+          type: integer
+          format: int32
+        day:
+          type: integer
+          format: int32
       additionalProperties: false
     Microsoft.AspNetCore.JsonPatch.Operations.Operation:
       type: object
       properties:
-        value:
-          nullable: true
+        value: {}
         path:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         op:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         from:
-          type: string
-          nullable: true
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.v2_0.IspResponse:
-      type: object
-      properties:
-        internetServiceProviders:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Int32]'
-          nullable: true
-        hasMore:
-          type: boolean
-          nullable: true
-        next:
-          type: string
-          nullable: true
-        previous:
-          type: string
-          nullable: true
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Requests.v2_0.ChromeVersionsRequestModel:
-      type: object
-      properties:
-        nodeId:
-          type: integer
-          format: int32
-        stableVersion:
-          type: integer
-          format: int32
-        previewVersion:
-          type: integer
-          format: int32
-          nullable: true
-        specificVersions:
-          type: array
-          items:
-            type: integer
-            format: int32
-          nullable: true
+          type:
+          - string
+          - 'null'
       additionalProperties: false
     Catchpoint.Symphony.REST.Api.ApiUsageStatistics:
       type: object
@@ -856,208 +866,16 @@ components:
         runs:
           $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
         exceededMessage:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           readOnly: true
         divisionUsageStatistics:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.DivisionUsageStatistics'
-          nullable: true
-      additionalProperties: false
-    ? Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.EnterprisePackageResponse]
-    : type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.EnterprisePackageResponse'
-        messages:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
-          nullable: true
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
-          nullable: true
-        completed:
-          type: boolean
-          readOnly: true
-        traceId:
-          type: string
-          nullable: true
-        usageLimits:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
-      additionalProperties: false
-    ? Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Node.IIdResponse`1[System.Int16]]]
-    : type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Node.IIdResponse`1[System.Int16]]'
-        messages:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
-          nullable: true
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
-          nullable: true
-        completed:
-          type: boolean
-          readOnly: true
-        traceId:
-          type: string
-          nullable: true
-        usageLimits:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Models.InfoMessage:
-      type: object
-      properties:
-        information:
-          type: string
-          nullable: true
-        ignoredPath:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath'
-          nullable: true
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Api.ConsumerStatistics:
-      type: object
-      properties:
-        consumerId:
-          type: integer
-          format: int32
-        requestCount:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
-        maxPerDay:
-          type: integer
-          format: int32
-          nullable: true
-      additionalProperties: false
-    Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Byte]:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        name:
-          type: string
-          nullable: true
-      additionalProperties: false
-    ? Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Node.StatusModel]]]
-    : type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Node.StatusModel]]'
-        messages:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
-          nullable: true
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
-          nullable: true
-        completed:
-          type: boolean
-          readOnly: true
-        traceId:
-          type: string
-          nullable: true
-        usageLimits:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.OsResponse]:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.OsResponse'
-        messages:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
-          nullable: true
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
-          nullable: true
-        completed:
-          type: boolean
-          readOnly: true
-        traceId:
-          type: string
-          nullable: true
-        usageLimits:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
-      additionalProperties: false
-    Catchpoint.Symphony.ViewModels.MessageModel:
-      type: object
-      properties:
-        id:
-          type: string
-          nullable: true
-        message:
-          type: string
-          nullable: true
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.v2_0.EnterprisePackageResponse:
-      type: object
-      properties:
-        packages:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Node.EnterpriseContractModel'
-          nullable: true
-        hasMore:
-          type: boolean
-          nullable: true
-        next:
-          type: string
-          nullable: true
-        previous:
-          type: string
-          nullable: true
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.v2_0.Node.StatusModel:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        name:
-          type: string
-          nullable: true
-        status:
-          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Byte]'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath:
-      type: object
-      properties:
-        ops:
-          type: string
-          nullable: true
-        path:
-          type: string
-          nullable: true
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Api.Limit:
-      type: object
-      properties:
-        minute:
-          type: integer
-          format: int32
-        hour:
-          type: integer
-          format: int32
-        day:
-          type: integer
-          format: int32
       additionalProperties: false
     Catchpoint.Symphony.REST.Common.Response.v2_0.ChromeVersionsResponse:
       type: object
@@ -1066,67 +884,34 @@ components:
           type: integer
           format: int32
         stableVersion:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         previewVersion:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         specificVersions:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             type: integer
             format: int32
-          nullable: true
         hasMore:
-          type: boolean
-          nullable: true
+          type:
+          - boolean
+          - 'null'
         next:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         previous:
-          type: string
-          nullable: true
-      additionalProperties: false
-    ? Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Node.IIdResponse`1[System.Int16]]
-    : type: object
-      properties:
-        nodes:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Node.IIdResponse`1[System.Int16]'
-        hasMore:
-          type: boolean
-          nullable: true
-        next:
-          type: string
-          nullable: true
-        previous:
-          type: string
-          nullable: true
-      additionalProperties: false
-    ? Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.ChromeVersionsResponse]
-    : type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.ChromeVersionsResponse'
-        messages:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
-          nullable: true
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
-          nullable: true
-        completed:
-          type: boolean
-          readOnly: true
-        traceId:
-          type: string
-          nullable: true
-        usageLimits:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+          type:
+          - string
+          - 'null'
       additionalProperties: false
     Catchpoint.Symphony.REST.Api.DivisionUsageStatistics:
       type: object
@@ -1135,158 +920,522 @@ components:
           type: integer
           format: int32
         consumerStatistics:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ConsumerStatistics'
-          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.EnterprisePackageResponse:
+      type: object
+      properties:
+        packages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Node.EnterpriseContractModel'
+        hasMore:
+          type:
+          - boolean
+          - 'null'
+        next:
+          type:
+          - string
+          - 'null'
+        previous:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse_1_System.Collections.Generic.List_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Node.PublicNodeModel
+    : type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse_1_System.Collections.Generic.List_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Node.PublicNodeModel'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type:
+          - string
+          - 'null'
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+    ? Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse_1_System.Collections.Generic.List_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Node.StatusModel
+    : type: object
+      properties:
+        nodes:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Node.StatusModel'
+        hasMore:
+          type:
+          - boolean
+          - 'null'
+        next:
+          type:
+          - string
+          - 'null'
+        previous:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.OsResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.OsResponse'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type:
+          - string
+          - 'null'
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Requests.v2_0.ChromeVersionsRequestModel:
+      type: object
+      properties:
+        nodeId:
+          type: integer
+          format: int32
+        stableVersion:
+          type: integer
+          format: int32
+        previewVersion:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        specificVersions:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int32
+      additionalProperties: false
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse_1_System.Collections.Generic.List_1_System.Int32
+    : type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse_1_System.Collections.Generic.List_1_System.Int32'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type:
+          - string
+          - 'null'
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Node.IIdResponse_1_System.Int16:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
       additionalProperties: false
     Catchpoint.Symphony.REST.Common.Response.v2_0.GeographyCityResponse:
       type: object
       properties:
         cities:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Node.CityModel'
-          nullable: true
         hasMore:
-          type: boolean
-          nullable: true
+          type:
+          - boolean
+          - 'null'
         next:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         previous:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
       additionalProperties: false
-    Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Int32]:
+    Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Int16:
       type: object
       properties:
         id:
           type: integer
           format: int32
         name:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
       additionalProperties: false
-    ? Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Node.PublicNodeModel]]
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse_1_System.Collections.Generic.List_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Node.StatusModel
+    : type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse_1_System.Collections.Generic.List_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Node.StatusModel'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type:
+          - string
+          - 'null'
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+    ? Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse_1_System.Collections.Generic.List_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Node.PublicNodeModel
     : type: object
       properties:
         nodes:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Node.PublicNodeModel'
-          nullable: true
         hasMore:
-          type: boolean
-          nullable: true
+          type:
+          - boolean
+          - 'null'
         next:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         previous:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
       additionalProperties: false
-    ? Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Node.NodeResponseModel]]
-    : type: object
-      properties:
-        nodes:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Node.NodeResponseModel'
-          nullable: true
-        hasMore:
-          type: boolean
-          nullable: true
-        next:
-          type: string
-          nullable: true
-        previous:
-          type: string
-          nullable: true
-      additionalProperties: false
-    ? Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Node.StatusModel]]
-    : type: object
-      properties:
-        nodes:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Node.StatusModel'
-          nullable: true
-        hasMore:
-          type: boolean
-          nullable: true
-        next:
-          type: string
-          nullable: true
-        previous:
-          type: string
-          nullable: true
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.v2_0.Node.IIdResponse`1[System.Int16]:
+    Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Int32:
       type: object
       properties:
         id:
           type: integer
           format: int32
+        name:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
-    Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Int64]:
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Node.IIdResponse_1_System.Int16
+    : type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Node.IIdResponse_1_System.Int16'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type:
+          - string
+          - 'null'
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+    ? Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Node.IIdResponse_1_System.Int16
+    : type: object
+      properties:
+        nodes:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Node.IIdResponse_1_System.Int16'
+        hasMore:
+          type:
+          - boolean
+          - 'null'
+        next:
+          type:
+          - string
+          - 'null'
+        previous:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.InfoMessage:
+      type: object
+      properties:
+        information:
+          type:
+          - string
+          - 'null'
+        ignoredPath:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse_1_System.Collections.Generic.List_1_System.Int32:
+      type: object
+      properties:
+        nodes:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int32
+        hasMore:
+          type:
+          - boolean
+          - 'null'
+        next:
+          type:
+          - string
+          - 'null'
+        previous:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Int64:
       type: object
       properties:
         id:
           type: integer
           format: int64
         name:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
       additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.v2_0.OsResponse:
-      type: object
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse_1_System.Collections.Generic.List_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Node.NodeResponseModel
+    : type: object
       properties:
-        operatingSystems:
-          type: array
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse_1_System.Collections.Generic.List_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Node.NodeResponseModel'
+        messages:
+          type:
+          - array
+          - 'null'
           items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Byte]'
-          nullable: true
-        hasMore:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+        completed:
           type: boolean
-          nullable: true
-        next:
-          type: string
-          nullable: true
-        previous:
-          type: string
-          nullable: true
+          readOnly: true
+        traceId:
+          type:
+          - string
+          - 'null'
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
       additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.v2_0.Node.InstanceResponseModel:
+    ? Catchpoint.Symphony.REST.Common.Response.v2_0.NodeResponse_1_System.Collections.Generic.List_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Node.NodeResponseModel
+    : type: object
+      properties:
+        nodes:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Node.NodeResponseModel'
+        hasMore:
+          type:
+          - boolean
+          - 'null'
+        next:
+          type:
+          - string
+          - 'null'
+        previous:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Node.NodeResponseModel:
       type: object
       properties:
-        activationKey:
-          type: string
-          nullable: true
-        node:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Node.NodeResponseModel'
+        instances:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Node.InstanceResponseModel'
+        isPaused:
+          type: boolean
+        country:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Int16'
+        state:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Int32'
+        continent:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Byte'
+        latitude:
+          type:
+          - string
+          - 'null'
+        longitude:
+          type:
+          - string
+          - 'null'
+        runRate:
+          type:
+          - number
+          - 'null'
+          format: double
+        instanceCount:
+          type: integer
+          format: int32
+        activeInstanceCount:
+          type: integer
+          format: int32
+        capacity:
+          type: integer
+          format: int32
         id:
           type: integer
           format: int32
-        hostName:
-          type: string
-          nullable: true
+        name:
+          type:
+          - string
+          - 'null'
         status:
-          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Byte]'
-        operatingSystem:
-          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Byte]'
-        macAddress:
-          type: string
-          nullable: true
-        internalIpAddress:
-          type: string
-          nullable: true
-        core:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Byte'
+        networkType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Byte'
+        osType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Byte'
+        size:
           type: integer
           format: int32
-        memory:
-          type: integer
+        isIPv6:
+          type: boolean
+        nodeToNodeAddress:
+          type:
+          - string
+          - 'null'
+        internetServiceProvider:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Int32'
+        city:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Int32'
+        package:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Int32'
+        utilizedInstances:
+          type:
+          - integer
+          - 'null'
           format: int32
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.GeographyCityResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.GeographyCityResponse'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type:
+          - string
+          - 'null'
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath:
+      type: object
+      properties:
+        ops:
+          type:
+          - string
+          - 'null'
+        path:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Node.CityModel:
+      type: object
+      properties:
+        city:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Int32'
+        state:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Int32'
+        country:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Int32'
       additionalProperties: false
     Catchpoint.Symphony.REST.Common.Response.v2_0.Node.EnterpriseContractModel:
       type: object
@@ -1295,8 +1444,9 @@ components:
           type: integer
           format: int32
         packageName:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         totalLicenses:
           type: integer
           format: int32
@@ -1310,18 +1460,34 @@ components:
           type: integer
           format: int32
         instanceTypeName:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
       additionalProperties: false
-    Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Int16]:
+    Catchpoint.Symphony.ViewModels.MessageModel:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        message:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Node.StatusModel:
       type: object
       properties:
         id:
           type: integer
           format: int32
         name:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Byte'
       additionalProperties: false
     Catchpoint.Symphony.REST.Common.Response.v2_0.Node.PublicNodeModel:
       type: object
@@ -1330,11 +1496,13 @@ components:
           type: integer
           format: int32
         name:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         ipRanges:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         isIPv6:
           type: boolean
         isTargeted:
@@ -1344,23 +1512,25 @@ components:
         availableForInstantTests:
           type: boolean
         latitude:
-          type: number
+          type:
+          - number
+          - 'null'
           format: float
-          nullable: true
         longitude:
-          type: number
+          type:
+          - number
+          - 'null'
           format: float
-          nullable: true
         status:
-          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Byte]'
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Byte'
         networkType:
-          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Byte]'
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Byte'
         asn:
-          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Int32]'
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Int32'
         city:
-          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Int64]'
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Int64'
         country:
-          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Int64]'
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Int64'
       additionalProperties: false
   securitySchemes:
     bearer:

@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Catchpoint REST API v2.0 Account Label API
+  title: Catchpoint REST API v2.0 Label API
   version: '2.0'
 servers:
 - url: /api
@@ -11,7 +11,7 @@ paths:
     get:
       tags:
       - Label
-      summary: Returns the label details for the label key IDs passed.
+      summary: Returns the label details for the label key IDs passed
       parameters:
       - name: labelKeyIds
         in: path
@@ -25,21 +25,23 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelGetResponse]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelGetResponse'
             text/plain:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelGetResponse]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelGetResponse'
             text/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelGetResponse]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelGetResponse'
       security:
       - bearer: []
       order: 1
+      operationId: getV2LabelsByLabelKeyIds
+      x-operation-id-source: derived
   /v2/labels:
     get:
       tags:
       - Label
-      summary: Return the label details based on parameters.
+      summary: Return the label details based on parameters
       description: If no parameters are passed, all labels in an account/division are returned.
       parameters:
       - name: name
@@ -72,20 +74,22 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelGetResponse]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelGetResponse'
             text/plain:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelGetResponse]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelGetResponse'
             text/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelGetResponse]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelGetResponse'
       security:
       - bearer: []
       order: 2
+      operationId: getV2Labels
+      x-operation-id-source: derived
     post:
       tags:
       - Label
-      summary: Create a new label based on the Post data.
+      summary: Create a new label based on the Post data
       description: To get payload for creating a new label and to get the created label details refer InternalLink[Label Details by ID Endpoint,operations-tag-Label,operations-Label-get_v2_labels__labelKeyIds_]. Pass “0” for label key ID value to create a new label.
       parameters:
       - name: objectDetails
@@ -114,22 +118,50 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelPostResponse]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelPostResponse'
             text/plain:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelPostResponse]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelPostResponse'
             text/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelPostResponse]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelPostResponse'
       security:
       - bearer: []
       order: 3
+      operationId: postV2Labels
+      x-operation-id-source: derived
   /v2/labels/{labelKeyId}:
     patch:
       tags:
       - Label
-      summary: Update an existing label based on the request body.
-      description: "**Request:**\r\n            \r\nOnly the property to be updated can be passed in the request body, (not the whole object.) The update request body requires a total of three keys to be filled with appropriate value as listed below:\r\n* **value** – The value property provides the new value.\r\n            \r\n* **path** – The path property indicates the element to update. The entire path with slashes needs to be provided here. Example: /status/id\r\n            \r\n* **op** – The op property indicates the type of operation; we support the following three operations.\r\n            \r\n    * **add** - Add a property or array element. For existing property: set value.\r\n            \r\n    * **Remove** - Remove a property or array element.\r\n            \r\n    * **replace** - Same as remove followed by add at same location.\r\n            \r\n* **from** - [Not Used]\r\n            \r\n    * **Explanation** - The \"from\" parameter represents the starting or current value of the resource that the operation intends to modify. The from parameter is included in the example value schema but is not utilized in this endpoint's functionality. It is reserved for potential future use or could be used in specific scenarios not covered by the current implementation."
+      summary: Update an existing label based on the request body
+      description: '**Request:**
+
+
+        Only the property to be updated can be passed in the request body, (not the whole object.) The update request body requires a total of three keys to be filled with appropriate value as listed below:
+
+        * **value** – The value property provides the new value.
+
+
+        * **path** – The path property indicates the element to update. The entire path with slashes needs to be provided here. Example: /status/id
+
+
+        * **op** – The op property indicates the type of operation; we support the following three operations.
+
+
+        * **add** - Add a property or array element. For existing property: set value.
+
+
+        * **Remove** - Remove a property or array element.
+
+
+        * **replace** - Same as remove followed by add at same location.
+
+
+        * **from** - [Not Used]
+
+
+        * **Explanation** - The "from" parameter represents the starting or current value of the resource that the operation intends to modify. The from parameter is included in the example value schema but is not utilized in this endpoint''s functionality. It is reserved for potential future use or could be used in specific scenarios not covered by the current implementation.'
       parameters:
       - name: labelKeyId
         in: path
@@ -172,20 +204,22 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelPostResponse]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelPostResponse'
             text/plain:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelPostResponse]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelPostResponse'
             text/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelPostResponse]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelPostResponse'
       security:
       - bearer: []
       order: 4
+      operationId: patchV2LabelsByLabelKeyId
+      x-operation-id-source: derived
     delete:
       tags:
       - Label
-      summary: Delete labels by Label Key ID.
+      summary: Delete labels by Label Key ID
       description: Delete labels based on the specified list of IDs. The IDs need to be separated by commas. This endpoint allows partial deletion; if you provide a list of five IDs and only three of them are valid, then it will delete those three labels. The response will indicate the three that were deleted, and the two invalid IDs will be listed as errors.
       parameters:
       - name: labelKeyId
@@ -200,80 +234,79 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelDeleteResponse]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelDeleteResponse'
             text/plain:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelDeleteResponse]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelDeleteResponse'
             text/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelDeleteResponse]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelDeleteResponse'
       security:
       - bearer: []
       order: 5
+      operationId: deleteV2LabelsByLabelKeyId
+      x-operation-id-source: derived
 components:
   schemas:
-    Catchpoint.Symphony.REST.Api.ApiUsageStatistics:
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Label.AssociatedObjectAPIModel:
       type: object
       properties:
-        clientId:
-          type: integer
+        objectType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.ObjectType'
+        objectId:
+          type:
+          - integer
+          - 'null'
           format: int64
-        lastRequestTimestamp:
-          type: string
-          format: date-time
-        limits:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
-        runs:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
-        exceededMessage:
-          type: string
-          nullable: true
-          readOnly: true
-        divisionUsageStatistics:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.DivisionUsageStatistics'
-          nullable: true
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Api.DivisionUsageStatistics:
-      type: object
-      properties:
-        divisionId:
-          type: integer
-          format: int32
-        consumerStatistics:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ConsumerStatistics'
-          nullable: true
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath:
-      type: object
-      properties:
-        ops:
-          type: string
-          nullable: true
-        path:
-          type: string
-          nullable: true
       additionalProperties: false
     Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelGetResponse:
       type: object
       properties:
         labels:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelModel'
-          nullable: true
         hasMore:
-          type: boolean
-          nullable: true
+          type:
+          - boolean
+          - 'null'
         next:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         previous:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelDeleteResponse
+    : type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelDeleteResponse'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type:
+          - string
+          - 'null'
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
       additionalProperties: false
     Catchpoint.Symphony.REST.Api.Limit:
       type: object
@@ -288,21 +321,32 @@ components:
           type: integer
           format: int32
       additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelDeleteResponse:
-      type: object
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelPostResponse
+    : type: object
       properties:
-        deleted:
-          type: string
-          nullable: true
-        hasMore:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelPostResponse'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+        completed:
           type: boolean
-          nullable: true
-        next:
-          type: string
-          nullable: true
-        previous:
-          type: string
-          nullable: true
+          readOnly: true
+        traceId:
+          type:
+          - string
+          - 'null'
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
       additionalProperties: false
     Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelPostResponse:
       type: object
@@ -310,112 +354,34 @@ components:
         label:
           $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelModel'
         id:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         hasMore:
-          type: boolean
-          nullable: true
+          type:
+          - boolean
+          - 'null'
         next:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         previous:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
       additionalProperties: false
-    Catchpoint.Symphony.ViewModels.MessageModel:
+    Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath:
       type: object
       properties:
-        id:
-          type: string
-          nullable: true
-        message:
-          type: string
-          nullable: true
-      additionalProperties: false
-    ? Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelDeleteResponse]
-    : type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelDeleteResponse'
-        messages:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
-          nullable: true
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
-          nullable: true
-        completed:
-          type: boolean
-          readOnly: true
-        traceId:
-          type: string
-          nullable: true
-        usageLimits:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
-      additionalProperties: false
-    ? Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelPostResponse]
-    : type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelPostResponse'
-        messages:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
-          nullable: true
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
-          nullable: true
-        completed:
-          type: boolean
-          readOnly: true
-        traceId:
-          type: string
-          nullable: true
-        usageLimits:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
-      additionalProperties: false
-    ? Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelGetResponse]
-    : type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelGetResponse'
-        messages:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
-          nullable: true
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
-          nullable: true
-        completed:
-          type: boolean
-          readOnly: true
-        traceId:
-          type: string
-          nullable: true
-        usageLimits:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Models.InfoMessage:
-      type: object
-      properties:
-        information:
-          type: string
-          nullable: true
-        ignoredPath:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath'
-          nullable: true
+        ops:
+          type:
+          - string
+          - 'null'
+        path:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
     Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelValueApiModel:
       required:
@@ -432,38 +398,119 @@ components:
           type: integer
           format: int32
         associatedObjects:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Label.AssociatedObjectAPIModel'
-          nullable: true
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.InfoMessage:
+      type: object
+      properties:
+        information:
+          type:
+          - string
+          - 'null'
+        ignoredPath:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.ApiUsageStatistics:
+      type: object
+      properties:
+        clientId:
+          type: integer
+          format: int64
+        lastRequestTimestamp:
+          type: string
+          format: date-time
+        limits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        runs:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        exceededMessage:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        divisionUsageStatistics:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.DivisionUsageStatistics'
       additionalProperties: false
     Microsoft.AspNetCore.JsonPatch.Operations.Operation:
       type: object
       properties:
-        value:
-          nullable: true
+        value: {}
         path:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         op:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         from:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
       additionalProperties: false
-    Catchpoint.Symphony.REST.Api.ConsumerStatistics:
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelGetResponse
+    : type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelGetResponse'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type:
+          - string
+          - 'null'
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+    Catchpoint.Symphony.ViewModels.MessageModel:
       type: object
       properties:
-        consumerId:
+        id:
+          type:
+          - string
+          - 'null'
+        message:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.DivisionUsageStatistics:
+      type: object
+      properties:
+        divisionId:
           type: integer
           format: int32
-        requestCount:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
-        maxPerDay:
-          type: integer
-          format: int32
-          nullable: true
+        consumerStatistics:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ConsumerStatistics'
       additionalProperties: false
     Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelModel:
       required:
@@ -484,20 +531,45 @@ components:
           minLength: 1
           type: string
         labelValues:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelValueApiModel'
-          nullable: true
       additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.v2_0.Label.AssociatedObjectAPIModel:
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelDeleteResponse:
       type: object
       properties:
-        objectType:
-          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.ObjectType'
-        objectId:
+        deleted:
+          type:
+          - string
+          - 'null'
+        hasMore:
+          type:
+          - boolean
+          - 'null'
+        next:
+          type:
+          - string
+          - 'null'
+        previous:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.ConsumerStatistics:
+      type: object
+      properties:
+        consumerId:
           type: integer
-          format: int64
-          nullable: true
+          format: int32
+        requestCount:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        maxPerDay:
+          type:
+          - integer
+          - 'null'
+          format: int32
       additionalProperties: false
     Catchpoint.Symphony.Enums.ObjectType:
       enum:

@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Catchpoint REST API v2.0 Account Alerts API
+  title: Catchpoint REST API v2.0 Alerts API
   version: '2.0'
 servers:
 - url: /api
@@ -11,8 +11,11 @@ paths:
     get:
       tags:
       - Alerts
-      summary: Returns alert details based on the alert IDs.
-      description: "*[Analytics Endpoint]*\r\n\r\nThe data returned is in UTC."
+      summary: Returns alert details based on the alert IDs
+      description: '*[Analytics Endpoint]*
+
+
+        The data returned is in UTC.'
       parameters:
       - name: alertIds
         in: path
@@ -26,22 +29,27 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertApiModel]]]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse_1_System.Collections.Generic.List_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertApiModel'
             text/plain:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertApiModel]]]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse_1_System.Collections.Generic.List_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertApiModel'
             text/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertApiModel]]]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse_1_System.Collections.Generic.List_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertApiModel'
       security:
       - bearer: []
       order: 1
+      operationId: getV2TestsAlertsByAlertIds
+      x-operation-id-source: derived
   /v2/tests/alerts:
     get:
       tags:
       - Alerts
-      summary: Returns alert details based on the parameters.
-      description: "*[Analytics Endpoint]*\r\n\r\nIf no time is specified, the alerts from the last 24 hours are returned. The data returned is in UTC."
+      summary: Returns alert details based on the parameters
+      description: '*[Analytics Endpoint]*
+
+
+        If no time is specified, the alerts from the last 24 hours are returned. The data returned is in UTC.'
       parameters:
       - name: startTimeUtc
         in: query
@@ -125,21 +133,35 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertApiModel]]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertApiModel'
             text/plain:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertApiModel]]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertApiModel'
             text/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertApiModel]]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertApiModel'
       security:
       - bearer: []
       order: 2
+      operationId: getV2TestsAlerts
+      x-operation-id-source: derived
     patch:
       tags:
       - Alerts
-      summary: Assign, Acknowledge or Drop alerts.
-      description: "The request body requires 3 keys to be filled with appropriate value as listed below.\r\n\r\n* **alertId** - Alert ID\r\n\r\n* **acknowledgeAlert** - set to true or false\r\n\r\n* **dropAlert** - set to true or false\r\n\r\n* **assignToContactByEmail** - email address string"
+      summary: Assign, Acknowledge or Drop alerts
+      description: 'The request body requires 3 keys to be filled with appropriate value as listed below.
+
+
+        * **alertId** - Alert ID
+
+
+        * **acknowledgeAlert** - set to true or false
+
+
+        * **dropAlert** - set to true or false
+
+
+        * **assignToContactByEmail** - email address string'
       requestBody:
         description: ''
         content:
@@ -169,146 +191,46 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse`1[System.Collections.Generic.List`1[System.String]]]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse_1_System.Collections.Generic.List_1_System.String'
             text/plain:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse`1[System.Collections.Generic.List`1[System.String]]]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse_1_System.Collections.Generic.List_1_System.String'
             text/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse`1[System.Collections.Generic.List`1[System.String]]]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse_1_System.Collections.Generic.List_1_System.String'
       security:
       - bearer: []
       order: 3
+      operationId: patchV2TestsAlerts
+      x-operation-id-source: derived
 components:
   schemas:
-    ? Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertApiModel]]
-    : type: object
-      properties:
-        alerts:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertApiModel'
-          nullable: true
-        hasMore:
-          type: boolean
-          nullable: true
-        next:
-          type: string
-          nullable: true
-        previous:
-          type: string
-          nullable: true
-      additionalProperties: false
-    ? Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertApiModel]]
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse_1_System.Collections.Generic.List_1_System.String
     : type: object
       properties:
         data:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertApiModel]'
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse_1_System.Collections.Generic.List_1_System.String'
         messages:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
-          nullable: true
         errors:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
-          nullable: true
         completed:
           type: boolean
           readOnly: true
         traceId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         usageLimits:
           $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse`1[System.Collections.Generic.List`1[System.String]]:
-      type: object
-      properties:
-        alerts:
-          type: array
-          items:
-            type: string
-          nullable: true
-        hasMore:
-          type: boolean
-          nullable: true
-        next:
-          type: string
-          nullable: true
-        previous:
-          type: string
-          nullable: true
-      additionalProperties: false
-    Catchpoint.Symphony.Enums.Alerts.OperatorType:
-      enum:
-      - id: 0
-        name: NotEquals
-      - id: 1
-        name: Equals
-      - id: 2
-        name: GreaterThan
-      - id: 3
-        name: GreaterThanOrEquals
-      - id: 4
-        name: LessThan
-      - id: 5
-        name: LessThanOrEquals
-      - id: 6
-        name: NotBetween
-      - id: 7
-        name: Between
-      type: integer
-      format: int32
-    Catchpoint.Symphony.Enums.Alerts.NotificationLevel:
-      enum:
-      - id: 0
-        name: Warning
-      - id: 1
-        name: Critical
-      - id: 2
-        name: Information
-      - id: 3
-        name: Improved
-      type: integer
-      format: int32
-    Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertUpdateModel:
-      required:
-      - alertId
-      type: object
-      properties:
-        alertId:
-          minLength: 1
-          type: string
-        acknowledgeAlert:
-          type: boolean
-          nullable: true
-        dropAlert:
-          type: boolean
-          nullable: true
-        assignToContactByEmail:
-          type: string
-          nullable: true
-        testId:
-          type: integer
-          format: int64
-          readOnly: true
-      additionalProperties: false
-    ? Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertApiModel]
-    : type: object
-      properties:
-        alerts:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertApiModel'
-        hasMore:
-          type: boolean
-          nullable: true
-        next:
-          type: string
-          nullable: true
-        previous:
-          type: string
-          nullable: true
       additionalProperties: false
     Catchpoint.Symphony.Enums.Alerts.AlertTriggerType:
       enum:
@@ -322,29 +244,120 @@ components:
         name: TrendShift
       type: integer
       format: int32
-    ? Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertApiModel]]]
+    Catchpoint.Symphony.REST.Api.ConsumerStatistics:
+      type: object
+      properties:
+        consumerId:
+          type: integer
+          format: int32
+        requestCount:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        maxPerDay:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      additionalProperties: false
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertApiModel
     : type: object
       properties:
         data:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse`1[System.Collections.Generic.List`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertApiModel]]'
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertApiModel'
         messages:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
-          nullable: true
         errors:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
-          nullable: true
         completed:
           type: boolean
           readOnly: true
         traceId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         usageLimits:
           $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+    Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Nullable_1_System.Int64:
+      type: object
+      properties:
+        id:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        name:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.Limit:
+      type: object
+      properties:
+        minute:
+          type: integer
+          format: int32
+        hour:
+          type: integer
+          format: int32
+        day:
+          type: integer
+          format: int32
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelAPIModel:
+      type: object
+      properties:
+        color:
+          type:
+          - string
+          - 'null'
+        id:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        name:
+          type:
+          - string
+          - 'null'
+        values:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertUpdateModel:
+      required:
+      - alertId
+      type: object
+      properties:
+        alertId:
+          minLength: 1
+          type: string
+        acknowledgeAlert:
+          type:
+          - boolean
+          - 'null'
+        dropAlert:
+          type:
+          - boolean
+          - 'null'
+        assignToContactByEmail:
+          type:
+          - string
+          - 'null'
+        testId:
+          type: integer
+          format: int64
+          readOnly: true
       additionalProperties: false
     Catchpoint.Symphony.REST.Api.ApiUsageStatistics:
       type: object
@@ -360,38 +373,47 @@ components:
         runs:
           $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
         exceededMessage:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           readOnly: true
         divisionUsageStatistics:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.DivisionUsageStatistics'
-          nullable: true
       additionalProperties: false
-    ? Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse`1[System.Collections.Generic.List`1[System.String]]]
+    Catchpoint.Symphony.REST.Api.DivisionUsageStatistics:
+      type: object
+      properties:
+        divisionId:
+          type: integer
+          format: int32
+        consumerStatistics:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ConsumerStatistics'
+      additionalProperties: false
+    ? Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertApiModel
     : type: object
       properties:
-        data:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse`1[System.Collections.Generic.List`1[System.String]]'
-        messages:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
-          nullable: true
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
-          nullable: true
-        completed:
-          type: boolean
-          readOnly: true
-        traceId:
-          type: string
-          nullable: true
-        usageLimits:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+        alerts:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertApiModel'
+        hasMore:
+          type:
+          - boolean
+          - 'null'
+        next:
+          type:
+          - string
+          - 'null'
+        previous:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
     Catchpoint.Symphony.Enums.Alerts.ReportAlertSubtype:
       enum:
@@ -649,64 +671,234 @@ components:
         name: Division Wide Node Utilization Memory
       type: integer
       format: int32
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse_1_System.Collections.Generic.List_1_System.String:
+      type: object
+      properties:
+        alerts:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        hasMore:
+          type:
+          - boolean
+          - 'null'
+        next:
+          type:
+          - string
+          - 'null'
+        previous:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ? Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse_1_System.Collections.Generic.List_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertApiModel
+    : type: object
+      properties:
+        alerts:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertApiModel'
+        hasMore:
+          type:
+          - boolean
+          - 'null'
+        next:
+          type:
+          - string
+          - 'null'
+        previous:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     Catchpoint.Symphony.REST.Common.Models.InfoMessage:
       type: object
       properties:
         information:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         ignoredPath:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath'
-          nullable: true
       additionalProperties: false
-    Catchpoint.Symphony.REST.Api.ConsumerStatistics:
-      type: object
-      properties:
-        consumerId:
-          type: integer
-          format: int32
-        requestCount:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
-        maxPerDay:
-          type: integer
-          format: int32
-          nullable: true
-      additionalProperties: false
-    Catchpoint.Symphony.ViewModels.MessageModel:
+    Catchpoint.Symphony.Enums.Test.DisplayTestType:
+      enum:
+      - id: 0
+        name: Web
+      - id: 1
+        name: TransactionLegacy
+      - id: 2
+        name: HtmlCode
+      - id: 3
+        name: Ftp
+      - id: 4
+        name: Tcp
+      - id: 5
+        name: Dns
+      - id: 6
+        name: Ping
+      - id: 7
+        name: Smtp
+      - id: 8
+        name: Udp
+      - id: 9
+        name: Api
+      - id: 10
+        name: Streaming
+      - id: 11
+        name: Ssh
+      - id: 12
+        name: TraceRoute
+      - id: 13
+        name: WebSocket
+      - id: 14
+        name: Ntp
+      - id: 15
+        name: Imap
+      - id: 16
+        name: Mqtt
+      - id: 17
+        name: Bulk
+      - id: 18
+        name: Ssl
+      - id: 19
+        name: Wifi
+      - id: 20
+        name: Bgp
+      - id: 21
+        name: NodeToNode
+      - id: 22
+        name: Bandwidth
+      - id: 23
+        name: WebPageTestWeb
+      - id: 24
+        name: WebPageTestTransaction
+      - id: 25
+        name: Playwright
+      - id: 26
+        name: Puppeteer
+      - id: 27
+        name: Transaction
+      type: integer
+      format: int32
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertApiModel:
       type: object
       properties:
         id:
+          type:
+          - string
+          - 'null'
+        reportTime:
           type: string
-          nullable: true
-        message:
+          format: date-time
+        processingTimestamp:
           type: string
-          nullable: true
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath:
-      type: object
-      properties:
-        ops:
+          format: date-time
+        startTime:
           type: string
-          nullable: true
-        path:
-          type: string
-          nullable: true
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Api.Limit:
-      type: object
-      properties:
-        minute:
-          type: integer
+          format: date-time
+        level:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.Alerts.NotificationLevel'
+        test:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Nullable_1_System.Int64'
+        testPath:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        testPathStyled:
+          type:
+          - string
+          - 'null'
+        testUrl:
+          type:
+          - string
+          - 'null'
+        testSmartboardUrl:
+          type:
+          - string
+          - 'null'
+        testPerformanceUrl:
+          type:
+          - string
+          - 'null'
+        testStatisticalUrl:
+          type:
+          - string
+          - 'null'
+        testScatterplotUrl:
+          type:
+          - string
+          - 'null'
+        testRecordUrl:
+          type:
+          - string
+          - 'null'
+        testType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.Test.DisplayTestType'
+        alertType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.Alerts.ReportAlertType'
+        alertSubtype:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.Alerts.ReportAlertSubtype'
+        triggerType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.Alerts.AlertTriggerType'
+        operationType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.Alerts.OperatorType'
+        warningTrigger:
+          type:
+          - number
+          - 'null'
+          format: float
+        criticalTrigger:
+          type:
+          - number
+          - 'null'
+          format: float
+        durationInSecond:
+          type:
+          - integer
+          - 'null'
           format: int32
-        hour:
-          type: integer
-          format: int32
-        day:
-          type: integer
-          format: int32
+        node:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Nullable_1_System.Int64'
+        acknowledgedBy:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Nullable_1_System.Int64'
+        labels:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelAPIModel'
       additionalProperties: false
+    Catchpoint.Symphony.Enums.Alerts.OperatorType:
+      enum:
+      - id: 0
+        name: NotEquals
+      - id: 1
+        name: Equals
+      - id: 2
+        name: GreaterThan
+      - id: 3
+        name: GreaterThanOrEquals
+      - id: 4
+        name: LessThan
+      - id: 5
+        name: LessThanOrEquals
+      - id: 6
+        name: NotBetween
+      - id: 7
+        name: Between
+      type: integer
+      format: int32
     Catchpoint.Symphony.Enums.Alerts.ReportAlertType:
       enum:
       - id: 0
@@ -773,184 +965,68 @@ components:
         name: DivisionWide
       type: integer
       format: int32
-    Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelAPIModel:
-      type: object
-      properties:
-        color:
-          type: string
-          nullable: true
-        id:
-          type: integer
-          format: int32
-          nullable: true
-        name:
-          type: string
-          nullable: true
-        values:
-          type: array
-          items:
-            type: string
-          nullable: true
-      additionalProperties: false
-    Catchpoint.Symphony.Enums.Test.DisplayTestType:
+    Catchpoint.Symphony.Enums.Alerts.NotificationLevel:
       enum:
       - id: 0
-        name: Web
+        name: Warning
       - id: 1
-        name: TransactionLegacy
+        name: Critical
       - id: 2
-        name: HtmlCode
+        name: Information
       - id: 3
-        name: Ftp
-      - id: 4
-        name: Tcp
-      - id: 5
-        name: Dns
-      - id: 6
-        name: Ping
-      - id: 7
-        name: Smtp
-      - id: 8
-        name: Udp
-      - id: 9
-        name: Api
-      - id: 10
-        name: Streaming
-      - id: 11
-        name: Ssh
-      - id: 12
-        name: TraceRoute
-      - id: 13
-        name: WebSocket
-      - id: 14
-        name: Ntp
-      - id: 15
-        name: Imap
-      - id: 16
-        name: Mqtt
-      - id: 17
-        name: Bulk
-      - id: 18
-        name: Ssl
-      - id: 19
-        name: Wifi
-      - id: 20
-        name: Bgp
-      - id: 21
-        name: NodeToNode
-      - id: 22
-        name: Bandwidth
-      - id: 23
-        name: WebPageTestWeb
-      - id: 24
-        name: WebPageTestTransaction
-      - id: 25
-        name: Playwright
-      - id: 26
-        name: Puppeteer
-      - id: 27
-        name: Transaction
+        name: Improved
       type: integer
       format: int32
-    Catchpoint.Symphony.REST.Api.DivisionUsageStatistics:
+    Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath:
       type: object
       properties:
-        divisionId:
-          type: integer
-          format: int32
-        consumerStatistics:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ConsumerStatistics'
-          nullable: true
+        ops:
+          type:
+          - string
+          - 'null'
+        path:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertApiModel:
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse_1_System.Collections.Generic.List_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertApiModel
+    : type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertResponse_1_System.Collections.Generic.List_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Alert.AlertApiModel'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type:
+          - string
+          - 'null'
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+    Catchpoint.Symphony.ViewModels.MessageModel:
       type: object
       properties:
         id:
-          type: string
-          nullable: true
-        reportTime:
-          type: string
-          format: date-time
-        processingTimestamp:
-          type: string
-          format: date-time
-        startTime:
-          type: string
-          format: date-time
-        level:
-          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.Alerts.NotificationLevel'
-        test:
-          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Nullable`1[System.Int64]]'
-        testPath:
-          type: array
-          items:
-            type: string
-          nullable: true
-        testPathStyled:
-          type: string
-          nullable: true
-        testUrl:
-          type: string
-          nullable: true
-        testSmartboardUrl:
-          type: string
-          nullable: true
-        testPerformanceUrl:
-          type: string
-          nullable: true
-        testStatisticalUrl:
-          type: string
-          nullable: true
-        testScatterplotUrl:
-          type: string
-          nullable: true
-        testRecordUrl:
-          type: string
-          nullable: true
-        testType:
-          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.Test.DisplayTestType'
-        alertType:
-          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.Alerts.ReportAlertType'
-        alertSubtype:
-          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.Alerts.ReportAlertSubtype'
-        triggerType:
-          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.Alerts.AlertTriggerType'
-        operationType:
-          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.Alerts.OperatorType'
-        warningTrigger:
-          type: number
-          format: float
-          nullable: true
-        criticalTrigger:
-          type: number
-          format: float
-          nullable: true
-        durationInSecond:
-          type: integer
-          format: int32
-          nullable: true
-        node:
-          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Nullable`1[System.Int64]]'
-        acknowledgedBy:
-          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Nullable`1[System.Int64]]'
-        labels:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Label.LabelAPIModel'
-          nullable: true
-      additionalProperties: false
-    Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Nullable`1[System.Int64]]:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-          nullable: true
-        name:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
+        message:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
   securitySchemes:
     bearer:

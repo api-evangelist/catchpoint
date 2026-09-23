@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: Catchpoint REST API v2.0 Account API
   version: '2.0'
@@ -11,7 +11,7 @@ paths:
     get:
       tags:
       - Account
-      summary: Returns Account Activity details by the parameters passed.
+      summary: Returns Account Activity details by the parameters passed
       parameters:
       - name: month
         in: query
@@ -81,78 +81,236 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.AccountActivity.ActivityResponseModel]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.AccountActivity.ActivityResponseModel'
             text/plain:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.AccountActivity.ActivityResponseModel]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.AccountActivity.ActivityResponseModel'
             text/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.AccountActivity.ActivityResponseModel]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.AccountActivity.ActivityResponseModel'
       security:
       - bearer: []
       order: 1
+      operationId: getV2AccountActivity
+      x-operation-id-source: derived
 components:
   schemas:
-    Catchpoint.Symphony.Enums.Test.DisplayTestType:
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.AccountActivity.ActivityResponseModel
+    : type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.AccountActivity.ActivityResponseModel'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type:
+          - string
+          - 'null'
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+    Catchpoint.Symphony.ViewModels.AccountActivity.BusinessContractModel:
+      type: object
+      properties:
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        monthlyUsedPoints:
+          type: number
+          format: double
+        monthlyContractedPoints:
+          type: number
+          format: double
+        monthlyBalance:
+          type: number
+          format: double
+          readOnly: true
+        contractUsedPoints:
+          type: number
+          format: double
+        contractContractedPoints:
+          type: number
+          format: double
+        contractBalance:
+          type: number
+          format: double
+          readOnly: true
+        averagePrice:
+          type: number
+          format: double
+        overagePrice:
+          type: number
+          format: double
+      additionalProperties: false
+    Catchpoint.Symphony.Enums.SyntheticLocation.SyntheticNetworkType:
       enum:
       - id: 0
-        name: Web
+        name: Backbone
       - id: 1
-        name: TransactionLegacy
+        name: LastMile
       - id: 2
-        name: HtmlCode
+        name: Wireless
       - id: 3
-        name: Ftp
+        name: Private
       - id: 4
-        name: Tcp
+        name: Enterprise
       - id: 5
-        name: Dns
+        name: PublicCloud
       - id: 6
-        name: Ping
+        name: Any
       - id: 7
-        name: Smtp
-      - id: 8
-        name: Udp
-      - id: 9
-        name: Api
-      - id: 10
-        name: Streaming
-      - id: 11
-        name: Ssh
-      - id: 12
-        name: TraceRoute
-      - id: 13
-        name: WebSocket
-      - id: 14
-        name: Ntp
-      - id: 15
-        name: Imap
-      - id: 16
-        name: Mqtt
-      - id: 17
-        name: Bulk
-      - id: 18
-        name: Ssl
-      - id: 19
-        name: Wifi
-      - id: 20
         name: Bgp
-      - id: 21
-        name: NodeToNode
-      - id: 22
-        name: Bandwidth
-      - id: 23
-        name: WebPageTestWeb
-      - id: 24
-        name: WebPageTestTransaction
-      - id: 25
-        name: Playwright
-      - id: 26
-        name: Puppeteer
-      - id: 27
-        name: Transaction
+      - id: 8
+        name: WebPageTest
+      - id: 9
+        name: Enterprise Branch
       type: integer
       format: int32
+    Catchpoint.Symphony.REST.Api.Limit:
+      type: object
+      properties:
+        minute:
+          type: integer
+          format: int32
+        hour:
+          type: integer
+          format: int32
+        day:
+          type: integer
+          format: int32
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath:
+      type: object
+      properties:
+        ops:
+          type:
+          - string
+          - 'null'
+        path:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.AccountActivity.AccountActivityAPIModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        testId:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        testType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.Test.DisplayTestType'
+        divisionId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        productId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        folderId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        testName:
+          type:
+          - string
+          - 'null'
+        divisionName:
+          type:
+          - string
+          - 'null'
+        productName:
+          type:
+          - string
+          - 'null'
+        folderName:
+          type:
+          - string
+          - 'null'
+        displayMonitorType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.Test.DisplayMonitorType'
+        testRuns:
+          type: integer
+          format: int32
+        verifyOnError:
+          type: integer
+          format: int32
+        extendedTimeoutFactor:
+          type: integer
+          format: int32
+        extendedDownloadFactor:
+          type: integer
+          format: int32
+        indicators:
+          type: integer
+          format: int32
+        tracepoints:
+          type: integer
+          format: int32
+        syntheticNetworkType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.SyntheticLocation.SyntheticNetworkType'
+        captures:
+          type: integer
+          format: int32
+        filmstripsCount:
+          type: integer
+          format: int32
+        runsOrStepsWithHost:
+          type: integer
+          format: int32
+        runsOrStepsWithZone:
+          type: integer
+          format: int32
+        playTime:
+          type: integer
+          format: int32
+        averageRequests:
+          type: number
+          format: double
+        averageSteps:
+          type: number
+          format: double
+        points:
+          type: number
+          format: double
+        reportInterval:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        isDebugOnError:
+          type:
+          - boolean
+          - 'null'
+        isInstantTest:
+          type: boolean
+        instantTestInitiatedFromApi:
+          type: boolean
+      additionalProperties: false
     Catchpoint.Symphony.Enums.Test.DisplayMonitorType:
       enum:
       - id: 0
@@ -239,6 +397,74 @@ components:
         name: NProbeRFactor
       type: integer
       format: int32
+    Catchpoint.Symphony.REST.Common.Response.v2_0.AccountActivity.ActivityResponseModel:
+      type: object
+      properties:
+        activitySummary:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.AccountActivity.AccountActivitySummaryAPIModel'
+        hasMore:
+          type:
+          - boolean
+          - 'null'
+        next:
+          type:
+          - string
+          - 'null'
+        previous:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.AccountActivity.AccountActivitySummaryAPIModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        billingStartDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        uniqueTests:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        pointsUsed:
+          type: number
+          format: double
+        dailyPointAverage:
+          type: number
+          format: double
+        totalTestRuns:
+          type: integer
+          format: int64
+        dailyTestRuns:
+          type: number
+          format: double
+        dailyPoints:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: number
+            format: double
+        contractActivity:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.AccountActivity.BusinessContractModel'
+        accountInformation:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.AccountActivity.AccountActivityAPIModel'
+        hasMoreData:
+          type: boolean
+      additionalProperties: false
     Catchpoint.Symphony.REST.Api.ApiUsageStatistics:
       type: object
       properties:
@@ -253,14 +479,16 @@ components:
         runs:
           $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
         exceededMessage:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           readOnly: true
         divisionUsageStatistics:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.DivisionUsageStatistics'
-          nullable: true
       additionalProperties: false
     Catchpoint.Symphony.REST.Api.DivisionUsageStatistics:
       type: object
@@ -269,245 +497,98 @@ components:
           type: integer
           format: int32
         consumerStatistics:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ConsumerStatistics'
-          nullable: true
       additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath:
+    Catchpoint.Symphony.ViewModels.MessageModel:
       type: object
       properties:
-        ops:
-          type: string
-          nullable: true
-        path:
-          type: string
-          nullable: true
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Api.Limit:
-      type: object
-      properties:
-        minute:
-          type: integer
-          format: int32
-        hour:
-          type: integer
-          format: int32
-        day:
-          type: integer
-          format: int32
-      additionalProperties: false
-    Catchpoint.Symphony.ViewModels.AccountActivity.BusinessContractModel:
-      type: object
-      properties:
-        startDate:
-          type: string
-          format: date-time
-        endDate:
-          type: string
-          format: date-time
-        monthlyUsedPoints:
-          type: number
-          format: double
-        monthlyContractedPoints:
-          type: number
-          format: double
-        monthlyBalance:
-          type: number
-          format: double
-          readOnly: true
-        contractUsedPoints:
-          type: number
-          format: double
-        contractContractedPoints:
-          type: number
-          format: double
-        contractBalance:
-          type: number
-          format: double
-          readOnly: true
-        averagePrice:
-          type: number
-          format: double
-        overagePrice:
-          type: number
-          format: double
-      additionalProperties: false
-    ? Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.AccountActivity.ActivityResponseModel]
-    : type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.AccountActivity.ActivityResponseModel'
-        messages:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
-          nullable: true
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
-          nullable: true
-        completed:
-          type: boolean
-          readOnly: true
-        traceId:
-          type: string
-          nullable: true
-        usageLimits:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+        id:
+          type:
+          - string
+          - 'null'
+        message:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
     Catchpoint.Symphony.REST.Common.Models.InfoMessage:
       type: object
       properties:
         information:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         ignoredPath:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath'
-          nullable: true
       additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.v2_0.AccountActivity.AccountActivitySummaryAPIModel:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        billingStartDate:
-          type: string
-          format: date-time
-          nullable: true
-        uniqueTests:
-          type: integer
-          format: int32
-          nullable: true
-        pointsUsed:
-          type: number
-          format: double
-        dailyPointAverage:
-          type: number
-          format: double
-        totalTestRuns:
-          type: integer
-          format: int64
-        dailyTestRuns:
-          type: number
-          format: double
-        dailyPoints:
-          type: object
-          additionalProperties:
-            type: number
-            format: double
-          nullable: true
-        contractActivity:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.AccountActivity.BusinessContractModel'
-          nullable: true
-        accountInformation:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.AccountActivity.AccountActivityAPIModel'
-          nullable: true
-        hasMoreData:
-          type: boolean
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.v2_0.AccountActivity.AccountActivityAPIModel:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        testId:
-          type: integer
-          format: int64
-          nullable: true
-        testType:
-          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.Test.DisplayTestType'
-        divisionId:
-          type: integer
-          format: int32
-          nullable: true
-        productId:
-          type: integer
-          format: int32
-          nullable: true
-        folderId:
-          type: integer
-          format: int32
-          nullable: true
-        testName:
-          type: string
-          nullable: true
-        divisionName:
-          type: string
-          nullable: true
-        productName:
-          type: string
-          nullable: true
-        folderName:
-          type: string
-          nullable: true
-        displayMonitorType:
-          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.Test.DisplayMonitorType'
-        testRuns:
-          type: integer
-          format: int32
-        verifyOnError:
-          type: integer
-          format: int32
-        extendedTimeoutFactor:
-          type: integer
-          format: int32
-        extendedDownloadFactor:
-          type: integer
-          format: int32
-        indicators:
-          type: integer
-          format: int32
-        tracepoints:
-          type: integer
-          format: int32
-        syntheticNetworkType:
-          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.SyntheticLocation.SyntheticNetworkType'
-        captures:
-          type: integer
-          format: int32
-        filmstripsCount:
-          type: integer
-          format: int32
-        runsOrStepsWithHost:
-          type: integer
-          format: int32
-        runsOrStepsWithZone:
-          type: integer
-          format: int32
-        playTime:
-          type: integer
-          format: int32
-        averageRequests:
-          type: number
-          format: double
-        averageSteps:
-          type: number
-          format: double
-        points:
-          type: number
-          format: double
-        reportInterval:
-          type: string
-          format: date-time
-          nullable: true
-        isDebugOnError:
-          type: boolean
-          nullable: true
-        isInstantTest:
-          type: boolean
-        instantTestInitiatedFromApi:
-          type: boolean
-      additionalProperties: false
+    Catchpoint.Symphony.Enums.Test.DisplayTestType:
+      enum:
+      - id: 0
+        name: Web
+      - id: 1
+        name: TransactionLegacy
+      - id: 2
+        name: HtmlCode
+      - id: 3
+        name: Ftp
+      - id: 4
+        name: Tcp
+      - id: 5
+        name: Dns
+      - id: 6
+        name: Ping
+      - id: 7
+        name: Smtp
+      - id: 8
+        name: Udp
+      - id: 9
+        name: Api
+      - id: 10
+        name: Streaming
+      - id: 11
+        name: Ssh
+      - id: 12
+        name: TraceRoute
+      - id: 13
+        name: WebSocket
+      - id: 14
+        name: Ntp
+      - id: 15
+        name: Imap
+      - id: 16
+        name: Mqtt
+      - id: 17
+        name: Bulk
+      - id: 18
+        name: Ssl
+      - id: 19
+        name: Wifi
+      - id: 20
+        name: Bgp
+      - id: 21
+        name: NodeToNode
+      - id: 22
+        name: Bandwidth
+      - id: 23
+        name: WebPageTestWeb
+      - id: 24
+        name: WebPageTestTransaction
+      - id: 25
+        name: Playwright
+      - id: 26
+        name: Puppeteer
+      - id: 27
+        name: Transaction
+      type: integer
+      format: int32
     Catchpoint.Symphony.REST.Api.ConsumerStatistics:
       type: object
       properties:
@@ -517,58 +598,10 @@ components:
         requestCount:
           $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
         maxPerDay:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.v2_0.AccountActivity.ActivityResponseModel:
-      type: object
-      properties:
-        activitySummary:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.AccountActivity.AccountActivitySummaryAPIModel'
-        hasMore:
-          type: boolean
-          nullable: true
-        next:
-          type: string
-          nullable: true
-        previous:
-          type: string
-          nullable: true
-      additionalProperties: false
-    Catchpoint.Symphony.Enums.SyntheticLocation.SyntheticNetworkType:
-      enum:
-      - id: 0
-        name: Backbone
-      - id: 1
-        name: LastMile
-      - id: 2
-        name: Wireless
-      - id: 3
-        name: Private
-      - id: 4
-        name: Enterprise
-      - id: 5
-        name: PublicCloud
-      - id: 6
-        name: Any
-      - id: 7
-        name: Bgp
-      - id: 8
-        name: WebPageTest
-      - id: 9
-        name: Enterprise Branch
-      type: integer
-      format: int32
-    Catchpoint.Symphony.ViewModels.MessageModel:
-      type: object
-      properties:
-        id:
-          type: string
-          nullable: true
-        message:
-          type: string
-          nullable: true
       additionalProperties: false
   securitySchemes:
     bearer:

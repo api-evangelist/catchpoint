@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Catchpoint REST API v2.0 Account TestTemplates API
+  title: Catchpoint REST API v2.0 Test Templates API
   version: '2.0'
 servers:
 - url: /api
@@ -11,7 +11,7 @@ paths:
     get:
       tags:
       - TestTemplates
-      summary: Returns Test Template details by the IDs passed.
+      summary: Returns Test Template details by the IDs passed
       parameters:
       - name: ids
         in: path
@@ -25,21 +25,23 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.TestTemplateResponseModel]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.TestTemplateResponseModel'
             text/plain:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.TestTemplateResponseModel]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.TestTemplateResponseModel'
             text/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.TestTemplateResponseModel]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.TestTemplateResponseModel'
       security:
       - bearer: []
       order: 1
+      operationId: getV2TesttemplatesByIds
+      x-operation-id-source: derived
   /v2/testtemplates:
     get:
       tags:
       - TestTemplates
-      summary: Returns Test Template details by parameters passed.
+      summary: Returns Test Template details by parameters passed
       parameters:
       - name: statusId
         in: query
@@ -59,20 +61,22 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.TestTemplateResponseModel]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.TestTemplateResponseModel'
             text/plain:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.TestTemplateResponseModel]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.TestTemplateResponseModel'
             text/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.TestTemplateResponseModel]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.TestTemplateResponseModel'
       security:
       - bearer: []
       order: 2
+      operationId: getV2Testtemplates
+      x-operation-id-source: derived
     post:
       tags:
       - TestTemplates
-      summary: Create a new test template based on the PostData.
+      summary: Create a new test template based on the PostData
       description: To get payload for creating a new test template and to get the created test template details refer InternalLink[Test Template by ID Endpoint,operations-tag-TestTemplates,operations-TestTemplates-get_v2_testtemplates__ids_]. Pass “0” for Test Template ID to create a new test template.
       parameters:
       - name: objectDetails
@@ -101,22 +105,50 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.TestTemplateResponseModel]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.TestTemplateResponseModel'
             text/plain:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.TestTemplateResponseModel]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.TestTemplateResponseModel'
             text/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.TestTemplateResponseModel]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.TestTemplateResponseModel'
       security:
       - bearer: []
       order: 3
+      operationId: postV2Testtemplates
+      x-operation-id-source: derived
   /v2/testtemplates/{id}:
     patch:
       tags:
       - TestTemplates
-      summary: Update an existing test template based on the request body.
-      description: "**Request:**\r\n            \r\nOnly the property to be updated can be passed in the request body instead of the whole object. The update request body requires a total of three keys to be filled with appropriate value as listed below:\r\n* **value** – The value property provides the new value.\r\n            \r\n* **path** – The path property indicates the element to update. The entire path with slashes needs to be provided here. Example: /status/id\r\n            \r\n* **op** –  The op property indicates the type of operation; we support the following three operations.\r\n            \r\n    * **add** - Add a property or array element. For existing property: set value.\r\n            \r\n    * **Remove** - Remove a property or array element.\r\n            \r\n    * **replace** - Same as remove followed by add at same location.\r\n            \r\n* **from** - [Not Used]\r\n            \r\n    * **Explanation** - The \"from\" parameter represents the starting or current value of the resource that the operation intends to modify. The from parameter is included in the example value schema but is not utilized in this endpoint's functionality. It is reserved for potential future use or could be used in specific scenarios not covered by the current implementation."
+      summary: Update an existing test template based on the request body
+      description: '**Request:**
+
+
+        Only the property to be updated can be passed in the request body instead of the whole object. The update request body requires a total of three keys to be filled with appropriate value as listed below:
+
+        * **value** – The value property provides the new value.
+
+
+        * **path** – The path property indicates the element to update. The entire path with slashes needs to be provided here. Example: /status/id
+
+
+        * **op** – The op property indicates the type of operation; we support the following three operations.
+
+
+        * **add** - Add a property or array element. For existing property: set value.
+
+
+        * **Remove** - Remove a property or array element.
+
+
+        * **replace** - Same as remove followed by add at same location.
+
+
+        * **from** - [Not Used]
+
+
+        * **Explanation** - The "from" parameter represents the starting or current value of the resource that the operation intends to modify. The from parameter is included in the example value schema but is not utilized in this endpoint''s functionality. It is reserved for potential future use or could be used in specific scenarios not covered by the current implementation.'
       parameters:
       - name: id
         in: path
@@ -159,138 +191,107 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.TestTemplateResponseModel]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.TestTemplateResponseModel'
             text/plain:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.TestTemplateResponseModel]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.TestTemplateResponseModel'
             text/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.TestTemplateResponseModel]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.TestTemplateResponseModel'
       security:
       - bearer: []
       order: 4
+      operationId: patchV2TesttemplatesById
+      x-operation-id-source: derived
   /v2/testtemplates/applicationgroups:
     get:
       tags:
       - TestTemplates
-      summary: Returns the Application group enumeration details for automation.
+      summary: Returns the Application group enumeration details for automation
       responses:
         '200':
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationResponse]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationResponse'
             text/plain:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationResponse]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationResponse'
             text/json:
               schema:
-                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationResponse]'
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationResponse'
       security:
       - bearer: []
       order: 5
+      operationId: getV2TesttemplatesApplicationgroups
+      x-operation-id-source: derived
 components:
   schemas:
     Catchpoint.Symphony.REST.Common.Response.v2_0.TestTemplateResponseModel:
       type: object
       properties:
         testTemplates:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TestTemplateAPIModel'
-          nullable: true
         testTemplate:
           $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TestTemplateAPIModel'
         id:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         hasMore:
-          type: boolean
-          nullable: true
+          type:
+          - boolean
+          - 'null'
         next:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         previous:
-          type: string
-          nullable: true
-      additionalProperties: false
-    Microsoft.AspNetCore.JsonPatch.Operations.Operation:
-      type: object
-      properties:
-        value:
-          nullable: true
-        path:
-          type: string
-          nullable: true
-        op:
-          type: string
-          nullable: true
-        from:
-          type: string
-          nullable: true
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TemplatesDisplayConstructor.TestDisplayConstructorAPIModel:
-      type: object
-      properties:
-        detailSection:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TemplatesDisplayConstructor.DetailSectionAPIModel'
-        requestSection:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TemplatesDisplayConstructor.RequestSectionAPIModel'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Api.ApiUsageStatistics:
-      type: object
-      properties:
-        clientId:
-          type: integer
-          format: int64
-        lastRequestTimestamp:
-          type: string
-          format: date-time
-        limits:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
-        runs:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
-        exceededMessage:
-          type: string
-          nullable: true
-          readOnly: true
-        divisionUsageStatistics:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.DivisionUsageStatistics'
-          nullable: true
+          type:
+          - string
+          - 'null'
       additionalProperties: false
     Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationResponse:
       type: object
       properties:
         sections:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationDetailResponse'
-          nullable: true
         hasMore:
-          type: boolean
-          nullable: true
+          type:
+          - boolean
+          - 'null'
         next:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         previous:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
       additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Models.InfoMessage:
+    Catchpoint.Symphony.REST.Api.ConsumerStatistics:
       type: object
       properties:
-        information:
-          type: string
-          nullable: true
-        ignoredPath:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath'
-          nullable: true
+        consumerId:
+          type: integer
+          format: int32
+        requestCount:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        maxPerDay:
+          type:
+          - integer
+          - 'null'
+          format: int32
       additionalProperties: false
     Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.AssociatedRestrictedTestTemplateAPIModel:
       type: object
@@ -307,70 +308,32 @@ components:
           type: integer
           format: int64
       additionalProperties: false
-    Catchpoint.Symphony.REST.Api.ConsumerStatistics:
+    Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationResponse:
       type: object
-      properties:
-        consumerId:
-          type: integer
-          format: int32
-        requestCount:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
-        maxPerDay:
-          type: integer
-          format: int32
-          nullable: true
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationDetailResponse:
-      type: object
-      properties:
-        section:
-          type: string
-          nullable: true
-        enumeration:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Nullable`1[System.Int32]]'
-          nullable: true
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TemplatesDisplayConstructor.AuthenticationSectionAPIModel:
-      type: object
-      properties:
-        required:
-          type: boolean
-      additionalProperties: false
-    ? Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.TestTemplateResponseModel]
-    : type: object
       properties:
         data:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.TestTemplateResponseModel'
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationResponse'
         messages:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
-          nullable: true
         errors:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
-          nullable: true
         completed:
           type: boolean
           readOnly: true
         traceId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         usageLimits:
           $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
-      additionalProperties: false
-    Catchpoint.Symphony.ViewModels.MessageModel:
-      type: object
-      properties:
-        id:
-          type: string
-          nullable: true
-        message:
-          type: string
-          nullable: true
       additionalProperties: false
     Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TemplatesDisplayConstructor.ScriptSectionAPIModel:
       type: object
@@ -378,27 +341,11 @@ components:
         visible:
           type: boolean
       additionalProperties: false
-    Catchpoint.Symphony.Enums.AccessLevel:
-      enum:
-      - id: 5
-        name: System
-      - id: 16
-        name: Reseller
-      - id: 17
-        name: Client
-      - id: 18
-        name: Division
-      type: integer
-      format: int32
-    Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath:
+    Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TemplatesDisplayConstructor.AuthenticationSectionAPIModel:
       type: object
       properties:
-        ops:
-          type: string
-          nullable: true
-        path:
-          type: string
-          nullable: true
+        required:
+          type: boolean
       additionalProperties: false
     Catchpoint.Symphony.REST.Api.Limit:
       type: object
@@ -421,46 +368,329 @@ components:
           format: int32
         refName:
           maxLength: 128
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         checksum:
           maxLength: 32
-          type: string
+          type:
+          - string
+          - 'null'
           format: byte
-          nullable: true
         changeDate:
           type: string
           format: date-time
         changeContactId:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         description:
           maxLength: 255
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         fileName:
           maxLength: 128
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         fileData:
-          type: string
+          type:
+          - string
+          - 'null'
           format: byte
-          nullable: true
         fileSize:
           type: integer
           format: int32
         fileType:
           maxLength: 32
           minLength: 0
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         statusTypeId:
           type: integer
           format: int32
         uId:
           type: string
           format: uuid
+      additionalProperties: false
+    Microsoft.AspNetCore.JsonPatch.Operations.Operation:
+      type: object
+      properties:
+        value: {}
+        path:
+          type:
+          - string
+          - 'null'
+        op:
+          type:
+          - string
+          - 'null'
+        from:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.ApiUsageStatistics:
+      type: object
+      properties:
+        clientId:
+          type: integer
+          format: int64
+        lastRequestTimestamp:
+          type: string
+          format: date-time
+        limits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        runs:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        exceededMessage:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        divisionUsageStatistics:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.DivisionUsageStatistics'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.DivisionUsageStatistics:
+      type: object
+      properties:
+        divisionId:
+          type: integer
+          format: int32
+        consumerStatistics:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ConsumerStatistics'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationDetailResponse:
+      type: object
+      properties:
+        section:
+          type:
+          - string
+          - 'null'
+        enumeration:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Nullable_1_System.Int32'
+      additionalProperties: false
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.TestTemplateResponseModel
+    : type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.TestTemplateResponseModel'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type:
+          - string
+          - 'null'
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+    Catchpoint.Symphony.Enums.AccessLevel:
+      enum:
+      - id: 5
+        name: System
+      - id: 16
+        name: Reseller
+      - id: 17
+        name: Client
+      - id: 18
+        name: Division
+      type: integer
+      format: int32
+    Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Nullable_1_System.Int32:
+      type: object
+      properties:
+        id:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        name:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TestTemplateApplicationGroupAPIModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          maxLength: 128
+          type:
+          - string
+          - 'null'
+        description:
+          maxLength: 255
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TemplatesDisplayConstructor.DetailSectionAPIModel:
+      type: object
+      properties:
+        supportedMonitors:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int32
+        scriptSection:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TemplatesDisplayConstructor.ScriptSectionAPIModel'
+        scriptFileName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TemplatesDisplayConstructor.RequestSectionAPIModel:
+      type: object
+      properties:
+        authentication:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TemplatesDisplayConstructor.AuthenticationSectionAPIModel'
+      additionalProperties: false
+    Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Int32:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.InfoMessage:
+      type: object
+      properties:
+        information:
+          type:
+          - string
+          - 'null'
+        ignoredPath:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TestTemplateAPIModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        version:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Int32'
+        applicationGroup:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TestTemplateApplicationGroupAPIModel'
+        parentTestType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Int32'
+        testTemplateParameters:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TestTemplateParameterAPIModel'
+        testTypeSchema:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TestTypeSchemaAPIModel'
+        associatedClientsList:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.AssociatedRestrictedTestTemplateAPIModel'
+        testTypeSchemaId:
+          type: integer
+          format: int32
+        levelType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.AccessLevel'
+        levelId:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        script:
+          type:
+          - string
+          - 'null'
+        transactionScriptType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Int32'
+        deprecationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        changeDate:
+          type: string
+          format: date-time
+        isLocked:
+          type: boolean
+        file:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.FileReferenceAPIModel'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TestTemplateParameterAPIModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        displayName:
+          maxLength: 115
+          type:
+          - string
+          - 'null'
+        macroName:
+          maxLength: 128
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        defaultValue:
+          maxLength: 512
+          type:
+          - string
+          - 'null'
       additionalProperties: false
     Catchpoint.Symphony.Enums.ObjectType:
       enum:
@@ -914,191 +1144,53 @@ components:
         name: Scope
       type: integer
       format: int32
-    Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TemplatesDisplayConstructor.RequestSectionAPIModel:
-      type: object
-      properties:
-        authentication:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TemplatesDisplayConstructor.AuthenticationSectionAPIModel'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TemplatesDisplayConstructor.DetailSectionAPIModel:
-      type: object
-      properties:
-        supportedMonitors:
-          type: array
-          items:
-            type: integer
-            format: int32
-          nullable: true
-        scriptSection:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TemplatesDisplayConstructor.ScriptSectionAPIModel'
-        scriptFileName:
-          type: string
-          nullable: true
-      additionalProperties: false
-    Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Nullable`1[System.Int32]]:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-          nullable: true
-        name:
-          type: string
-          nullable: true
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Api.DivisionUsageStatistics:
-      type: object
-      properties:
-        divisionId:
-          type: integer
-          format: int32
-        consumerStatistics:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ConsumerStatistics'
-          nullable: true
-      additionalProperties: false
-    Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Int32]:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        name:
-          type: string
-          nullable: true
-      additionalProperties: false
     Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TestTypeSchemaAPIModel:
       type: object
       properties:
         description:
           maxLength: 255
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         version:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         testSchema:
           $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TemplatesDisplayConstructor.TestDisplayConstructorAPIModel'
       additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TestTemplateAPIModel:
+    Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath:
+      type: object
+      properties:
+        ops:
+          type:
+          - string
+          - 'null'
+        path:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TemplatesDisplayConstructor.TestDisplayConstructorAPIModel:
+      type: object
+      properties:
+        detailSection:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TemplatesDisplayConstructor.DetailSectionAPIModel'
+        requestSection:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TemplatesDisplayConstructor.RequestSectionAPIModel'
+      additionalProperties: false
+    Catchpoint.Symphony.ViewModels.MessageModel:
       type: object
       properties:
         id:
-          type: integer
-          format: int32
-        version:
-          type: string
-          nullable: true
-        description:
-          type: string
-          nullable: true
-        name:
-          type: string
-          nullable: true
-        status:
-          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Int32]'
-        applicationGroup:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TestTemplateApplicationGroupAPIModel'
-        parentTestType:
-          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Int32]'
-        testTemplateParameters:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TestTemplateParameterAPIModel'
-          nullable: true
-        testTypeSchema:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TestTypeSchemaAPIModel'
-        associatedClientsList:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.AssociatedRestrictedTestTemplateAPIModel'
-          nullable: true
-        testTypeSchemaId:
-          type: integer
-          format: int32
-        levelType:
-          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.AccessLevel'
-        levelId:
-          type: integer
-          format: int64
-          nullable: true
-        script:
-          type: string
-          nullable: true
-        transactionScriptType:
-          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel`1[System.Int32]'
-        deprecationDate:
-          type: string
-          format: date-time
-          nullable: true
-        changeDate:
-          type: string
-          format: date-time
-        isLocked:
-          type: boolean
-        file:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.FileReferenceAPIModel'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TestTemplateParameterAPIModel:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        displayName:
-          maxLength: 115
-          type: string
-          nullable: true
-        macroName:
-          maxLength: 128
-          type: string
-          nullable: true
-          readOnly: true
-        defaultValue:
-          maxLength: 512
-          type: string
-          nullable: true
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.APIResponse`1[Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationResponse]:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationResponse'
-        messages:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
-          nullable: true
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
-          nullable: true
-        completed:
-          type: boolean
-          readOnly: true
-        traceId:
-          type: string
-          nullable: true
-        usageLimits:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Models.v2_0.TestTemplate.TestTemplateApplicationGroupAPIModel:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        name:
-          maxLength: 128
-          type: string
-          nullable: true
-        description:
-          maxLength: 255
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
+        message:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
   securitySchemes:
     bearer:

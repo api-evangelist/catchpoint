@@ -1,0 +1,368 @@
+openapi: 3.2.0
+info:
+  title: Catchpoint REST API v2.0 Usage Report API
+  version: '2.0'
+servers:
+- url: /api
+tags:
+- name: Usage Report
+paths:
+  /v2/account/usagereport:
+    get:
+      tags:
+      - Usage Report
+      summary: Returns the Usage Report
+      description: 'Return usage report for the provided parameters.
+
+        The parameters are optional, and you may include either of them to customize the query.If no parameters are passed, then usage report by months is returned.'
+      parameters:
+      - name: dataByDays
+        in: query
+        description: Usage Report of last 7 days including the present day.
+        schema:
+          type: boolean
+      - name: dataByWeeks
+        in: query
+        description: Usage Report of last 5 weeks including present week.
+        schema:
+          type: boolean
+      - name: dataByMonths
+        in: query
+        description: Usage Report of last 4 Months including the current month.
+        schema:
+          type: boolean
+      - name: dataByQuarters
+        in: query
+        description: Usage Report of last 3 quarters including current quarter.
+        schema:
+          type: boolean
+      - name: divisionId
+        in: query
+        description: Division id of which usage report Required
+        schema:
+          type: integer
+          format: int32
+      - name: productId
+        in: query
+        description: ProductId if which usage report required
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.UsageReportResponseModel'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.UsageReportResponseModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.UsageReportResponseModel'
+      security:
+      - bearer: []
+      order: 1
+      operationId: getV2AccountUsagereport
+      x-operation-id-source: derived
+components:
+  schemas:
+    Catchpoint.Symphony.REST.Api.Limit:
+      type: object
+      properties:
+        minute:
+          type: integer
+          format: int32
+        hour:
+          type: integer
+          format: int32
+        day:
+          type: integer
+          format: int32
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.v2_0.UsageReport.TotalPointAPIModel:
+      type: object
+      properties:
+        divisionId:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        productId:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        aggregatedTotal:
+          type:
+          - number
+          - 'null'
+          format: double
+        totalAllocatedPoints:
+          type:
+          - number
+          - 'null'
+          format: double
+        allowance:
+          type:
+          - number
+          - 'null'
+          format: double
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath:
+      type: object
+      properties:
+        ops:
+          type:
+          - string
+          - 'null'
+        path:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.UsageReportResponseModel
+    : type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.UsageReportResponseModel'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type:
+          - string
+          - 'null'
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.ApiUsageStatistics:
+      type: object
+      properties:
+        clientId:
+          type: integer
+          format: int64
+        lastRequestTimestamp:
+          type: string
+          format: date-time
+        limits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        runs:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        exceededMessage:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        divisionUsageStatistics:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.DivisionUsageStatistics'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.UsageReportResponseModel:
+      type: object
+      properties:
+        day:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.UsageReport.PointsDataAPIModel'
+        week:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.UsageReport.PointsDataAPIModel'
+        month:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.UsageReport.PointsDataAPIModel'
+        quarter:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.UsageReport.PointsDataAPIModel'
+        totalPoints:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.UsageReport.TotalPointAPIModel'
+        startDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        endDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        totalPointsUsed:
+          type:
+          - number
+          - 'null'
+          format: double
+        contractBalance:
+          type:
+          - number
+          - 'null'
+          format: double
+        hasMore:
+          type:
+          - boolean
+          - 'null'
+        next:
+          type:
+          - string
+          - 'null'
+        previous:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.v2_0.UsageReport.PointsDataAPIModel:
+      type: object
+      properties:
+        divisionData:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.UsageReport.PointsUsageDataAPIModel'
+        productData:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.UsageReport.PointsUsageDataAPIModel'
+        sumTotalPoints:
+          type:
+          - number
+          - 'null'
+          format: double
+        allowanceTotalPoints:
+          type:
+          - number
+          - 'null'
+          format: double
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.DivisionUsageStatistics:
+      type: object
+      properties:
+        divisionId:
+          type: integer
+          format: int32
+        consumerStatistics:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ConsumerStatistics'
+      additionalProperties: false
+    Catchpoint.Symphony.ViewModels.MessageModel:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        message:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.v2_0.UsageReport.PointsUsageDataAPIModel:
+      type: object
+      properties:
+        divisionId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        divisionName:
+          type:
+          - string
+          - 'null'
+        productId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        productName:
+          type:
+          - string
+          - 'null'
+        points:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.UsageReport.DoubleDateTimeDataPointAPIModel'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.InfoMessage:
+      type: object
+      properties:
+        information:
+          type:
+          - string
+          - 'null'
+        ignoredPath:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.v2_0.UsageReport.DoubleDateTimeDataPointAPIModel:
+      type: object
+      properties:
+        dateTime:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        value:
+          type:
+          - number
+          - 'null'
+          format: double
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.ConsumerStatistics:
+      type: object
+      properties:
+        consumerId:
+          type: integer
+          format: int32
+        requestCount:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        maxPerDay:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      additionalProperties: false
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
