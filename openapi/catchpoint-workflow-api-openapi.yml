@@ -50,9 +50,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Catchpoint.Symphony.REST.Common.Response.Workflow.WorkflowResponse:
-      type: object
-      additionalProperties: false
     Catchpoint.Symphony.REST.Api.Limit:
       type: object
       properties:
@@ -66,6 +63,20 @@ components:
           type: integer
           format: int32
       additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.InfoMessage:
+      type: object
+      properties:
+        information:
+          type:
+          - string
+          - 'null'
+        ignoredPath:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath'
+      additionalProperties: false
     Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath:
       type: object
       properties:
@@ -77,6 +88,36 @@ components:
           type:
           - string
           - 'null'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.Workflow.WorkflowResponse:
+      type: object
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.Workflow.WorkflowResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.Workflow.WorkflowResponse'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type:
+          - string
+          - 'null'
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
       additionalProperties: false
     Catchpoint.Symphony.REST.Api.ApiUsageStatistics:
       type: object
@@ -128,20 +169,6 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Models.InfoMessage:
-      type: object
-      properties:
-        information:
-          type:
-          - string
-          - 'null'
-        ignoredPath:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath'
-      additionalProperties: false
     Catchpoint.Symphony.REST.Api.ConsumerStatistics:
       type: object
       properties:
@@ -155,33 +182,6 @@ components:
           - integer
           - 'null'
           format: int32
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.Workflow.WorkflowResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.Workflow.WorkflowResponse'
-        messages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
-        completed:
-          type: boolean
-          readOnly: true
-        traceId:
-          type:
-          - string
-          - 'null'
-        usageLimits:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
       additionalProperties: false
   securitySchemes:
     bearer:

@@ -68,77 +68,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Catchpoint.Symphony.REST.Common.Models.v2_0.InternetWeather.InternetWeatherOutageLocation:
-      type: object
-      properties:
-        startTime:
-          type: string
-          format: date-time
-        endTime:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        ongoing:
-          type: boolean
-        city:
-          type:
-          - string
-          - 'null'
-        country:
-          type:
-          - string
-          - 'null'
-        region:
-          type:
-          - string
-          - 'null'
-        errorTypes:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.Enums.SyntheticErrorType.SyntheticErrorType'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Models.v2_0.InternetWeather.InternetWeatherServiceOutage:
-      type: object
-      properties:
-        serviceId:
-          type: integer
-          format: int64
-        serviceName:
-          type:
-          - string
-          - 'null'
-        locations:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.InternetWeather.InternetWeatherOutageLocation'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.v2_0.InternetWeatherResponse:
-      type: object
-      properties:
-        outages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.InternetWeather.InternetWeatherServiceOutage'
-        hasMore:
-          type:
-          - boolean
-          - 'null'
-        next:
-          type:
-          - string
-          - 'null'
-        previous:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
     Catchpoint.Symphony.Enums.SyntheticErrorType.SyntheticErrorType:
       enum:
       - id: 0
@@ -171,6 +100,77 @@ components:
         name: PacketLoss
       type: integer
       format: int32
+    Catchpoint.Symphony.REST.Common.Models.v2_0.InternetWeather.InternetWeatherServiceOutage:
+      type: object
+      properties:
+        serviceId:
+          type: integer
+          format: int64
+        serviceName:
+          type:
+          - string
+          - 'null'
+        locations:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.InternetWeather.InternetWeatherOutageLocation'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.v2_0.InternetWeather.InternetWeatherOutageLocation:
+      type: object
+      properties:
+        startTime:
+          type: string
+          format: date-time
+        endTime:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        ongoing:
+          type: boolean
+        city:
+          type:
+          - string
+          - 'null'
+        country:
+          type:
+          - string
+          - 'null'
+        region:
+          type:
+          - string
+          - 'null'
+        errorTypes:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.Enums.SyntheticErrorType.SyntheticErrorType'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.InternetWeatherResponse:
+      type: object
+      properties:
+        outages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.InternetWeather.InternetWeatherServiceOutage'
+        hasMore:
+          type:
+          - boolean
+          - 'null'
+        next:
+          type:
+          - string
+          - 'null'
+        previous:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
   securitySchemes:
     bearer:
       type: http

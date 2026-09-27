@@ -81,34 +81,19 @@ components:
           type: integer
           format: int32
       additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Models.v2_0.UsageReport.TotalPointAPIModel:
+    Catchpoint.Symphony.REST.Common.Models.InfoMessage:
       type: object
       properties:
-        divisionId:
+        information:
           type:
-          - integer
+          - string
           - 'null'
-          format: int64
-        productId:
+        ignoredPath:
           type:
-          - integer
+          - array
           - 'null'
-          format: int64
-        aggregatedTotal:
-          type:
-          - number
-          - 'null'
-          format: double
-        totalAllocatedPoints:
-          type:
-          - number
-          - 'null'
-          format: double
-        allowance:
-          type:
-          - number
-          - 'null'
-          format: double
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath'
       additionalProperties: false
     Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath:
       type: object
@@ -121,6 +106,34 @@ components:
           type:
           - string
           - 'null'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.v2_0.UsageReport.PointsUsageDataAPIModel:
+      type: object
+      properties:
+        divisionId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        divisionName:
+          type:
+          - string
+          - 'null'
+        productId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        productName:
+          type:
+          - string
+          - 'null'
+        points:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.UsageReport.DoubleDateTimeDataPointAPIModel'
       additionalProperties: false
     ? Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.UsageReportResponseModel
     : type: object
@@ -148,31 +161,6 @@ components:
           - 'null'
         usageLimits:
           $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Api.ApiUsageStatistics:
-      type: object
-      properties:
-        clientId:
-          type: integer
-          format: int64
-        lastRequestTimestamp:
-          type: string
-          format: date-time
-        limits:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
-        runs:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
-        exceededMessage:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        divisionUsageStatistics:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.DivisionUsageStatistics'
       additionalProperties: false
     Catchpoint.Symphony.REST.Common.Response.v2_0.UsageReportResponseModel:
       type: object
@@ -266,6 +254,60 @@ components:
           - 'null'
           format: double
       additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.v2_0.UsageReport.TotalPointAPIModel:
+      type: object
+      properties:
+        divisionId:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        productId:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        aggregatedTotal:
+          type:
+          - number
+          - 'null'
+          format: double
+        totalAllocatedPoints:
+          type:
+          - number
+          - 'null'
+          format: double
+        allowance:
+          type:
+          - number
+          - 'null'
+          format: double
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.ApiUsageStatistics:
+      type: object
+      properties:
+        clientId:
+          type: integer
+          format: int64
+        lastRequestTimestamp:
+          type: string
+          format: date-time
+        limits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        runs:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        exceededMessage:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        divisionUsageStatistics:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.DivisionUsageStatistics'
+      additionalProperties: false
     Catchpoint.Symphony.REST.Api.DivisionUsageStatistics:
       type: object
       properties:
@@ -290,48 +332,6 @@ components:
           type:
           - string
           - 'null'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Models.v2_0.UsageReport.PointsUsageDataAPIModel:
-      type: object
-      properties:
-        divisionId:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        divisionName:
-          type:
-          - string
-          - 'null'
-        productId:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        productName:
-          type:
-          - string
-          - 'null'
-        points:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.UsageReport.DoubleDateTimeDataPointAPIModel'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Models.InfoMessage:
-      type: object
-      properties:
-        information:
-          type:
-          - string
-          - 'null'
-        ignoredPath:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath'
       additionalProperties: false
     Catchpoint.Symphony.REST.Common.Models.v2_0.UsageReport.DoubleDateTimeDataPointAPIModel:
       type: object

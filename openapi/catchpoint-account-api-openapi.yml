@@ -95,6 +95,215 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Catchpoint.Symphony.REST.Api.Limit:
+      type: object
+      properties:
+        minute:
+          type: integer
+          format: int32
+        hour:
+          type: integer
+          format: int32
+        day:
+          type: integer
+          format: int32
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.InfoMessage:
+      type: object
+      properties:
+        information:
+          type:
+          - string
+          - 'null'
+        ignoredPath:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath'
+      additionalProperties: false
+    Catchpoint.Symphony.Enums.SyntheticLocation.SyntheticNetworkType:
+      enum:
+      - id: 0
+        name: Backbone
+      - id: 1
+        name: LastMile
+      - id: 2
+        name: Wireless
+      - id: 3
+        name: Private
+      - id: 4
+        name: Enterprise
+      - id: 5
+        name: PublicCloud
+      - id: 6
+        name: Any
+      - id: 7
+        name: Bgp
+      - id: 8
+        name: WebPageTest
+      - id: 9
+        name: Enterprise Branch
+      type: integer
+      format: int32
+    Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath:
+      type: object
+      properties:
+        ops:
+          type:
+          - string
+          - 'null'
+        path:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Catchpoint.Symphony.Enums.Test.DisplayMonitorType:
+      enum:
+      - id: 0
+        name: IE
+      - id: 1
+        name: RealUser
+      - id: 2
+        name: HTTP
+      - id: 3
+        name: Emulated
+      - id: 5
+        name: Mqtt
+      - id: 6
+        name: Imap
+      - id: 7
+        name: Ntp
+      - id: 8
+        name: Ping ICMP
+      - id: 9
+        name: Traceroute ICMP
+      - id: 10
+        name: DnsTrace
+      - id: 11
+        name: PingTcp
+      - id: 12
+        name: DnsExperience
+      - id: 13
+        name: DnsDirect
+      - id: 14
+        name: TraceRouteUdp
+      - id: 15
+        name: Tcp
+      - id: 16
+        name: Ftp
+      - id: 17
+        name: ApiSummary
+      - id: 18
+        name: Chrome
+      - id: 19
+        name: Playback
+      - id: 20
+        name: MobilePlayback
+      - id: 21
+        name: Smtp
+      - id: 22
+        name: TcpUdp
+      - id: 23
+        name: PingUdp
+      - id: 24
+        name: Streaming
+      - id: 25
+        name: Api
+      - id: 26
+        name: Mobile
+      - id: 28
+        name: Ssh
+      - id: 29
+        name: TraceRouteTcp
+      - id: 30
+        name: WebSocket
+      - id: 31
+        name: Ssl
+      - id: 32
+        name: Wifi
+      - id: 33
+        name: ShellScript
+      - id: 34
+        name: Bgp
+      - id: 35
+        name: TraceRouteSack
+      - id: 36
+        name: M-Lab Bandwidth
+      - id: 37
+        name: WebPageTest
+      - id: 39
+        name: Edge
+      - id: 40
+        name: Nprobe
+      - id: 41
+        name: BgpBasic
+      - id: 42
+        name: TracerouteQUIC
+      - id: 43
+        name: NProbeRFactor
+      type: integer
+      format: int32
+    Catchpoint.Symphony.Enums.Test.DisplayTestType:
+      enum:
+      - id: 0
+        name: Web
+      - id: 1
+        name: TransactionLegacy
+      - id: 2
+        name: HtmlCode
+      - id: 3
+        name: Ftp
+      - id: 4
+        name: Tcp
+      - id: 5
+        name: Dns
+      - id: 6
+        name: Ping
+      - id: 7
+        name: Smtp
+      - id: 8
+        name: Udp
+      - id: 9
+        name: Api
+      - id: 10
+        name: Streaming
+      - id: 11
+        name: Ssh
+      - id: 12
+        name: TraceRoute
+      - id: 13
+        name: WebSocket
+      - id: 14
+        name: Ntp
+      - id: 15
+        name: Imap
+      - id: 16
+        name: Mqtt
+      - id: 17
+        name: Bulk
+      - id: 18
+        name: Ssl
+      - id: 19
+        name: Wifi
+      - id: 20
+        name: Bgp
+      - id: 21
+        name: NodeToNode
+      - id: 22
+        name: Bandwidth
+      - id: 23
+        name: WebPageTestWeb
+      - id: 24
+        name: WebPageTestTransaction
+      - id: 25
+        name: Playwright
+      - id: 26
+        name: Puppeteer
+      - id: 27
+        name: Transaction
+      type: integer
+      format: int32
     ? Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.AccountActivity.ActivityResponseModel
     : type: object
       properties:
@@ -121,6 +330,24 @@ components:
           - 'null'
         usageLimits:
           $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.AccountActivity.ActivityResponseModel:
+      type: object
+      properties:
+        activitySummary:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.AccountActivity.AccountActivitySummaryAPIModel'
+        hasMore:
+          type:
+          - boolean
+          - 'null'
+        next:
+          type:
+          - string
+          - 'null'
+        previous:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
     Catchpoint.Symphony.ViewModels.AccountActivity.BusinessContractModel:
       type: object
@@ -158,54 +385,30 @@ components:
           type: number
           format: double
       additionalProperties: false
-    Catchpoint.Symphony.Enums.SyntheticLocation.SyntheticNetworkType:
-      enum:
-      - id: 0
-        name: Backbone
-      - id: 1
-        name: LastMile
-      - id: 2
-        name: Wireless
-      - id: 3
-        name: Private
-      - id: 4
-        name: Enterprise
-      - id: 5
-        name: PublicCloud
-      - id: 6
-        name: Any
-      - id: 7
-        name: Bgp
-      - id: 8
-        name: WebPageTest
-      - id: 9
-        name: Enterprise Branch
-      type: integer
-      format: int32
-    Catchpoint.Symphony.REST.Api.Limit:
+    Catchpoint.Symphony.REST.Api.ApiUsageStatistics:
       type: object
       properties:
-        minute:
+        clientId:
           type: integer
-          format: int32
-        hour:
-          type: integer
-          format: int32
-        day:
-          type: integer
-          format: int32
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath:
-      type: object
-      properties:
-        ops:
+          format: int64
+        lastRequestTimestamp:
+          type: string
+          format: date-time
+        limits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        runs:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        exceededMessage:
           type:
           - string
           - 'null'
-        path:
+          readOnly: true
+        divisionUsageStatistics:
           type:
-          - string
+          - array
           - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.DivisionUsageStatistics'
       additionalProperties: false
     Catchpoint.Symphony.REST.Common.Response.v2_0.AccountActivity.AccountActivityAPIModel:
       type: object
@@ -311,109 +514,18 @@ components:
         instantTestInitiatedFromApi:
           type: boolean
       additionalProperties: false
-    Catchpoint.Symphony.Enums.Test.DisplayMonitorType:
-      enum:
-      - id: 0
-        name: IE
-      - id: 1
-        name: RealUser
-      - id: 2
-        name: HTTP
-      - id: 3
-        name: Emulated
-      - id: 5
-        name: Mqtt
-      - id: 6
-        name: Imap
-      - id: 7
-        name: Ntp
-      - id: 8
-        name: Ping ICMP
-      - id: 9
-        name: Traceroute ICMP
-      - id: 10
-        name: DnsTrace
-      - id: 11
-        name: PingTcp
-      - id: 12
-        name: DnsExperience
-      - id: 13
-        name: DnsDirect
-      - id: 14
-        name: TraceRouteUdp
-      - id: 15
-        name: Tcp
-      - id: 16
-        name: Ftp
-      - id: 17
-        name: ApiSummary
-      - id: 18
-        name: Chrome
-      - id: 19
-        name: Playback
-      - id: 20
-        name: MobilePlayback
-      - id: 21
-        name: Smtp
-      - id: 22
-        name: TcpUdp
-      - id: 23
-        name: PingUdp
-      - id: 24
-        name: Streaming
-      - id: 25
-        name: Api
-      - id: 26
-        name: Mobile
-      - id: 28
-        name: Ssh
-      - id: 29
-        name: TraceRouteTcp
-      - id: 30
-        name: WebSocket
-      - id: 31
-        name: Ssl
-      - id: 32
-        name: Wifi
-      - id: 33
-        name: ShellScript
-      - id: 34
-        name: Bgp
-      - id: 35
-        name: TraceRouteSack
-      - id: 36
-        name: M-Lab Bandwidth
-      - id: 37
-        name: WebPageTest
-      - id: 39
-        name: Edge
-      - id: 40
-        name: Nprobe
-      - id: 41
-        name: BgpBasic
-      - id: 42
-        name: TracerouteQUIC
-      - id: 43
-        name: NProbeRFactor
-      type: integer
-      format: int32
-    Catchpoint.Symphony.REST.Common.Response.v2_0.AccountActivity.ActivityResponseModel:
+    Catchpoint.Symphony.REST.Api.DivisionUsageStatistics:
       type: object
       properties:
-        activitySummary:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.AccountActivity.AccountActivitySummaryAPIModel'
-        hasMore:
+        divisionId:
+          type: integer
+          format: int32
+        consumerStatistics:
           type:
-          - boolean
+          - array
           - 'null'
-        next:
-          type:
-          - string
-          - 'null'
-        previous:
-          type:
-          - string
-          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ConsumerStatistics'
       additionalProperties: false
     Catchpoint.Symphony.REST.Common.Response.v2_0.AccountActivity.AccountActivitySummaryAPIModel:
       type: object
@@ -465,44 +577,6 @@ components:
         hasMoreData:
           type: boolean
       additionalProperties: false
-    Catchpoint.Symphony.REST.Api.ApiUsageStatistics:
-      type: object
-      properties:
-        clientId:
-          type: integer
-          format: int64
-        lastRequestTimestamp:
-          type: string
-          format: date-time
-        limits:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
-        runs:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
-        exceededMessage:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        divisionUsageStatistics:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.DivisionUsageStatistics'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Api.DivisionUsageStatistics:
-      type: object
-      properties:
-        divisionId:
-          type: integer
-          format: int32
-        consumerStatistics:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ConsumerStatistics'
-      additionalProperties: false
     Catchpoint.Symphony.ViewModels.MessageModel:
       type: object
       properties:
@@ -515,80 +589,6 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Models.InfoMessage:
-      type: object
-      properties:
-        information:
-          type:
-          - string
-          - 'null'
-        ignoredPath:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath'
-      additionalProperties: false
-    Catchpoint.Symphony.Enums.Test.DisplayTestType:
-      enum:
-      - id: 0
-        name: Web
-      - id: 1
-        name: TransactionLegacy
-      - id: 2
-        name: HtmlCode
-      - id: 3
-        name: Ftp
-      - id: 4
-        name: Tcp
-      - id: 5
-        name: Dns
-      - id: 6
-        name: Ping
-      - id: 7
-        name: Smtp
-      - id: 8
-        name: Udp
-      - id: 9
-        name: Api
-      - id: 10
-        name: Streaming
-      - id: 11
-        name: Ssh
-      - id: 12
-        name: TraceRoute
-      - id: 13
-        name: WebSocket
-      - id: 14
-        name: Ntp
-      - id: 15
-        name: Imap
-      - id: 16
-        name: Mqtt
-      - id: 17
-        name: Bulk
-      - id: 18
-        name: Ssl
-      - id: 19
-        name: Wifi
-      - id: 20
-        name: Bgp
-      - id: 21
-        name: NodeToNode
-      - id: 22
-        name: Bandwidth
-      - id: 23
-        name: WebPageTestWeb
-      - id: 24
-        name: WebPageTestTransaction
-      - id: 25
-        name: Playwright
-      - id: 26
-        name: Puppeteer
-      - id: 27
-        name: Transaction
-      type: integer
-      format: int32
     Catchpoint.Symphony.REST.Api.ConsumerStatistics:
       type: object
       properties:

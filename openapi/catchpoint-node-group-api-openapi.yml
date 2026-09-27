@@ -322,15 +322,15 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Catchpoint.Symphony.REST.Common.Response.v2_0.NetworkTypeResponse:
+    Catchpoint.Symphony.REST.Common.Response.v2_0.NodeLocationResponse:
       type: object
       properties:
-        networkTypes:
+        continents:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Byte'
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Node.NodeLocationContinentModel'
         hasMore:
           type:
           - boolean
@@ -344,30 +344,34 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.v2_0.NodeGroupResponse_1_System.Collections.Generic.List_1_System.Int32:
-      type: object
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeGroupResponse_1_System.Collections.Generic.List_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeGroupAPIModel
+    : type: object
       properties:
-        nodeGroups:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.NodeGroupResponse_1_System.Collections.Generic.List_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeGroupAPIModel'
+        messages:
           type:
           - array
           - 'null'
           items:
-            type: integer
-            format: int32
-        hasMore:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+        errors:
           type:
-          - boolean
+          - array
           - 'null'
-        next:
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
           type:
           - string
           - 'null'
-        previous:
-          type:
-          - string
-          - 'null'
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
       additionalProperties: false
-    Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Byte:
+    Catchpoint.Symphony.REST.Common.Utility.IdNameModel_1_System.Int32:
       type: object
       properties:
         id:
@@ -396,6 +400,112 @@ components:
           - string
           - 'null'
       additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Node.NodeLocationContinentModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type:
+          - string
+          - 'null'
+        nodesCount:
+          type: integer
+          format: int32
+        countries:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Node.NodeLocationCountryModel'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeLocationResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.NodeLocationResponse'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type:
+          - string
+          - 'null'
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+    Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Int32:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.ApiUsageStatistics:
+      type: object
+      properties:
+        clientId:
+          type: integer
+          format: int64
+        lastRequestTimestamp:
+          type: string
+          format: date-time
+        limits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        runs:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        exceededMessage:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        divisionUsageStatistics:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.DivisionUsageStatistics'
+      additionalProperties: false
+    Catchpoint.Symphony.ViewModels.MessageModel:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        message:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Byte:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     Catchpoint.Symphony.REST.Api.ConsumerStatistics:
       type: object
       properties:
@@ -410,11 +520,52 @@ components:
           - 'null'
           format: int32
       additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeLocationResponse:
+    Catchpoint.Symphony.REST.Api.Limit:
       type: object
       properties:
+        minute:
+          type: integer
+          format: int32
+        hour:
+          type: integer
+          format: int32
+        day:
+          type: integer
+          format: int32
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.InfoMessage:
+      type: object
+      properties:
+        information:
+          type:
+          - string
+          - 'null'
+        ignoredPath:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Node.NodeLocationCityModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type:
+          - string
+          - 'null'
+        nodesCount:
+          type: integer
+          format: int32
+      additionalProperties: false
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeGroupResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeGroupAPIModel
+    : type: object
+      properties:
         data:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.NodeLocationResponse'
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.NodeGroupResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeGroupAPIModel'
         messages:
           type:
           - array
@@ -464,31 +615,11 @@ components:
         usageLimits:
           $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
       additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.v2_0.Node.NodeLocationCountryModel:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        name:
-          type:
-          - string
-          - 'null'
-        nodesCount:
-          type: integer
-          format: int32
-        cities:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Node.NodeLocationCityModel'
-      additionalProperties: false
-    ? Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeGroupResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeGroupAPIModel
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeGroupResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NetworkTypeResponse
     : type: object
       properties:
         data:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.NodeGroupResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeGroupAPIModel'
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.NodeGroupResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NetworkTypeResponse'
         messages:
           type:
           - array
@@ -511,19 +642,6 @@ components:
         usageLimits:
           $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
       additionalProperties: false
-    Catchpoint.Symphony.REST.Api.Limit:
-      type: object
-      properties:
-        minute:
-          type: integer
-          format: int32
-        hour:
-          type: integer
-          format: int32
-        day:
-          type: integer
-          format: int32
-      additionalProperties: false
     Microsoft.AspNetCore.JsonPatch.Operations.Operation:
       type: object
       properties:
@@ -541,31 +659,6 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    Catchpoint.Symphony.REST.Api.ApiUsageStatistics:
-      type: object
-      properties:
-        clientId:
-          type: integer
-          format: int64
-        lastRequestTimestamp:
-          type: string
-          format: date-time
-        limits:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
-        runs:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
-        exceededMessage:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        divisionUsageStatistics:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.DivisionUsageStatistics'
-      additionalProperties: false
     Catchpoint.Symphony.REST.Api.DivisionUsageStatistics:
       type: object
       properties:
@@ -579,15 +672,11 @@ components:
           items:
             $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ConsumerStatistics'
       additionalProperties: false
-    ? Catchpoint.Symphony.REST.Common.Response.v2_0.NodeGroupResponse_1_System.Collections.Generic.List_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeGroupAPIModel
+    ? Catchpoint.Symphony.REST.Common.Response.v2_0.NodeGroupResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeGroupAPIModel
     : type: object
       properties:
         nodeGroups:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.NodeGroupAPIModel'
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.NodeGroupAPIModel'
         hasMore:
           type:
           - boolean
@@ -601,15 +690,16 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.v2_0.NodeLocationResponse:
+    Catchpoint.Symphony.REST.Common.Response.v2_0.NodeGroupResponse_1_System.Collections.Generic.List_1_System.Int32:
       type: object
       properties:
-        continents:
+        nodeGroups:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Node.NodeLocationContinentModel'
+            type: integer
+            format: int32
         hasMore:
           type:
           - boolean
@@ -645,6 +735,21 @@ components:
           - string
           - 'null'
       additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Node.NodeGroupItemApiModel:
+      type: object
+      properties:
+        objectType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Int32'
+        nodesCount:
+          type: integer
+          format: int32
+        city:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Utility.IdNameModel_1_System.Int32'
+        country:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Utility.IdNameModel_1_System.Int32'
+        continent:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Utility.IdNameModel_1_System.Int32'
+      additionalProperties: false
     Catchpoint.Symphony.REST.Common.Response.v2_0.NodeAPIModel:
       type: object
       properties:
@@ -664,32 +769,63 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.ObjectTypeResponse:
+    Catchpoint.Symphony.Enums.SyntheticLocation.SyntheticNetworkType:
+      enum:
+      - id: 0
+        name: Backbone
+      - id: 1
+        name: LastMile
+      - id: 2
+        name: Wireless
+      - id: 3
+        name: Private
+      - id: 4
+        name: Enterprise
+      - id: 5
+        name: PublicCloud
+      - id: 6
+        name: Any
+      - id: 7
+        name: Bgp
+      - id: 8
+        name: WebPageTest
+      - id: 9
+        name: Enterprise Branch
+      type: integer
+      format: int32
+    Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath:
       type: object
       properties:
-        data:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.ObjectTypeResponse'
-        messages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
-        completed:
-          type: boolean
-          readOnly: true
-        traceId:
+        ops:
           type:
           - string
           - 'null'
-        usageLimits:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+        path:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ? Catchpoint.Symphony.REST.Common.Response.v2_0.NodeGroupResponse_1_System.Collections.Generic.List_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeGroupAPIModel
+    : type: object
+      properties:
+        nodeGroups:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.NodeGroupAPIModel'
+        hasMore:
+          type:
+          - boolean
+          - 'null'
+        next:
+          type:
+          - string
+          - 'null'
+        previous:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
     Catchpoint.Symphony.REST.Common.Response.v2_0.NodeGroupAPIModel:
       type: object
@@ -733,22 +869,7 @@ components:
           items:
             $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Node.NodeGroupItemApiModel'
       additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.v2_0.Node.NodeGroupItemApiModel:
-      type: object
-      properties:
-        objectType:
-          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Int32'
-        nodesCount:
-          type: integer
-          format: int32
-        city:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Utility.IdNameModel_1_System.Int32'
-        country:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Utility.IdNameModel_1_System.Int32'
-        continent:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Utility.IdNameModel_1_System.Int32'
-      additionalProperties: false
-    Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Int32:
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Node.NodeLocationCountryModel:
       type: object
       properties:
         id:
@@ -758,26 +879,21 @@ components:
           type:
           - string
           - 'null'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Models.InfoMessage:
-      type: object
-      properties:
-        information:
-          type:
-          - string
-          - 'null'
-        ignoredPath:
+        nodesCount:
+          type: integer
+          format: int32
+        cities:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath'
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Node.NodeLocationCityModel'
       additionalProperties: false
-    ? Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeGroupResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NetworkTypeResponse
-    : type: object
+    Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.ObjectTypeResponse:
+      type: object
       properties:
         data:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.NodeGroupResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NetworkTypeResponse'
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.ObjectTypeResponse'
         messages:
           type:
           - array
@@ -800,72 +916,15 @@ components:
         usageLimits:
           $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
       additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.v2_0.Node.NodeLocationCityModel:
+    Catchpoint.Symphony.REST.Common.Response.v2_0.NetworkTypeResponse:
       type: object
       properties:
-        id:
-          type: integer
-          format: int32
-        name:
+        networkTypes:
           type:
-          - string
+          - array
           - 'null'
-        nodesCount:
-          type: integer
-          format: int32
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Utility.IdNameModel_1_System.Int32:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        name:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Catchpoint.Symphony.Enums.SyntheticLocation.SyntheticNetworkType:
-      enum:
-      - id: 0
-        name: Backbone
-      - id: 1
-        name: LastMile
-      - id: 2
-        name: Wireless
-      - id: 3
-        name: Private
-      - id: 4
-        name: Enterprise
-      - id: 5
-        name: PublicCloud
-      - id: 6
-        name: Any
-      - id: 7
-        name: Bgp
-      - id: 8
-        name: WebPageTest
-      - id: 9
-        name: Enterprise Branch
-      type: integer
-      format: int32
-    Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath:
-      type: object
-      properties:
-        ops:
-          type:
-          - string
-          - 'null'
-        path:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    ? Catchpoint.Symphony.REST.Common.Response.v2_0.NodeGroupResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeGroupAPIModel
-    : type: object
-      properties:
-        nodeGroups:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.NodeGroupAPIModel'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Byte'
         hasMore:
           type:
           - boolean
@@ -878,65 +937,6 @@ components:
           type:
           - string
           - 'null'
-      additionalProperties: false
-    Catchpoint.Symphony.ViewModels.MessageModel:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        message:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.v2_0.Node.NodeLocationContinentModel:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        name:
-          type:
-          - string
-          - 'null'
-        nodesCount:
-          type: integer
-          format: int32
-        countries:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Node.NodeLocationCountryModel'
-      additionalProperties: false
-    ? Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeGroupResponse_1_System.Collections.Generic.List_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeGroupAPIModel
-    : type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.NodeGroupResponse_1_System.Collections.Generic.List_1_Catchpoint.Symphony.REST.Common.Response.v2_0.NodeGroupAPIModel'
-        messages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
-        completed:
-          type: boolean
-          readOnly: true
-        traceId:
-          type:
-          - string
-          - 'null'
-        usageLimits:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
       additionalProperties: false
   securitySchemes:
     bearer:

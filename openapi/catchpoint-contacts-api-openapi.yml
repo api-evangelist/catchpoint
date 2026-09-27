@@ -260,7 +260,7 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactGroupAPIModel:
+    Catchpoint.Symphony.REST.Common.Utility.IdNameModel_1_System.Int32:
       type: object
       properties:
         id:
@@ -270,14 +270,12 @@ components:
           type:
           - string
           - 'null'
-        division:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Utility.IdNameModel_1_System.Int32'
       additionalProperties: false
-    ? Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactGetResponse
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactDeleteResponse
     : type: object
       properties:
         data:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactGetResponse'
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactDeleteResponse'
         messages:
           type:
           - array
@@ -299,26 +297,6 @@ components:
           - 'null'
         usageLimits:
           $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactDeleteResponse:
-      type: object
-      properties:
-        archivedIds:
-          type:
-          - string
-          - 'null'
-        hasMore:
-          type:
-          - boolean
-          - 'null'
-        next:
-          type:
-          - string
-          - 'null'
-        previous:
-          type:
-          - string
-          - 'null'
       additionalProperties: false
     Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactAPIModel:
       type: object
@@ -418,6 +396,34 @@ components:
           - 'null'
           format: date-time
       additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactDeleteResponse:
+      type: object
+      properties:
+        archivedIds:
+          type:
+          - string
+          - 'null'
+        hasMore:
+          type:
+          - boolean
+          - 'null'
+        next:
+          type:
+          - string
+          - 'null'
+        previous:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Catchpoint.Symphony.Enums.ContactPrimaryDashboardType:
+      enum:
+      - id: 0
+        name: Dashboard
+      - id: 1
+        name: Smartboard
+      type: integer
+      format: int32
     Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactGetResponse:
       type: object
       properties:
@@ -440,14 +446,6 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    Catchpoint.Symphony.Enums.ContactPrimaryDashboardType:
-      enum:
-      - id: 0
-        name: Dashboard
-      - id: 1
-        name: Smartboard
-      type: integer
-      format: int32
     Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactRumAccessRestrictionAPIModel:
       type: object
       properties:
@@ -464,100 +462,34 @@ components:
           - boolean
           - 'null'
       additionalProperties: false
-    ? Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactDeleteResponse
-    : type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactDeleteResponse'
-        messages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
-        completed:
-          type: boolean
-          readOnly: true
-        traceId:
-          type:
-          - string
-          - 'null'
-        usageLimits:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Api.ConsumerStatistics:
-      type: object
-      properties:
-        consumerId:
-          type: integer
-          format: int32
-        requestCount:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
-        maxPerDay:
-          type:
-          - integer
-          - 'null'
-          format: int32
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactPostResponse:
-      type: object
-      properties:
-        contact:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactAPIModel'
-        id:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        hasMore:
-          type:
-          - boolean
-          - 'null'
-        next:
-          type:
-          - string
-          - 'null'
-        previous:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Api.Limit:
-      type: object
-      properties:
-        minute:
-          type: integer
-          format: int32
-        hour:
-          type: integer
-          format: int32
-        day:
-          type: integer
-          format: int32
-      additionalProperties: false
-    Microsoft.AspNetCore.JsonPatch.Operations.Operation:
-      type: object
-      properties:
-        value: {}
-        path:
-          type:
-          - string
-          - 'null'
-        op:
-          type:
-          - string
-          - 'null'
-        from:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
+    Catchpoint.Symphony.Enums.User.TestAccessRestrictionType:
+      enum:
+      - id: 0
+        name: All
+      - id: 1
+        name: Test
+      - id: 2
+        name: Product
+      type: integer
+      format: int32
+    Catchpoint.Symphony.Enums.Alerts.ContactNotificationType:
+      enum:
+      - id: 0
+        name: None
+      - id: 1
+        name: Email
+      - id: 4
+        name: EmailSms
+      - id: 16
+        name: Sms
+      - id: 32
+        name: Apns
+      - id: 64
+        name: Gcm
+      - id: 128
+        name: VoiceCall
+      type: integer
+      format: int32
     Catchpoint.Symphony.REST.Api.ApiUsageStatistics:
       type: object
       properties:
@@ -591,6 +523,153 @@ components:
         name: Site
       type: integer
       format: int32
+    Catchpoint.Symphony.REST.Api.ConsumerStatistics:
+      type: object
+      properties:
+        consumerId:
+          type: integer
+          format: int32
+        requestCount:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        maxPerDay:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.Limit:
+      type: object
+      properties:
+        minute:
+          type: integer
+          format: int32
+        hour:
+          type: integer
+          format: int32
+        day:
+          type: integer
+          format: int32
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.InfoMessage:
+      type: object
+      properties:
+        information:
+          type:
+          - string
+          - 'null'
+        ignoredPath:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactPostResponse:
+      type: object
+      properties:
+        contact:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactAPIModel'
+        id:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        hasMore:
+          type:
+          - boolean
+          - 'null'
+        next:
+          type:
+          - string
+          - 'null'
+        previous:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Microsoft.AspNetCore.JsonPatch.Operations.Operation:
+      type: object
+      properties:
+        value: {}
+        path:
+          type:
+          - string
+          - 'null'
+        op:
+          type:
+          - string
+          - 'null'
+        from:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Catchpoint.Symphony.Enums.DomainStatus:
+      enum:
+      - id: 0
+        name: Active
+      - id: 1
+        name: Inactive
+      - id: 2
+        name: Archived
+      - id: 3
+        name: Suspended
+      - id: 4
+        name: SuspendedByAdmin
+      - id: 5
+        name: Open
+      - id: 6
+        name: Resolved
+      - id: 7
+        name: Deleted
+      - id: 8
+        name: OverSubscribed
+      - id: 9
+        name: Published
+      - id: 10
+        name: Draft
+      - id: 11
+        name: NeedsApproval
+      type: integer
+      format: int32
+    Catchpoint.Symphony.REST.Common.Utility.IdNameModel_1_System.Int64:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactPostResponse
+    : type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactPostResponse'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type:
+          - string
+          - 'null'
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
     Catchpoint.Symphony.REST.Api.DivisionUsageStatistics:
       type: object
       properties:
@@ -604,24 +683,89 @@ components:
           items:
             $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ConsumerStatistics'
       additionalProperties: false
-    Catchpoint.Symphony.Enums.Alerts.ContactNotificationType:
-      enum:
-      - id: 0
-        name: None
-      - id: 1
-        name: Email
-      - id: 4
-        name: EmailSms
-      - id: 16
-        name: Sms
-      - id: 32
-        name: Apns
-      - id: 64
-        name: Gcm
-      - id: 128
-        name: VoiceCall
-      type: integer
-      format: int32
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactGroupAPIModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type:
+          - string
+          - 'null'
+        division:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Utility.IdNameModel_1_System.Int32'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactTestAccessRestrictionAPIModel:
+      type: object
+      properties:
+        testAccessRestrictType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.User.TestAccessRestrictionType'
+        testAccessRestrictionList:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Utility.IdNameModel_1_System.Int64'
+        viewAllTests:
+          type:
+          - boolean
+          - 'null'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath:
+      type: object
+      properties:
+        ops:
+          type:
+          - string
+          - 'null'
+        path:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactDashboardAPIModel:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.ContactPrimaryDashboardType'
+        id:
+          type: integer
+          format: int32
+        name:
+          type:
+          - string
+          - 'null'
+        doNotDisplayOtherDashboards:
+          type: boolean
+      additionalProperties: false
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactGetResponse
+    : type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactGetResponse'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type:
+          - string
+          - 'null'
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
     Catchpoint.Symphony.Enums.SupportedTimeZone:
       enum:
       - id: 0
@@ -686,123 +830,6 @@ components:
         name: Gulf Standard Time
       type: integer
       format: int32
-    Catchpoint.Symphony.Enums.DomainStatus:
-      enum:
-      - id: 0
-        name: Active
-      - id: 1
-        name: Inactive
-      - id: 2
-        name: Archived
-      - id: 3
-        name: Suspended
-      - id: 4
-        name: SuspendedByAdmin
-      - id: 5
-        name: Open
-      - id: 6
-        name: Resolved
-      - id: 7
-        name: Deleted
-      - id: 8
-        name: OverSubscribed
-      - id: 9
-        name: Published
-      - id: 10
-        name: Draft
-      - id: 11
-        name: NeedsApproval
-      type: integer
-      format: int32
-    Catchpoint.Symphony.REST.Common.Utility.IdNameModel_1_System.Int64:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        name:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactDashboardAPIModel:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.ContactPrimaryDashboardType'
-        id:
-          type: integer
-          format: int32
-        name:
-          type:
-          - string
-          - 'null'
-        doNotDisplayOtherDashboards:
-          type: boolean
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Models.InfoMessage:
-      type: object
-      properties:
-        information:
-          type:
-          - string
-          - 'null'
-        ignoredPath:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Utility.IdNameModel_1_System.Int32:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        name:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Catchpoint.Symphony.Enums.User.TestAccessRestrictionType:
-      enum:
-      - id: 0
-        name: All
-      - id: 1
-        name: Test
-      - id: 2
-        name: Product
-      type: integer
-      format: int32
-    Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactTestAccessRestrictionAPIModel:
-      type: object
-      properties:
-        testAccessRestrictType:
-          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.User.TestAccessRestrictionType'
-        testAccessRestrictionList:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Utility.IdNameModel_1_System.Int64'
-        viewAllTests:
-          type:
-          - boolean
-          - 'null'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath:
-      type: object
-      properties:
-        ops:
-          type:
-          - string
-          - 'null'
-        path:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
     Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactNotificationTypeAPIModel:
       type: object
       properties:
@@ -832,33 +859,6 @@ components:
           type:
           - string
           - 'null'
-      additionalProperties: false
-    ? Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactPostResponse
-    : type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Contact.ContactPostResponse'
-        messages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
-        completed:
-          type: boolean
-          readOnly: true
-        traceId:
-          type:
-          - string
-          - 'null'
-        usageLimits:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
       additionalProperties: false
   securitySchemes:
     bearer:

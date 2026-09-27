@@ -225,26 +225,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Catchpoint.Symphony.REST.Common.Response.v2_0.UserRole.UserRolePermissionAPIModel:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        permissionId:
-          type: integer
-          format: int32
-        name:
-          type:
-          - string
-          - 'null'
-        permissionOptions:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.UserRole.UserRolePermissionOptionAPIModel'
-      additionalProperties: false
     Catchpoint.Symphony.REST.Api.Limit:
       type: object
       properties:
@@ -257,6 +237,20 @@ components:
         day:
           type: integer
           format: int32
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.InfoMessage:
+      type: object
+      properties:
+        information:
+          type:
+          - string
+          - 'null'
+        ignoredPath:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath'
       additionalProperties: false
     Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath:
       type: object
@@ -303,19 +297,67 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    Catchpoint.Symphony.REST.Api.ConsumerStatistics:
+    Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Int32:
       type: object
       properties:
-        consumerId:
+        id:
           type: integer
           format: int32
-        requestCount:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
-        maxPerDay:
+        name:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.UserRole.UserRolePermissionOptionAPIModel:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        isEnabled:
+          type: boolean
+        id:
+          type: integer
+          format: int64
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.UserRole.UserRoleAPIModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type:
+          - string
+          - 'null'
+        divisionName:
+          type:
+          - string
+          - 'null'
+        levelType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Int32'
+        levelId:
           type:
           - integer
           - 'null'
           format: int32
+        inActiveContacts:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        activeContacts:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        permissions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.UserRole.UserRolePermissionAPIModel'
       additionalProperties: false
     Microsoft.AspNetCore.JsonPatch.Operations.Operation:
       type: object
@@ -359,17 +401,6 @@ components:
           items:
             $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.DivisionUsageStatistics'
       additionalProperties: false
-    Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Int32:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        name:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
     Catchpoint.Symphony.ViewModels.MessageModel:
       type: object
       properties:
@@ -394,71 +425,6 @@ components:
           - 'null'
           items:
             $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ConsumerStatistics'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Models.InfoMessage:
-      type: object
-      properties:
-        information:
-          type:
-          - string
-          - 'null'
-        ignoredPath:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.v2_0.UserRole.UserRoleAPIModel:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        name:
-          type:
-          - string
-          - 'null'
-        divisionName:
-          type:
-          - string
-          - 'null'
-        levelType:
-          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Int32'
-        levelId:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        inActiveContacts:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        activeContacts:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        permissions:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.UserRole.UserRolePermissionAPIModel'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.v2_0.UserRole.UserRolePermissionOptionAPIModel:
-      type: object
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-        isEnabled:
-          type: boolean
-        id:
-          type: integer
-          format: int64
       additionalProperties: false
     Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.UserRoleResponseModel:
       type: object
@@ -486,6 +452,40 @@ components:
           - 'null'
         usageLimits:
           $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.UserRole.UserRolePermissionAPIModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        permissionId:
+          type: integer
+          format: int32
+        name:
+          type:
+          - string
+          - 'null'
+        permissionOptions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.UserRole.UserRolePermissionOptionAPIModel'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.ConsumerStatistics:
+      type: object
+      properties:
+        consumerId:
+          type: integer
+          format: int32
+        requestCount:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        maxPerDay:
+          type:
+          - integer
+          - 'null'
+          format: int32
       additionalProperties: false
   securitySchemes:
     bearer:

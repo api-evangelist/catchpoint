@@ -37,7 +37,7 @@
     "catchpoint-workflow-api-openapi.yml"
   ],
   "archived": [
-    "deleted 5 superseded output(s) from the previous generation"
+    "deleted 4 superseded output(s) from the previous generation"
   ],
   "errors": [],
   "warnings": [],
@@ -75,13 +75,13 @@
     "catchpoint-rest-api-v2-openapi-original.json: declared missing tag: UserIdentity",
     "catchpoint-rest-api-v2-openapi-original.json: declared missing tag: UserRole",
     "catchpoint-rest-api-v2-openapi-original.json: declared missing tag: Workflow",
-    "superseded outputs removed: catchpoint-as-ns-api-openapi.yml, catchpoint-node-group-api-openapi.yml, catchpoint-usage-report-api-openapi.yml, catchpoint-user-identity-api-openapi.yml, catchpoint-user-role-api-openapi.yml",
-    "apis.yml register: written (+5 apis, 31 total)"
+    "superseded outputs removed: catchpoint-node-group-api-openapi.yml, catchpoint-usage-report-api-openapi.yml, catchpoint-user-identity-api-openapi.yml, catchpoint-user-role-api-openapi.yml",
+    "apis.yml register: written (+4 apis, 31 total)"
   ],
   "skipped": [
     "catchpoint-account-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "catchpoint-alerts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "catchpoint-as-ns-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "catchpoint-asns-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "catchpoint-assertions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "catchpoint-commandcontrol-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "catchpoint-contacts-api-openapi.yml: previously refined output, superseded by openapi/_original/",

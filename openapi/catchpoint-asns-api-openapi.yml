@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Catchpoint REST API v2.0 AS Ns API
+  title: Catchpoint REST API v2.0 ASNs API
   version: '2.0'
 servers:
 - url: /api
@@ -222,39 +222,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Catchpoint.Symphony.REST.Common.Response.v2_0.AsnResponseModel:
-      type: object
-      properties:
-        asns:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.AsnApiModel'
-        asn:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.AsnApiModel'
-        deletedAsns:
-          type:
-          - string
-          - 'null'
-        id:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        hasMore:
-          type:
-          - boolean
-          - 'null'
-        next:
-          type:
-          - string
-          - 'null'
-        previous:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
     Catchpoint.Symphony.REST.Api.Limit:
       type: object
       properties:
@@ -268,6 +235,20 @@ components:
           type: integer
           format: int32
       additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.InfoMessage:
+      type: object
+      properties:
+        information:
+          type:
+          - string
+          - 'null'
+        ignoredPath:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath'
+      additionalProperties: false
     Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath:
       type: object
       properties:
@@ -280,19 +261,53 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    Catchpoint.Symphony.REST.Api.ConsumerStatistics:
+    Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.AsnResponseModel:
       type: object
       properties:
-        consumerId:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.AsnResponseModel'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type:
+          - string
+          - 'null'
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.AsnApiModel:
+      type: object
+      properties:
+        id:
           type: integer
           format: int32
-        requestCount:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
-        maxPerDay:
+        asn:
+          type: integer
+          format: int64
+        name:
           type:
-          - integer
+          - string
           - 'null'
-          format: int32
+        description:
+          type:
+          - string
+          - 'null'
+        lastUpdated:
+          type: string
+          format: date-time
       additionalProperties: false
     Microsoft.AspNetCore.JsonPatch.Operations.Operation:
       type: object
@@ -336,20 +351,35 @@ components:
           items:
             $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.DivisionUsageStatistics'
       additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Requests.v2_0.AsnRequestModel:
+    Catchpoint.Symphony.REST.Common.Response.v2_0.AsnResponseModel:
       type: object
       properties:
-        id:
-          type: integer
-          format: int32
+        asns:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.AsnApiModel'
         asn:
-          type: integer
-          format: int64
-        name:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.AsnApiModel'
+        deletedAsns:
           type:
           - string
           - 'null'
-        description:
+        id:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        hasMore:
+          type:
+          - boolean
+          - 'null'
+        next:
+          type:
+          - string
+          - 'null'
+        previous:
           type:
           - string
           - 'null'
@@ -379,21 +409,7 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Models.InfoMessage:
-      type: object
-      properties:
-        information:
-          type:
-          - string
-          - 'null'
-        ignoredPath:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.v2_0.AsnApiModel:
+    Catchpoint.Symphony.REST.Common.Requests.v2_0.AsnRequestModel:
       type: object
       properties:
         id:
@@ -410,36 +426,20 @@ components:
           type:
           - string
           - 'null'
-        lastUpdated:
-          type: string
-          format: date-time
       additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.AsnResponseModel:
+    Catchpoint.Symphony.REST.Api.ConsumerStatistics:
       type: object
       properties:
-        data:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.AsnResponseModel'
-        messages:
+        consumerId:
+          type: integer
+          format: int32
+        requestCount:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        maxPerDay:
           type:
-          - array
+          - integer
           - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
-        completed:
-          type: boolean
-          readOnly: true
-        traceId:
-          type:
-          - string
-          - 'null'
-        usageLimits:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+          format: int32
       additionalProperties: false
   securitySchemes:
     bearer:
