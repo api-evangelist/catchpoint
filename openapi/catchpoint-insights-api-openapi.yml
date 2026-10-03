@@ -217,19 +217,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Catchpoint.Symphony.REST.Api.Limit:
-      type: object
-      properties:
-        minute:
-          type: integer
-          format: int32
-        hour:
-          type: integer
-          format: int32
-        day:
-          type: integer
-          format: int32
-      additionalProperties: false
     Catchpoint.Symphony.REST.Common.Models.InfoMessage:
       type: object
       properties:
@@ -243,40 +230,6 @@ components:
           - 'null'
           items:
             $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.v2_0.Insight.InsightResponseModel:
-      type: object
-      properties:
-        insights:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Insight.InsightAPIModel'
-        hasMore:
-          type:
-          - boolean
-          - 'null'
-        next:
-          type:
-          - string
-          - 'null'
-        previous:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath:
-      type: object
-      properties:
-        ops:
-          type:
-          - string
-          - 'null'
-        path:
-          type:
-          - string
-          - 'null'
       additionalProperties: false
     Catchpoint.Symphony.REST.Common.Response.v2_0.Insight.InsightAPIModel:
       type: object
@@ -324,6 +277,16 @@ components:
           - 'null'
           format: int32
       additionalProperties: false
+    Catchpoint.Symphony.Enums.Test.InsightSourceType:
+      enum:
+      - id: 0
+        name: HttpHeader
+      - id: 1
+        name: HttpContent
+      - id: 2
+        name: PerformanceMark
+      type: integer
+      format: int32
     ? Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.Insight.InsightResponseModel
     : type: object
       properties:
@@ -351,32 +314,18 @@ components:
         usageLimits:
           $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
       additionalProperties: false
-    Catchpoint.Symphony.Enums.Test.InsightSourceType:
-      enum:
-      - id: 0
-        name: HttpHeader
-      - id: 1
-        name: HttpContent
-      - id: 2
-        name: PerformanceMark
-      type: integer
-      format: int32
-    Microsoft.AspNetCore.JsonPatch.Operations.Operation:
+    Catchpoint.Symphony.REST.Api.DivisionUsageStatistics:
       type: object
       properties:
-        value: {}
-        path:
+        divisionId:
+          type: integer
+          format: int32
+        consumerStatistics:
           type:
-          - string
+          - array
           - 'null'
-        op:
-          type:
-          - string
-          - 'null'
-        from:
-          type:
-          - string
-          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ConsumerStatistics'
       additionalProperties: false
     Catchpoint.Symphony.Enums.DomainStatus:
       enum:
@@ -406,6 +355,81 @@ components:
         name: NeedsApproval
       type: integer
       format: int32
+    Catchpoint.Symphony.ViewModels.MessageModel:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        message:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath:
+      type: object
+      properties:
+        ops:
+          type:
+          - string
+          - 'null'
+        path:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Catchpoint.Symphony.Enums.Test.InsightContentType:
+      enum:
+      - id: 0
+        name: Number
+      - id: 2
+        name: Counter
+      - id: 4
+        name: Second
+      - id: 5
+        name: MicroSecond
+      type: integer
+      format: int32
+    Microsoft.AspNetCore.JsonPatch.Operations.Operation:
+      type: object
+      properties:
+        value: {}
+        path:
+          type:
+          - string
+          - 'null'
+        op:
+          type:
+          - string
+          - 'null'
+        from:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Catchpoint.Symphony.Enums.Test.APIInsightType:
+      enum:
+      - id: 0
+        name: Tracepoint
+      - id: 1
+        name: Indicator
+      type: integer
+      format: int32
+    Catchpoint.Symphony.REST.Api.ConsumerStatistics:
+      type: object
+      properties:
+        consumerId:
+          type: integer
+          format: int32
+        requestCount:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        maxPerDay:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      additionalProperties: false
     Catchpoint.Symphony.REST.Api.ApiUsageStatistics:
       type: object
       properties:
@@ -431,63 +455,39 @@ components:
           items:
             $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.DivisionUsageStatistics'
       additionalProperties: false
-    Catchpoint.Symphony.Enums.Test.APIInsightType:
-      enum:
-      - id: 0
-        name: Tracepoint
-      - id: 1
-        name: Indicator
-      type: integer
-      format: int32
-    Catchpoint.Symphony.Enums.Test.InsightContentType:
-      enum:
-      - id: 0
-        name: Number
-      - id: 2
-        name: Counter
-      - id: 4
-        name: Second
-      - id: 5
-        name: MicroSecond
-      type: integer
-      format: int32
-    Catchpoint.Symphony.REST.Api.DivisionUsageStatistics:
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Insight.InsightResponseModel:
       type: object
       properties:
-        divisionId:
-          type: integer
-          format: int32
-        consumerStatistics:
+        insights:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ConsumerStatistics'
-      additionalProperties: false
-    Catchpoint.Symphony.ViewModels.MessageModel:
-      type: object
-      properties:
-        id:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.Insight.InsightAPIModel'
+        hasMore:
+          type:
+          - boolean
+          - 'null'
+        next:
           type:
           - string
           - 'null'
-        message:
+        previous:
           type:
           - string
           - 'null'
       additionalProperties: false
-    Catchpoint.Symphony.REST.Api.ConsumerStatistics:
+    Catchpoint.Symphony.REST.Api.Limit:
       type: object
       properties:
-        consumerId:
+        minute:
           type: integer
           format: int32
-        requestCount:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
-        maxPerDay:
-          type:
-          - integer
-          - 'null'
+        hour:
+          type: integer
+          format: int32
+        day:
+          type: integer
           format: int32
       additionalProperties: false
   securitySchemes:

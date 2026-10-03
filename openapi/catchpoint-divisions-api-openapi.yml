@@ -46,19 +46,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Catchpoint.Symphony.REST.Api.Limit:
-      type: object
-      properties:
-        minute:
-          type: integer
-          format: int32
-        hour:
-          type: integer
-          format: int32
-        day:
-          type: integer
-          format: int32
-      additionalProperties: false
     Catchpoint.Symphony.REST.Common.Models.InfoMessage:
       type: object
       properties:
@@ -72,33 +59,6 @@ components:
           - 'null'
           items:
             $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath:
-      type: object
-      properties:
-        ops:
-          type:
-          - string
-          - 'null'
-        path:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.v2_0.DivisionAPIModel:
-      type: object
-      properties:
-        id:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        name:
-          type:
-          - string
-          - 'null'
-        statusType:
-          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.DomainStatus'
       additionalProperties: false
     Catchpoint.Symphony.REST.Common.Response.v2_0.DivisionResponseModel:
       type: object
@@ -121,6 +81,85 @@ components:
           type:
           - string
           - 'null'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.DivisionUsageStatistics:
+      type: object
+      properties:
+        divisionId:
+          type: integer
+          format: int32
+        consumerStatistics:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ConsumerStatistics'
+      additionalProperties: false
+    Catchpoint.Symphony.Enums.DomainStatus:
+      enum:
+      - id: 0
+        name: Active
+      - id: 1
+        name: Inactive
+      - id: 2
+        name: Archived
+      - id: 3
+        name: Suspended
+      - id: 4
+        name: SuspendedByAdmin
+      - id: 5
+        name: Open
+      - id: 6
+        name: Resolved
+      - id: 7
+        name: Deleted
+      - id: 8
+        name: OverSubscribed
+      - id: 9
+        name: Published
+      - id: 10
+        name: Draft
+      - id: 11
+        name: NeedsApproval
+      type: integer
+      format: int32
+    Catchpoint.Symphony.ViewModels.MessageModel:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        message:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath:
+      type: object
+      properties:
+        ops:
+          type:
+          - string
+          - 'null'
+        path:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.ConsumerStatistics:
+      type: object
+      properties:
+        consumerId:
+          type: integer
+          format: int32
+        requestCount:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        maxPerDay:
+          type:
+          - integer
+          - 'null'
+          format: int32
       additionalProperties: false
     Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.DivisionResponseModel:
       type: object
@@ -174,72 +213,33 @@ components:
           items:
             $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.DivisionUsageStatistics'
       additionalProperties: false
-    Catchpoint.Symphony.Enums.DomainStatus:
-      enum:
-      - id: 0
-        name: Active
-      - id: 1
-        name: Inactive
-      - id: 2
-        name: Archived
-      - id: 3
-        name: Suspended
-      - id: 4
-        name: SuspendedByAdmin
-      - id: 5
-        name: Open
-      - id: 6
-        name: Resolved
-      - id: 7
-        name: Deleted
-      - id: 8
-        name: OverSubscribed
-      - id: 9
-        name: Published
-      - id: 10
-        name: Draft
-      - id: 11
-        name: NeedsApproval
-      type: integer
-      format: int32
-    Catchpoint.Symphony.REST.Api.DivisionUsageStatistics:
+    Catchpoint.Symphony.REST.Api.Limit:
       type: object
       properties:
-        divisionId:
+        minute:
           type: integer
           format: int32
-        consumerStatistics:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ConsumerStatistics'
+        hour:
+          type: integer
+          format: int32
+        day:
+          type: integer
+          format: int32
       additionalProperties: false
-    Catchpoint.Symphony.ViewModels.MessageModel:
+    Catchpoint.Symphony.REST.Common.Response.v2_0.DivisionAPIModel:
       type: object
       properties:
         id:
           type:
-          - string
-          - 'null'
-        message:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Api.ConsumerStatistics:
-      type: object
-      properties:
-        consumerId:
-          type: integer
-          format: int32
-        requestCount:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
-        maxPerDay:
-          type:
           - integer
           - 'null'
           format: int32
+        name:
+          type:
+          - string
+          - 'null'
+        statusType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.DomainStatus'
       additionalProperties: false
   securitySchemes:
     bearer:

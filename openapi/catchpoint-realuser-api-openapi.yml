@@ -309,6 +309,58 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Catchpoint.Symphony.REST.Common.Models.InfoMessage:
+      type: object
+      properties:
+        information:
+          type:
+          - string
+          - 'null'
+        ignoredPath:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath'
+      additionalProperties: false
+    Catchpoint.Symphony.ViewModels.MessageModel:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        message:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.FavoriteChart.FavoriteChartAppDetailAPIModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type:
+          - string
+          - 'null'
+        type:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Int32'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.DivisionUsageStatistics:
+      type: object
+      properties:
+        divisionId:
+          type: integer
+          format: int32
+        consumerStatistics:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ConsumerStatistics'
+      additionalProperties: false
     Catchpoint.Symphony.REST.Common.Response.v2_0.AnalyticsResponseAggregated:
       type: object
       properties:
@@ -364,107 +416,60 @@ components:
           items:
             $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.AnalyticsResponseItem'
       additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationDetailResponse:
-      type: object
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.FavoriteChart.FavoriteChartResponse
+    : type: object
       properties:
-        section:
-          type:
-          - string
-          - 'null'
-        enumeration:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.FavoriteChart.FavoriteChartResponse'
+        messages:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Nullable_1_System.Int32'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.v2_0.FavoriteChart.FavoriteChartDetailsResponse:
-      type: object
-      properties:
-        favoriteCharts:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+        errors:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.FavoriteChart.FavoriteChartDetailAPIModel'
-        hasMore:
-          type:
-          - boolean
-          - 'null'
-        next:
-          type:
-          - string
-          - 'null'
-        previous:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
           type:
           - string
           - 'null'
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
       additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.v2_0.FavoriteChart.FavoriteChartAppDetailAPIModel:
+    Catchpoint.Symphony.REST.Common.Response.v2_0.Insight.InsightResponse:
       type: object
       properties:
         id:
           type: integer
-          format: int64
-        name:
-          type:
-          - string
-          - 'null'
-        type:
-          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Int32'
-      additionalProperties: false
-    Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Nullable_1_System.Int32:
-      type: object
-      properties:
-        id:
-          type:
-          - integer
-          - 'null'
+          format: int32
+        index:
+          type: integer
           format: int32
         name:
           type:
           - string
           - 'null'
       additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.v2_0.AnalyticsResponseItem:
+    Catchpoint.Symphony.REST.Api.ConsumerStatistics:
       type: object
       properties:
-        dateTime:
+        consumerId:
+          type: integer
+          format: int32
+        requestCount:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        maxPerDay:
           type:
-          - string
+          - integer
           - 'null'
-          format: date-time
-        reportDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        values:
-          type:
-          - array
-          - 'null'
-          items:
-            type: number
-            format: double
-        dimensions:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.DimensionResponse'
-        indicators:
-          type:
-          - array
-          - 'null'
-          items:
-            type: number
-            format: double
-        tracepoints:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
+          format: int32
       additionalProperties: false
     Catchpoint.Symphony.REST.Common.Response.v2_0.FavoriteChart.FavoriteChartDetailAPIModel:
       type: object
@@ -532,93 +537,6 @@ components:
         sourceType:
           $ref: '#/components/schemas/Catchpoint.Symphony.Enums.Smartboard.WidgetSourceType'
       additionalProperties: false
-    Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Int32:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        name:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.v2_0.FavoriteChart.FavoriteChartAPIModel:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        name:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-        changeDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-      additionalProperties: false
-    Catchpoint.Symphony.Enums.Smartboard.WidgetSourceType:
-      enum:
-      - id: 1
-        name: Test
-      - id: 2
-        name: RumApp
-      - id: 3
-        name: SonarApp
-      - id: 4
-        name: SonarLocation
-      - id: 5
-        name: SonarDevice
-      - id: 6
-        name: SLA
-      - id: 7
-        name: SyntheticAlert
-      - id: 8
-        name: RumAlert
-      - id: 9
-        name: SyntheticError
-      - id: 10
-        name: RumError
-      - id: 11
-        name: UserSentiment
-      - id: 12
-        name: EndpointTest
-      - id: 13
-        name: NodeToNode
-      - id: 14
-        name: InternetWeather
-      - id: 15
-        name: TracingSystem
-      - id: 16
-        name: TracingService
-      - id: 17
-        name: Benchmarks
-      - id: 18
-        name: RumMobileApp
-      - id: 19
-        name: TracingSpan
-      type: integer
-      format: int32
-    Catchpoint.Symphony.REST.Common.Models.v2_0.RealUser.RumFilterAPIModel:
-      type: object
-      properties:
-        dimension:
-          type: integer
-          format: int32
-        filterValues:
-          type:
-          - array
-          - 'null'
-          items: {}
-        include:
-          type: boolean
-      additionalProperties: false
     Catchpoint.Symphony.REST.Api.ApiUsageStatistics:
       type: object
       properties:
@@ -643,6 +561,87 @@ components:
           - 'null'
           items:
             $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.DivisionUsageStatistics'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.FavoriteChart.FavoriteChartTestDetailAPIModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type:
+          - string
+          - 'null'
+        testType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Int32'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.FavoriteChart.FavoriteChartResponse:
+      type: object
+      properties:
+        favoriteCharts:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.FavoriteChart.FavoriteChartAPIModel'
+        hasMore:
+          type:
+          - boolean
+          - 'null'
+        next:
+          type:
+          - string
+          - 'null'
+        previous:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.Limit:
+      type: object
+      properties:
+        minute:
+          type: integer
+          format: int32
+        hour:
+          type: integer
+          format: int32
+        day:
+          type: integer
+          format: int32
+      additionalProperties: false
+    Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Int32:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.FavoriteChart.FavoriteChartDetailsResponse:
+      type: object
+      properties:
+        favoriteCharts:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.FavoriteChart.FavoriteChartDetailAPIModel'
+        hasMore:
+          type:
+          - boolean
+          - 'null'
+        next:
+          type:
+          - string
+          - 'null'
+        previous:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
     ? Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.AnalyticsApiResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.AnalyticsResponseAggregated
     : type: object
@@ -671,12 +670,88 @@ components:
         usageLimits:
           $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
       additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.v2_0.Insight.InsightResponse:
+    Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationResponse:
       type: object
       properties:
-        id:
-          type: integer
-          format: int32
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationResponse'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type:
+          - string
+          - 'null'
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath:
+      type: object
+      properties:
+        ops:
+          type:
+          - string
+          - 'null'
+        path:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.AnalyticsResponseItem:
+      type: object
+      properties:
+        dateTime:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        reportDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        values:
+          type:
+          - array
+          - 'null'
+          items:
+            type: number
+            format: double
+        dimensions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.DimensionResponse'
+        indicators:
+          type:
+          - array
+          - 'null'
+          items:
+            type: number
+            format: double
+        tracepoints:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.MetricResponse:
+      type: object
+      properties:
         index:
           type: integer
           format: int32
@@ -685,46 +760,27 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    Catchpoint.Symphony.REST.Api.ConsumerStatistics:
+    Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationResponse:
       type: object
       properties:
-        consumerId:
-          type: integer
-          format: int32
-        requestCount:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
-        maxPerDay:
-          type:
-          - integer
-          - 'null'
-          format: int32
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Api.Limit:
-      type: object
-      properties:
-        minute:
-          type: integer
-          format: int32
-        hour:
-          type: integer
-          format: int32
-        day:
-          type: integer
-          format: int32
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Models.InfoMessage:
-      type: object
-      properties:
-        information:
-          type:
-          - string
-          - 'null'
-        ignoredPath:
+        sections:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath'
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationDetailResponse'
+        hasMore:
+          type:
+          - boolean
+          - 'null'
+        next:
+          type:
+          - string
+          - 'null'
+        previous:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
     ? Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.FavoriteChart.FavoriteChartDetailsResponse
     : type: object
@@ -788,164 +844,108 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    Catchpoint.Symphony.REST.Api.DivisionUsageStatistics:
-      type: object
-      properties:
-        divisionId:
-          type: integer
-          format: int32
-        consumerStatistics:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ConsumerStatistics'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationResponse'
-        messages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
-        completed:
-          type: boolean
-          readOnly: true
-        traceId:
-          type:
-          - string
-          - 'null'
-        usageLimits:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath:
-      type: object
-      properties:
-        ops:
-          type:
-          - string
-          - 'null'
-        path:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.v2_0.FavoriteChart.FavoriteChartTestDetailAPIModel:
+    Catchpoint.Symphony.Enums.Smartboard.WidgetSourceType:
+      enum:
+      - id: 1
+        name: Test
+      - id: 2
+        name: RumApp
+      - id: 3
+        name: SonarApp
+      - id: 4
+        name: SonarLocation
+      - id: 5
+        name: SonarDevice
+      - id: 6
+        name: SLA
+      - id: 7
+        name: SyntheticAlert
+      - id: 8
+        name: RumAlert
+      - id: 9
+        name: SyntheticError
+      - id: 10
+        name: RumError
+      - id: 11
+        name: UserSentiment
+      - id: 12
+        name: EndpointTest
+      - id: 13
+        name: NodeToNode
+      - id: 14
+        name: InternetWeather
+      - id: 15
+        name: TracingSystem
+      - id: 16
+        name: TracingService
+      - id: 17
+        name: Benchmarks
+      - id: 18
+        name: RumMobileApp
+      - id: 19
+        name: TracingSpan
+      type: integer
+      format: int32
+    Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Nullable_1_System.Int32:
       type: object
       properties:
         id:
-          type: integer
-          format: int64
-        name:
           type:
-          - string
+          - integer
           - 'null'
-        testType:
-          $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Int32'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.v2_0.FavoriteChart.FavoriteChartResponse:
-      type: object
-      properties:
-        favoriteCharts:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.FavoriteChart.FavoriteChartAPIModel'
-        hasMore:
-          type:
-          - boolean
-          - 'null'
-        next:
-          type:
-          - string
-          - 'null'
-        previous:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationResponse:
-      type: object
-      properties:
-        sections:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationDetailResponse'
-        hasMore:
-          type:
-          - boolean
-          - 'null'
-        next:
-          type:
-          - string
-          - 'null'
-        previous:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    ? Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.FavoriteChart.FavoriteChartResponse
-    : type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.FavoriteChart.FavoriteChartResponse'
-        messages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
-        completed:
-          type: boolean
-          readOnly: true
-        traceId:
-          type:
-          - string
-          - 'null'
-        usageLimits:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.v2_0.MetricResponse:
-      type: object
-      properties:
-        index:
-          type: integer
           format: int32
         name:
           type:
           - string
           - 'null'
       additionalProperties: false
-    Catchpoint.Symphony.ViewModels.MessageModel:
+    Catchpoint.Symphony.REST.Common.Response.v2_0.EnumerationDetailResponse:
+      type: object
+      properties:
+        section:
+          type:
+          - string
+          - 'null'
+        enumeration:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.EnumLookupModel_1_System.Nullable_1_System.Int32'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.v2_0.FavoriteChart.FavoriteChartAPIModel:
       type: object
       properties:
         id:
+          type: integer
+          format: int32
+        name:
           type:
           - string
           - 'null'
-        message:
+        description:
           type:
           - string
           - 'null'
+        changeDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.v2_0.RealUser.RumFilterAPIModel:
+      type: object
+      properties:
+        dimension:
+          type: integer
+          format: int32
+        filterValues:
+          type:
+          - array
+          - 'null'
+          items: {}
+        include:
+          type: boolean
       additionalProperties: false
   securitySchemes:
     bearer:
