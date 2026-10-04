@@ -68,6 +68,38 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Catchpoint.Symphony.Enums.SyntheticErrorType.SyntheticErrorType:
+      enum:
+      - id: 0
+        name: None
+      - id: 1
+        name: DNS
+      - id: 2
+        name: Connection
+      - id: 3
+        name: SSL
+      - id: 4
+        name: NoResponse
+      - id: 5
+        name: Response
+      - id: 6
+        name: Timeout
+      - id: 7
+        name: SystemLimit
+      - id: 8
+        name: Transaction
+      - id: 9
+        name: Content
+      - id: 10
+        name: Other
+      - id: 11
+        name: ScriptFailure
+      - id: 12
+        name: ChildRequestFailure
+      - id: 13
+        name: PacketLoss
+      type: integer
+      format: int32
     Catchpoint.Symphony.REST.Common.Models.v2_0.InternetWeather.InternetWeatherServiceOutage:
       type: object
       properties:
@@ -139,38 +171,6 @@ components:
           items:
             $ref: '#/components/schemas/Catchpoint.Symphony.Enums.SyntheticErrorType.SyntheticErrorType'
       additionalProperties: false
-    Catchpoint.Symphony.Enums.SyntheticErrorType.SyntheticErrorType:
-      enum:
-      - id: 0
-        name: None
-      - id: 1
-        name: DNS
-      - id: 2
-        name: Connection
-      - id: 3
-        name: SSL
-      - id: 4
-        name: NoResponse
-      - id: 5
-        name: Response
-      - id: 6
-        name: Timeout
-      - id: 7
-        name: SystemLimit
-      - id: 8
-        name: Transaction
-      - id: 9
-        name: Content
-      - id: 10
-        name: Other
-      - id: 11
-        name: ScriptFailure
-      - id: 12
-        name: ChildRequestFailure
-      - id: 13
-        name: PacketLoss
-      type: integer
-      format: int32
   securitySchemes:
     bearer:
       type: http

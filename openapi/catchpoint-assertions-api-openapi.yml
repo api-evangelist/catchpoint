@@ -196,28 +196,110 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Catchpoint.Symphony.REST.Common.Models.InfoMessage:
+    Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath:
       type: object
       properties:
-        information:
+        ops:
           type:
           - string
           - 'null'
-        ignoredPath:
+        path:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.Limit:
+      type: object
+      properties:
+        minute:
+          type: integer
+          format: int32
+        hour:
+          type: integer
+          format: int32
+        day:
+          type: integer
+          format: int32
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.DivisionUsageStatistics:
+      type: object
+      properties:
+        divisionId:
+          type: integer
+          format: int32
+        consumerStatistics:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath'
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ConsumerStatistics'
       additionalProperties: false
-    Catchpoint.Symphony.Enums.RUM.RumAccessType:
+    Catchpoint.Symphony.REST.Common.Response.v2_0.IdentityProviderAssertion.IdentityProviderAssertionPostResponse:
+      type: object
+      properties:
+        assertions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.IdentityProviderAssertion.IdentityProviderAssertionAPIModel'
+        assertionIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int32
+        hasMore:
+          type:
+          - boolean
+          - 'null'
+        next:
+          type:
+          - string
+          - 'null'
+        previous:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.v2_0.IdentityProviderAssertion.TestAccessRestrictionApiType:
       enum:
       - id: 0
         name: All
       - id: 1
-        name: Site
+        name: Test
+      - id: 2
+        name: Product
       type: integer
       format: int32
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.IdentityProviderAssertion.IdentityProviderAssertionDeleteResponse
+    : type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.IdentityProviderAssertion.IdentityProviderAssertionDeleteResponse'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type:
+          - string
+          - 'null'
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
     Catchpoint.Symphony.ViewModels.MessageModel:
       type: object
       properties:
@@ -230,11 +312,149 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    ? Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.IdentityProviderAssertion.IdentityProviderAssertionDeleteResponse
+    Catchpoint.Symphony.REST.Common.Response.v2_0.IdentityProviderAssertion.IdentityProviderAssertionRequestResponseModel:
+      type: object
+      properties:
+        assertions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.IdentityProviderAssertion.IdentityProviderAssertionAPIModel'
+        hasMore:
+          type:
+          - boolean
+          - 'null'
+        next:
+          type:
+          - string
+          - 'null'
+        previous:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Requests.v2_0.IdentityProviderAssertionRequest:
+      type: object
+      properties:
+        assertions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.IdentityProviderAssertion.IdentityProviderAssertionAPIModel'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.ConsumerStatistics:
+      type: object
+      properties:
+        consumerId:
+          type: integer
+          format: int32
+        requestCount:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
+        maxPerDay:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      additionalProperties: false
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.IdentityProviderAssertion.IdentityProviderAssertionPostResponse
     : type: object
       properties:
         data:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.IdentityProviderAssertion.IdentityProviderAssertionDeleteResponse'
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.IdentityProviderAssertion.IdentityProviderAssertionPostResponse'
+        messages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
+        completed:
+          type: boolean
+          readOnly: true
+        traceId:
+          type:
+          - string
+          - 'null'
+        usageLimits:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+    Microsoft.AspNetCore.JsonPatch.Operations.Operation:
+      type: object
+      properties:
+        value: {}
+        path:
+          type:
+          - string
+          - 'null'
+        op:
+          type:
+          - string
+          - 'null'
+        from:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.v2_0.IdentityProviderAssertion.IdentityProviderAssertionAPIModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        assertions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.KeyValueModel'
+        priority:
+          type: integer
+          format: int32
+        accessLevel:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.AccessLevel'
+        ssoLevel:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        systemAccess:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        regex:
+          type: boolean
+        testAccessRestrictType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.IdentityProviderAssertion.TestAccessRestrictionApiType'
+        testAccessRestrictionIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int64
+        rumAccessRestrictionType:
+          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.RUM.RumAccessType'
+        rumAccessRestrictionIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int64
+      additionalProperties: false
+    ? Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.IdentityProviderAssertion.IdentityProviderAssertionRequestResponseModel
+    : type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.IdentityProviderAssertion.IdentityProviderAssertionRequestResponseModel'
         messages:
           type:
           - array
@@ -287,46 +507,6 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    ? Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.IdentityProviderAssertion.IdentityProviderAssertionPostResponse
-    : type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.IdentityProviderAssertion.IdentityProviderAssertionPostResponse'
-        messages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
-        completed:
-          type: boolean
-          readOnly: true
-        traceId:
-          type:
-          - string
-          - 'null'
-        usageLimits:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Api.DivisionUsageStatistics:
-      type: object
-      properties:
-        divisionId:
-          type: integer
-          format: int32
-        consumerStatistics:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ConsumerStatistics'
-      additionalProperties: false
     Catchpoint.Symphony.ViewModels.KeyValueModel:
       type: object
       properties:
@@ -339,19 +519,39 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    Catchpoint.Symphony.REST.Api.ConsumerStatistics:
+    Catchpoint.Symphony.Enums.RUM.RumAccessType:
+      enum:
+      - id: 0
+        name: All
+      - id: 1
+        name: Site
+      type: integer
+      format: int32
+    Catchpoint.Symphony.Enums.AccessLevel:
+      enum:
+      - id: 5
+        name: System
+      - id: 16
+        name: Reseller
+      - id: 17
+        name: Client
+      - id: 18
+        name: Division
+      type: integer
+      format: int32
+    Catchpoint.Symphony.REST.Common.Models.InfoMessage:
       type: object
       properties:
-        consumerId:
-          type: integer
-          format: int32
-        requestCount:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.Limit'
-        maxPerDay:
+        information:
           type:
-          - integer
+          - string
           - 'null'
-          format: int32
+        ignoredPath:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath'
       additionalProperties: false
     Catchpoint.Symphony.REST.Api.ApiUsageStatistics:
       type: object
@@ -378,206 +578,6 @@ components:
           items:
             $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.DivisionUsageStatistics'
       additionalProperties: false
-    Catchpoint.Symphony.REST.Api.Limit:
-      type: object
-      properties:
-        minute:
-          type: integer
-          format: int32
-        hour:
-          type: integer
-          format: int32
-        day:
-          type: integer
-          format: int32
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.v2_0.IdentityProviderAssertion.IdentityProviderAssertionPostResponse:
-      type: object
-      properties:
-        assertions:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.IdentityProviderAssertion.IdentityProviderAssertionAPIModel'
-        assertionIds:
-          type:
-          - array
-          - 'null'
-          items:
-            type: integer
-            format: int32
-        hasMore:
-          type:
-          - boolean
-          - 'null'
-        next:
-          type:
-          - string
-          - 'null'
-        previous:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Catchpoint.Symphony.Enums.AccessLevel:
-      enum:
-      - id: 5
-        name: System
-      - id: 16
-        name: Reseller
-      - id: 17
-        name: Client
-      - id: 18
-        name: Division
-      type: integer
-      format: int32
-    Catchpoint.Symphony.REST.Common.Models.v2_0.IdentityProviderAssertion.IdentityProviderAssertionAPIModel:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        assertions:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.KeyValueModel'
-        priority:
-          type: integer
-          format: int32
-        accessLevel:
-          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.AccessLevel'
-        ssoLevel:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        systemAccess:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        regex:
-          type: boolean
-        testAccessRestrictType:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.IdentityProviderAssertion.TestAccessRestrictionApiType'
-        testAccessRestrictionIds:
-          type:
-          - array
-          - 'null'
-          items:
-            type: integer
-            format: int64
-        rumAccessRestrictionType:
-          $ref: '#/components/schemas/Catchpoint.Symphony.Enums.RUM.RumAccessType'
-        rumAccessRestrictionIds:
-          type:
-          - array
-          - 'null'
-          items:
-            type: integer
-            format: int64
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath:
-      type: object
-      properties:
-        ops:
-          type:
-          - string
-          - 'null'
-        path:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Microsoft.AspNetCore.JsonPatch.Operations.Operation:
-      type: object
-      properties:
-        value: {}
-        path:
-          type:
-          - string
-          - 'null'
-        op:
-          type:
-          - string
-          - 'null'
-        from:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    ? Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.v2_0.IdentityProviderAssertion.IdentityProviderAssertionRequestResponseModel
-    : type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Response.v2_0.IdentityProviderAssertion.IdentityProviderAssertionRequestResponseModel'
-        messages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.InfoMessage'
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.ViewModels.MessageModel'
-        completed:
-          type: boolean
-          readOnly: true
-        traceId:
-          type:
-          - string
-          - 'null'
-        usageLimits:
-          $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Requests.v2_0.IdentityProviderAssertionRequest:
-      type: object
-      properties:
-        assertions:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.IdentityProviderAssertion.IdentityProviderAssertionAPIModel'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.v2_0.IdentityProviderAssertion.IdentityProviderAssertionRequestResponseModel:
-      type: object
-      properties:
-        assertions:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.v2_0.IdentityProviderAssertion.IdentityProviderAssertionAPIModel'
-        hasMore:
-          type:
-          - boolean
-          - 'null'
-        next:
-          type:
-          - string
-          - 'null'
-        previous:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Models.v2_0.IdentityProviderAssertion.TestAccessRestrictionApiType:
-      enum:
-      - id: 0
-        name: All
-      - id: 1
-        name: Test
-      - id: 2
-        name: Product
-      type: integer
-      format: int32
   securitySchemes:
     bearer:
       type: http

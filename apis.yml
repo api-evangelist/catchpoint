@@ -410,8 +410,6 @@ apis:
   humanURL: https://docs.catchpoint.com/docs/rest-api-v2-guide
   baseURL: https://io.catchpoint.com/api
   tags:
-  - NodeGroup
-  tags_raw:
   - Node Group
   properties:
   - type: OpenAPI
@@ -424,8 +422,6 @@ apis:
   humanURL: https://docs.catchpoint.com/docs/rest-api-v2-guide
   baseURL: https://io.catchpoint.com/api
   tags:
-  - UsageReport
-  tags_raw:
   - Usage Report
   properties:
   - type: OpenAPI
@@ -450,8 +446,6 @@ apis:
   humanURL: https://docs.catchpoint.com/docs/rest-api-v2-guide
   baseURL: https://io.catchpoint.com/api
   tags:
-  - UserRole
-  tags_raw:
   - User Role
   properties:
   - type: OpenAPI
