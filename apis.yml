@@ -47,7 +47,7 @@ x-tier: profiled
 x-tier-reason: enriched-with-rest-api-v2
 specificationVersion: '0.23'
 created: '2026-07-17'
-modified: '2026-07-18'
+modified: '2026-10-06'
 tags:
 - Company
 - DevOps
@@ -453,6 +453,8 @@ apis:
   - type: APIReference
     url: https://io.catchpoint.com/api/swagger/index.html
 common:
+- url: https://www.catchpoint.com/blog/rss.xml
+  type: BlogRSS
 - type: CapabilityMap
   url: capabilities/catchpoint-capability-edges.yml
   name: Catchpoint Business Capability Map
