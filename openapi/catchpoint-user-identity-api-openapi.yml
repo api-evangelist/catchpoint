@@ -45,44 +45,6 @@ components:
           - 'null'
           format: int32
       additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath:
-      type: object
-      properties:
-        ops:
-          type:
-          - string
-          - 'null'
-        path:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Api.DivisionUsageStatistics:
-      type: object
-      properties:
-        divisionId:
-          type: integer
-          format: int32
-        consumerStatistics:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ConsumerStatistics'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Api.Limit:
-      type: object
-      properties:
-        minute:
-          type: integer
-          format: int32
-        hour:
-          type: integer
-          format: int32
-        day:
-          type: integer
-          format: int32
-      additionalProperties: false
     Catchpoint.Symphony.REST.Common.Models.InfoMessage:
       type: object
       properties:
@@ -96,6 +58,57 @@ components:
           - 'null'
           items:
             $ref: '#/components/schemas/Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath'
+      additionalProperties: false
+    Catchpoint.Symphony.ViewModels.MessageModel:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        message:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Models.PatchIgnoredPath:
+      type: object
+      properties:
+        ops:
+          type:
+          - string
+          - 'null'
+        path:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Common.Response.UserIdentityModel:
+      type: object
+      properties:
+        contact_id:
+          type: integer
+          format: int32
+        contact_email:
+          type:
+          - string
+          - 'null'
+        user_id:
+          type: integer
+          format: int32
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.DivisionUsageStatistics:
+      type: object
+      properties:
+        divisionId:
+          type: integer
+          format: int32
+        consumerStatistics:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ConsumerStatistics'
       additionalProperties: false
     Catchpoint.Symphony.REST.Api.ApiUsageStatistics:
       type: object
@@ -121,32 +134,6 @@ components:
           - 'null'
           items:
             $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.DivisionUsageStatistics'
-      additionalProperties: false
-    Catchpoint.Symphony.ViewModels.MessageModel:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        message:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Catchpoint.Symphony.REST.Common.Response.UserIdentityModel:
-      type: object
-      properties:
-        contact_id:
-          type: integer
-          format: int32
-        contact_email:
-          type:
-          - string
-          - 'null'
-        user_id:
-          type: integer
-          format: int32
       additionalProperties: false
     Catchpoint.Symphony.REST.Common.Response.APIResponse_1_Catchpoint.Symphony.REST.Common.Response.UserIdentityModel:
       type: object
@@ -174,6 +161,19 @@ components:
           - 'null'
         usageLimits:
           $ref: '#/components/schemas/Catchpoint.Symphony.REST.Api.ApiUsageStatistics'
+      additionalProperties: false
+    Catchpoint.Symphony.REST.Api.Limit:
+      type: object
+      properties:
+        minute:
+          type: integer
+          format: int32
+        hour:
+          type: integer
+          format: int32
+        day:
+          type: integer
+          format: int32
       additionalProperties: false
   securitySchemes:
     bearer:
