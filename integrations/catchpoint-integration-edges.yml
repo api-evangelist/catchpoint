@@ -6,6 +6,10 @@ checked:
 - https://github.com/cncf/k8s-conformance
 - https://github.com/cncf/landscape
 - https://zapier.com/api/v4/apps/
+- https://manrs.org/netops/participants/
+- https://www.peeringdb.com/api/fac
+- https://www.peeringdb.com/api/ix
+- https://www.peeringdb.com/api/net
 marketplace_apps: []
 edges:
 - partner_name: AWS Marketplace
@@ -81,6 +85,37 @@ edges:
     detected: '2026-10-19'
   detected_by: sweep-cloud-native.py
   first_seen: '2026-10-15'
+- partner_name: PeeringDB (interconnection register)
+  partner: null
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://www.peeringdb.com/net/31184
+  category: network interconnection register
+  contract_reference:
+    register: PeeringDB (peeringdb.com/api net, ix, fac, org)
+    standard: null
+    spec_file: null
+    role: peeringdb-network
+    registered_name: Catchpoint
+    register_id: https://www.peeringdb.com/net/31184
+    matched_domain: catchpoint.com
+    matched_by: domain
+    asns:
+    - 397601
+    info_types:
+    - Route Collector
+    ix_presence: 14
+    exchanges_operated: []
+    facilities_operated: 0
+    signal_note: 'participation only: PeeringDB is self-registered by network operators; ASNs, IX presence and facility
+      counts are context, never counted'
+    detected_by: sweep-network-edge.py
+    detected: '2026-10-20'
+  detected_by: sweep-network-edge.py
+  first_seen: '2026-10-20'
 source:
 - https://github.com/cncf/landscape
 - https://github.com/cncf/k8s-conformance
